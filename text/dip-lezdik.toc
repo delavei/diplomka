@@ -1,0 +1,9 @@
+\select@language {slovak}
+\contentsline {chapter}{Obsah}{vi}
+\contentsline {chapter}{\numberline {1}\bfseries \IeC {\'U}vod}{1}
+\contentsline {chapter}{\numberline {2}\bfseries Jadro}{2}
+\contentsline {section}{\numberline {2.1}\slshape sekcia}{2}
+\contentsline {subsection}{\numberline {2.1.1}\rmfamily podsekcia}{2}
+\contentsline {chapter}{\numberline {3}\bfseries Z\IeC {\'a}ver}{3}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{5}
+\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{6}

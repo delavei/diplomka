@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+
+\bibitem{yang}
+M.~Bjorklund.
+\newblock {\em {RFC 6020, YANG - A Data Modeling Language for the Network
+  Configuration Protocol (NETCONF)}}.
+\newblock IETF, Network Working Group, 2010.
+\newblock \newline URL: \url{http://www.ietf.org/rfc/rfc6020.txt}
+
+\bibitem{interfaces}
+M.~Bjorklund.
+\newblock {\em {A YANG Data Model for Interface Management}}.
+\newblock IETF, Network Working Group, 2012.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-interfaces-cfg-08}
+
+\bibitem{ipcfg}
+M.~Bjorklund.
+\newblock {\em {A YANG Data Model for IP Management}}.
+\newblock IETF, Network Working Group, 2013.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-ip-cfg-09}
+
+\bibitem{if-type}
+M.~Bjorklund.
+\newblock {\em {IANA Interface Type and Address Family YANG Modules}}.
+\newblock IETF, Network Working Group, 2013.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-iana-if-type-06}
+
+\bibitem{netconf}
+R.~Enns, M.~Bjorklund, J.~Schoenwaelder  a A.~Bierman.
+\newblock {\em {RFC 6241, Network Configuration Protocol (NETCONF)}}.
+\newblock IETF, Network Working Group, 2011.
+\newblock \newline URL: \url{http://www.ietf.org/rfc/rfc6241.txt}
+
+\bibitem{sysmgmt}
+Rob Enns, Martin Bjorklund, Andy Bierman  a Juergen Schoenwaelder.
+\newblock {\em {YANG Data Model for System Management}}.
+\newblock IETF, Network Working Group, 2011.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-system-mgmt-06}
+
+\bibitem{resolvconfman}
+Thomas Hood.
+\newblock {\em {Ubuntu Manpage: resolvconf - manage nameserver information}},
+  2011.
+\newblock \newline URL:
+  \url{http://manpages.ubuntu.com/manpages/precise/man8/resolvconf.8.html}
+
+\bibitem{tzdb}
+J.~Lange.
+\newblock {\em {IANA Timezone Database YANG Module}}.
+\newblock IETF, Network Working Group, 2012.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-iana-timezones-01}
+
+\bibitem{routing}
+L.~Lhotka.
+\newblock {\em {A YANG Data Model for Routing Management}}.
+\newblock Internet Engineering Task Force, 2013.
+\newblock \newline URL:
+  \url{http://tools.ietf.org/html/draft-ietf-netmod-routing-cfg-09}
+
+\bibitem{ntp4}
+D.~Mills, J.~Martin, J.~Burbank  a W.~Kasch.
+\newblock {\em {RFC 5905, Network Time Protocol Version 4: Protocol and
+  Algorithms Specification}}.
+\newblock Internet Engineering Task Force, 2010.
+\newblock \newline URL: \url{http://www.ietf.org/rfc/rfc5905.txt}
+
+\bibitem{ntp}
+D.L. Mills.
+\newblock {\em {RFC 958, Network Time Protocol (NTP)}}.
+\newblock Internet Engineering Task Force, 1985.
+\newblock \newline URL: \url{http://www.ietf.org/rfc/rfc958.txt}
+
+\bibitem{salt}
+Christoph Wille.
+\newblock Storing passwords - done right! [online].
+\newblock 2004 [cit. 2013-04-24].
+\newblock \newline URL: \url{http://www.aspheute.com/english/20040105.asp}
+
+\bibitem{ssh}
+T.~Ylonen a C.~Lonvick.
+\newblock {\em {RFC 4253, The Secure Shell (SSH) Transport Layer Protocol}}.
+\newblock Internet Engineering Task Force, 2006.
+\newblock \newline URL: \url{http://www.ietf.org/rfc/rfc4253.txt}
+
+\end{thebibliography}
