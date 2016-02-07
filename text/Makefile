@@ -15,7 +15,7 @@ pdf: $(THESIS).pdf
 $(THESIS).pdf: $(THESIS).tex
 	pdflatex -output-format=pdf $(THESIS)
 	pdflatex -output-format=pdf $(THESIS)
-	bibtex $(THESIS)
+	bibtex $(THESIS).bib
 	pdflatex -output-format=pdf $(THESIS)
 	@while grep -qs 'LaTeX Warning:.*references' $(THESIS).log; do echo; pdflatex -output-format=pdf $(THESIS); done
 	mv $(THESIS).pdf $(THESIS)-in.pdf
