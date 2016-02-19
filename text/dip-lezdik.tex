@@ -47,13 +47,210 @@
 \MainMatter
 \chapter{Úvod}
 
-\chapter{OpenTSDB}
+\chapter{Zber a uchovavanie casovych rad}
+\section{OpenTSDB}
 OpenTSDB pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
 na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimalizovaná na rýchlu agregáciu podobných časových rád, aby minimalizovala požiadavky na úložný priestor. 
 Používatelia TSD nemusia kpristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
 sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
 
+\section{RRDtool}
+RRDtool is the OpenSource industry standard, high performance data logging and graphing system for time series data.
+
+
+\chapter{Aktualne monitorovacie riešenia}
+\section{Open-source}
+\subsection{Nagios}
+\subsubsection{PluginAPI}
+Scripts and executables must do two things (at a minimum) in order to function as Nagios plugins:
+
+Exit with one of several possible return values
+Return at least one line of text output to STDOUT
+The inner workings of your plugin are unimportant to Nagios. Your plugin could check the status of a TCP port, run a database query, check disk free space, or do whatever else it needs to check something. The details will depend on what needs to be checked - that's up to you.
+
+Return Code
+
+Nagios determines the status of a host or service by evaluating the return code from plugins. The following tables shows a list of valid return codes, along with their corresponding service or host states.
+
+Plugin Return Code	Service State	Host State
+0	OK	UP
+1	WARNING	UP or DOWN/UNREACHABLE*
+2	CRITICAL	DOWN/UNREACHABLE
+3	UNKNOWN	DOWN/UNREACHABLE
+Note Note: If the use_aggressive_host_checking option is enabled, return codes of 1 will result in a host state of DOWN or UNREACHABLE. Otherwise return codes of 1 will result in a host state of UP. The process by which Nagios determines whether or not a host is DOWN or UNREACHABLE is discussed here.
+
+Plugin Output Spec
+
+At a minimum, plugins should return at least one of text output. Beginning with Nagios 3, plugins can optionally return multiple lines of output. Plugins may also return optional performance data that can be processed by external applications. The basic format for plugin output is shown below:
+
+TEXT OUTPUT | OPTIONAL PERFDATA
+LONG TEXT LINE 1
+LONG TEXT LINE 2
+...
+LONG TEXT LINE N | PERFDATA LINE 2
+PERFDATA LINE 3
+...
+PERFDATA LINE N
+
+The performance data (shown in orange) is optional. If a plugin returns performance data in its output, it must separate the performance data from the other text output using a pipe (|) symbol. Additional lines of long text output (shown in blue) are also optional.
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html
+
+\subsubsection{Timeouty}
+
+Format:	service_check_timeout=<seconds>
+Example:	service_check_timeout=60
+This is the maximum number of seconds that Nagios will allow service checks to run. If checks exceed this limit, they are killed and a CRITICAL state is returned. A timeout error will also be logged.
+
+There is often widespread confusion as to what this option really does. It is meant to be used as a last ditch mechanism to kill off plugins which are misbehaving and not exiting in a timely manner. It should be set to something high (like 60 seconds or more), so that each service check normally finishes executing within this time limit. If a service check runs longer than this limit, Nagios will kill it off thinking it is a runaway processes.
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/configmain.html#service_check_timeout
+
+
+
+Nie je mechanizmus pre reštart alebo individuálne timeouty.
+Má zastaralý Hadoop plugin, používa staré REST API.
+Last Release Date 2010-11-05
+https://exchange.nagios.org/directory/Plugins/Others/check_hadoop_metrics/details
+
+\subsection{Zabbix}
+\subsubsection{Timeouty}
+Timeout processing
+Zabbix will not process a simple check longer than Timeout seconds defined in Zabbix server configuration file.
+https://www.zabbix.com/documentation/1.8/manual/config/items
+
+Zabbix Agent
+Timeout	 no	 1-30	3	Spend no more than Timeout seconds on processing
+https://www.zabbix.com/documentation/1.8/manual/processes/zabbix_agentd
+
+Zabbix Server
+Timeout	 no	 1-30	3	Specifies how long we wait for agent, SNMP device or external check (in seconds).
+https://www.zabbix.com/documentation/1.8/manual/processes/zabbix_server
+
+NEuvádza sa nič o killovaní procesov.
+\subsubsection{Moduly}
+
+Loadable modules offer a performance-minded option for extending Zabbix functionality.
+
+There already are ways of extending Zabbix functionality by way of:
+
+user parameters (agent metrics)
+external checks (agent-less monitoring)
+system.run[] Zabbix agent item.
+They work very well, but have one major drawback, namely fork(). Zabbix has to fork a new process every time it handles a user metric, which is not good for performance. It is not a big deal normally, however it could be a serious issue when monitoring embedded systems, having a large number of monitored parameters or heavy scripts with complex logic or long startup time.
+
+Zabbix 2.2 comes with support of loadable modules for extending Zabbix agent, server and proxy without sacrificing performance.
+
+A loadable module is basically a shared library used by Zabbix daemon and loaded on startup. The library should contain certain functions, so that a Zabbix process may detect that the file is indeed a module it can load and work with.
+
+Loadable modules have a number of benefits. Great performance and ability to implement any logic are very important, but perhaps the most important advantage is the ability to develop, use and share Zabbix modules. It contributes to trouble-free maintenance and helps to deliver new functionality easier and independently of the Zabbix core code base.
+https://www.zabbix.com/documentation/2.2/manual/config/items/loadablemodules
+
+
+\subsection{Icinga}
+By default the Icinga 2 daemon is running as icinga user and group using the init script. Using Debian packages the user and group are set to nagios for historical reasons.
+http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/getting-started#running-icinga2
+
+\subsubsection{Externé pluginy}
+Icinga determines the status of a host or service by evaluating the return code from plugins. The following tables shows a list of valid return codes, along with their corresponding service or host states
+http://docs.icinga.org/latest/en/pluginapi.html
+
+\subsubsection{Notifikácie a príkazy udalostí}
+Unlike notifications, event commands for hosts/services are called on every check execution if one of these conditions match:
+The host/service is in a soft state
+The host/service state changes into a hard state
+The host/service state recovers from a soft or hard state to OK/Up
+
+Ide len o spustenie nejakého systémového príkazu.
+http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/monitoring-basics#event-commands
+
+\subsubsection{Itegrácie s aplikáciami} 
+Docker
+https://www.icinga.org/products/integrations/
+these tiny pure shell+awk plugins for monitoring your hadoop cluster are a enhanced and uptodate version of exchange.nagios.org check_hadoop-dfs.sh
+https://github.com/noqqe/icinga-hadoop-plugins
+
+\subsection{Cacti} 
+Cacti is a complete network graphing solution designed to harness the power of RRDTool's data storage and graphing functionality. Cacti provides a fast poller, advanced graph templating, multiple data acquisition methods, and user management features out of the box.
+http://www.cacti.net/
+
+\subsection{collectd}
+There are some key differences we think set collectd apart. For one, it's written in C for performance and portability, allowing it to run on systems without scripting language or cron daemon, such as embedded systems. 
+At the same time it includes optimizations and features to handle hundreds of thousands of data sets. It comes with over 90 plugins. It provides powerful networking features and is extensible in numerous ways. 
+
+\subsubsection{Obmedzenia}
+It does not generate graphs. It can write to RRD files, but it cannot generate graphs from these files. 
+Monitoring functionality has been added in version 4.3, but is so far limited to simple threshold checking. 
+https://collectd.org/index.shtml
+
+\subsubsection{Prahy a notifikácie}
+
+The only action the Threshold plugin takes itself is to generate and dispatch a notification. Other plugins can register to receive notifications and perform appropriate further actions.
+
+you can configure thresholds for your values freely. Every time a value is out of range, a notification is dispatched. 
+Also, all values that match a threshold are considered to be relevant or "interesting". As a consequence collectd will issue a notification if they are not received for Timeout iterations. The Timeout configuration option is explained in section collectd.conf(5)/"GLOBAL OPTIONS". If, for example, Timeout is set to "2" (the default) and some hosts sends it's CPU statistics to the server every 60 seconds, a notification will be dispatched after about 120 seconds. It may take a little longer because the timeout is checked only once each Interval on the server.
+
+When a value comes within range again or is received after it was missing, an "OKAY-notification" is dispatched.
+https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
+
+\subsection{Problém s reakciami na prahové hodnoty}
+Všetky tieto aplikácie poskytujú mechanizmus na reagovanie na nezvyčajné udalosti. Ak je meraná hodnota mimo daný rozsah, je generované hlásenie. Na to je možné určitým spôsobom reagovať.
+Na situáciu, keď časť zodpovedná za zberanie dát nejakej metriky neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. Nie je možné jednotlivé moduly ovládať nezávisle.
+
+\subsection{Ostatne} 
+\begin{description}
+\item[\emph{Zenoss}]
+\item[\emph{Munin}]
+\end{description}
+
+\section{Ganglia} 
+Ganglia is a scalable distributed monitoring system for high-performance computing systems such as clusters and Grids. It is based on a hierarchical design targeted at federations of clusters. It leverages widely used technologies such as XML for data representation, XDR for compact, portable data transport, and RRDtool for data storage and visualization. It uses carefully engineered data structures and algorithms to achieve very low per-node overheads and high concurrency. The implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. It has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
+Ganglia is a BSD-licensed open-source project that grew out of the University of California, Berkeley Millennium Project
+ttp://ganglia.info/
+Monitoring plugin pre hadoop
+http://ganglia.info/?p=88
+O tom ako funguju notifikacie som nic nenasiel.
+
+\section{Komerčné riešenia}
+
+
+\section{Torque}
+Nenašiel som žiadne komerčný software na monitorovanie tohto softvéru. 
+
+\section{libvirt/KVM}
+
+\section{Docker}
+\subsection{Scout}
+Scout runs within Docker containers without any special configuration. \cite{scout}
+
+\subsection{New Relic}
+http://newrelic.com/docker
+
+\subsection{AppDynamics}
+https://www.appdynamics.com/community/exchange/extension/docker-monitoring-extension/
+
+
+\section{Hadoop}
+\subsection{New Relic}
+http://newrelic.com/plugins
+\subsection{AppDynamics}
+The Hadoop monitoring extension captures metrics from Hadoop Resource Manager and/or Apache Ambari and displays them in Appdynamics Metric Browser.
+
+This extension works only with the standalone machine agent.
+
+
+Metrics include:
+
+Hadoop Resource Manager
+App status and progress: submitted, pending, running, completed, killed, and failed app count
+Memory size, memory usage
+Allocated containers, container count in different states
+Node status, count of nodes in different states
+Scheduler capacity, app and container count
+Ambari
+Individual host metrics including CPU, disk, memory, JVM, load, network, process, and RPC metrics
+Service component metrics including CPU, disk, memory, JVM, load, network, process, RPC, and component-specific metrics
+
+https://www.appdynamics.com/community/exchange/extension/hadoop-monitoring-extension/
 
 \chapter{Oblasti monitorovania}
 \section{Torque}
@@ -91,6 +288,9 @@ Využijem už existujúcu implementáciu sond na zber týchto údajov (aspoň te
 Docker umožňuje zabaliť aplikáciu so všetkými jej závislosťami do štandardizovanej jednotky určenej na softvérový vývoj. Kontajnery Dockeru obaľujú softvér kompletným súborovým systémom, ktorý
 zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
 je spustený.\cite{docker}
+
+
+
 
 \subsection{Porovnanie s virtuálnymi strojmi}
 Kontajnery predstavujú podobný prístup ako virtualizácia. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
@@ -209,6 +409,8 @@ Predpokladám ale, že z hľadiska rýchlosti a alokácie bude cesta asi ten str
 
 
 Sonda pre Docker bude napísaná v Go.
+
+
 \section{Hadoop}
 Projekt Apache™ Hadoop® vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
 naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočetný výkon a úložný priestor.
@@ -224,7 +426,23 @@ Projekt pozostáva z týchto modulov:
 \item[\emph{Hadoop MapReduce:}] systém založený na YARN pre paralelné spracovávanie veľkých množstiev dátprostredie pre plánovanie úloh a správu zdrojov clustera
 \end{description}
 
-K monitorovaniu len toľko, čo viem z materiálov, čo som dostal do mailu. Že existuje REST API, ktoré je ale trochu pomalé, a že štatistiky sa ukaladajú aj niekam na HDFS, ale zrejme v nejakom XML interného
+\section{Monitoring cez Hadoop YARN REST API}
+The Hadoop YARN web service REST APIs are a set of URI resources that give access to the cluster, nodes, applications, and application historical information. The URI resources are grouped into APIs based on the type of information returned. Some URI resources return collections while others return singletons.
+HTTP Requests
+
+To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.
+
+Summary of HTTP operations
+
+Currently only GET is supported. It retrieves information about the resource specified.
+
+Security
+
+The web service REST API’s go through the same security as the web UI. If your cluster adminstrators have filters enabled you must authenticate via the mechanism they specified.
+
+https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/WebServicesIntro.html
+
+A že štatistiky sa ukaladajú aj niekam na HDFS, ale zrejme v nejakom XML internéhomakd
 formátu. Takisto by som potreboval skonzultovať, že čo vlastne monitorovať.
 
 \chapter{Návrh}
