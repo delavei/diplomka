@@ -47,7 +47,7 @@
 \MainMatter
 \chapter{Úvod}
 
-\chapter{Zber a uchovavanie casovych rad}
+\chapter{Zber a uchovavanie časových rád}
 \section{OpenTSDB}
 OpenTSDB pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
@@ -55,11 +55,10 @@ na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimaliz
 Používatelia TSD nemusia kpristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
 sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
 
-\section{RRDtool}
-RRDtool is the OpenSource industry standard, high performance data logging and graphing system for time series data.
 
 
-\chapter{Aktualne monitorovacie riešenia}
+
+\chapter{Aktuálne monitorovacie riešenia}
 \section{Open-source}
 \subsection{Nagios}
 \subsubsection{PluginAPI}
@@ -182,19 +181,35 @@ It does not generate graphs. It can write to RRD files, but it cannot generate g
 Monitoring functionality has been added in version 4.3, but is so far limited to simple threshold checking. 
 https://collectd.org/index.shtml
 
+\subsubsection{Zapisovací plugin Write TSDB}
+The Write TSDB plugin writes metrics to OpenTSDB, an open-source distributed time-series database based on Apache HBase.
+https://collectd.org/wiki/index.php/Plugin:Write_TSDB
+
+\begin{description}
+\item[\emph{Host Address}] Hostname or address to connect to. Defaults to localhost.
+\item[\emph{Port Service}] Service name or port number to connect to. Defaults to 4242.
+\item[\emph{HostTags String}] When set, HostTags is added to the end of the metric. It is intended to be used for name=value pairs that the TSD will tag the metric with. Dots and whitespace are not escaped in this string.
+\item[\emph{StoreRates false|true}] If set to true, convert counter values to rates. If set to false (the default) counter values are stored as is, as an increasing integer number.
+\item[\emph{AlwaysAppendDS false|true}] If set the true, append the name of the Data Source (DS) to the "metric" identifier. If set to false (the default), this is only done when there is more than one DS.
+\end{description}
+
 \subsubsection{Prahy a notifikácie}
 
-The only action the Threshold plugin takes itself is to generate and dispatch a notification. Other plugins can register to receive notifications and perform appropriate further actions.
-
-you can configure thresholds for your values freely. Every time a value is out of range, a notification is dispatched. 
-Also, all values that match a threshold are considered to be relevant or "interesting". As a consequence collectd will issue a notification if they are not received for Timeout iterations. The Timeout configuration option is explained in section collectd.conf(5)/"GLOBAL OPTIONS". If, for example, Timeout is set to "2" (the default) and some hosts sends it's CPU statistics to the server every 60 seconds, a notification will be dispatched after about 120 seconds. It may take a little longer because the timeout is checked only once each Interval on the server.
+The only action the Threshold plugin takes itself is to generate and dispatch a notification. Every time a value is out of range, 
+notification is dispatched. 
+Also, all values that match a threshold are considered to be relevant or "interesting". As a consequence collectd will issue a notification 
+if they are not received for Timeout iterations.  for example, Timeout is set to "2" (the default) and some hosts sends it's CPU statistics to the server every 60 seconds, a notification will be dispatched after about 120 seconds. It may take a little longer because the timeout is checked only once each Interval on the server.
 
 When a value comes within range again or is received after it was missing, an "OKAY-notification" is dispatched.
 https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
 
+https://collectd.org/wiki/index.php/Plugin:Write_TSDB
+
 \subsection{Problém s reakciami na prahové hodnoty}
-Všetky tieto aplikácie poskytujú mechanizmus na reagovanie na nezvyčajné udalosti. Ak je meraná hodnota mimo daný rozsah, je generované hlásenie. Na to je možné určitým spôsobom reagovať.
-Na situáciu, keď časť zodpovedná za zberanie dát nejakej metriky neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. Nie je možné jednotlivé moduly ovládať nezávisle.
+Všetky tieto aplikácie poskytujú mechanizmus na reagovanie na nezvyčajné udalosti. Ak je meraná hodnota mimo určitý rozsah, je generované hlásenie. Na to je možné reagovať.
+Na situáciu, keď časť zodpovedná za zberanie dát nejakej metriky neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. 
+Nie je možné jednotlivé moduly ovládať nezávisle. 
+Preto bude potrebné vytvoriť niektoré moduly tak, aby jedna časť bola neustále dostupná a reagovala na výzvy od riadiacej aplikácie.
 
 \subsection{Ostatne} 
 \begin{description}
@@ -263,26 +278,7 @@ Monitorovanie tejto aplikácie bude prebiehat prostredníctvom volania jej ovlá
 \item[\emph{printjob}] - sledovanie zdrojov, ktoré spotrebováva konkrétna úloha 
 \end{description}
 
-\section{libvirt/KVM}
-KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux pre x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
-Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko. Je možné virtualizovať obrazy 
-s operačným systémami Linux aj Windows. Každý virtuálny stroj má vlastný virtualizovaný hardvér: sieťovú kartu, disk, grafický adaptér, atď. KVM je open-source softvér. Virtualizačný modul jadra
-sa nachádza v Linuxe od verzie 2.6.20.\cite{torque}
 
-libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
-Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky.\cite{libvirt}
-
-Na monitorovanie virtuálnych strojov použijem API libvirt v jazyku Python. Budem sledovať využívanie nasledujúcich zdrojov vo virtuálnom stroji:
-\begin{description}
-\item[\emph{procesor}]
-\item[\emph{pevný disk}]
-\item[\emph{sieť}]
-\end{description}
-
-libvirt momentálne neposkytuje nástroje na monitorovanie spotreby pamäte.
-
-
-Využijem už existujúcu implementáciu sond na zber týchto údajov (aspoň teda myslím).
 
 \section{Docker}
 Docker umožňuje zabaliť aplikáciu so všetkými jej závislosťami do štandardizovanej jednotky určenej na softvérový vývoj. Kontajnery Dockeru obaľujú softvér kompletným súborovým systémom, ktorý
@@ -321,94 +317,30 @@ O každom kontajneri spustenom v Dockeri budem sledovať využívanie týchto zd
 \item[\emph{pamäť}]
 \end{description}
 
-Príklad odpovede - pre orientáciu, aké dáta sa dajú zberať:
-\\  HTTP/1.1 200 OK
-\\  Content-Type: application/json
-\\
-\\  \{
-\\     "read" : "2015-01-08T22:57:31.547920715Z",
-\\     "networks": \{
-\\            "eth0": \{
-\\                 "rx_bytes": 5338,
-\\                 "rx_dropped": 0,
-\\                 "rx_errors": 0,
-\\                 "rx_packets": 36,
-\\                 "tx_bytes": 648,
-\\                 "tx_dropped": 0,
-\\                 "tx_errors": 0,
-\\                 "tx_packets": 8
-\\             \},
-\\             "eth5": \{
-\\                 "rx_bytes": 4641,
-\\                 "rx_dropped": 0,
-\\                 "rx_errors": 0,
-\\                 "rx_packets": 26,
-\\                 "tx_bytes": 690,
-\\                 "tx_dropped": 0,
-\\                 "tx_errors": 0,
-\\                 "tx_packets": 9
-\\             \}
-\\     \},
-\\     "memory_stats" : \{
-\\        "stats" : \{
-\\           "total_pgmajfault" : 0,
-\\           "cache" : 0,
-\\           "mapped_file" : 0,
-\\           "total_inactive_file" : 0,
-\\           "pgpgout" : 414,
-\\           "rss" : 6537216,
-\\           "total_mapped_file" : 0,
-\\           "writeback" : 0,
-\\           "unevictable" : 0,
-\\           "pgpgin" : 477,
-\\           "total_unevictable" : 0,
-\\           "pgmajfault" : 0,
-\\           "total_rss" : 6537216,
-\\           "total_rss_huge" : 6291456,
-\\           "total_writeback" : 0,
-\\           "total_inactive_anon" : 0,
-\\           "rss_huge" : 6291456,
-\\           "hierarchical_memory_limit" : 67108864,
-\\           "total_pgfault" : 964,
-\\           "total_active_file" : 0,
-\\           "active_anon" : 6537216,
-\\           "total_active_anon" : 6537216,
-\\           "total_pgpgout" : 414,
-\\           "total_cache" : 0,
-\\           "inactive_anon" : 0,
-\\           "active_file" : 0,
-\\           "pgfault" : 964,
-\\           "inactive_file" : 0,
-\\           "total_pgpgin" : 477
-\\        \},
-\\        "max_usage" : 6651904,
-\\        "usage" : 6537216,
-\\        "failcnt" : 0,
-\\        "limit" : 67108864
-\\     \},
-\\     "blkio_stats" : \{\},
-\\     "cpu_stats" : \{
-\\        "cpu_usage" : \{
-\\           "percpu_usage" : \[
-\\              16970827,
-\\              1839451,
-\\              7107380,
-\\              10571290
-\\           \],
-\\           "usage_in_usermode" : 10000000,
-\\           "total_usage" : 36488948,
-\\           "usage_in_kernelmode" : 20000000
-\\        \},
-\\        "system_cpu_usage" : 20091722000000000,
-\\        "throttling_data" : \{\}
-\\     \}
-\\  \}
   
 Dáta je možné zberať buď ako prúd, alebo po jednorazových žiadostiach. To ešte nemám veľmi preštudované, neviem aké sú tam intervaly, tak sa rozhodnem až neskôr.
 Predpokladám ale, že z hľadiska rýchlosti a alokácie bude cesta asi ten stream.
 
+\section{libvirt/KVM}
+KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux pre x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
+Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko. Je možné virtualizovať obrazy 
+s operačným systémami Linux aj Windows. Každý virtuálny stroj má vlastný virtualizovaný hardvér: sieťovú kartu, disk, grafický adaptér, atď. KVM je open-source softvér. Virtualizačný modul jadra
+sa nachádza v Linuxe od verzie 2.6.20.\cite{torque}
 
-Sonda pre Docker bude napísaná v Go.
+libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
+Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky.\cite{libvirt}
+
+Na monitorovanie virtuálnych strojov použijem API libvirt v jazyku Python. Budem sledovať využívanie nasledujúcich zdrojov vo virtuálnom stroji:
+\begin{description}
+\item[\emph{procesor}]
+\item[\emph{pevný disk}]
+\item[\emph{sieť}]
+\end{description}
+
+libvirt momentálne neposkytuje nástroje na monitorovanie spotreby pamäte.
+
+
+Využijem už existujúcu implementáciu sond na zber týchto údajov (aspoň teda myslím).
 
 
 \section{Hadoop}
@@ -444,6 +376,210 @@ https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/WebServicesI
 
 A že štatistiky sa ukaladajú aj niekam na HDFS, ale zrejme v nejakom XML internéhomakd
 formátu. Takisto by som potreboval skonzultovať, že čo vlastne monitorovať.
+
+\chapter{Metriky}
+\section{Torque}
+\subsection{Technika zbierania metrík}
+Na zbieranie metrík som použil príkaz \emph{qstat -j}.
+
+			Prints either for all pending jobs  or  the  jobs  con-
+          tained  in  job_list  various information. The job_list
+          can contain job_ids, job_names, or wildcard  expression
+          sge_types(1).
+
+          For  jobs  in  E(rror)  state  the  error   reason   is
+          displayed. For jobs that could not be dispatched during
+          in the  last  scheduling  interval  the  obstacles  are
+          shown, if 'schedd_job_info' in sched_conf(5) is config-
+          ured accordingly.
+
+          For running  jobs  available  information  on  resource
+          utilization   is  shown  about  consumed  cpu  time  in
+          seconds,  integral  memory  usage  in  Gbytes  seconds,
+          amount  of  data  transferred in io operations, current
+          virtual memory utilization in Mbytes, and maximum  vir-
+          tual  memory utilization in Mbytes. This information is
+          not available if resource utilization retrieval is  not
+          supported for the OS platform where the job is hosted.
+\subsection{Zbierané metriky}
+Príkaz qstat -j poskytuje viacero režimov výstupu.
+\begin{description}
+\item[\emph{Cluster Queue Format}]
+		\\the cluster queue name.
+
+     \\ an average of the normalized load average  of  all  queue
+        hosts.  
+
+    \\  the number of currently used slots.
+
+     \\  the number of slots reserved in advance.
+
+     \\  the number of currently available slots.
+
+    \\  the total number of slots.
+
+     \\  the number of slots which is  in  at  least  one  of  the
+        states  'aoACDS' and in none of the states 'cdsuE'
+
+     \\ the number of slots which are in one of these  states  or
+        in any  combination of them: 'cdsuE'
+
+\item[\emph{Reduced Format}]
+	\\the job ID.
+
+     \\ the priority of the job determining its position  in  the
+        pending  jobs  list. 
+
+    \\  the name of the job.
+
+     \\  the user name of the job owner.
+
+     \\ the status of the  job  -  one  of  d(eletion),  E(rror),
+        h(old), r(unning), R(estarted), s(uspended), S(uspended),
+        t(ransfering), T(hreshold) or w(aiting).
+
+     \\  the submission or start time and date of the job.
+
+     \\  the  queue  the  job  is  assigned  to  (for  running  or
+        suspended jobs only).
+
+     \\  the number of job slots or the function of  parallel  job
+        tasks if -g t is specified.
+
+     \\  the array job task id. Will be empty for non-array  jobs.
+        See  the  -t option to qsub(1) and the -g above for addi-
+        tional information.
+
+     If the -t option is supplied, each status line  always  con-
+     tains  parallel  job task information as if -g t were speci-
+     fied and each line contains the following parallel job  sub-
+     task information:
+     \\  the parallel task ID (do not confuse parallel tasks  with
+        array job tasks),
+
+     \\  the status of the  parallel  task  -  one  of  r(unning),
+        R(estarted),   s(uspended),   S(uspended),   T(hreshold),
+        w(aiting), h(old), or x(exited).
+
+     \\  the cpu, memory, and I/O usage,
+
+     \\ the exit status of the parallel task,
+
+     \\  and the failure code and message for the parallel task.
+\item[\emph{Full Format}]
+the queue name,
+
+     \\  the  queue  type  -  one   of   B(atch),   I(nteractive),
+        C(heckpointing),  P(arallel),  T(ransfer) or combinations
+        thereof or N(one),
+
+     \\  the number of used and available job slots,
+
+     \\  the load average of the queue host,
+
+     \\  the architecture of the queue host and
+
+     \\  the state  of  the  queue  -  one  of  u(nknown)  if  the
+        corresponding  sge_execd(8) cannot be contacted, a(larm),
+        A(larm),     C(alendar      suspended),      s(uspended),
+        S(ubordinate),  d(isabled), D(isabled), E(rror) or combi-
+        nations thereof.
+
+     \\resource availability information
+     is  printed  following  the  queue  status  line.  
+
+     \\  the job ID,
+
+     \\  the priority of the job determining its position  in  the
+        pending  jobs  list.  
+
+     \\  the job name,
+
+     \\  the job owner name,
+
+     \\  the status of the job - one of t(ransfering),  r(unning),
+        R(estarted), s(uspended), S(uspended) or T(hreshold) (see
+        the Reduced Format section for detailed information),
+
+     \\  the submission or start time and date of the job.
+
+     \\  the number of job slots or the function of  parallel  job
+        tasks if -g t is specified.
+
+
+     \\If the -t option is supplied, each job status line also con-
+     tains
+
+     \\  the task ID,
+
+     \\  the status of the task - one of  r(unning),  R(estarted),
+        s(uspended), S(uspended), T(hreshold), w(aiting), h(old),
+        or x(exited) (see the Reduced Format section for detailed
+        information),
+
+     \\  the cpu, memory, and I/O usage,
+
+     \\  the exit status of the task,
+
+     \\  and the failure code and message for the task.
+
+\end{description}
+ 
+Potrebné metriky poskytuje prepínač -t v redukovanom formáte, preto som použil túto metódu výstupu.
+
+\section{Docker}
+O každom kontajneri je možné zberať metriky o tom, ako spotrebováva zdroje.
+\subsection{Sieť}
+Aby mohli medzi sebou jednotlivé kontajnery komunikovať, Docker im poskytuje sieťové rozhrania. Každé rozhranie má nakonfigurovanú sieť,
+do ktorje patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
+Užívatelia si môžu definovať vlastné siete. Docker na vytvorenie týchto sietí poskytuje dva ovládače.
+
+\subsubsection{Sieť typu most}
+Je to jednoduchý typ siete určený pre malé siete. Je ju možné vytvoriť príkazom 
+\\
+{\em \$ docker network create --driver bridge NÁZOV_SIETE }
+\\
+Po vytvorení siete je možné spustiť kontajnery v tejto sieti príkazom
+\\
+{\em \$ docker run --net=NÁZOV_SIETE --name= NÁZOV_KONTAJNERA}
+\\
+
+\subsubsection{Prekladaná sieť}
+Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hostov zároveň. To umožňuje komunikovať medzi sebou aj kontajnerom,
+ktoré sú spustené v rozličných k a ani na jednom hoste.
+An overlay network
+
+\subsubsection{Metriky siete}
+Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
+
+\\    rx_bytes
+\\    rx_dropped
+\\    rx_error
+\\    rx_packets
+\\    tx_bytes
+\\    tx_dropped
+\\    tx_errors
+\\    tx_packets
+
+\subsection{Pamäť}
+\\        usage - spotreba pamäte
+\\        failcnt - počet chýb
+
+\subsection{Procesor}
+\\        cpu_usage 
+\\           percpu_usage
+\\              16970827,
+\\              1839451,
+\\              7107380,
+\\              10571290
+\\           usage_in_usermode"
+\\           total_usage" 
+\\           usage_in_kernelmode" 
+\\        system_cpu_usage
+
+\section{libvirt/KVM}
+
+\section{Hadoop}
 
 \chapter{Návrh}
 Monitorovacia aplikácia bude pozostávať z dvoch častí. Jednou bude manažér a druhou monitorovacie sondy. Manažér bude oslovovať jednotlivé sondy v pravidelných intervaloch, aby mu poslali údaje o zaťažení.

@@ -1,0 +1,1478 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.2.19)  24 FEB 2016 15:40
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**dip-lezdik
+(./dip-lezdik.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+(./fithesis.cls
+Document Class: fithesis 2006/06/12 version 0.2.10 (FI) MU thesis class
+(./rapport3.cls
+Document Class: rapport3 2004/06/07 v2.1a NTG LaTeX document class
+(./ntg10.clo
+File: ntg10.clo 2004/06/07 v2.1a NTG LaTeX file (size option)
+)
+\unitindent=\dimen102
+\othermargin=\dimen103
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+LaTeX Info: Redefining \em on input line 826.
+\bibindent=\dimen104
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/palatino.sty
+Package: palatino 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+)) (./fit11.clo
+File: fit11.clo 1998/03/30 fithesis (size option)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+
+! LaTeX Error: File `tipa.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2013/12/03 3.9h The Babel package
+
+
+! Package babel Error: Unknown option `slovak'. Either you misspelled it
+(babel)                or the language definition file slovak.ldf was not found
+.
+
+See the babel package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.296 \ProcessOptions*
+                      
+? 
+
+! Package babel Error: You haven't specified a language option.
+
+See the babel package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.329 ...ry to proceed from here, type x to quit.}
+                                                  
+? 
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen105
+\extrarowheight=\dimen106
+\NC@list=\toks16
+\extratabsurround=\skip43
+\backup@length=\skip44
+)
+\TX@col@width=\dimen107
+\TX@old@table=\dimen108
+\TX@old@col=\dimen109
+\TX@target=\dimen110
+\TX@delta=\dimen111
+\TX@cols=\count88
+\TX@ftn=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count89
+))
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
+)
+(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 373.
+Package: cite 2010/09/10  v 5.3
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (./dip-lezdik.aux)
+\openout1 = `dip-lezdik.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 24.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
+File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count90
+\scratchdimen=\dimen114
+\scratchbox=\box26
+\nofMPsegments=\count91
+\nofMParguments=\count92
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count93
+\MPscratchDim=\dimen115
+\MPnumerator=\count94
+\makeMPintoPDFobject=\count95
+\everyMPtoPDFconversion=\toks20
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 27.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 27.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 31.
+ [2
+
+] [3
+
+] [4
+
+] [5
+
+]
+(./dip-lezdik.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 1.
+ [6
+
+])
+\tf@toc=\write3
+\openout3 = `dip-lezdik.toc'.
+
+ [7]
+Chapter 1.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 48.
+[1
+
+
+]
+Chapter 2.
+
+LaTeX Warning: Citation `openTSDB' on page 2 undefined on input line 56.
+
+[2
+
+]
+Chapter 3.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.80 Note Note: If the use_
+                           aggressive_host_checking option is enabled, retur...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.81 
+     
+? 
+
+Overfull \hbox (1254.65895pt too wide) in paragraph at lines 75--81
+\T1/ppl/m/n/10.95 UN-KNOWN DOWN/UNREACHABLE Note Note: If the use$[]\OML/cmm/m/
+it/10.95 ggressive[]ost[]heckingoptionisenabled; returncodesof\OT1/cmr/m/n/10.9
+5 1\OML/cmm/m/it/10.95 willresultinahoststateofDOWNorUNREACHABLE:Otherwiseretur
+ncodesof\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 willresultinahoststateofUP:Thep
+rocessbywhichNagiosdetermineswhetherornotahostisDOWNorUNREACHABLEisdiscussedher
+e:$ 
+ []
+
+
+Overfull \hbox (277.01688pt too wide) in paragraph at lines 95--97
+\T1/ppl/m/n/10.95 out-put (shown in blue) are also op-tional. https://assets.na
+gios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html 
+ []
+
+[3
+
+]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.100 Format:	service_
+                      check_timeout=<seconds>
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.103 
+      
+? 
+
+Overfull \hbox (14.82632pt too wide) in paragraph at lines 100--103
+\T1/ppl/m/n/10.95 Format: service$[]\OML/cmm/m/it/10.95 heck[]imeout \OT1/cmr/m
+/n/10.95 =\OML/cmm/m/it/10.95 < seconds > Example \OT1/cmr/m/n/10.95 : \OML/cmm
+/m/it/10.95 service[]heck[]imeout \OT1/cmr/m/n/10.95 =
+ []
+
+
+Overfull \hbox (540.6248pt too wide) in paragraph at lines 100--103
+\OT1/cmr/m/n/10.95 60\OML/cmm/m/it/10.95 ThisisthemaximumnumberofsecondsthatNag
+ioswillallowservicecheckstorun:Ifchecksexceedthislimit; theyarekilledandaCRITIC
+ALstateisreturned:Atimeouterrorwillalsobelogged:$ 
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.105 ...ore/docs/nagioscore/3/en/configmain.html#
+                                                  service_check_timeout
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.105 .../nagioscore/3/en/configmain.html#service_
+                                                  check_timeout
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.106 
+      
+? 
+
+Overfull \hbox (186.58727pt too wide) in paragraph at lines 104--106
+\T1/ppl/m/n/10.95 https://assets.nagios.com/downloads/nagioscore/docs/nagioscor
+e/3/en/configmain.htmlservice$[]\OML/cmm/m/it/10.95 heck[]imeout$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.112 ...agios.org/directory/Plugins/Others/check_
+                                                  hadoop_metrics/details
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.113 
+      
+? 
+
+Overfull \hbox (66.02168pt too wide) in paragraph at lines 109--113
+\T1/ppl/m/n/10.95 05 https://exchange.nagios.org/directory/Plugins/Others/check
+$[]\OML/cmm/m/it/10.95 adoop[]etrics=details$ 
+ []
+
+
+Overfull \hbox (265.91376pt too wide) in paragraph at lines 116--119
+\T1/ppl/m/n/10.95 Time-out sec-onds de-fined in Zab-bix server con-fig-u-ra-tio
+n file. https://www.zabbix.com/documentation/1.8/manual/config/items 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.122 ...ocumentation/1.8/manual/processes/zabbix_
+                                                  agentd
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.123 
+      
+? 
+
+Overfull \hbox (98.94238pt too wide) in paragraph at lines 120--123
+\T1/ppl/m/n/10.95 on pro-cess-ing https://www.zabbix.com/documentation/1.8/manu
+al/processes/zabbix$[]\OML/cmm/m/it/10.95 gentd$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.126 ...ocumentation/1.8/manual/processes/zabbix_
+                                                  server
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.127 
+      
+? 
+
+Overfull \hbox (242.18924pt too wide) in paragraph at lines 124--127
+\T1/ppl/m/n/10.95 SNMP de-vice or ex-ter-nal check (in sec-onds). https://www.z
+abbix.com/documentation/1.8/manual/processes/zabbix$[]\OML/cmm/m/it/10.95 erver
+$ 
+ []
+
+[4]
+Overfull \hbox (67.0637pt too wide) in paragraph at lines 144--146
+\T1/ppl/m/n/10.95 https://www.zabbix.com/documentation/2.2/manual/config/items/
+loadablemodules 
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.150 ...rg/icinga2/latest/doc/module/icinga2/toc#
+                                                  !/icinga2/latest/doc/modul...
+
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.150 ...c/module/icinga2/chapter/getting-started#
+                                                  running-icinga2
+? 
+
+Overfull \hbox (329.64099pt too wide) in paragraph at lines 149--151
+\T1/ppl/m/n/10.95 for his-tor-i-cal rea-sons. http://docs.icinga.org/icinga2/la
+test/doc/module/icinga2/toc!/icinga2/latest/doc/module/icinga2/chapter/getting-
+
+ []
+
+
+Overfull \hbox (128.63368pt too wide) in paragraph at lines 153--155
+\T1/ppl/m/n/10.95 along with their cor-re-spond-ing ser-vice or host states htt
+p://docs.icinga.org/latest/en/pluginapi.html 
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.163 ...rg/icinga2/latest/doc/module/icinga2/toc#
+                                                  !/icinga2/latest/doc/modul...
+
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.163 ...module/icinga2/chapter/monitoring-basics#
+                                                  event-commands
+? 
+
+Overfull \hbox (506.91968pt too wide) in paragraph at lines 162--164
+[]\T1/ppl/m/n/10.95 Ide len o spuste-nie ne-jakÈho sys-tÈ-movÈho prÌkazu. http:
+//docs.icinga.org/icinga2/latest/doc/module/icinga2/toc!/icinga2/latest/doc/mod
+ule/icinga2/chapter/monitoring-
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.168 ...ate version of exchange.nagios.org check_
+                                                  hadoop-dfs.sh
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.170 
+      
+? 
+
+Overfull \hbox (16.49786pt too wide) in paragraph at lines 172--174
+\T1/ppl/m/n/10.95 meth-ods, and user man-age-ment fea-tures out of the box. htt
+p://www.cacti.net/ 
+ []
+
+[5]
+Overfull \hbox (54.01141pt too wide) in paragraph at lines 180--183
+\T1/ppl/m/n/10.95 4.3, but is so far lim-ited to sim-ple thresh-old check-ing. 
+https://collectd.org/index.shtml 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.186 ...collectd.org/wiki/index.php/Plugin:Write_
+                                                  TSDB
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.187 
+      
+? 
+
+Overfull \hbox (180.73036pt too wide) in paragraph at lines 185--187
+\T1/ppl/m/n/10.95 tributed time-series database based on Apache HBase. https://
+collectd.org/wiki/index.php/Plugin:Write$[]\OML/cmm/m/it/10.95 SDB$ 
+ []
+
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 189.
+[6]
+Overfull \hbox (121.78021pt too wide) in paragraph at lines 203--205
+\T1/ppl/m/n/10.95 ing, an "OKAY-notification" is dis-patched. https://collectd.
+org/documentation/manpages/collectd-
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.206 ...collectd.org/wiki/index.php/Plugin:Write_
+                                                  TSDB
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.207 
+      
+? 
+[7]
+
+LaTeX Warning: Citation `scout' on page 8 undefined on input line 238.
+
+
+Overfull \hbox (8.1424pt too wide) in paragraph at lines 244--245
+\T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
+er-
+ []
+
+[8]
+Overfull \hbox (28.65172pt too wide) in paragraph at lines 268--269
+[]\T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/ha
+doop-
+ []
+
+[9]
+Chapter 4.
+
+LaTeX Warning: Citation `torque' on page 10 undefined on input line 273.
+
+
+LaTeX Warning: Citation `docker' on page 10 undefined on input line 286.
+
+<images/docker.png, id=62, 640.3925pt x 702.625pt>
+File: images/docker.png Graphic file (type png)
+ <use images/docker.png>
+Package pdftex.def Info: images/docker.png used on input line 296.
+(pdftex.def)             Requested size: 289.08109pt x 317.17538pt.
+
+
+LaTeX Warning: Citation `docker' on page 10 undefined on input line 297.
+
+[10
+
+] [11 <./images/docker.png>]
+
+LaTeX Warning: Citation `torque' on page 12 undefined on input line 328.
+
+
+LaTeX Warning: Citation `libvirt' on page 12 undefined on input line 331.
+
+[12]
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 347.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
+File: omsppl.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 347.
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 356.
+
+Overfull \hbox (1.86418pt too wide) in paragraph at lines 356--357
+[]\T1/ppl/m/n/10.95 distribuovan˝ s˙borov˝ sys-
+ []
+
+[13]
+Overfull \hbox (2.01091pt too wide) in paragraph at lines 375--376
+[]\T1/ppl/m/n/10.95 https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-y
+arn-
+ []
+
+[14]
+Chapter 5.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.386           tained  in  job_
+                                list  various information. The job_list
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.389 
+      
+? 
+
+Overfull \hbox (415.2398pt too wide) in paragraph at lines 385--389
+[]\T1/ppl/m/n/10.95 Prints ei-ther for all pend-ing jobs or the jobs con- taine
+d in job$[]\OML/cmm/m/it/10.95 istvariousinformation:Thejob[]istcancontainjob[]
+ds; job[]ames; orwildcardexpressionsge[]ypes\OT1/cmr/m/n/10.95 (1)\OML/cmm/m/it
+/10.95 :$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.393           shown, if 'schedd_
+                                  job_info' in sched_conf(5) is config-
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.395 
+      
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.408 		\\t
+           he cluster queue name.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.410      \\ a
+               n average of the normalized load average  of  all  queue
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.413     \\  t
+               he number of currently used slots.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.415      \\  t
+                he number of slots reserved in advance.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.417      \\  t
+                he number of currently available slots.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.419     \\  t
+               he total number of slots.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.421      \\  t
+                he number of slots which is  in  at  least  one  of  the
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.424      \\ t
+               he number of slots which are in one of these  states  or
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.428 	\\t
+          he job ID.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.430      \\ t
+               he priority of the job determining its position  in  the
+? 
+[15
+
+]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.433     \\  t
+               he name of the job.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.435      \\  t
+                he user name of the job owner.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.437      \\ t
+               he status of the  job  -  one  of  d(eletion),  E(rror),
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.441      \\  t
+                he submission or start time and date of the job.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.443      \\  t
+                he  queue  the  job  is  assigned  to  (for  running  or
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.446      \\  t
+                he number of job slots or the function of  parallel  job
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.449      \\  t
+                he array job task id. Will be empty for non-array  jobs.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.460      \\  t
+                he status of the  parallel  task  -  one  of  r(unning),
+? 
+
+Overfull \hbox (12.91652pt too wide) in paragraph at lines 460--463
+[]\T1/ppl/m/n/10.95 the sta-tus of the par-al-lel task - one of r(unning), R(es
+tarted), s(uspended),
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.464      \\  t
+                he cpu, memory, and I/O usage,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.466      \\ t
+               he exit status of the parallel task,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.468      \\  a
+                nd the failure code and message for the parallel task.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.472      \\  t
+                he  queue  type  -  one   of   B(atch),   I(nteractive),
+? 
+
+Overfull \hbox (9.29169pt too wide) in paragraph at lines 472--475
+[]\T1/ppl/m/n/10.95 the queue type - one of B(atch), I(nteractive), C(heckpoint
+ing), P(arallel),
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.476      \\  t
+                he number of used and available job slots,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.478      \\  t
+                he load average of the queue host,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.480      \\  t
+                he architecture of the queue host and
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.482      \\  t
+                he state  of  the  queue  -  one  of  u(nknown)  if  the
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.483         corresponding  sge_
+                                 execd(8) cannot be contacted, a(larm),
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.487 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.487 
+      
+? 
+
+Overfull \hbox (345.9692pt too wide) in paragraph at lines 482--487
+\T1/ppl/m/n/10.95 sge$[]\OML/cmm/m/it/10.95 xecd\OT1/cmr/m/n/10.95 (8)\OML/cmm/
+m/it/10.95 cannotbecontacted; a\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 larm\OT1
+/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; A\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 
+larm\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; C\OT1/cmr/m/n/10.95 (\OML/cmm/m/i
+t/10.95 alendarsuspended\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; s\OT1/cmr/m/n
+/10.95 (\OML/cmm/m/it/10.95 uspended\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; S
+\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ubordinate\OT1/cmr/m/n/10.95 )\OML/cmm/
+m/it/10.95 ; d\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 isabled\OT1/cmr/m/n/10.95
+ )\OML/cmm/m/it/10.95 ; D\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 isabled\OT1/cm
+r/m/n/10.95 )\OML/cmm/m/it/10.95 ; E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 rro
+r\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 orcombi \OMS/cmsy/m/n/10.95 ^^@
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.487 
+      
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.488      \\r
+              esource availability information
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.491      \\  t
+                he job ID,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.493      \\  t
+                he priority of the job determining its position  in  the
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.496      \\  t
+                he job name,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.498      \\  t
+                he job owner name,
+? 
+[16]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.500      \\  t
+                he status of the job - one of t(ransfering),  r(unning),
+? 
+
+Overfull \hbox (6.98146pt too wide) in paragraph at lines 500--503
+[]\T1/ppl/m/n/10.95 the sta-tus of the job - one of t(ransfering), r(unning), R
+(estarted), s(uspended),
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.504      \\  t
+                he submission or start time and date of the job.
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.506      \\  t
+                he number of job slots or the function of  parallel  job
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.510      \\I
+              f the -t option is supplied, each job status line also con-
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.513      \\  t
+                he task ID,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515      \\  t
+                he status of the task - one of  r(unning),  R(estarted),
+? 
+
+Overfull \hbox (12.7304pt too wide) in paragraph at lines 515--519
+[]\T1/ppl/m/n/10.95 the sta-tus of the task - one of r(unning), R(estarted), s(
+uspended), S(uspended),
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.520      \\  t
+                he cpu, memory, and I/O usage,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.522      \\  t
+                he exit status of the task,
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.524      \\  a
+                nd the failure code and message for the task.
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.540 ...er network create --driver bridge N√ÅZOV_
+                                                  SIETE }
+? 
+! Extra }, or forgotten $.
+l.540 ...ork create --driver bridge N√ÅZOV_SIETE }
+                                                  
+? 
+
+LaTeX Warning: Command \' invalid in math mode on input line 542.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 542.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 542.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 542.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 542.
+
+
+LaTeX Font Warning: Command \em invalid in math mode on input line 544.
+
+
+! LaTeX Error: Command \upshape invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.544 {\em
+           \$ docker run --net=N√ÅZOV_SIETE --name= N√ÅZOV_KONTAJNERA}
+? 
+
+LaTeX Warning: Command \' invalid in math mode on input line 544.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 544.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.546 
+      
+? 
+Missing character: There is no Ì in font cmr10!
+Missing character: There is no ∫ in font cmr10!
+Missing character: There is no È in font cmr10!
+Missing character: There is no ¥ in font cmr10!
+Missing character: There is no Ì in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 538--546
+
+ []
+
+[17]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.555 \\    r
+             x_bytes
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.555 \\    rx_
+               bytes
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.563 
+      
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.565 \\        "
+                 usage" - spotreba pam√§te
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.569 \\        "
+                 cpu_usage" : \{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.569 \\        "cpu_
+                     usage" : \{
+? 
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.570 \\           "percpu_usage" : \[
+                                      
+? 
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.575 \\           \]
+                     ,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.581 
+      
+? 
+[18] [19]
+Chapter 6.
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <12> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 586.
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 586.
+[20
+
+]
+Chapter 7.
+No file dip-lezdik.bbl.
+[21
+
+]
+Appendix A.
+[22
+
+] (./dip-lezdik.aux)
+
+LaTeX Warning: There were undefined references.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 540 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 2524 strings out of 495028
+ 32315 string characters out of 6181497
+ 90054 words of memory out of 5000000
+ 5663 multiletter control sequences out of 15000+600000
+ 32425 words of font info for 56 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 38i,7n,23p,806b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./
+fi-logo.514pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino
+/uplr8a.pfb>
+Output written on dip-lezdik.pdf (29 pages, 223586 bytes).
+PDF statistics:
+ 193 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+
