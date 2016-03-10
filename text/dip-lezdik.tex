@@ -113,31 +113,34 @@ Plugin Return Code	Service State	Host State
 \\1	WARNING	UP or DOWN/UNREACHABLE*
 \\2	CRITICAL	DOWN/UNREACHABLE
 \\3	UNKNOWN	DOWN/UNREACHABLE
-\\Note Note: If the use_aggressive_host_checking option is enabled, return codes of 1 will result in a host state of DOWN or UNREACHABLE. Otherwise return codes of 1 will result in a host state of UP. The process by which Nagios determines whether or not a host is DOWN or UNREACHABLE is discussed here.
+\\Note Note: If the use\_aggressive\_host\_checking option is enabled, return codes of 1 will result in a host state of DOWN or UNREACHABLE. Otherwise return codes of 1 will result in a host state of UP. The process by which Nagios determines whether or not a host is DOWN or UNREACHABLE is discussed here.
 
 Plugin Output Spec
 
 At a minimum, plugins should return at least one of text output. Beginning with Nagios 3, plugins can optionally return multiple lines of output. Plugins may also return optional performance data that can be processed by external applications. The basic format for plugin output is shown below:
 
-TEXT OUTPUT | OPTIONAL PERFDATA
-LONG TEXT LINE 1
-LONG TEXT LINE 2
-...
-LONG TEXT LINE N | PERFDATA LINE 2
-PERFDATA LINE 3
-...
-PERFDATA LINE N
+\\TEXT OUTPUT | OPTIONAL PERFDATA
+\\LONG TEXT LINE 1
+\\LONG TEXT LINE 2
+\\...
+\\LONG TEXT LINE N | PERFDATA LINE 2
+\\PERFDATA LINE 3
+\\...
+\\PERFDATA LINE N
 
 The performance data (shown in orange) is optional. If a plugin returns performance data in its output, it must separate the performance data from the other text output using a pipe (|) symbol. Additional lines of long text output (shown in blue) are also optional.
 \cite{01}
 
 \subsubsection{Timeouty}
 
-Format:	service_check_timeout=<seconds>
-Example:	service_check_timeout=60
+Format:	service\_check\_timeout=<seconds>
+Example:	service\_check\_timeout=60
 This is the maximum number of seconds that Nagios will allow service checks to run. If checks exceed this limit, they are killed and a CRITICAL state is returned. A timeout error will also be logged.
 
-There is often widespread confusion as to what this option really does. It is meant to be used as a last ditch mechanism to kill off plugins which are misbehaving and not exiting in a timely manner. It should be set to something high (like 60 seconds or more), so that each service check normally finishes executing within this time limit. If a service check runs longer than this limit, Nagios will kill it off thinking it is a runaway processes.
+There is often widespread confusion as to what this option really does. It is meant to be used as a last ditch mechanism to kill off plugins which are misbehaving and not exiting in a timely manner. 
+It should be set to something high (like 60 seconds or more), so that each service check normally finishes executing within this time limit. If a service check runs longer than this limit, N
+agios will kill it off thinking it is a runaway processes.
+
 \cite{02}
 
 
@@ -388,15 +391,14 @@ Projekt pozostáva z týchto modulov:
 \subsection{Technika zbierania metrík}
 Na zbieranie metrík som použil príkaz \emph{qstat -j}.
 
-			Prints either for all pending jobs  or  the  jobs  con-
-          tained  in  job_list  various information. The job_list
-          can contain job_ids, job_names, or wildcard  expression
-          sge_types(1).
+			Prints either for all pending jobs  or  the  jobs  contained  in  job\_list  various information. The job\_list
+          can contain job\_ids, job\_names, or wildcard  expression
+          sge\_types(1).
 
           For  jobs  in  E(rror)  state  the  error   reason   is
           displayed. For jobs that could not be dispatched during
           in the  last  scheduling  interval  the  obstacles  are
-          shown, if 'schedd_job_info' in sched_conf(5) is config-
+          shown, if 'schedd\_job\_info' in sched\_conf(5) is config-
           ured accordingly.
 
           For running  jobs  available  information  on  resource
@@ -471,7 +473,7 @@ Príkaz qstat -j poskytuje viacero režimov výstupu.
 \item[] the load average of the queue host,
 \item[] the architecture of the queue host and
 \item[] the state  of  the  queue  -  one  of  u(nknown)  if  the
-        corresponding  sge_execd(8) cannot be contacted, a(larm),
+        corresponding  sge\_execd(8) cannot be contacted, a(larm),
         A(larm),     C(alendar      suspended),      s(uspended),
         S(ubordinate),  d(isabled), D(isabled), E(rror) or combi-
         nations thereof.
@@ -573,16 +575,12 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \end{description}
 
 \subsection{Procesor}
-\\        cpu_usage 
-\\           percpu_usage
-\\              16970827,
-\\              1839451,
-\\              7107380,
-\\              10571290
-\\           usage_in_usermode"
-\\           total_usage" 
-\\           usage_in_kernelmode" 
-\\        system_cpu_usage
+\\        cpu\_usage 
+\\           percpu\_usage - využitie jednotlivých procesorov
+\\           usage\_in\_usermode
+\\           total\_usage
+\\           usage\_in\_kernelmode
+\\        system\_cpu\_usage
 
 \section{libvirt/KVM}
 \subsection{Technika zbierania metrík}
