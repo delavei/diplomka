@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.2.19)  24 FEB 2016 15:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.2.19)  10 MAR 2016 10:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -457,11 +457,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 1.
  [6
 
-])
+] [7])
 \tf@toc=\write3
 \openout3 = `dip-lezdik.toc'.
 
- [7]
+ [8]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 48.
@@ -470,339 +470,432 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
 
 ]
 Chapter 2.
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 58.
 
-LaTeX Warning: Citation `openTSDB' on page 2 undefined on input line 56.
+LaTeX Warning: Citation `openTSDB' on page 2 undefined on input line 70.
 
 [2
 
-]
+] <images/metrilyx.png, id=39, 937.5025pt x 511.9125pt>
+File: images/metrilyx.png Graphic file (type png)
+
+<use images/metrilyx.png>
+Package pdftex.def Info: images/metrilyx.png used on input line 75.
+(pdftex.def)             Requested size: 289.08109pt x 157.84763pt.
+
+
+LaTeX Warning: Citation `Metrilyx' on page 3 undefined on input line 76.
+
+
+Overfull \hbox (0.10541pt too wide) in paragraph at lines 81--83
+\T1/ppl/m/n/10.95 ��-taj� po-mo-cou rozhra-nia pr�ka-zov�ho ri-adka, r�znych kl
+ientskych kni�n�c,
+ []
+
+[3 <./images/metrilyx.png>] [4]
 Chapter 3.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.80 Note Note: If the use_
-                           aggressive_host_checking option is enabled, retur...
+l.116 \\Note Note: If the use_
+                              aggressive_host_checking option is enabled, re...
 
 ? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.81 
-     
+l.117 
+      
 ? 
 
-Overfull \hbox (1254.65895pt too wide) in paragraph at lines 75--81
-\T1/ppl/m/n/10.95 UN-KNOWN DOWN/UNREACHABLE Note Note: If the use$[]\OML/cmm/m/
-it/10.95 ggressive[]ost[]heckingoptionisenabled; returncodesof\OT1/cmr/m/n/10.9
-5 1\OML/cmm/m/it/10.95 willresultinahoststateofDOWNorUNREACHABLE:Otherwiseretur
-ncodesof\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 willresultinahoststateofUP:Thep
-rocessbywhichNagiosdetermineswhetherornotahostisDOWNorUNREACHABLEisdiscussedher
-e:$ 
+Overfull \hbox (1057.80258pt too wide) in paragraph at lines 111--117
+\T1/ppl/m/n/10.95 Note Note: If the use$[]\OML/cmm/m/it/10.95 ggressive[]ost[]h
+eckingoptionisenabled; returncodesof\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 wil
+lresultinahoststateofDOWNorUNREACHABLE:Otherwisereturncodesof\OT1/cmr/m/n/10.95
+ 1\OML/cmm/m/it/10.95 willresultinahoststateofUP:TheprocessbywhichNagiosdetermi
+neswhetherornotahostisDOWNorUNREACHABLEisdiscussedhere:$ 
  []
 
 
-Overfull \hbox (277.01688pt too wide) in paragraph at lines 95--97
-\T1/ppl/m/n/10.95 out-put (shown in blue) are also op-tional. https://assets.na
-gios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html 
- []
+LaTeX Warning: Citation `01' on page 5 undefined on input line 132.
 
-[3
+[5
 
 ]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.100 Format:	service_
+l.136 Format:	service_
                       check_timeout=<seconds>
 ? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.103 
+l.139 
       
 ? 
 
-Overfull \hbox (14.82632pt too wide) in paragraph at lines 100--103
+Overfull \hbox (14.82632pt too wide) in paragraph at lines 136--139
 \T1/ppl/m/n/10.95 Format: service$[]\OML/cmm/m/it/10.95 heck[]imeout \OT1/cmr/m
 /n/10.95 =\OML/cmm/m/it/10.95 < seconds > Example \OT1/cmr/m/n/10.95 : \OML/cmm
 /m/it/10.95 service[]heck[]imeout \OT1/cmr/m/n/10.95 =
  []
 
 
-Overfull \hbox (540.6248pt too wide) in paragraph at lines 100--103
+Overfull \hbox (540.6248pt too wide) in paragraph at lines 136--139
 \OT1/cmr/m/n/10.95 60\OML/cmm/m/it/10.95 ThisisthemaximumnumberofsecondsthatNag
 ioswillallowservicecheckstorun:Ifchecksexceedthislimit; theyarekilledandaCRITIC
 ALstateisreturned:Atimeouterrorwillalsobelogged:$ 
  []
 
-! You can't use `macro parameter character #' in horizontal mode.
-l.105 ...ore/docs/nagioscore/3/en/configmain.html#
-                                                  service_check_timeout
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.105 .../nagioscore/3/en/configmain.html#service_
-                                                  check_timeout
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.106 
-      
-? 
 
-Overfull \hbox (186.58727pt too wide) in paragraph at lines 104--106
-\T1/ppl/m/n/10.95 https://assets.nagios.com/downloads/nagioscore/docs/nagioscor
-e/3/en/configmain.htmlservice$[]\OML/cmm/m/it/10.95 heck[]imeout$ 
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.112 ...agios.org/directory/Plugins/Others/check_
-                                                  hadoop_metrics/details
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.113 
-      
-? 
-
-Overfull \hbox (66.02168pt too wide) in paragraph at lines 109--113
-\T1/ppl/m/n/10.95 05 https://exchange.nagios.org/directory/Plugins/Others/check
-$[]\OML/cmm/m/it/10.95 adoop[]etrics=details$ 
- []
+LaTeX Warning: Citation `02' on page 6 undefined on input line 141.
 
 
-Overfull \hbox (265.91376pt too wide) in paragraph at lines 116--119
-\T1/ppl/m/n/10.95 Time-out sec-onds de-fined in Zab-bix server con-fig-u-ra-tio
-n file. https://www.zabbix.com/documentation/1.8/manual/config/items 
- []
+LaTeX Warning: Citation `03' on page 6 undefined on input line 147.
+
+
+LaTeX Warning: Citation `04' on page 6 undefined on input line 153.
+
+
+LaTeX Warning: Citation `20' on page 6 undefined on input line 157.
+
+
+LaTeX Warning: Citation `05' on page 6 undefined on input line 161.
+
+[6]
+
+LaTeX Warning: Citation `06' on page 7 undefined on input line 180.
+
+
+LaTeX Warning: Citation `07' on page 7 undefined on input line 184.
+
+
+LaTeX Warning: Citation `08' on page 7 undefined on input line 188.
+
+
+LaTeX Warning: Citation `09' on page 7 undefined on input line 197.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.122 ...ocumentation/1.8/manual/processes/zabbix_
-                                                  agentd
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.123 
-      
-? 
-
-Overfull \hbox (98.94238pt too wide) in paragraph at lines 120--123
-\T1/ppl/m/n/10.95 on pro-cess-ing https://www.zabbix.com/documentation/1.8/manu
-al/processes/zabbix$[]\OML/cmm/m/it/10.95 gentd$ 
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.126 ...ocumentation/1.8/manual/processes/zabbix_
-                                                  server
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.127 
-      
-? 
-
-Overfull \hbox (242.18924pt too wide) in paragraph at lines 124--127
-\T1/ppl/m/n/10.95 SNMP de-vice or ex-ter-nal check (in sec-onds). https://www.z
-abbix.com/documentation/1.8/manual/processes/zabbix$[]\OML/cmm/m/it/10.95 erver
-$ 
- []
-
-[4]
-Overfull \hbox (67.0637pt too wide) in paragraph at lines 144--146
-\T1/ppl/m/n/10.95 https://www.zabbix.com/documentation/2.2/manual/config/items/
-loadablemodules 
- []
-
-! You can't use `macro parameter character #' in horizontal mode.
-l.150 ...rg/icinga2/latest/doc/module/icinga2/toc#
-                                                  !/icinga2/latest/doc/modul...
-
-? 
-! You can't use `macro parameter character #' in horizontal mode.
-l.150 ...c/module/icinga2/chapter/getting-started#
-                                                  running-icinga2
-? 
-
-Overfull \hbox (329.64099pt too wide) in paragraph at lines 149--151
-\T1/ppl/m/n/10.95 for his-tor-i-cal rea-sons. http://docs.icinga.org/icinga2/la
-test/doc/module/icinga2/toc!/icinga2/latest/doc/module/icinga2/chapter/getting-
-
- []
-
-
-Overfull \hbox (128.63368pt too wide) in paragraph at lines 153--155
-\T1/ppl/m/n/10.95 along with their cor-re-spond-ing ser-vice or host states htt
-p://docs.icinga.org/latest/en/pluginapi.html 
- []
-
-! You can't use `macro parameter character #' in horizontal mode.
-l.163 ...rg/icinga2/latest/doc/module/icinga2/toc#
-                                                  !/icinga2/latest/doc/modul...
-
-? 
-! You can't use `macro parameter character #' in horizontal mode.
-l.163 ...module/icinga2/chapter/monitoring-basics#
-                                                  event-commands
-? 
-
-Overfull \hbox (506.91968pt too wide) in paragraph at lines 162--164
-[]\T1/ppl/m/n/10.95 Ide len o spuste-nie ne-jak�ho sys-t�-mov�ho pr�kazu. http:
-//docs.icinga.org/icinga2/latest/doc/module/icinga2/toc!/icinga2/latest/doc/mod
-ule/icinga2/chapter/monitoring-
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.168 ...ate version of exchange.nagios.org check_
+l.200 ...ate version of exchange.nagios.org check_
                                                   hadoop-dfs.sh
 ? 
+! You can't use `\spacefactor' in math mode.
+\cite@adjust ... \@tempa \@zero@skip \spacefactor 
+                                                  1001 \fi \ifnum \spacefact...
+l.201 \cite{10}
+               
+? 
+! Improper \spacefactor.
+\cite@adjust ...ctor 1001 \fi \ifnum \spacefactor 
+                                                  >\@m \ \else \hskip \@temp...
+l.201 \cite{10}
+               
+? 
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.201 \cite{10}
+               
+? 
+
+LaTeX Warning: Citation `10' on page 7 undefined on input line 201.
+
+! You can't use `\spacefactor' in math mode.
+\@cite ...ivesfalse \citemid {#2}\fi \spacefactor 
+                                                  \@m }\citeright \@restore@...
+l.201 \cite{10}
+               
+? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.170 
+l.202 
       
 ? 
+Missing character: There is no � in font cmex10!
 
-Overfull \hbox (16.49786pt too wide) in paragraph at lines 172--174
-\T1/ppl/m/n/10.95 meth-ods, and user man-age-ment fea-tures out of the box. htt
-p://www.cacti.net/ 
- []
+LaTeX Warning: Citation `11' on page 7 undefined on input line 205.
 
-[5]
-Overfull \hbox (54.01141pt too wide) in paragraph at lines 180--183
-\T1/ppl/m/n/10.95 4.3, but is so far lim-ited to sim-ple thresh-old check-ing. 
-https://collectd.org/index.shtml 
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.186 ...collectd.org/wiki/index.php/Plugin:Write_
-                                                  TSDB
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.187 
-      
-? 
-
-Overfull \hbox (180.73036pt too wide) in paragraph at lines 185--187
-\T1/ppl/m/n/10.95 tributed time-series database based on Apache HBase. https://
-collectd.org/wiki/index.php/Plugin:Write$[]\OML/cmm/m/it/10.95 SDB$ 
- []
-
-LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 189.
-[6]
-Overfull \hbox (121.78021pt too wide) in paragraph at lines 203--205
-\T1/ppl/m/n/10.95 ing, an "OKAY-notification" is dis-patched. https://collectd.
-org/documentation/manpages/collectd-
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.206 ...collectd.org/wiki/index.php/Plugin:Write_
-                                                  TSDB
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.207 
-      
-? 
 [7]
 
-LaTeX Warning: Citation `scout' on page 8 undefined on input line 238.
+LaTeX Warning: Citation `12' on page 8 undefined on input line 214.
 
 
-Overfull \hbox (8.1424pt too wide) in paragraph at lines 244--245
+LaTeX Warning: Citation `13' on page 8 undefined on input line 218.
+
+[8]
+
+LaTeX Warning: Citation `14' on page 9 undefined on input line 236.
+
+
+LaTeX Warning: Citation `15' on page 9 undefined on input line 247.
+
+
+LaTeX Warning: Citation `16' on page 9 undefined on input line 249.
+
+
+Underfull \vbox (badness 6316) has occurred while \output is active []
+
+ [9]
+
+LaTeX Warning: Citation `scout' on page 10 undefined on input line 260.
+
+
+Overfull \hbox (8.1424pt too wide) in paragraph at lines 266--267
 \T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
 er-
  []
 
-[8]
-Overfull \hbox (28.65172pt too wide) in paragraph at lines 268--269
-[]\T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/ha
-doop-
- []
 
-[9]
+LaTeX Warning: Citation `17' on page 10 undefined on input line 290.
+
+[10] [11]
 Chapter 4.
 
-LaTeX Warning: Citation `torque' on page 10 undefined on input line 273.
+LaTeX Warning: Citation `torque' on page 12 undefined on input line 297.
 
-
-LaTeX Warning: Citation `docker' on page 10 undefined on input line 286.
-
-<images/docker.png, id=62, 640.3925pt x 702.625pt>
+<images/docker.png, id=73, 640.3925pt x 702.625pt>
 File: images/docker.png Graphic file (type png)
  <use images/docker.png>
-Package pdftex.def Info: images/docker.png used on input line 296.
+Package pdftex.def Info: images/docker.png used on input line 312.
 (pdftex.def)             Requested size: 289.08109pt x 317.17538pt.
 
 
-LaTeX Warning: Citation `docker' on page 10 undefined on input line 297.
-
-[10
-
-] [11 <./images/docker.png>]
-
-LaTeX Warning: Citation `torque' on page 12 undefined on input line 328.
+LaTeX Warning: Citation `docker' on page 12 undefined on input line 313.
 
 
-LaTeX Warning: Citation `libvirt' on page 12 undefined on input line 331.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 347.
+[12
 
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
-File: omsppl.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 347.
-LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 356.
+] [13 <./images/docker.png>]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.330 \item[\emph{net_cls}]
+                            - this subsystem tags network packets with a cla...
 
-Overfull \hbox (1.86418pt too wide) in paragraph at lines 356--357
-[]\T1/ppl/m/n/10.95 distribuovan� s�borov� sys-
+? 
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.330 \item[\emph{net_cls}]
+                            - this subsystem tags network packets with a cla...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.330 \item[\emph{net_cls}]
+                            - this subsystem tags network packets with a cla...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.331 \item
+           [\emph{net_prio}] - this subsystem provides a way to dynamically ...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.331 \item[\emph{net_prio}]
+                             - this subsystem provides a way to dynamically ...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.332 \item
+           [\emph{ns}] - the namespace subsystem.
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.332 \item[\emph{ns}]
+                       - the namespace subsystem.
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.332 \item[\emph{ns}]
+                       - the namespace subsystem.
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.332 \item[\emph{ns}]
+                       - the namespace subsystem.
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.332 \item[\emph{ns}]
+                       - the namespace subsystem.
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.333 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.333 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.333 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.333 \end{description}
+                       
+? 
+
+Overfull \hbox (32.2544pt too wide) in paragraph at lines 335--336
+\T1/ppl/m/n/10.95 skupina ob-sahuje zoz-nam pro-cesov, ktor� podliehaj� defi-no
+-van�m obmedzeniam.
  []
 
-[13]
-Overfull \hbox (2.01091pt too wide) in paragraph at lines 375--376
-[]\T1/ppl/m/n/10.95 https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-y
-arn-
+
+LaTeX Warning: Citation `docker' on page 14 undefined on input line 341.
+
+
+Overfull \hbox (5.7443pt too wide) in paragraph at lines 339--342
+\T1/ppl/m/n/10.95 za-h��a v�etko, �o dan� soft-v�r potre-buje na spuste-nie: k�
+d, n�stroje potrebn�
  []
 
 [14]
+
+LaTeX Warning: Citation `hypervisorTypes' on page 15 undefined on input line 35
+8.
+
+
+LaTeX Warning: Citation `kvm' on page 15 undefined on input line 364.
+
+
+LaTeX Warning: Citation `libvirt' on page 15 undefined on input line 367.
+
+
+Overfull \hbox (14.17606pt too wide) in paragraph at lines 372--376
+\T1/ppl/m/n/10.95 vate�n�, dis-tribuo-van� v�po�ty. Apache Hadoop je prostredie
+, ktor� umo��uje
+ []
+
+[15]
+LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 381.
+
+Overfull \hbox (1.86418pt too wide) in paragraph at lines 381--382
+[]\T1/ppl/m/n/10.95 distribuovan� s�borov� sys-
+ []
+
+[16]
 Chapter 5.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.386           tained  in  job_
+l.392           tained  in  job_
                                 list  various information. The job_list
 ? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.389 
+l.395 
       
 ? 
 
-Overfull \hbox (415.2398pt too wide) in paragraph at lines 385--389
+Overfull \hbox (415.2398pt too wide) in paragraph at lines 391--395
 []\T1/ppl/m/n/10.95 Prints ei-ther for all pend-ing jobs or the jobs con- taine
 d in job$[]\OML/cmm/m/it/10.95 istvariousinformation:Thejob[]istcancontainjob[]
 ds; job[]ames; orwildcardexpressionsge[]ypes\OT1/cmr/m/n/10.95 (1)\OML/cmm/m/it
@@ -812,13 +905,13 @@ ds; job[]ames; orwildcardexpressionsge[]ypes\OT1/cmr/m/n/10.95 (1)\OML/cmm/m/it
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.393           shown, if 'schedd_
+l.399           shown, if 'schedd_
                                   job_info' in sched_conf(5) is config-
 ? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.395 
+l.401 
       
 ? 
 
@@ -828,8 +921,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.408 		\\t
-           he cluster queue name.
+l.416 \begin
+            {enumerate}
 ? 
 
 ! LaTeX Error: There's no line here to end.
@@ -838,176 +931,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.410      \\ a
-               n average of the normalized load average  of  all  queue
+l.430 \begin
+            {enumerate}
 ? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.413     \\  t
-               he number of currently used slots.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.415      \\  t
-                he number of slots reserved in advance.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.417      \\  t
-                he number of currently available slots.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.419     \\  t
-               he total number of slots.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.421      \\  t
-                he number of slots which is  in  at  least  one  of  the
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.424      \\ t
-               he number of slots which are in one of these  states  or
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.428 	\\t
-          he job ID.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.430      \\ t
-               he priority of the job determining its position  in  the
-? 
-[15
+[17
 
 ]
+Overfull \hbox (1.0366pt too wide) in paragraph at lines 436--439
+\T1/ppl/m/n/10.95 R(estarted), s(uspended), S(uspended), t(ransfering), T(hresh
+old)
+ []
 
-! LaTeX Error: There's no line here to end.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.433     \\  t
-               he name of the job.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.435      \\  t
-                he user name of the job owner.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.437      \\ t
-               he status of the  job  -  one  of  d(eletion),  E(rror),
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.441      \\  t
-                he submission or start time and date of the job.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.443      \\  t
-                he  queue  the  job  is  assigned  to  (for  running  or
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.446      \\  t
-                he number of job slots or the function of  parallel  job
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.449      \\  t
-                he array job task id. Will be empty for non-array  jobs.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.460      \\  t
-                he status of the  parallel  task  -  one  of  r(unning),
-? 
-
-Overfull \hbox (12.91652pt too wide) in paragraph at lines 460--463
-[]\T1/ppl/m/n/10.95 the sta-tus of the par-al-lel task - one of r(unning), R(es
-tarted), s(uspended),
+Overfull \hbox (23.41812pt too wide) in paragraph at lines 455--458
+\T1/ppl/m/n/10.95 s(uspended), S(uspended), T(hreshold), w(aiting), h(old), or 
+x(exited). 
  []
 
 
@@ -1017,105 +955,69 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.464      \\  t
-                he cpu, memory, and I/O usage,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.466      \\ t
-               he exit status of the parallel task,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.468      \\  a
-                nd the failure code and message for the parallel task.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.472      \\  t
-                he  queue  type  -  one   of   B(atch),   I(nteractive),
-? 
-
-Overfull \hbox (9.29169pt too wide) in paragraph at lines 472--475
-[]\T1/ppl/m/n/10.95 the queue type - one of B(atch), I(nteractive), C(heckpoint
-ing), P(arallel),
- []
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.476      \\  t
-                he number of used and available job slots,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.478      \\  t
-                he load average of the queue host,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.480      \\  t
-                he architecture of the queue host and
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.482      \\  t
-                he state  of  the  queue  -  one  of  u(nknown)  if  the
+l.465 \begin
+            {enumerate}
 ? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.483         corresponding  sge_
+l.474         corresponding  sge_
                                  execd(8) cannot be contacted, a(larm),
 ? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.478 \item
+           [] resource availability information
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.478 \item[]
+              resource availability information
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.478 \item[]
+              resource availability information
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.480 \item
+           [] the job ID,
+? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.487 
-      
+l.480 \item[]
+              the job ID,
 ? 
 ! Missing } inserted.
 <inserted text> 
                 }
-l.487 
-      
+l.480 \item[]
+              the job ID,
 ? 
 
-Overfull \hbox (345.9692pt too wide) in paragraph at lines 482--487
+Overfull \hbox (370.05922pt too wide) in paragraph at lines 473--480
 \T1/ppl/m/n/10.95 sge$[]\OML/cmm/m/it/10.95 xecd\OT1/cmr/m/n/10.95 (8)\OML/cmm/
 m/it/10.95 cannotbecontacted; a\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 larm\OT1
 /cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; A\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 
@@ -1129,350 +1031,1979 @@ r/m/n/10.95 )\OML/cmm/m/it/10.95 ; E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 rro
 r\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 orcombi \OMS/cmsy/m/n/10.95 ^^@
  []
 
+
+Overfull \hbox (114.26352pt too wide) in paragraph at lines 473--480
+\OML/cmm/m/it/10.95 nationsthereof:resourceavailabilityinformationisprintedfoll
+owingthequeuestatusline:[][]$ 
+ []
+
 ! Extra }, or forgotten \endgroup.
 \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
-l.487 
-      
+l.480 \item[]
+              the job ID,
 ? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.488      \\r
-              esource availability information
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.491      \\  t
-                he job ID,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.493      \\  t
-                he priority of the job determining its position  in  the
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.496      \\  t
-                he job name,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.498      \\  t
-                he job owner name,
-? 
-[16]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.500      \\  t
-                he status of the job - one of t(ransfering),  r(unning),
-? 
-
-Overfull \hbox (6.98146pt too wide) in paragraph at lines 500--503
+[18]
+Overfull \hbox (6.98146pt too wide) in paragraph at lines 485--488
 []\T1/ppl/m/n/10.95 the sta-tus of the job - one of t(ransfering), r(unning), R
 (estarted), s(uspended),
  []
 
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 542--549
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.504      \\  t
-                he submission or start time and date of the job.
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.506      \\  t
-                he number of job slots or the function of  parallel  job
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.510      \\I
-              f the -t option is supplied, each job status line also con-
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.513      \\  t
-                he task ID,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.515      \\  t
-                he status of the task - one of  r(unning),  R(estarted),
-? 
-
-Overfull \hbox (12.7304pt too wide) in paragraph at lines 515--519
-[]\T1/ppl/m/n/10.95 the sta-tus of the task - one of r(unning), R(estarted), s(
-uspended), S(uspended),
  []
 
 
-! LaTeX Error: There's no line here to end.
+Underfull \hbox (badness 10000) in paragraph at lines 542--549
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.520      \\  t
-                he cpu, memory, and I/O usage,
-? 
+ []
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.522      \\  t
-                he exit status of the task,
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.524      \\  a
-                nd the failure code and message for the task.
-? 
+[20]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.540 ...er network create --driver bridge NÁZOV_
-                                                  SIETE }
+l.558 \item[rx_bytes]
+                      - počet prijatých bajtov
 ? 
 ! Extra }, or forgotten $.
-l.540 ...ork create --driver bridge NÁZOV_SIETE }
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
                                                   
+l.558 \item[rx_bytes]
+                      - počet prijatých bajtov
 ? 
 
-LaTeX Warning: Command \' invalid in math mode on input line 542.
+LaTeX Warning: Command \v invalid in math mode on input line 558.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 542.
+LaTeX Warning: Command \' invalid in math mode on input line 558.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 542.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 542.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 542.
-
-
-LaTeX Font Warning: Command \em invalid in math mode on input line 544.
-
-
-! LaTeX Error: Command \upshape invalid in math mode.
+! LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.544 {\em
-           \$ docker run --net=NÁZOV_SIETE --name= NÁZOV_KONTAJNERA}
+l.559 \item
+           [rx_dropped] - počet prichádzajúcich zahodených bajtov
 ? 
 
-LaTeX Warning: Command \' invalid in math mode on input line 544.
+! LaTeX Error: Something's wrong--perhaps a missing \item.
 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.559 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
 
-LaTeX Warning: Command \' invalid in math mode on input line 544.
+! LaTeX Error: Something's wrong--perhaps a missing \item.
 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.559 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.559 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.546 
+l.559 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.559 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 559.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 559.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 559.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 559.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.560 \item
+           [rx_error] - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.560 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.560 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.560 \item[rx_error]
+                      - počet chybných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.560 \item[rx_error]
+                      - počet chybných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.560 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 560.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 560.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.561 \item
+           [rx_packets] - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.561 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.561 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.561 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.561 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.561 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 561.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 561.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.562 \item
+           [tx_bytes] - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.562 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.562 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.562 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.562 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.562 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 562.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 562.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.563 \item
+           [tx_dropped] - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.563 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.563 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.563 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.563 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.563 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 563.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 563.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.564 \item
+           [tx_errors] - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.564 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.564 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.564 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.564 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.564 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 564.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 564.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 564.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.565 \item
+           [tx_packets] - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.565 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.565 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.565 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.565 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.565 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 565.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 565.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 \end{description}
+                       
+? 
+
+! LaTeX Error: Command \end{description} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.566 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.566 \end{description}
+                       
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.570 \begin
+            {description}
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.576 \\        c
+                 pu_usage
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.576 \\        cpu_
+                    usage
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.586 
       
 ? 
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
-Missing character: There is no � in font cmr10!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.594 \item[rx_bytes]
+                      - počet prijatých bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.594 \item[rx_bytes]
+                      - počet prijatých bajtov
+? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 538--546
+LaTeX Warning: Command \v invalid in math mode on input line 594.
 
+
+LaTeX Warning: Command \' invalid in math mode on input line 594.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.595 \item
+           [rx_dropped] - počet prichádzajúcich zahodených bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.595 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.595 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.595 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.595 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.595 \item[rx_dropped]
+                        - počet prichádzajúcich zahodených bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 595.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 595.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 595.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 595.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.596 \item
+           [rx_error] - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.596 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.596 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.596 \item[rx_error]
+                      - počet chybných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.596 \item[rx_error]
+                      - počet chybných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.596 \item[rx_error]
+                      - počet chybných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 596.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 596.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.597 \item
+           [rx_packets] - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.597 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.597 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.597 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.597 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.597 \item[rx_packets]
+                        - počet prijatých paketov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 597.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 597.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.598 \item
+           [tx_bytes] - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.598 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.598 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.598 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.598 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.598 \item[tx_bytes]
+                      - počet odoslaných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 598.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 598.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.599 \item
+           [tx_dropped] - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.599 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.599 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.599 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.599 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.599 \item[tx_dropped]
+                        - počet zahodených bajtov pri pokuse o odoslanie
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 599.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 599.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.600 \item
+           [tx_errors] - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.600 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.600 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.600 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.600 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.600 \item[tx_errors]
+                       - počet odoslaných chybných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 600.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 600.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 600.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.601 \item
+           [tx_packets] - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.601 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.601 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.601 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.601 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.601 \item[tx_packets]
+                        - počet odoslaných paketov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 601.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 601.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 \end{description}
+                       
+? 
+
+! LaTeX Error: Command \end{description} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.602 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.602 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.606 \item[VIR_DOMAIN_MEMORY_STAT_SWAP_IN]
+                                            - The total amount of memory wri...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.606 \item[VIR_DOMAIN_MEMORY_STAT_SWAP_IN]
+                                            - The total amount of memory wri...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.607 \item
+           [VIR_DOMAIN_MEMORY_STAT_SWAP_OUT] - Page faults occur when a proc...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.607 \item[VIR_DOMAIN_MEMORY_STAT_SWAP_OUT]
+                                             - Page faults occur when a proc...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.607 \item[VIR_DOMAIN_MEMORY_STAT_SWAP_OUT]
+                                             - Page faults occur when a proc...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.607 \item[VIR_DOMAIN_MEMORY_STAT_SWAP_OUT]
+                                             - Page faults occur when a proc...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.608 \item
+           [VIR_DOMAIN_MEMORY_STAT_MAJOR_FAULT] - počet chybných bajtov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.608 \item[VIR_DOMAIN_MEMORY_STAT_MAJOR_FAULT]
+                                                - počet chybných bajtov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.608 \item[VIR_DOMAIN_MEMORY_STAT_MAJOR_FAULT]
+                                                - počet chybných bajtov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.608 \item[VIR_DOMAIN_MEMORY_STAT_MAJOR_FAULT]
+                                                - počet chybných bajtov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 608.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 608.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.609 \item
+           [VIR_DOMAIN_MEMORY_STAT_MINOR_FAULT] - počet prijatých paketov
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.609 \item[VIR_DOMAIN_MEMORY_STAT_MINOR_FAULT]
+                                                - počet prijatých paketov
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.609 \item[VIR_DOMAIN_MEMORY_STAT_MINOR_FAULT]
+                                                - počet prijatých paketov
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.609 \item[VIR_DOMAIN_MEMORY_STAT_MINOR_FAULT]
+                                                - počet prijatých paketov
+? 
+
+LaTeX Warning: Command \v invalid in math mode on input line 609.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 609.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.610 \item
+           [VIR_DOMAIN_MEMORY_STAT_UNUSED] - The amount of memory left compl...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.610 \item[VIR_DOMAIN_MEMORY_STAT_UNUSED]
+                                           - The amount of memory left compl...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.610 \item[VIR_DOMAIN_MEMORY_STAT_UNUSED]
+                                           - The amount of memory left compl...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.610 \item[VIR_DOMAIN_MEMORY_STAT_UNUSED]
+                                           - The amount of memory left compl...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.611 \item
+           [VIR_DOMAIN_MEMORY_STAT_AVAILABLE] - The total amount of usable m...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.611 \item[VIR_DOMAIN_MEMORY_STAT_AVAILABLE]
+                                              - The total amount of usable m...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.611 \item[VIR_DOMAIN_MEMORY_STAT_AVAILABLE]
+                                              - The total amount of usable m...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.611 \item[VIR_DOMAIN_MEMORY_STAT_AVAILABLE]
+                                              - The total amount of usable m...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.612 \item
+           [VIR_DOMAIN_MEMORY_STAT_ACTUAL_BALLOON] - Current balloon value (...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.612 \item[VIR_DOMAIN_MEMORY_STAT_ACTUAL_BALLOON]
+                                                   - Current balloon value (...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.612 \item[VIR_DOMAIN_MEMORY_STAT_ACTUAL_BALLOON]
+                                                   - Current balloon value (...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.612 \item[VIR_DOMAIN_MEMORY_STAT_ACTUAL_BALLOON]
+                                                   - Current balloon value (...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.613 \item
+           [VIR_DOMAIN_MEMORY_STAT_RSS] - Resident Set Size of the process r...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.613 \item[VIR_DOMAIN_MEMORY_STAT_RSS]
+                                        - Resident Set Size of the process r...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.613 \item[VIR_DOMAIN_MEMORY_STAT_RSS]
+                                        - Resident Set Size of the process r...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.613 \item[VIR_DOMAIN_MEMORY_STAT_RSS]
+                                        - Resident Set Size of the process r...
+
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.614 \item
+           [VIR_DOMAIN_MEMORY_STAT_NR] - The number of statistics supported ...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.614 \item[VIR_DOMAIN_MEMORY_STAT_NR]
+                                       - The number of statistics supported ...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.614 \item[VIR_DOMAIN_MEMORY_STAT_NR]
+                                       - The number of statistics supported ...
+
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.614 \item[VIR_DOMAIN_MEMORY_STAT_NR]
+                                       - The number of statistics supported ...
+
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.615 \end{description}
+                       
+? 
+
+! LaTeX Error: Command \end{description} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.615 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.615 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.615 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.615 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.619 \item[rd_req]
+                    - number of read requests
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.619 \item[rd_req]
+                    - number of read requests
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.620 \item
+           [rd_bytes] - number of read bytes
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.620 \item[rd_bytes]
+                      - number of read bytes
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.620 \item[rd_bytes]
+                      - number of read bytes
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.620 \item[rd_bytes]
+                      - number of read bytes
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.621 \item
+           [wr_req] - number of write requests
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.621 \item[wr_req]
+                    - number of write requests
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.621 \item[wr_req]
+                    - number of write requests
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.621 \item[wr_req]
+                    - number of write requests
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.622 \item
+           [wr_bytes] - number of written bytes
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.622 \item[wr_bytes]
+                      - number of written bytes
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.622 \item[wr_bytes]
+                      - number of written bytes
+? 
+! Extra }, or forgotten $.
+\sbox ...hbox {\color@setgroup #2\color@endgroup }
+                                                  
+l.622 \item[wr_bytes]
+                      - number of written bytes
+? 
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.623 \item
+           [errs] - In Xen this returns the mysterious 'oo_req'.
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.623 \item[errs]
+                  - In Xen this returns the mysterious 'oo_req'.
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.624 \end{description}
+                       
+? 
+
+! LaTeX Error: Command \end{description} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.624 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.624 \end{description}
+                       
+? 
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.624 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.624 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.624 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.624 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.624 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.624 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.624 \end{description}
+                       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.624 \end{description}
+                       
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.624 \end{description}
+                       
+? 
+[21]
+
+LaTeX Warning: Citation `18' on page 22 undefined on input line 647.
+
+[22]
+Overfull \hbox (23.39641pt too wide) in paragraph at lines 685--686
+\T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
+EW_SAVING,
  []
 
-[17]
 
-! LaTeX Error: There's no line here to end.
+Overfull \hbox (0.23839pt too wide) in paragraph at lines 685--686
+\T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
+ []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.555 \\    r
-             x_bytes
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.555 \\    rx_
-               bytes
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.563 
-      
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.565 \\        "
-                 usage" - spotreba pamäte
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.569 \\        "
-                 cpu_usage" : \{
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.569 \\        "cpu_
-                     usage" : \{
-? 
-
-! LaTeX Error: Bad math environment delimiter.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.570 \\           "percpu_usage" : \[
-                                      
-? 
-
-! LaTeX Error: Bad math environment delimiter.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.575 \\           \]
-                     ,
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.581 
-      
-? 
-[18] [19]
+[23] [24]
 Chapter 6.
-LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <12> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 586.
-LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 586.
-[20
+[25
+
+] [26]
+Chapter 7.
+[27
 
 ]
-Chapter 7.
+Chapter 8.
+[28
+
+]
+Chapter 9.
 No file dip-lezdik.bbl.
-[21
+[29
 
 ]
 Appendix A.
-[22
+[30
 
 ] (./dip-lezdik.aux)
 
 LaTeX Warning: There were undefined references.
 
- )
-(\end occurred inside a group at level 1)
-
-### simple group (level 1) entered at line 540 ({)
-### bottom level 
+ ) 
 Here is how much of TeX's memory you used:
- 2524 strings out of 495028
- 32315 string characters out of 6181497
- 90054 words of memory out of 5000000
- 5663 multiletter control sequences out of 15000+600000
- 32425 words of font info for 56 fonts, out of 8000000 for 9000
+ 2526 strings out of 495028
+ 32128 string characters out of 6181497
+ 92054 words of memory out of 5000000
+ 5669 multiletter control sequences out of 15000+600000
+ 28419 words of font info for 51 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,7n,23p,806b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./
-fi-logo.514pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino
-/uplr8a.pfb>
-Output written on dip-lezdik.pdf (29 pages, 223586 bytes).
+ 38i,19n,23p,806b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./fi-logo.514pk>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/u
+plr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on dip-lezdik.pdf (38 pages, 474417 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
+ 226 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

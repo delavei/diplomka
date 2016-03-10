@@ -1,59 +1,81 @@
-\contentsline {chapter}{Obsah}{vii}
+\contentsline {chapter}{Obsah}{viii}
 \contentsline {chapter}{\numberline {1}\bfseries \IeC {\'U}vod}{1}
-\contentsline {chapter}{\numberline {2}\bfseries Zber a uchovavanie casovych rad}{2}
-\contentsline {section}{\numberline {2.1}\slshape OpenTSDB}{2}
-\contentsline {chapter}{\numberline {3}\bfseries Aktualne monitorovacie rie\IeC {\v s}enia}{3}
-\contentsline {section}{\numberline {3.1}\slshape Open-source}{3}
-\contentsline {subsection}{\numberline {3.1.1}\rmfamily Nagios}{3}
-\contentsline {subsubsection}{ PluginAPI}{3}
-\contentsline {subsubsection}{ Timeouty}{4}
-\contentsline {subsection}{\numberline {3.1.2}\rmfamily Zabbix}{4}
-\contentsline {subsubsection}{ Timeouty}{4}
-\contentsline {subsubsection}{ Moduly}{4}
-\contentsline {subsection}{\numberline {3.1.3}\rmfamily Icinga}{5}
-\contentsline {subsubsection}{ Extern\IeC {\'e} pluginy}{5}
-\contentsline {subsubsection}{ Notifik\IeC {\'a}cie a pr\IeC {\'\i }kazy udalost\IeC {\'\i }}{5}
-\contentsline {subsubsection}{ Itegr\IeC {\'a}cie s aplik\IeC {\'a}ciami}{5}
-\contentsline {subsection}{\numberline {3.1.4}\rmfamily Cacti}{6}
-\contentsline {subsection}{\numberline {3.1.5}\rmfamily collectd}{6}
-\contentsline {subsubsection}{ Obmedzenia}{6}
-\contentsline {subsubsection}{ Zapisovac\IeC {\'\i } plugin Write TSDB}{6}
-\contentsline {subsubsection}{ Prahy a notifik\IeC {\'a}cie}{7}
-\contentsline {subsection}{\numberline {3.1.6}\rmfamily Probl\IeC {\'e}m s reakciami na prahov\IeC {\'e} hodnoty}{7}
-\contentsline {subsection}{\numberline {3.1.7}\rmfamily Ostatne}{7}
-\contentsline {section}{\numberline {3.2}\slshape Ganglia}{7}
-\contentsline {section}{\numberline {3.3}\slshape Komer\IeC {\v c}n\IeC {\'e} rie\IeC {\v s}enia}{8}
-\contentsline {section}{\numberline {3.4}\slshape Torque}{8}
-\contentsline {section}{\numberline {3.5}\slshape libvirt/KVM}{8}
-\contentsline {section}{\numberline {3.6}\slshape Docker}{8}
-\contentsline {subsection}{\numberline {3.6.1}\rmfamily Scout}{8}
-\contentsline {subsection}{\numberline {3.6.2}\rmfamily New Relic}{8}
-\contentsline {subsection}{\numberline {3.6.3}\rmfamily AppDynamics}{8}
-\contentsline {section}{\numberline {3.7}\slshape Hadoop}{8}
-\contentsline {subsection}{\numberline {3.7.1}\rmfamily New Relic}{8}
-\contentsline {subsection}{\numberline {3.7.2}\rmfamily AppDynamics}{9}
-\contentsline {chapter}{\numberline {4}\bfseries Oblasti monitorovania}{10}
-\contentsline {section}{\numberline {4.1}\slshape Torque}{10}
-\contentsline {section}{\numberline {4.2}\slshape Docker}{10}
-\contentsline {subsection}{\numberline {4.2.1}\rmfamily Porovnanie s virtu\IeC {\'a}lnymi strojmi}{10}
-\contentsline {subsection}{\numberline {4.2.2}\rmfamily Komunik\IeC {\'a}cia s Dockerom}{11}
-\contentsline {section}{\numberline {4.3}\slshape libvirt/KVM}{12}
-\contentsline {section}{\numberline {4.4}\slshape Hadoop}{13}
-\contentsline {section}{\numberline {4.5}\slshape Monitoring cez Hadoop YARN REST API}{13}
-\contentsline {chapter}{\numberline {5}\bfseries Metriky}{15}
-\contentsline {section}{\numberline {5.1}\slshape Torque}{15}
-\contentsline {subsection}{\numberline {5.1.1}\rmfamily Technika zbierania metr\IeC {\'\i }k}{15}
-\contentsline {subsection}{\numberline {5.1.2}\rmfamily Zbieran\IeC {\'e} metriky}{15}
-\contentsline {section}{\numberline {5.2}\slshape Docker}{17}
-\contentsline {subsection}{\numberline {5.2.1}\rmfamily Sie\IeC {\v t}}{17}
-\contentsline {subsubsection}{ Sie\IeC {\v t} typu most}{17}
-\contentsline {subsubsection}{ Prekladan\IeC {\'a} sie\IeC {\v t}}{18}
-\contentsline {subsubsection}{ Metriky siete}{18}
-\contentsline {subsection}{\numberline {5.2.2}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{18}
-\contentsline {subsection}{\numberline {5.2.3}\rmfamily Procesor}{18}
-\contentsline {section}{\numberline {5.3}\slshape libvirt/KVM}{19}
-\contentsline {section}{\numberline {5.4}\slshape Hadoop}{19}
-\contentsline {chapter}{\numberline {6}\bfseries N\IeC {\'a}vrh}{20}
-\contentsline {chapter}{\numberline {7}\bfseries Z\IeC {\'a}ver}{21}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{21}
-\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{22}
+\contentsline {chapter}{\numberline {2}\bfseries Zber a uchov\IeC {\'a}vanie \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{2}
+\contentsline {section}{\numberline {2.1}\slshape \IeC {\v C}asov\IeC {\'e} rady}{2}
+\contentsline {subsection}{\numberline {2.1.1}\rmfamily Anal\IeC {\'y}za \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{2}
+\contentsline {section}{\numberline {2.2}\slshape OpenTSDB}{2}
+\contentsline {section}{\numberline {2.3}\slshape InfluxDB}{3}
+\contentsline {subsection}{\numberline {2.3.1}\rmfamily Politiky udr\IeC {\v z}iavania}{3}
+\contentsline {subsection}{\numberline {2.3.2}\rmfamily Kontinu\IeC {\'a}lne dotazovanie}{4}
+\contentsline {section}{\numberline {2.4}\slshape RRDTool}{4}
+\contentsline {chapter}{\numberline {3}\bfseries Aktu\IeC {\'a}lne monitorovacie rie\IeC {\v s}enia}{5}
+\contentsline {section}{\numberline {3.1}\slshape Open-source}{5}
+\contentsline {subsection}{\numberline {3.1.1}\rmfamily Nagios}{5}
+\contentsline {subsubsection}{ PluginAPI}{5}
+\contentsline {subsubsection}{ Timeouty}{6}
+\contentsline {subsection}{\numberline {3.1.2}\rmfamily Zabbix}{6}
+\contentsline {subsubsection}{ Timeouty}{6}
+\contentsline {subsubsection}{ Moduly}{6}
+\contentsline {subsection}{\numberline {3.1.3}\rmfamily Icinga}{7}
+\contentsline {subsubsection}{ Extern\IeC {\'e} pluginy}{7}
+\contentsline {subsubsection}{ Notifik\IeC {\'a}cie a pr\IeC {\'\i }kazy udalost\IeC {\'\i }}{7}
+\contentsline {subsubsection}{ Itegr\IeC {\'a}cie s aplik\IeC {\'a}ciami}{7}
+\contentsline {subsection}{\numberline {3.1.4}\rmfamily Cacti}{8}
+\contentsline {subsection}{\numberline {3.1.5}\rmfamily collectd}{8}
+\contentsline {subsubsection}{ Obmedzenia}{8}
+\contentsline {subsubsection}{ Zapisovac\IeC {\'\i } plugin Write TSDB}{8}
+\contentsline {subsubsection}{ Prahy a notifik\IeC {\'a}cie}{9}
+\contentsline {subsection}{\numberline {3.1.6}\rmfamily Ostatne}{9}
+\contentsline {section}{\numberline {3.2}\slshape Ganglia}{9}
+\contentsline {section}{\numberline {3.3}\slshape Komer\IeC {\v c}n\IeC {\'e} rie\IeC {\v s}enia}{10}
+\contentsline {section}{\numberline {3.4}\slshape Torque}{10}
+\contentsline {section}{\numberline {3.5}\slshape libvirt/KVM}{10}
+\contentsline {section}{\numberline {3.6}\slshape Docker}{10}
+\contentsline {subsection}{\numberline {3.6.1}\rmfamily Scout}{10}
+\contentsline {subsection}{\numberline {3.6.2}\rmfamily New Relic}{10}
+\contentsline {subsection}{\numberline {3.6.3}\rmfamily AppDynamics}{10}
+\contentsline {section}{\numberline {3.7}\slshape Hadoop}{10}
+\contentsline {subsection}{\numberline {3.7.1}\rmfamily New Relic}{10}
+\contentsline {subsection}{\numberline {3.7.2}\rmfamily AppDynamics}{10}
+\contentsline {chapter}{\numberline {4}\bfseries Cloudov\IeC {\'e} technol\IeC {\'o}gie}{12}
+\contentsline {section}{\numberline {4.1}\slshape D\IeC {\'a}vkov\IeC {\'e} \IeC {\'u}lohy}{12}
+\contentsline {subsection}{\numberline {4.1.1}\rmfamily Torque}{12}
+\contentsline {section}{\numberline {4.2}\slshape Aplika\IeC {\v c}n\IeC {\'e} kontajnery}{12}
+\contentsline {subsection}{\numberline {4.2.1}\rmfamily Linux cgroups}{13}
+\contentsline {subsection}{\numberline {4.2.2}\rmfamily Docker}{14}
+\contentsline {section}{\numberline {4.3}\slshape Virtu\IeC {\'a}lne stroje}{14}
+\contentsline {subsection}{\numberline {4.3.1}\rmfamily Hyperv\IeC {\'\i }zor}{15}
+\contentsline {subsection}{\numberline {4.3.2}\rmfamily libvirt/KVM}{15}
+\contentsline {section}{\numberline {4.4}\slshape MapReduce aplika\IeC {\v c}n\IeC {\'e} prostredia}{15}
+\contentsline {subsection}{\numberline {4.4.1}\rmfamily Hadoop}{15}
+\contentsline {chapter}{\numberline {5}\bfseries Metriky}{17}
+\contentsline {section}{\numberline {5.1}\slshape Torque}{17}
+\contentsline {subsection}{\numberline {5.1.1}\rmfamily Technika zbierania metr\IeC {\'\i }k}{17}
+\contentsline {subsection}{\numberline {5.1.2}\rmfamily Zbieran\IeC {\'e} metriky}{17}
+\contentsline {section}{\numberline {5.2}\slshape Docker}{19}
+\contentsline {subsection}{\numberline {5.2.1}\rmfamily Technika zbierania metr\IeC {\'\i }k}{19}
+\contentsline {subsection}{\numberline {5.2.2}\rmfamily Sie\IeC {\v t}}{20}
+\contentsline {subsubsection}{ Sie\IeC {\v t} typu most}{20}
+\contentsline {subsubsection}{ Prekladan\IeC {\'a} sie\IeC {\v t}}{20}
+\contentsline {subsubsection}{ Metriky siete}{21}
+\contentsline {subsection}{\numberline {5.2.3}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{21}
+\contentsline {subsection}{\numberline {5.2.4}\rmfamily Procesor}{21}
+\contentsline {section}{\numberline {5.3}\slshape libvirt/KVM}{21}
+\contentsline {subsection}{\numberline {5.3.1}\rmfamily Technika zbierania metr\IeC {\'\i }k}{21}
+\contentsline {subsection}{\numberline {5.3.2}\rmfamily Metriky siete}{21}
+\contentsline {subsection}{\numberline {5.3.3}\rmfamily Metriky pam\IeC {\"a}te}{21}
+\contentsline {subsection}{\numberline {5.3.4}\rmfamily Metriky z\IeC {\'a}pisu d\IeC {\'a}t}{21}
+\contentsline {subsection}{\numberline {5.3.5}\rmfamily Metriky CPU}{21}
+\contentsline {section}{\numberline {5.4}\slshape Hadoop}{22}
+\contentsline {subsection}{\numberline {5.4.1}\rmfamily Technika zbierania metr\IeC {\'\i }k}{22}
+\contentsline {subsection}{\numberline {5.4.2}\rmfamily Dostupn\IeC {\'e} metriky}{22}
+\contentsline {subsubsection}{ Cluster Metrics API}{22}
+\contentsline {subsubsection}{ Cluster Application API}{23}
+\contentsline {chapter}{\numberline {6}\bfseries N\IeC {\'a}vrh}{25}
+\contentsline {section}{\numberline {6.1}\slshape Reakcia na dlh\IeC {\'u} odozvu modulu}{25}
+\contentsline {section}{\numberline {6.2}\slshape OpenTSDB}{26}
+\contentsline {chapter}{\numberline {7}\bfseries Implement\IeC {\'a}cia}{27}
+\contentsline {chapter}{\numberline {8}\bfseries Zabezpe\IeC {\v c}enie \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{28}
+\contentsline {chapter}{\numberline {9}\bfseries Z\IeC {\'a}ver}{29}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{29}
+\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{30}
