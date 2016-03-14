@@ -46,7 +46,39 @@
 
 \MainMatter
 \chapter{Úvod}
+V súčasnosti sú informačné technológie rozšírené vo všetkých oblastiach nášho života. Používame jednoúčelové integrované obvody v elektrospotrebičoch a predmetoch dennej, ako napr. v automatickej práčke, v mikrovlnnej rúre,
+alebo v automobile. Spoločnosť ako celok denne využíva aj veľké výpočtové výkony na komplexné úlohy. Riadenie dopravných systémov, uskutočňovanie finančných transakcií, výpočty súvisiace s predpoveďami počasia,
+sociálne siete. Stretávame sa s počítačmi v štátnej správe, vo vzdelávacích inštitúciách a vo veľkej miere v priemyselnej výrobe. Zdrojom veľkého množstva dát je vedecký výskum a experimenty, ktoré skúmajú svet
+okolo nás. Spoločným rysom všetkých týchto využití je jedno - spracovávanie informácií.
 
+Podstatným ukazovateľom pri návrhu akéhokoľvek systému je objem spracovávaných dát. V jednoúčelových zariadenich je potrebné spracovať menej vstupov. Jedná sa prevažne o interakciu s užívateľom prípadne 
+s okolitým prostredím. Je kladený dôraz na rýchlu odozvu. Pri výpočtoch, ktorých
+výsledky využíva celá spoločnosť, je objem dát oveľa väčší. Ak by mala každá organizácia, ktorá potrebuje spracovať veľké množstvo informácií, budovať vlastnú infraštruktúru, nebolo by to vo všetkých prípadoch možné
+a zdroje by často mohli zostať neefektívne využité. Preto prišla snaha o budovanie veľkých systémov s množstvom výpočetného výkonu, ktoré by poskytovali zdieľaný výkon pre viacero subjektov. Nazývajú sa gridy.
+
+Jednotlivé výpočetné problémy sa v nich spracovávavjú v podobe dávkových úloh. Obsahujú dáta, nad ktorými sa budú vykonávať výpočty, programy, ktoré definujú, čo sa má s dátami urobiť, a takisto požiadavky na zdroje, ktoré
+bude úloha na svoje spracovanie potrebovať. Potom je úloha predaná plánovaču. Ten určí, kedy je úlohu možné spustiť, alokuje vyžadované prostriedky a určí uzly, na ktorých sa bude táto úloha spracovávať. Počas
+behu zároveň priebežne monitoruje záťaž výpočetných uzlov a to ako sú spotrebovávané prostriedky systému. 
+
+Infraštruktúra gridu spravidla predstavuje homogénne prostredie s jedným operačným systémom, kde je možné riešiť s veľkou efektivitou podobné problémy. S postupom času však pribúdali stále komplexnejšie 
+a špecifickejšie úlohy, ktoré bolo treba riešiť. Existujúce prostredie neposkytovalo potrebnú flexibilitu, aby sa mohlo prispôsobiť rôznorodým požiadavkam používateľov.
+
+Reakciou na dané problémy bolo vytváranie heterogénneho výpočetného prostredia, ktoré poskytuje viacero odlišných prístupov k riešeniu výpočetných úloh. Nazýva sa cloud. Spája v sebe virtualizáciu na hardvérovej alebo
+softvérovej úrovni, aplikačné kontajnery a tzv. MapReduce prístup k riešeniu problémov. Rôznorodosť ponúkaných výpočetných modelov dáva užívateľom a orgranizáciám väčší priestor a zároveň aj motiváciu
+využívať tento druh služieb. Už nie sú obmedzovaní jedným operačným systémom, jednou architektúrou výpočetných clusterov. Avšak rozmanité prostredie zo sebou prináša aj niekoľko problémov. Aby bolo možné
+efektívne nakladať so zdrojmi cloudu, je dôležité mať možnosť zmerať, akou mierou sú využívané. Tieto merania sa uskutočňujú kontinuálne v čase v pravidelných intervaloch. Je tak generované množstvo dátových dvojíc -
+čas a hodnota sledovaného ukazovateľa v tomto čase. Takéto dáta sa nazývajú časové rady.
+
+Cieľom tejto práce je preskúmať jednotlivé technológie, ktoré sa v heterogénnom výpočetnom prostredí používajú, zistiť, aké metrické dáta je možné zberať v súvislosti s jednotlivými výpočetnými modelmi,
+identifikovať, ktoré metriky je v týchto modeloch možné považovať za ekvivalentné. Zároveň sa budem venovať prieskumu aktuálnych monitorovacích riešení, ktoré zberajú metrické dáta. Výstupom práce je návrh
+a implementácia monitorovacej aplikácie, slúžiacej na spoľahlivý zber metrík a ich odosielanie do centralizovanej databázy časových rád. Aplikácia bude integrovaná do existujúcej infraštruktúry Národnej 
+gridovej infraštruktúry – MetaCentra.
+
+Práca je rozdelené do ôsmych kapitol vrátane úvodu a záveru. V úvode je načrtnutá sučasná situácia a s ňou súvisiaci problém, ktorým sa moja práca zaoberá.  V druhej časti sa venujem tematike časových rád a
+prieskumu databáz, ktoré tieto dáta uchovávajú a spravujú. Tretia časť sa zaoberá cloudovými technológiami. Štvrtú kapitolu tvorí prieskum softvéru, ktorý slúži na monitorovanie systémov a zber metrických dát. 
+Piata časť sa venuje metrikám, ktoré je možné o daných technológiách zberať. V šiestej kapitole analyzujem požiadavky na integráciu do cloudovej infraštruktúry a problémy spojené zo zberom metrických 
+dát. Súčasťou je návrh monitorovacej aplikácie. Siedma kapitola popisuje implementáciu a techniky použité na zber metrických dát a ich odosielanie do databázy. Súčasťou sú výsledky z testovania aplikácie
+nasadenej v MetaCentre. Osmou kapitolou je záver, kde zhŕňam zistené poznatky a výsledky, ktoré dosiahla moja implementácia.
 \chapter{Zber a uchovávanie časových rád}
 \section{Časové rady}
 Časová rada je sekvencia dát, kde danému časovému okamihu zodpovedá jedna hodnota. Príkladom je zaznamenávanie teplôt v priebehu roka, výšky oceánskeho prílivu alebo množstvo áut, ktoré za určitú dobu
@@ -200,7 +232,7 @@ Ide len o spustenie nejakého systémového príkazu.
 \cite{09}
 
 \subsubsection{Itegrácie s aplikáciami} 
-these tiny pure shell+awk plugins for monitoring your hadoop cluster are a enhanced and uptodate version of exchange.nagios.org check_hadoop-dfs.sh
+these tiny pure shell+awk plugins for monitoring your hadoop cluster are a enhanced and uptodate version of exchange.nagios.org check\_hadoop-dfs.sh
 \cite{10}
 
 \subsection{Cacti}
@@ -330,8 +362,8 @@ Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. s
 \item[\emph{devices}] - his subsystem allows or denies access to devices by tasks in a cgroup.
 \item[\emph{freezer}] - this subsystem suspends or resumes tasks in a cgroup.
 \item[\emph{memory}] - this subsystem sets limits on memory use by tasks in a cgroup, and generates automatic reports on memory resources used by those tasks.
-\item[\emph{net_cls}] - this subsystem tags network packets with a class identifier (classid) that allows the Linux traffic controller (tc) to identify packets originating from a particular cgroup task.
-\item[\emph{net_prio}] - this subsystem provides a way to dynamically set the priority of network traffic per network interface.
+\item[\emph{net\_cls}] - this subsystem tags network packets with a class identifier (classid) that allows the Linux traffic controller (tc) to identify packets originating from a particular cgroup task.
+\item[\emph{net\_prio}] - this subsystem provides a way to dynamically set the priority of network traffic per network interface.
 \item[\emph{ns}] - the namespace subsystem.
 \end{description}
 
@@ -374,11 +406,10 @@ Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky.\cite{libvirt}
 \subsection{Hadoop}
 Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
 naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočetný výkon a úložný priestor.
-Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, z ktorých 
-každý je náchylný na chyby.
+Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
+z ktorých každý je náchylný na chyby.
 
 Projekt pozostáva z týchto modulov:
-
 \begin{description}
 \item[\emph{Hadoop Common:}] spoločné nástroje, ktoré podporujú ostatné Hadoop moduly
 \item[\emph{Hadoop Distributed File System (HDFS™):}] distribuovaný súborový systém, ktorý poskytuje vysokú priepustnosť
@@ -388,28 +419,6 @@ Projekt pozostáva z týchto modulov:
 
 \chapter{Metriky}
 \section{Torque}
-\subsection{Technika zbierania metrík}
-Na zbieranie metrík som použil príkaz \emph{qstat -j}.
-
-			Prints either for all pending jobs  or  the  jobs  contained  in  job\_list  various information. The job\_list
-          can contain job\_ids, job\_names, or wildcard  expression
-          sge\_types(1).
-
-          For  jobs  in  E(rror)  state  the  error   reason   is
-          displayed. For jobs that could not be dispatched during
-          in the  last  scheduling  interval  the  obstacles  are
-          shown, if 'schedd\_job\_info' in sched\_conf(5) is config-
-          ured accordingly.
-
-          For running  jobs  available  information  on  resource
-          utilization   is  shown  about  consumed  cpu  time  in
-          seconds,  integral  memory  usage  in  Gbytes  seconds,
-          amount  of  data  transferred in io operations, current
-          virtual memory utilization in Mbytes, and maximum  vir-
-          tual  memory utilization in Mbytes. This information is
-          not available if resource utilization retrieval is  not
-          supported for the OS platform where the job is hosted.
-          
 \subsection{Zbierané metriky}
 Príkaz qstat -j poskytuje viacero režimov výstupu.
 \begin{description}
@@ -510,31 +519,6 @@ If the -t option is supplied, each job status line also con-
 Potrebné metriky poskytuje prepínač -t v redukovanom formáte, preto som použil túto metódu výstupu.
 
 \section{Docker}
-Buem zberať metriky o spotrebovávaných zdrojoch pre každý kontajner.
-
-\subsection{Technika zbierania metrík}
-Na komunikáciu s Dockerom je možné využiť:
-\begin{description}
-\item[príkazy aplikácie v príkazovom riadku]
-\item[Remote API]
-\end{description}
-
-Používanie príkazov aplikácie môže byť o čosi rýchlejšie, ale následne by bolo potrebné analyzovať textový výstup programu.
-Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST a odpovede vracia vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Démon Dockeru "počúva" na 
-lokálnom sockete, čo by nemalo spôsobovať výrazné oneskorenie odpovede.
-
-O každom kontajneri spustenom v Dockeri budem sledovať využívanie týchto zdrojov :
-\begin{description}
-\item[\emph{procesor}]
-\item[\emph{pevný disk}]
-\item[\emph{sieť}]
-\item[\emph{pamäť}]
-\end{description}
-
-  
-Dáta je možné zberať buď ako prúd, alebo po jednorazových žiadostiach. To ešte nemám veľmi preštudované, neviem aké sú tam intervaly, tak sa rozhodnem až neskôr.
-Predpokladám ale, že z hľadiska rýchlosti a alokácie bude cesta asi ten stream.
-
 \subsection{Sieť}
 Aby mohli medzi sebou jednotlivé kontajnery komunikovať, Docker im poskytuje sieťové rozhrania. Každé rozhranie má nakonfigurovanú sieť,
 do ktorje patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
@@ -557,14 +541,14 @@ An overlay network
 \subsubsection{Metriky siete}
 Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \begin{description}
-\item[rx_bytes] - počet prijatých bajtov
-\item[rx_dropped] - počet prichádzajúcich zahodených bajtov
-\item[rx_error] - počet chybných bajtov
-\item[rx_packets] - počet prijatých paketov
-\item[tx_bytes] - počet odoslaných bajtov
-\item[tx_dropped] - počet zahodených bajtov pri pokuse o odoslanie
-\item[tx_errors] - počet odoslaných chybných bajtov
-\item[tx_packets] - počet odoslaných paketov
+\item[rx\_bytes] - počet prijatých bajtov
+\item[rx\_dropped] - počet prichádzajúcich zahodených bajtov
+\item[rx\_error] - počet chybných bajtov
+\item[rx\_packets] - počet prijatých paketov
+\item[tx\_bytes] - počet odoslaných bajtov
+\item[tx\_dropped] - počet zahodených bajtov pri pokuse o odoslanie
+\item[tx\_errors] - počet odoslaných chybných bajtov
+\item[tx\_packets] - počet odoslaných paketov
 \end{description}
 
 \subsection{Pamäť}
@@ -575,50 +559,49 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \end{description}
 
 \subsection{Procesor}
-\\        cpu\_usage 
-\\           percpu\_usage - využitie jednotlivých procesorov
-\\           usage\_in\_usermode
-\\           total\_usage
-\\           usage\_in\_kernelmode
-\\        system\_cpu\_usage
+\begin{description}
+\item[percpu\_usage] - využitie jednotlivých procesorov/jadier
+\item[usage\_in\_usermode] - 
+\item[total\_usage] - 
+\item[usage\_in\_kernelmode] - 
+\item[system\_cpu\_usage] - 
+\end{description}
 
 \section{libvirt/KVM}
-\subsection{Technika zbierania metrík}
-Na monitorovanie virtuálnych strojov použijem existujúcu implementáciu sond v jazyku Python. Je šírená pod licenciou open-source a vznika v rámci organizácie Cesnet. 
 
 \subsection{Metriky siete}
 Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \begin{description}
-\item[rx_bytes] - počet prijatých bajtov
-\item[rx_dropped] - počet prichádzajúcich zahodených bajtov
-\item[rx_error] - počet chybných bajtov
-\item[rx_packets] - počet prijatých paketov
-\item[tx_bytes] - počet odoslaných bajtov
-\item[tx_dropped] - počet zahodených bajtov pri pokuse o odoslanie
-\item[tx_errors] - počet odoslaných chybných bajtov
-\item[tx_packets] - počet odoslaných paketov
+\item[rx\_bytes] - počet prijatých bajtov
+\item[rx\_dropped] - počet prichádzajúcich zahodených bajtov
+\item[rx\_error] - počet chybných bajtov
+\item[rx\_packets] - počet prijatých paketov
+\item[tx\_bytes] - počet odoslaných bajtov
+\item[tx\_dropped] - počet zahodených bajtov pri pokuse o odoslanie
+\item[tx\_errors] - počet odoslaných chybných bajtov
+\item[tx\_packets] - počet odoslaných paketov
 \end{description}
 
 \subsection{Metriky pamäte}
 \begin{description}
-\item[VIR_DOMAIN_MEMORY_STAT_SWAP_IN] - The total amount of memory written out to swap space (in kB).
-\item[VIR_DOMAIN_MEMORY_STAT_SWAP_OUT] - Page faults occur when a process makes a valid access to virtual memory that is not available. When servicing the page fault, if disk IO is required, it is considered a major fault. If not, it is a minor fault. These are expressed as the number of faults that have occurred.
-\item[VIR_DOMAIN_MEMORY_STAT_MAJOR_FAULT] - počet chybných bajtov
-\item[VIR_DOMAIN_MEMORY_STAT_MINOR_FAULT] - počet prijatých paketov
-\item[VIR_DOMAIN_MEMORY_STAT_UNUSED] - The amount of memory left completely unused by the system. Memory that is available but used for reclaimable caches should NOT be reported as free. This value is expressed in kB.
-\item[VIR_DOMAIN_MEMORY_STAT_AVAILABLE] - The total amount of usable memory as seen by the domain. This value may be less than the amount of memory assigned to the domain if a balloon driver is in use or if the guest OS does not initialize all assigned pages. This value is expressed in kB.
-\item[VIR_DOMAIN_MEMORY_STAT_ACTUAL_BALLOON] - Current balloon value (in KB).
-\item[VIR_DOMAIN_MEMORY_STAT_RSS] - Resident Set Size of the process running the domain. This value is in kB
-\item[VIR_DOMAIN_MEMORY_STAT_NR] - The number of statistics supported by this version of the interface. To add new statistics, add them to the enum and increase this value.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN] - The total amount of memory written out to swap space (in kB).
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_OUT] - Page faults occur when a process makes a valid access to virtual memory that is not available. When servicing the page fault, if disk IO is required, it is considered a major fault. If not, it is a minor fault. These are expressed as the number of faults that have occurred.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT] - počet chybných bajtov
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_MINOR\_FAULT] - počet prijatých paketov
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_UNUSED] - The amount of memory left completely unused by the system. Memory that is available but used for reclaimable caches should NOT be reported as free. This value is expressed in kB.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE] - The total amount of usable memory as seen by the domain. This value may be less than the amount of memory assigned to the domain if a balloon driver is in use or if the guest OS does not initialize all assigned pages. This value is expressed in kB.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON] - Current balloon value (in KB).
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_RSS] - Resident Set Size of the process running the domain. This value is in kB
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - The number of statistics supported by this version of the interface. To add new statistics, add them to the enum and increase this value.
 \end{description}
 
 \subsection{Metriky zápisu dát}
 \begin{description}
-\item[rd_req] - number of read requests
-\item[rd_bytes] - number of read bytes
-\item[wr_req] - number of write requests
-\item[wr_bytes] - number of written bytes
-\item[errs] - In Xen this returns the mysterious 'oo_req'.
+\item[rd\_req] - number of read requests
+\item[rd\_bytes] - number of read bytes
+\item[wr\_req] - number of write requests
+\item[wr\_bytes] - number of written bytes
+\item[errs] - In Xen this returns the mysterious 'oo\_req'.
 \end{description}
 
 \subsection{Metriky CPU}
@@ -626,26 +609,7 @@ V dokumentácií sa presne neuvádza, budem musieť zstiť z implementácie.
 
 
 \section{Hadoop}
-
-\subsection{Technika zbierania metrík}
-The Hadoop YARN web service REST APIs are a set of URI resources that give access to the cluster, nodes, applications, and application historical information. 
-The URI resources are grouped into APIs based on the type of information returned. Some URI resources return collections while others return singletons.
-HTTP Requests
-
-To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.
-
-Summary of HTTP operations
-
-Currently only GET is supported. It retrieves information about the resource specified.
-
-Security
-
-The web service REST API’s go through the same security as the web UI. 
-
-\cite{18}
-
-\subsection{Dostupné metriky}
-\subsubsection{Cluster Metrics API}
+\subsection{Cluster Metrics API}
 Toto API poskytuje metriky o celom clusteri.
 \begin{description}
 \item[appsSubmitted] - The number of applications submitted
@@ -673,7 +637,7 @@ Toto API poskytuje metriky o celom clusteri.
 \item[rebootedNodes] - The number of nodes rebooted
 \end{description}
 
-\subsubsection{Cluster Application API}
+\subsection{Cluster Application API}
 \begin{description}
 \item[id] - The application id
 \item[user] - The user who started the application
@@ -699,7 +663,33 @@ Toto API poskytuje metriky o celom clusteri.
 \item[vcoreSeconds] - The amount of CPU resources the application has allocated (virtual core-seconds)
 \end{description}
 
-\chapter{Návrh}
+\chapter{Analýza a návrh}
+\section{MetaCentrum}
+Projekt MetaCentrum vznikol v roku 1996 a od roku 1999 je jeho činnosť zastrešovaná organizáciou CESNET. Zaoberá sa budovaním nárdonej gridovej infraštruktúry a prepojením s podobnými projektami za hranicami
+Českej republiky. Projekt je oficiálnou súčasťou Európskej gridovej iniciatívy (EGI). Úlohou MetaCentra je predovšetkým koordinácia a rozširovanie infraštruktúry či už o vlastné zdroje alebo prostredníctvom
+partnerov, ktorý poskytujú výpočetný výkon svojich clusterov. Jedná sa hlavne o akademickú spoluprácu. MetaCentrum spravuje výpočetné prostriedky a dátové úložiská AV, JČU, MU, MZLU, UK, VUT, ZČU.
+V súčasnosti disponuje (stav k 30.7. 2010) 1500 jadrami CPU, 100 TB využiteľnej diskovej kapacity v podobe poľa a 400 TB kapacity v podobe pások. Služby využíva 385 registrovaných aktívnych užívateľov, ktorí 
+spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času.
+
+MetaCentrum primárne poskytuje svoj výpočetný výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
+Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
+infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočetnej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.
+
+\section{Požiadavky na aplikáciu}
+\subsection{Vysoký monitorovací výkon}
+Cloudová infraštruktúra MetaCentra pozostáva z mnohých výpočetných uzlov. Sú prepojené sieťami s veľkou prenosovou kapacitou a vysokou priepustnosťou. Je potrebné zbierať dáta o využití množstva zapojených
+clusterov, na ktorých je tiež spustených mnoho výpočetných úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. Veľká záťaž je kladená na databázu, do ktorej
+sú tieto metrické dáta pravidelne odosielané.
+
+\subsection{Nízka nadbytočná záťaž}
+Primárnou úlohou cloudu je poskytovanie svojho výpočetného výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
+samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++, prípadne rýchle skriptovacie 
+jazyky ako Python, Ruby či Go. Nie je príliš vhodné používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
+
+\subsection{Škálovateľnosť}
+Monitorovacia aplikácia by mala poskytovať zrovnateľné výsledky v oblasti rýchlosti odozvy v prípade, že bude spustená na jednom uzle, ale aj v prípade, že jej úlohou bude monitorovať desiatky až stovky 
+výpočetných uzlov s množstvom spustených aplikácií. To je možné docieliť vhodným paralelizovaním dotazov na metriky
+
 Monitorovacia aplikácia bude pozostávať z dvoch častí.
 \begin{description}
 \item[démon] - jeho úlohou je zber metrík a odosielanie do databázy
@@ -733,7 +723,73 @@ ktoré sa v gridovej infraštruktúre MetaCentra nachádzajú. Ďalším dôvodo
 Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. Na zbieranie jednotlivých metrík som vytvoril moduly pre tento program. Tieto údaje následne bude odosielať do databázy OpenTSDB
 pomocou modulu WriteTSDB.
 
-\chapter{Zabezpečenie časových rád}
+\section{Techniky zbierania metrík}
+\subsection{Torque}
+Na zbieranie metrík som použil príkaz \emph{qstat -j}.
+
+			Prints either for all pending jobs  or  the  jobs  contained  in  job\_list  various information. The job\_list
+          can contain job\_ids, job\_names, or wildcard  expression
+          sge\_types(1).
+
+          For  jobs  in  E(rror)  state  the  error   reason   is
+          displayed. For jobs that could not be dispatched during
+          in the  last  scheduling  interval  the  obstacles  are
+          shown, if 'schedd\_job\_info' in sched\_conf(5) is config-
+          ured accordingly.
+
+          For running  jobs  available  information  on  resource
+          utilization   is  shown  about  consumed  cpu  time  in
+          seconds,  integral  memory  usage  in  Gbytes  seconds,
+          amount  of  data  transferred in io operations, current
+          virtual memory utilization in Mbytes, and maximum  vir-
+          tual  memory utilization in Mbytes. This information is
+          not available if resource utilization retrieval is  not
+          supported for the OS platform where the job is hosted.
+          
+\subsection{Docker}
+Budem zberať metriky o spotrebovávaných zdrojoch pre každý kontajner. Na komunikáciu s Dockerom je možné využiť:
+\begin{description}
+\item[príkazy aplikácie v príkazovom riadku]
+\item[Remote API]
+\end{description}
+
+Používanie príkazov aplikácie môže byť o čosi rýchlejšie, ale následne by bolo potrebné analyzovať textový výstup programu.
+Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST a odpovede vracia vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Démon Dockeru "počúva" na 
+lokálnom sockete, čo by nemalo spôsobovať výrazné oneskorenie odpovede.
+
+O každom kontajneri spustenom v Dockeri budem sledovať využívanie týchto zdrojov :
+\begin{description}
+\item[\emph{procesor}]
+\item[\emph{pevný disk}]
+\item[\emph{sieť}]
+\item[\emph{pamäť}]
+\end{description}
+
+  
+Dáta je možné zberať buď ako prúd, alebo po jednorazových žiadostiach. To ešte nemám veľmi preštudované, neviem aké sú tam intervaly, tak sa rozhodnem až neskôr.
+Predpokladám ale, že z hľadiska rýchlosti a alokácie bude cesta asi ten stream.
+
+\subsection{libvirt/KVM}
+Na monitorovanie virtuálnych strojov použijem existujúcu implementáciu sond v jazyku Python. Je šírená pod licenciou open-source a vznika v rámci organizácie Cesnet. 
+
+\subsection{Hadoop}
+The Hadoop YARN web service REST APIs are a set of URI resources that give access to the cluster, nodes, applications, and application historical information. 
+The URI resources are grouped into APIs based on the type of information returned. Some URI resources return collections while others return singletons.
+HTTP Requests
+
+To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.
+
+Summary of HTTP operations
+
+Currently only GET is supported. It retrieves information about the resource specified.
+
+Security
+
+The web service REST API’s go through the same security as the web UI. 
+
+\cite{18}
+
+
 
 \chapter{Záver}
 
