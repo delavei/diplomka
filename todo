@@ -1,0 +1,52 @@
+sudo ./configure --enable-docker --enable-virt --enable-write-tsdb --enable-logfile --disable-all-plugins
+sudo /opt/collectd/sbin/collectd -f
+sudo docker run -it debian  /bin/bash
+sudo docker run -it ubuntu  /bin/bash
+
+
+text
+nazvy metrik tak ako ch ukladam do databazy
+
+docker
+doriesit zavislost na pthread
+robit pravidelne refresh zoznamu kontajnerov
+poriadok so zakomentovanymi vecami
+config - host-majbe
+
+
+cJSON
+nacitavanie unsigned long long (napr. docker system cpu usage)
+
+
+
+
+
+
+otazky
+docker - cpu kernelmode, usermode treba?
+       - aku verziu dockeru maju? rozdiel v networkoch
+       
+virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
+     - pridat cpu kernelmode a usermode?
+hadoop - kinit bude treba pouzivat asi ako system call
+		-	nebezia ziadne aplikacie
+		- metriky o clusteri aj o apkach tak ako je v texte?
+metriky ako siet a diskove operacie ako prirastky?
+aktualna vyuzita pamat ako absolutna zrejme, ostatne statistiky pamate asi ako prirastky
+procesor ako prirastky?
+
+
+
+pokusy s history vo write_tsdb wt_format_values()
+/*
+    gauge_t history;
+    int bla = uc_get_history (ds, vl, &history, 1, 1);
+    if (bla) bla = 0;
+    char* tsdbtags;
+    meta_data_get_string (vl->meta, "tsdb_tags",&tsdbtags);
+    int i;
+    rates = uc_get_rate (ds, vl);
+    for (i=0;i<ds->ds_num;i++) {
+    printf ("%s-%s-%s-%s-%s gauge: " GAUGE_FORMAT " derive: %" PRIi64 " history: "GAUGE_FORMAT" rate: "GAUGE_FORMAT"\n",vl->plugin,ds->ds[i].name,vl->type,vl->type_instance,tsdbtags, vl->values[0].gauge, vl->values[0].derive , history, rates[ds_num]);
+	}
+	*/

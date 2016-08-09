@@ -1,8 +1,10 @@
 
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
-#*.o
-#*.a
-#*.so
+*.o
+*.a
+*.so
+*.la
+*.lo
 
 # Folders
-virtualky
+
