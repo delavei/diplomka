@@ -359,8 +359,7 @@ static int wt_format_name(char *ret, int ret_len,
 					vl->type_instance);
 			} else {
 				ssnprintf(ret, ret_len, "%s.%s", vl->plugin, vl->type);
-			}
-		
+			}	
 	}
 	return 0;
 }

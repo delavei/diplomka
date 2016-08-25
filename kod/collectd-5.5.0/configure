@@ -859,6 +859,8 @@ BUILD_PLUGIN_INTERFACE_FALSE
 BUILD_PLUGIN_INTERFACE_TRUE
 BUILD_PLUGIN_HDDTEMP_FALSE
 BUILD_PLUGIN_HDDTEMP_TRUE
+BUILD_PLUGIN_HADOOP_FALSE
+BUILD_PLUGIN_HADOOP_TRUE
 BUILD_PLUGIN_GMOND_FALSE
 BUILD_PLUGIN_GMOND_TRUE
 BUILD_PLUGIN_FSCACHE_FALSE
@@ -1396,6 +1398,7 @@ enable_fhcount
 enable_filecount
 enable_fscache
 enable_gmond
+enable_hadoop
 enable_hddtemp
 enable_interface
 enable_ipc
@@ -2194,6 +2197,7 @@ collectd plugins:
   --enable-filecount      Count files in directories
   --enable-fscache        fscache statistics
   --enable-gmond          Ganglia plugin
+  --enable-hadoop         Hadoop Cluster and App statistics
   --enable-hddtemp        Query hddtempd
   --enable-interface      Interface traffic statistics
   --enable-ipc            IPC statistics
@@ -29564,6 +29568,66 @@ fi
 
     enable_plugin="no"
     force="no"
+    # Check whether --enable-hadoop was given.
+if test "${enable_hadoop+set}" = set; then :
+  enableval=$enable_hadoop;
+     if test "x$enableval" = "xyes"
+     then
+	     enable_plugin="yes"
+     else if test "x$enableval" = "xforce"
+     then
+	     enable_plugin="yes"
+	     force="yes"
+     else
+	     enable_plugin="no (disabled on command line)"
+     fi; fi
+
+else
+
+	 if test "x$enable_all_plugins" = "xauto"
+	 then
+	     if test "x$with_libcurl" = "xyes"
+	     then
+		     enable_plugin="yes"
+	     else
+		     enable_plugin="no"
+	     fi
+	 else
+	     enable_plugin="$enable_all_plugins"
+	 fi
+
+fi
+
+    if test "x$enable_plugin" = "xyes"
+    then
+	    if test "x$with_libcurl" = "xyes" || test "x$force" = "xyes"
+	    then
+
+$as_echo "#define HAVE_PLUGIN_HADOOP 1" >>confdefs.h
+
+		    if test "x$with_libcurl" != "xyes"
+		    then
+			    dependency_warning="yes"
+		    fi
+	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
+		    dependency_error="yes"
+		    enable_plugin="no (dependency error)"
+	    fi
+    fi
+     if test "x$enable_plugin" = "xyes"; then
+  BUILD_PLUGIN_HADOOP_TRUE=
+  BUILD_PLUGIN_HADOOP_FALSE='#'
+else
+  BUILD_PLUGIN_HADOOP_TRUE='#'
+  BUILD_PLUGIN_HADOOP_FALSE=
+fi
+
+    enable_hadoop="$enable_plugin"
+
+
+
+    enable_plugin="no"
+    force="no"
     # Check whether --enable-hddtemp was given.
 if test "${enable_hddtemp+set}" = set; then :
   enableval=$enable_hddtemp;
@@ -36368,6 +36432,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_PLUGIN_GMOND_TRUE}" && test -z "${BUILD_PLUGIN_GMOND_FALSE}"; then
   as_fn_error $? "conditional \"BUILD_PLUGIN_GMOND\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_PLUGIN_HADOOP_TRUE}" && test -z "${BUILD_PLUGIN_HADOOP_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_HADOOP\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_PLUGIN_HDDTEMP_TRUE}" && test -z "${BUILD_PLUGIN_HDDTEMP_FALSE}"; then

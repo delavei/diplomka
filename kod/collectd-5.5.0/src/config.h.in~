@@ -748,6 +748,9 @@
 /* Define to 1 if the dns plugin is enabled. */
 #undef HAVE_PLUGIN_DNS
 
+/* Define to 1 if the docker plugin is enabled. */
+#undef HAVE_PLUGIN_DOCKER
+
 /* Define to 1 if the drbd plugin is enabled. */
 #undef HAVE_PLUGIN_DRBD
 
@@ -855,15 +858,6 @@
 
 /* Define to 1 if the multimeter plugin is enabled. */
 #undef HAVE_PLUGIN_MULTIMETER
-
-/* Define to 1 if the mylibvirt plugin is enabled. */
-#undef HAVE_PLUGIN_MYLIBVIRT
-
-/* Define to 1 if the myopentsdb plugin is enabled. */
-#undef HAVE_PLUGIN_MYOPENTSDB
-
-/* Define to 1 if the myplugin plugin is enabled. */
-#undef HAVE_PLUGIN_MYPLUGIN
 
 /* Define to 1 if the mysql plugin is enabled. */
 #undef HAVE_PLUGIN_MYSQL

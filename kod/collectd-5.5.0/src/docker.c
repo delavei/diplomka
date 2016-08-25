@@ -32,11 +32,6 @@ static void init_value_list (value_list_t *vl)
     sstrncpy (vl->host, hostname_g, sizeof (vl->host));
 	vl->meta = meta_data_create();
 }
-/*
-static void vcpu_total_submit (unsigned long long cpu_time, container_t* container, const char *type)
-{
-    cpu_submit (cpu_time, container, type);
-}*/
 
 static void cpu_submit (unsigned long long cpu_time, container_t* container, const char *type)
 {
@@ -83,8 +78,6 @@ static void cpus_submit (unsigned long long vcpu_time, int vcpu_nr, container_t*
 void submit_cpu_stats (cJSON* root, container_t* container){
 	int cpus_num,i;
 	
-	/*int vcpu=cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valueint;
-	vcpu_total_submit (get_vcpu(root), container, "virt_cpu_total");*/
 	
 	int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valueint;
 	cpu_submit (cpu, container, "cpu");
@@ -263,6 +256,8 @@ void *read_container (void* cont) {
 	submit_memory_stats(root, container);
 	
 	submit_network_stats(root, container);
+	
+	cJSON_Delete(root);
 	
 	exit:
 	close(socket_fd);

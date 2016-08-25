@@ -22,13 +22,8 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=3
-FILE_NAME_0=125469;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fconfigure.ac;0;4
-FILE_NAME_1=6218;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fsrc%2Fmyplugin.c;0;4
-FILE_NAME_2=17261;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fsrc%2Fvirt.c;0;4
-FILE_NAME_3=2822;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fsrc%2Fwrite_tsdb.c;0;4
-FILE_NAME_4=1772;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fsrc%2Fdaemon%2Futils_cache.h;0;4
-FILE_NAME_5=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fcollectd-5.5.0%2Fsrc%2Fdaemon%2Fcommon.h;0;4
+current_page=0
+FILE_NAME_0=586;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
 
 [VTE]
 last_dir=/home/juraj

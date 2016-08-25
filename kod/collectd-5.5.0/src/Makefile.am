@@ -523,6 +523,14 @@ docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 docker_la_LIBADD = libcJSON.la -lpthread
 endif
 
+if BUILD_PLUGIN_HADOOP
+pkglib_LTLIBRARIES += hadoop.la
+hadoop_la_SOURCES = hadoop.c
+hadoop_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+endif
+
 if BUILD_PLUGIN_MADWIFI
 pkglib_LTLIBRARIES += madwifi.la
 madwifi_la_SOURCES = madwifi.c madwifi.h \

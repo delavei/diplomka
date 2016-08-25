@@ -168,137 +168,138 @@ am__append_82 = logfile.la
 #am__append_84 = lpar.la
 #am__append_85 = lvm.la
 am__append_86 = docker.la
-#am__append_87 = madwifi.la
-#am__append_88 = match_empty_counter.la
-#am__append_89 = match_hashed.la
-#am__append_90 = match_regex.la
-#am__append_91 = match_timediff.la
-#am__append_92 = match_value.la
-#am__append_93 = mbmon.la
-##am__append_94 = -lsocket
-#am__append_95 = md.la
-#am__append_96 = memcachec.la
-#am__append_97 = memcached.la
-##am__append_98 = -lsocket
-#am__append_99 = memory.la
-##am__append_100 = -lkstat
-##am__append_101 = -ldevinfo
-##am__append_102 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
-##am__append_103 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
-##am__append_104 = -lperfstat
-#am__append_105 = mic.la
-#am__append_106 = modbus.la
-#am__append_107 = multimeter.la
-#am__append_108 = mysql.la
-##am__append_109 = $(BUILD_WITH_LIBMYSQL_CFLAGS)
-##am__append_110 = $(BUILD_WITH_LIBMYSQL_LIBS)
-#am__append_111 = netapp.la
-#am__append_112 = netlink.la
-#am__append_113 = network.la
-##am__append_114 = -lsocket
-#am__append_115 = $(GCRYPT_CPPFLAGS)
-#am__append_116 = $(GCRYPT_LDFLAGS)
-#am__append_117 = $(GCRYPT_LIBS)
-#am__append_118 = nfs.la
-#am__append_119 = fscache.la
-#am__append_120 = nginx.la
-#am__append_121 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_122 = $(BUILD_WITH_LIBCURL_LIBS)
-#am__append_123 = notify_desktop.la
-#am__append_124 = notify_email.la
-#am__append_125 = ntpd.la
-##am__append_126 = -lsocket
-#am__append_127 = numa.la
-#am__append_128 = nut.la
-#am__append_129 = olsrd.la
-##am__append_130 = -lsocket
-#am__append_131 = onewire.la
-#am__append_132 = openldap.la
-#am__append_133 = openvpn.la
-#am__append_134 = oracle.la
-#am__append_135 = perl.la
+am__append_87 = hadoop.la
+#am__append_88 = madwifi.la
+#am__append_89 = match_empty_counter.la
+#am__append_90 = match_hashed.la
+#am__append_91 = match_regex.la
+#am__append_92 = match_timediff.la
+#am__append_93 = match_value.la
+#am__append_94 = mbmon.la
+##am__append_95 = -lsocket
+#am__append_96 = md.la
+#am__append_97 = memcachec.la
+#am__append_98 = memcached.la
+##am__append_99 = -lsocket
+#am__append_100 = memory.la
+##am__append_101 = -lkstat
+##am__append_102 = -ldevinfo
+##am__append_103 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
+##am__append_104 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
+##am__append_105 = -lperfstat
+#am__append_106 = mic.la
+#am__append_107 = modbus.la
+#am__append_108 = multimeter.la
+#am__append_109 = mysql.la
+##am__append_110 = $(BUILD_WITH_LIBMYSQL_CFLAGS)
+##am__append_111 = $(BUILD_WITH_LIBMYSQL_LIBS)
+#am__append_112 = netapp.la
+#am__append_113 = netlink.la
+#am__append_114 = network.la
+##am__append_115 = -lsocket
+#am__append_116 = $(GCRYPT_CPPFLAGS)
+#am__append_117 = $(GCRYPT_LDFLAGS)
+#am__append_118 = $(GCRYPT_LIBS)
+#am__append_119 = nfs.la
+#am__append_120 = fscache.la
+#am__append_121 = nginx.la
+#am__append_122 = $(BUILD_WITH_LIBCURL_CFLAGS)
+#am__append_123 = $(BUILD_WITH_LIBCURL_LIBS)
+#am__append_124 = notify_desktop.la
+#am__append_125 = notify_email.la
+#am__append_126 = ntpd.la
+##am__append_127 = -lsocket
+#am__append_128 = numa.la
+#am__append_129 = nut.la
+#am__append_130 = olsrd.la
+##am__append_131 = -lsocket
+#am__append_132 = onewire.la
+#am__append_133 = openldap.la
+#am__append_134 = openvpn.la
+#am__append_135 = oracle.la
+#am__append_136 = perl.la
 # Work-around for issues #41 and #42 - Perl 5.10 incorrectly introduced
 # __attribute__nonnull__(3) for Perl_load_module().
-##am__append_136 = -Wno-nonnull
-#am__append_137 = pf.la
-#am__append_138 = pinba.la
-#am__append_139 = ping.la
-#am__append_140 = postgresql.la
-#am__append_141 = powerdns.la
-#am__append_142 = python.la
-#am__append_143 = -fno-strict-aliasing -Wno-strict-aliasing
-#am__append_144 = processes.la
-##am__append_145 = -lkvm
-#am__append_146 = protocols.la
-#am__append_147 = redis.la
-#am__append_148 = routeros.la
-#am__append_149 = rrdcached.la
-#am__append_150 = rrdtool.la
-#am__append_151 = sensors.la
-#am__append_152 = serial.la
-#am__append_153 = sigrok.la
-##am__append_154 = smart.la
-#am__append_155 = snmp.la
-##am__append_156 = $(BUILD_WITH_LIBSNMP_CFLAGS)
-##am__append_157 = $(BUILD_WITH_LIBSNMP_LIBS)
-#am__append_158 = -lpthread
-#am__append_159 = statsd.la
-#am__append_160 = swap.la
-##am__append_161 = -lkstat
-##am__append_162 = -ldevinfo
-##am__append_163 = -lkvm
-##am__append_164 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
-##am__append_165 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
-##am__append_166 = -lperfstat
-#am__append_167 = syslog.la
-#am__append_168 = table.la
-#am__append_169 = tail.la
-#am__append_170 = tail_csv.la
-#am__append_171 = tape.la
-#am__append_172 = target_notification.la
-#am__append_173 = target_replace.la
-#am__append_174 = target_scale.la
-#am__append_175 = target_set.la
-#am__append_176 = target_v5upgrade.la
-#am__append_177 = tcpconns.la
-##am__append_178 = -lkvm
-#am__append_179 = teamspeak2.la
-#am__append_180 = ted.la
-#am__append_181 = thermal.la
-#am__append_182 = threshold.la
-#am__append_183 = tokyotyrant.la
-##am__append_184 = -lsocket
-#am__append_185 = turbostat.la
-#am__append_186 = unixsock.la
-#am__append_187 = uptime.la
-##am__append_188 = -lkstat
-##am__append_189 = -lperfstat
-#am__append_190 = users.la
-##am__append_191 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
-##am__append_192 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
-#am__append_193 = uuid.la
-#am__append_194 = varnish.la
-am__append_195 = virt.la
-#am__append_196 = vmem.la
-#am__append_197 = vserver.la
-#am__append_198 = wireless.la
-#am__append_199 = write_graphite.la
-#am__append_200 = write_http.la
-#am__append_201 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_202 = $(BUILD_WITH_LIBCURL_LIBS)
-#am__append_203 = write_kafka.la
-#am__append_204 = write_log.la
-#am__append_205 = write_mongodb.la
-#am__append_206 = write_redis.la
-#am__append_207 = write_riemann.la
-#am__append_208 = write_sensu.la
-am__append_209 = write_tsdb.la
-#am__append_210 = xmms.la
-#am__append_211 = zfs_arc.la
-#am__append_212 = zookeeper.la
-#am__append_213 = pinba.pb-c.c pinba.pb-c.h \
-#	riemann.pb-c.c riemann.pb-c.h
+##am__append_137 = -Wno-nonnull
+#am__append_138 = pf.la
+#am__append_139 = pinba.la
+#am__append_140 = ping.la
+#am__append_141 = postgresql.la
+#am__append_142 = powerdns.la
+#am__append_143 = python.la
+#am__append_144 = -fno-strict-aliasing -Wno-strict-aliasing
+#am__append_145 = processes.la
+##am__append_146 = -lkvm
+#am__append_147 = protocols.la
+#am__append_148 = redis.la
+#am__append_149 = routeros.la
+#am__append_150 = rrdcached.la
+#am__append_151 = rrdtool.la
+#am__append_152 = sensors.la
+#am__append_153 = serial.la
+#am__append_154 = sigrok.la
+##am__append_155 = smart.la
+#am__append_156 = snmp.la
+##am__append_157 = $(BUILD_WITH_LIBSNMP_CFLAGS)
+##am__append_158 = $(BUILD_WITH_LIBSNMP_LIBS)
+#am__append_159 = -lpthread
+#am__append_160 = statsd.la
+#am__append_161 = swap.la
+##am__append_162 = -lkstat
+##am__append_163 = -ldevinfo
+##am__append_164 = -lkvm
+##am__append_165 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
+##am__append_166 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
+##am__append_167 = -lperfstat
+#am__append_168 = syslog.la
+#am__append_169 = table.la
+#am__append_170 = tail.la
+#am__append_171 = tail_csv.la
+#am__append_172 = tape.la
+#am__append_173 = target_notification.la
+#am__append_174 = target_replace.la
+#am__append_175 = target_scale.la
+#am__append_176 = target_set.la
+#am__append_177 = target_v5upgrade.la
+#am__append_178 = tcpconns.la
+##am__append_179 = -lkvm
+#am__append_180 = teamspeak2.la
+#am__append_181 = ted.la
+#am__append_182 = thermal.la
+#am__append_183 = threshold.la
+#am__append_184 = tokyotyrant.la
+##am__append_185 = -lsocket
+#am__append_186 = turbostat.la
+#am__append_187 = unixsock.la
+#am__append_188 = uptime.la
+##am__append_189 = -lkstat
+##am__append_190 = -lperfstat
+#am__append_191 = users.la
+##am__append_192 = $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
+##am__append_193 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
+#am__append_194 = uuid.la
+#am__append_195 = varnish.la
+am__append_196 = virt.la
+#am__append_197 = vmem.la
+#am__append_198 = vserver.la
+#am__append_199 = wireless.la
+#am__append_200 = write_graphite.la
+#am__append_201 = write_http.la
+#am__append_202 = $(BUILD_WITH_LIBCURL_CFLAGS)
+#am__append_203 = $(BUILD_WITH_LIBCURL_LIBS)
+#am__append_204 = write_kafka.la
+#am__append_205 = write_log.la
+#am__append_206 = write_mongodb.la
+#am__append_207 = write_redis.la
+#am__append_208 = write_riemann.la
+#am__append_209 = write_sensu.la
+am__append_210 = write_tsdb.la
+#am__append_211 = xmms.la
+#am__append_212 = zfs_arc.la
+#am__append_213 = zookeeper.la
 #am__append_214 = pinba.pb-c.c pinba.pb-c.h \
+#	riemann.pb-c.c riemann.pb-c.h
+#am__append_215 = pinba.pb-c.c pinba.pb-c.h \
 #	riemann.pb-c.c riemann.pb-c.h
 check_PROGRAMS = test_utils_mount$(EXEEXT) \
 	test_utils_vl_lookup$(EXEEXT)
@@ -690,6 +691,15 @@ gmond_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(gmond_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_gmond_la_rpath = -rpath $(pkglibdir)
+hadoop_la_DEPENDENCIES = libcJSON.la \
+	$(am__DEPENDENCIES_1)
+am__hadoop_la_SOURCES_DIST = hadoop.c
+am_hadoop_la_OBJECTS = hadoop_la-hadoop.lo
+hadoop_la_OBJECTS = $(am_hadoop_la_OBJECTS)
+hadoop_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(hadoop_la_CFLAGS) \
+	$(CFLAGS) $(hadoop_la_LDFLAGS) $(LDFLAGS) -o $@
+am_hadoop_la_rpath = -rpath $(pkglibdir)
 #hddtemp_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_1)
 am__hddtemp_la_SOURCES_DIST = hddtemp.c
@@ -1790,7 +1800,7 @@ SOURCES = $(aggregation_la_SOURCES) $(amqp_la_SOURCES) \
 	$(email_la_SOURCES) $(entropy_la_SOURCES) \
 	$(ethstat_la_SOURCES) $(exec_la_SOURCES) $(fhcount_la_SOURCES) \
 	$(filecount_la_SOURCES) $(fscache_la_SOURCES) \
-	$(gmond_la_SOURCES) $(hddtemp_la_SOURCES) \
+	$(gmond_la_SOURCES) $(hadoop_la_SOURCES) $(hddtemp_la_SOURCES) \
 	$(interface_la_SOURCES) $(ipc_la_SOURCES) $(ipmi_la_SOURCES) \
 	$(iptables_la_SOURCES) $(ipvs_la_SOURCES) $(irq_la_SOURCES) \
 	$(java_la_SOURCES) $(libcJSON_la_SOURCES) \
@@ -1861,7 +1871,7 @@ DIST_SOURCES = $(am__aggregation_la_SOURCES_DIST) \
 	$(am__exec_la_SOURCES_DIST) $(am__fhcount_la_SOURCES_DIST) \
 	$(am__filecount_la_SOURCES_DIST) \
 	$(am__fscache_la_SOURCES_DIST) $(am__gmond_la_SOURCES_DIST) \
-	$(am__hddtemp_la_SOURCES_DIST) \
+	$(am__hadoop_la_SOURCES_DIST) $(am__hddtemp_la_SOURCES_DIST) \
 	$(am__interface_la_SOURCES_DIST) $(am__ipc_la_SOURCES_DIST) \
 	$(am__ipmi_la_SOURCES_DIST) $(am__iptables_la_SOURCES_DIST) \
 	$(am__ipvs_la_SOURCES_DIST) $(am__irq_la_SOURCES_DIST) \
@@ -2183,14 +2193,14 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
 ARGZ_H = 
-AUTOCONF = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/missing autoconf
-AUTOHEADER = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/missing autoheader
-AUTOMAKE = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/missing automake-1.14
+AUTOCONF = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoconf
+AUTOHEADER = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoheader
+AUTOMAKE = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing automake-1.14
 AWK = gawk
 BUILD_WITH_LIBAQUAERO5_CFLAGS = 
 BUILD_WITH_LIBAQUAERO5_LDFLAGS = 
@@ -2356,7 +2366,7 @@ LTLIBOBJS =
 LT_CONFIG_H = src/config.h
 LT_DLLOADERS =  libltdl/dlopen.la
 LT_DLPREOPEN = -dlpreopen libltdl/dlopen.la 
-MAKEINFO = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/missing makeinfo
+MAKEINFO = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -2389,10 +2399,10 @@ STRIP = strip
 VERSION = 5.5.0.git
 YACC = bison -y
 YFLAGS = 
-abs_builddir = /home/juraj/collectd-5.5.0/src
-abs_srcdir = /home/juraj/collectd-5.5.0/src
-abs_top_builddir = /home/juraj/collectd-5.5.0
-abs_top_srcdir = /home/juraj/collectd-5.5.0
+abs_builddir = /home/juraj/diplomka/kod/collectd-5.5.0/src
+abs_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0/src
+abs_top_builddir = /home/juraj/diplomka/kod/collectd-5.5.0
+abs_top_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -2422,7 +2432,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/juraj/collectd-5.5.0/libltdl/config/install-sh
+install_sh = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -2501,36 +2511,36 @@ pkglib_LTLIBRARIES = $(am__append_11) $(am__append_12) \
 	$(am__append_85) $(am__append_86) $(am__append_87) \
 	$(am__append_88) $(am__append_89) $(am__append_90) \
 	$(am__append_91) $(am__append_92) $(am__append_93) \
-	$(am__append_95) $(am__append_96) $(am__append_97) \
-	$(am__append_99) $(am__append_105) $(am__append_106) \
-	$(am__append_107) $(am__append_108) $(am__append_111) \
-	$(am__append_112) $(am__append_113) $(am__append_118) \
-	$(am__append_119) $(am__append_120) $(am__append_123) \
-	$(am__append_124) $(am__append_125) $(am__append_127) \
-	$(am__append_128) $(am__append_129) $(am__append_131) \
+	$(am__append_94) $(am__append_96) $(am__append_97) \
+	$(am__append_98) $(am__append_100) $(am__append_106) \
+	$(am__append_107) $(am__append_108) $(am__append_109) \
+	$(am__append_112) $(am__append_113) $(am__append_114) \
+	$(am__append_119) $(am__append_120) $(am__append_121) \
+	$(am__append_124) $(am__append_125) $(am__append_126) \
+	$(am__append_128) $(am__append_129) $(am__append_130) \
 	$(am__append_132) $(am__append_133) $(am__append_134) \
-	$(am__append_135) $(am__append_137) $(am__append_138) \
+	$(am__append_135) $(am__append_136) $(am__append_138) \
 	$(am__append_139) $(am__append_140) $(am__append_141) \
-	$(am__append_142) $(am__append_144) $(am__append_146) \
+	$(am__append_142) $(am__append_143) $(am__append_145) \
 	$(am__append_147) $(am__append_148) $(am__append_149) \
 	$(am__append_150) $(am__append_151) $(am__append_152) \
 	$(am__append_153) $(am__append_154) $(am__append_155) \
-	$(am__append_159) $(am__append_160) $(am__append_167) \
+	$(am__append_156) $(am__append_160) $(am__append_161) \
 	$(am__append_168) $(am__append_169) $(am__append_170) \
 	$(am__append_171) $(am__append_172) $(am__append_173) \
 	$(am__append_174) $(am__append_175) $(am__append_176) \
-	$(am__append_177) $(am__append_179) $(am__append_180) \
+	$(am__append_177) $(am__append_178) $(am__append_180) \
 	$(am__append_181) $(am__append_182) $(am__append_183) \
-	$(am__append_185) $(am__append_186) $(am__append_187) \
-	$(am__append_190) $(am__append_193) $(am__append_194) \
+	$(am__append_184) $(am__append_186) $(am__append_187) \
+	$(am__append_188) $(am__append_191) $(am__append_194) \
 	$(am__append_195) $(am__append_196) $(am__append_197) \
 	$(am__append_198) $(am__append_199) $(am__append_200) \
-	$(am__append_203) $(am__append_204) $(am__append_205) \
+	$(am__append_201) $(am__append_204) $(am__append_205) \
 	$(am__append_206) $(am__append_207) $(am__append_208) \
 	$(am__append_209) $(am__append_210) $(am__append_211) \
-	$(am__append_212)
-BUILT_SOURCES = $(dist_man_MANS) $(am__append_214)
-CLEANFILES = $(am__append_213)
+	$(am__append_212) $(am__append_213)
+BUILT_SOURCES = $(dist_man_MANS) $(am__append_215)
+CLEANFILES = $(am__append_214)
 #aggregation_la_SOURCES = aggregation.c \
 #                         utils_vl_lookup.c utils_vl_lookup.h
 
@@ -2729,6 +2739,10 @@ logfile_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 docker_la_SOURCES = docker.c
 docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 docker_la_LIBADD = libcJSON.la -lpthread
+hadoop_la_SOURCES = hadoop.c
+hadoop_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
 #madwifi_la_SOURCES = madwifi.c madwifi.h \
 #		     utils_ignorelist.c utils_ignorelist.h
 
@@ -2745,7 +2759,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #match_value_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #mbmon_la_SOURCES = mbmon.c
 #mbmon_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#mbmon_la_LIBADD = $(am__append_94)
+#mbmon_la_LIBADD = $(am__append_95)
 #md_la_SOURCES = md.c \
 #		utils_ignorelist.c utils_ignorelist.h
 
@@ -2756,14 +2770,14 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #memcachec_la_LIBADD = $(BUILD_WITH_LIBMEMCACHED_LIBS)
 #memcached_la_SOURCES = memcached.c
 #memcached_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#memcached_la_LIBADD = $(am__append_98)
+#memcached_la_LIBADD = $(am__append_99)
 #memory_la_SOURCES = memory.c
 #memory_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_102)
+#	$(am__append_103)
 #memory_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#memory_la_LIBADD = $(am__append_100) \
-#	$(am__append_101) $(am__append_103) \
-#	$(am__append_104)
+#memory_la_LIBADD = $(am__append_101) \
+#	$(am__append_102) $(am__append_104) \
+#	$(am__append_105)
 #mic_la_SOURCES = mic.c \
 #		 utils_ignorelist.c utils_ignorelist.h
 
@@ -2779,8 +2793,8 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #mysql_la_SOURCES = mysql.c
 #mysql_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #mysql_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_109)
-#mysql_la_LIBADD = $(am__append_110)
+#	$(am__append_110)
+#mysql_la_LIBADD = $(am__append_111)
 #netapp_la_SOURCES = netapp.c \
 #		    utils_ignorelist.c utils_ignorelist.h
 
@@ -2795,19 +2809,19 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #		     utils_fbhash.c utils_fbhash.h
 
 #network_la_CPPFLAGS = $(AM_CPPFLAGS) \
-#	$(am__append_115)
-#network_la_LDFLAGS = $(PLUGIN_LDFLAGS) \
 #	$(am__append_116)
+#network_la_LDFLAGS = $(PLUGIN_LDFLAGS) \
+#	$(am__append_117)
 #network_la_LIBADD = -lpthread \
-#	$(am__append_114) $(am__append_117)
+#	$(am__append_115) $(am__append_118)
 #nfs_la_SOURCES = nfs.c
 #nfs_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #fscache_la_SOURCES = fscache.c
 #fscache_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #nginx_la_SOURCES = nginx.c
 #nginx_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_121)
-#nginx_la_LIBADD = $(am__append_122)
+#	$(am__append_122)
+#nginx_la_LIBADD = $(am__append_123)
 #nginx_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #notify_desktop_la_SOURCES = notify_desktop.c
 #notify_desktop_la_CFLAGS = $(AM_CFLAGS) $(LIBNOTIFY_CFLAGS)
@@ -2818,7 +2832,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #notify_email_la_LIBADD = -lesmtp -lssl -lcrypto -lpthread
 #ntpd_la_SOURCES = ntpd.c
 #ntpd_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#ntpd_la_LIBADD = $(am__append_126)
+#ntpd_la_LIBADD = $(am__append_127)
 #numa_la_SOURCES = numa.c
 #numa_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #nut_la_SOURCES = nut.c
@@ -2827,7 +2841,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #nut_la_LIBADD = -lpthread $(BUILD_WITH_LIBUPSCLIENT_LIBS)
 #olsrd_la_SOURCES = olsrd.c
 #olsrd_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#olsrd_la_LIBADD = $(am__append_130)
+#olsrd_la_LIBADD = $(am__append_131)
 #onewire_la_SOURCES = onewire.c \
 #		     utils_ignorelist.c utils_ignorelist.h
 
@@ -2856,7 +2870,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #perl_la_CFLAGS = $(AM_CFLAGS) $(PERL_CFLAGS) \
 #	-DXS_VERSION=\"$(VERSION)\" \
 #	-DVERSION=\"$(VERSION)\" \
-#	$(am__append_136)
+#	$(am__append_137)
 #perl_la_LDFLAGS = $(PLUGIN_LDFLAGS) \
 #		$(PERL_LDFLAGS)
 
@@ -2884,12 +2898,12 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #python_la_SOURCES = python.c pyconfig.c pyvalues.c cpython.h
 #python_la_CPPFLAGS = $(AM_CPPFLAGS) $(BUILD_WITH_PYTHON_CPPFLAGS)
 #python_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_143)
+#	$(am__append_144)
 #python_la_LDFLAGS = $(PLUGIN_LDFLAGS) $(BUILD_WITH_PYTHON_LDFLAGS)
 #python_la_LIBADD = $(BUILD_WITH_PYTHON_LIBS)
 #processes_la_SOURCES = processes.c
 #processes_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#processes_la_LIBADD = $(am__append_145)
+#processes_la_LIBADD = $(am__append_146)
 #protocols_la_SOURCES = protocols.c \
 #		       utils_ignorelist.c utils_ignorelist.h
 
@@ -2931,9 +2945,9 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #snmp_la_SOURCES = snmp.c
 #snmp_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #snmp_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_156)
-#snmp_la_LIBADD = $(am__append_157) \
-#	$(am__append_158)
+#	$(am__append_157)
+#snmp_la_LIBADD = $(am__append_158) \
+#	$(am__append_159)
 #statsd_la_SOURCES = statsd.c \
 #                    utils_latency.h utils_latency.c
 
@@ -2941,11 +2955,11 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #statsd_la_LIBADD = -lpthread
 #swap_la_SOURCES = swap.c
 #swap_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_164)
+#	$(am__append_165)
 #swap_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#swap_la_LIBADD = $(am__append_161) \
-#	$(am__append_162) $(am__append_163) \
-#	$(am__append_165) $(am__append_166)
+#swap_la_LIBADD = $(am__append_162) \
+#	$(am__append_163) $(am__append_164) \
+#	$(am__append_166) $(am__append_167)
 #syslog_la_SOURCES = syslog.c
 #syslog_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #table_la_SOURCES = table.c
@@ -2969,7 +2983,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #target_v5upgrade_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #tcpconns_la_SOURCES = tcpconns.c
 #tcpconns_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#tcpconns_la_LIBADD = $(am__append_178)
+#tcpconns_la_LIBADD = $(am__append_179)
 #teamspeak2_la_SOURCES = teamspeak2.c
 #teamspeak2_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #ted_la_SOURCES = ted.c
@@ -2984,7 +2998,7 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #tokyotyrant_la_CPPFLAGS = $(AM_CPPFLAGS) $(BUILD_WITH_LIBTOKYOTYRANT_CPPFLAGS)
 #tokyotyrant_la_LDFLAGS = $(PLUGIN_LDFLAGS) $(BUILD_WITH_LIBTOKYOTYRANT_LDFLAGS)
 #tokyotyrant_la_LIBADD = $(BUILD_WITH_LIBTOKYOTYRANT_LIBS) \
-#	$(am__append_184)
+#	$(am__append_185)
 #turbostat_la_SOURCES = turbostat.c
 #turbostat_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #unixsock_la_SOURCES = unixsock.c \
@@ -3001,13 +3015,13 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #uptime_la_SOURCES = uptime.c
 #uptime_la_CFLAGS = $(AM_CFLAGS)
 #uptime_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#uptime_la_LIBADD = $(am__append_188) \
-#	$(am__append_189)
+#uptime_la_LIBADD = $(am__append_189) \
+#	$(am__append_190)
 #users_la_SOURCES = users.c
 #users_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_191)
+#	$(am__append_192)
 #users_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#users_la_LIBADD = $(am__append_192)
+#users_la_LIBADD = $(am__append_193)
 #uuid_la_SOURCES = uuid.c
 #uuid_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBHAL_CFLAGS)
 #uuid_la_LIBADD = $(BUILD_WITH_LIBHAL_LIBS)
@@ -3040,9 +3054,9 @@ virt_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 
 #write_http_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #write_http_la_CFLAGS = $(AM_CFLAGS) \
-#	$(am__append_201)
-#write_http_la_LIBADD =  \
 #	$(am__append_202)
+#write_http_la_LIBADD =  \
+#	$(am__append_203)
 #write_kafka_la_SOURCES = write_kafka.c \
 #                        utils_format_graphite.c utils_format_graphite.h \
 #                        utils_format_json.c utils_format_json.h \
@@ -3352,6 +3366,9 @@ fscache.la: $(fscache_la_OBJECTS) $(fscache_la_DEPENDENCIES) $(EXTRA_fscache_la_
 
 gmond.la: $(gmond_la_OBJECTS) $(gmond_la_DEPENDENCIES) $(EXTRA_gmond_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(gmond_la_LINK) $(am_gmond_la_rpath) $(gmond_la_OBJECTS) $(gmond_la_LIBADD) $(LIBS)
+
+hadoop.la: $(hadoop_la_OBJECTS) $(hadoop_la_DEPENDENCIES) $(EXTRA_hadoop_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(hadoop_la_LINK) $(am_hadoop_la_rpath) $(hadoop_la_OBJECTS) $(hadoop_la_LIBADD) $(LIBS)
 
 hddtemp.la: $(hddtemp_la_OBJECTS) $(hddtemp_la_DEPENDENCIES) $(EXTRA_hddtemp_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(hddtemp_la_LINK) $(am_hddtemp_la_rpath) $(hddtemp_la_OBJECTS) $(hddtemp_la_LIBADD) $(LIBS)
@@ -3846,6 +3863,7 @@ include ./$(DEPDIR)/fhcount.Plo
 include ./$(DEPDIR)/filecount.Plo
 include ./$(DEPDIR)/fscache.Plo
 include ./$(DEPDIR)/gmond_la-gmond.Plo
+include ./$(DEPDIR)/hadoop_la-hadoop.Plo
 include ./$(DEPDIR)/hddtemp.Plo
 include ./$(DEPDIR)/interface_la-interface.Plo
 include ./$(DEPDIR)/interface_la-utils_ignorelist.Plo
@@ -4136,6 +4154,13 @@ gmond_la-gmond.lo: gmond.c
 #	$(AM_V_CC)source='gmond.c' object='gmond_la-gmond.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gmond_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gmond_la-gmond.lo `test -f 'gmond.c' || echo '$(srcdir)/'`gmond.c
+
+hadoop_la-hadoop.lo: hadoop.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(hadoop_la_CFLAGS) $(CFLAGS) -MT hadoop_la-hadoop.lo -MD -MP -MF $(DEPDIR)/hadoop_la-hadoop.Tpo -c -o hadoop_la-hadoop.lo `test -f 'hadoop.c' || echo '$(srcdir)/'`hadoop.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/hadoop_la-hadoop.Tpo $(DEPDIR)/hadoop_la-hadoop.Plo
+#	$(AM_V_CC)source='hadoop.c' object='hadoop_la-hadoop.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(hadoop_la_CFLAGS) $(CFLAGS) -c -o hadoop_la-hadoop.lo `test -f 'hadoop.c' || echo '$(srcdir)/'`hadoop.c
 
 interface_la-interface.lo: interface.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(interface_la_CFLAGS) $(CFLAGS) -MT interface_la-interface.lo -MD -MP -MF $(DEPDIR)/interface_la-interface.Tpo -c -o interface_la-interface.lo `test -f 'interface.c' || echo '$(srcdir)/'`interface.c

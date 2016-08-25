@@ -1,43 +1,34 @@
-sudo ./configure --enable-docker --enable-virt --enable-write-tsdb --enable-logfile --disable-all-plugins
+sudo ./configure --enable-docker --enable-virt --enable-hadoop --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
+python 
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
 
 text
-nazvy metrik tak ako ch ukladam do databazy
+nazvy metrik tak ako ich ukladam do databazy
 
 docker
-doriesit zavislost na pthread
 robit pravidelne refresh zoznamu kontajnerov
-poriadok so zakomentovanymi vecami
 config - host-majbe
-
+cpu kernelmode, usermode treba - odosielat
+aktualizovat verziu  dockeru- rozdiel v networkoch
 
 cJSON
 nacitavanie unsigned long long (napr. docker system cpu usage)
 
-
-
-
-
-
-otazky
-docker - cpu kernelmode, usermode treba?
-       - aku verziu dockeru maju? rozdiel v networkoch
-       
 virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
      - pridat cpu kernelmode a usermode?
-hadoop - kinit bude treba pouzivat asi ako system call
-		-	nebezia ziadne aplikacie
-		- metriky o clusteri aj o apkach tak ako je v texte?
-metriky ako siet a diskove operacie ako prirastky?
-aktualna vyuzita pamat ako absolutna zrejme, ostatne statistiky pamate asi ako prirastky
-procesor ako prirastky?
+
+
+hadoop
+mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
+adresa klastra do konfiguracie
 
 
 
-pokusy s history vo write_tsdb wt_format_values()
+
+spokusy s history vo write_tsdb wt_format_values()
 /*
     gauge_t history;
     int bla = uc_get_history (ds, vl, &history, 1, 1);
