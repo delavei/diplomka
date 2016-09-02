@@ -30,10 +30,11 @@ virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v doc
 otazky
 hadoop
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
+joby vs aplikacie - hadoop
 
 text
 Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
-by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž?
+by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
 
 automatická detekcia nových spustených aplikácií a pridaných zdrojov??
 
@@ -41,6 +42,9 @@ problematika vypoctu loadu na procesor - mozem predpokladat zberovy interval tyk
 
 okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
+cpu load na virtualku je vacsi mmozno ako cpu cas, preto je potrebne aj ten zberat
+
+ako riesit tie 
 
 IDE O MONITORING TYCH JEDNOTLIVYCH STROJOV ALEBO APLIKACII SAMYCH O SEBE??
 

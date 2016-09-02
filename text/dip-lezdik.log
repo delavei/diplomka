@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  2 SEP 2016 14:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  2 SEP 2016 22:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,191 +486,191 @@ rá zdroj vyuºíva,
 [1
 
 
-]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.78 \\a
-        
-? 
-[2] [3] [4]
+] [2]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 128.
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 87.
 
-LaTeX Warning: Citation `openTSDB' on page 5 undefined on input line 140.
-
-[5
-
-] <images/metrilyx.png, id=49, 937.5025pt x 511.9125pt>
-File: images/metrilyx.png Graphic file (type png)
-
-<use images/metrilyx.png>
-Package pdftex.def Info: images/metrilyx.png used on input line 145.
-(pdftex.def)             Requested size: 289.08109pt x 157.84763pt.
-
-
-LaTeX Warning: Citation `Metrilyx' on page 6 undefined on input line 146.
-
-
-Overfull \hbox (0.10541pt too wide) in paragraph at lines 151--153
-\T1/ppl/m/n/10.95 £í-tajú po-mo-cou rozhra-nia príka-zového ri-adka, rôznych kl
-ientskych kniºníc,
+Overfull \hbox (2.09901pt too wide) in paragraph at lines 87--89
+\T1/ppl/m/n/10.95 pri-amo hard-vérové prostriedky in-fra²truk-túry. Ten má moºn
+os´ ur£i´,
  []
 
-[6 <./images/metrilyx.png>] [7]
-Chapter 3.
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.192 \\T
-         EXT OUTPUT | OPTIONAL PERFDATA
-? 
-[8
+[3
 
 ]
-
-LaTeX Warning: Citation `01' on page 9 undefined on input line 202.
-
-
-Overfull \hbox (23.6799pt too wide) in paragraph at lines 206--209
-\T1/ppl/m/n/10.95 Format: ser-vice_check_timeout=<seconds> Ex-am-ple: ser-vice_
-check_timeout=60
+Overfull \hbox (8.03271pt too wide) in paragraph at lines 99--101
+\T1/ppl/m/n/10.95 zdie©aných výpo£et-ných prostried-kov, jeho výpo£ty sa v kone
+£nom dôsledku
  []
 
+[4]
 
-LaTeX Warning: Citation `02' on page 9 undefined on input line 214.
+LaTeX Warning: Citation `hypervisorTypes' on page 5 undefined on input line 116
+.
 
-
-LaTeX Warning: Citation `03' on page 9 undefined on input line 220.
-
-
-LaTeX Warning: Citation `04' on page 9 undefined on input line 226.
-
-
-LaTeX Warning: Citation `20' on page 9 undefined on input line 230.
-
-
-LaTeX Warning: Citation `05' on page 9 undefined on input line 234.
-
-[9]
-
-LaTeX Warning: Citation `06' on page 10 undefined on input line 253.
-
-
-LaTeX Warning: Citation `07' on page 10 undefined on input line 257.
-
-
-LaTeX Warning: Citation `08' on page 10 undefined on input line 261.
-
-
-Underfull \vbox (badness 2326) has occurred while \output is active []
-
- [10]
-
-LaTeX Warning: Citation `09' on page 11 undefined on input line 270.
-
-
-LaTeX Warning: Citation `10' on page 11 undefined on input line 274.
-
-
-LaTeX Warning: Citation `11' on page 11 undefined on input line 278.
-
-
-LaTeX Warning: Citation `12' on page 11 undefined on input line 287.
-
-
-LaTeX Warning: Citation `13' on page 11 undefined on input line 291.
-
-[11]
-
-LaTeX Warning: Citation `14' on page 12 undefined on input line 309.
-
-
-LaTeX Warning: Citation `15' on page 12 undefined on input line 320.
-
-
-LaTeX Warning: Citation `16' on page 12 undefined on input line 322.
-
-[12]
-
-LaTeX Warning: Citation `scout' on page 13 undefined on input line 333.
-
-
-Overfull \hbox (8.1424pt too wide) in paragraph at lines 339--340
-\T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
-er-
- []
-
-[13]
-
-LaTeX Warning: Citation `17' on page 14 undefined on input line 363.
-
-[14]
-Chapter 4.
-<images/docker.png, id=78, 640.3925pt x 702.625pt>
+<images/docker.png, id=45, 640.3925pt x 702.625pt>
 File: images/docker.png Graphic file (type png)
  <use images/docker.png>
-Package pdftex.def Info: images/docker.png used on input line 372.
+Package pdftex.def Info: images/docker.png used on input line 123.
 (pdftex.def)             Requested size: 289.08109pt x 317.17538pt.
 
 
-LaTeX Warning: Citation `docker' on page 15 undefined on input line 373.
+LaTeX Warning: Citation `docker' on page 5 undefined on input line 124.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15
-
-] [16 <./images/docker.png>]
-Overfull \hbox (32.2544pt too wide) in paragraph at lines 395--398
+[5] [6 <./images/docker.png>]
+Overfull \hbox (32.2544pt too wide) in paragraph at lines 146--149
 \T1/ppl/m/n/10.95 skupina ob-sahuje zoz-nam pro-cesov, ktoré podliehajú defi-no
 -vaným obmedzeniam.
  []
 
 
-LaTeX Warning: Citation `docker' on page 17 undefined on input line 403.
+LaTeX Warning: Citation `docker' on page 7 undefined on input line 154.
 
 
-Overfull \hbox (5.7443pt too wide) in paragraph at lines 401--404
+Overfull \hbox (5.7443pt too wide) in paragraph at lines 152--155
 \T1/ppl/m/n/10.95 za-h¯¬a v²etko, £o daný soft-vér potre-buje na spuste-nie: kó
 d, nástroje potrebné
  []
 
-[17]
 
-LaTeX Warning: Citation `hypervisorTypes' on page 18 undefined on input line 42
-0.
+LaTeX Warning: Citation `kvm' on page 7 undefined on input line 163.
 
 
-LaTeX Warning: Citation `kvm' on page 18 undefined on input line 426.
+LaTeX Warning: Citation `libvirt' on page 7 undefined on input line 166.
 
-
-LaTeX Warning: Citation `libvirt' on page 18 undefined on input line 429.
-
-
-Overfull \hbox (14.17606pt too wide) in paragraph at lines 434--438
+[7]
+Overfull \hbox (14.17606pt too wide) in paragraph at lines 171--175
 \T1/ppl/m/n/10.95 vate©né, dis-tribuo-vané výpo£ty. Apache Hadoop je prostredie
 , ktoré umoº¬uje
  []
 
-[18]
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 442.
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 179.
 
-Overfull \hbox (1.86418pt too wide) in paragraph at lines 442--443
+Overfull \hbox (1.86418pt too wide) in paragraph at lines 179--180
 []\T1/ppl/m/n/10.95 distribuovaný súborový sys-
  []
 
-[19]
+[8]
+Chapter 3.
+
+LaTeX Warning: Citation `openTSDB' on page 9 undefined on input line 206.
+
+[9
+
+] <images/metrilyx.png, id=64, 937.5025pt x 511.9125pt>
+File: images/metrilyx.png Graphic file (type png)
+
+<use images/metrilyx.png>
+Package pdftex.def Info: images/metrilyx.png used on input line 211.
+(pdftex.def)             Requested size: 289.08109pt x 157.84763pt.
+
+
+LaTeX Warning: Citation `Metrilyx' on page 10 undefined on input line 212.
+
+
+Overfull \hbox (0.10541pt too wide) in paragraph at lines 217--219
+\T1/ppl/m/n/10.95 £í-tajú po-mo-cou rozhra-nia príka-zového ri-adka, rôznych kl
+ientskych kniºníc,
+ []
+
+[10 <./images/metrilyx.png>] [11]
+Chapter 4.
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.258 \\T
+         EXT OUTPUT | OPTIONAL PERFDATA
+? 
+[12
+
+]
+
+LaTeX Warning: Citation `01' on page 13 undefined on input line 268.
+
+
+Overfull \hbox (23.6799pt too wide) in paragraph at lines 272--275
+\T1/ppl/m/n/10.95 Format: ser-vice_check_timeout=<seconds> Ex-am-ple: ser-vice_
+check_timeout=60
+ []
+
+
+LaTeX Warning: Citation `02' on page 13 undefined on input line 280.
+
+
+LaTeX Warning: Citation `03' on page 13 undefined on input line 286.
+
+
+LaTeX Warning: Citation `04' on page 13 undefined on input line 292.
+
+
+LaTeX Warning: Citation `20' on page 13 undefined on input line 296.
+
+
+LaTeX Warning: Citation `05' on page 13 undefined on input line 300.
+
+[13]
+
+LaTeX Warning: Citation `06' on page 14 undefined on input line 319.
+
+
+LaTeX Warning: Citation `07' on page 14 undefined on input line 323.
+
+
+LaTeX Warning: Citation `08' on page 14 undefined on input line 327.
+
+
+Underfull \vbox (badness 2326) has occurred while \output is active []
+
+ [14]
+
+LaTeX Warning: Citation `09' on page 15 undefined on input line 336.
+
+
+LaTeX Warning: Citation `10' on page 15 undefined on input line 340.
+
+
+LaTeX Warning: Citation `11' on page 15 undefined on input line 344.
+
+
+LaTeX Warning: Citation `12' on page 15 undefined on input line 353.
+
+
+LaTeX Warning: Citation `13' on page 15 undefined on input line 357.
+
+[15]
+
+LaTeX Warning: Citation `14' on page 16 undefined on input line 375.
+
+
+LaTeX Warning: Citation `15' on page 16 undefined on input line 386.
+
+
+LaTeX Warning: Citation `16' on page 16 undefined on input line 388.
+
+[16]
+
+LaTeX Warning: Citation `scout' on page 17 undefined on input line 399.
+
+
+Overfull \hbox (8.1424pt too wide) in paragraph at lines 405--406
+\T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
+er-
+ []
+
+[17]
+
+LaTeX Warning: Citation `17' on page 18 undefined on input line 429.
+
+[18]
 Chapter 5.
 
 ! Package inputenc Error: Unicode char \u8:Çµ not set up for use with LaTeX.
@@ -679,81 +679,81 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.448 KaÅ¾dÃ¡ z technolÃ³Çµ
+l.433 KaÅ¾dÃ¡ z technolÃ³Çµ
                            iÃ­ cloudovÃ©ho vÃ½poÄetnÃ©ho strediska je zdroj...
 
 ? 
-[20
+[19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 481--488
+Underfull \hbox (badness 10000) in paragraph at lines 466--473
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--488
+Underfull \hbox (badness 10000) in paragraph at lines 466--473
 
  []
 
-[21] [22] [23]
-Overfull \hbox (6.64348pt too wide) in paragraph at lines 547--548
+[20] [21] [22]
+Overfull \hbox (6.64348pt too wide) in paragraph at lines 532--533
 []\T1/ppl/m/n/10.95 - po£et pri-jatých pake-
  []
 
 
-Overfull \hbox (6.78548pt too wide) in paragraph at lines 552--553
+Overfull \hbox (6.78548pt too wide) in paragraph at lines 537--538
 []\T1/ppl/m/n/10.95 - The num-ber of statis-tics sup-ported
  []
 
-[24] [25]
-Overfull \hbox (23.39641pt too wide) in paragraph at lines 605--606
+[23] [24]
+Overfull \hbox (23.39641pt too wide) in paragraph at lines 590--591
 \T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
 EW_SAVING,
  []
 
 
-Overfull \hbox (0.23839pt too wide) in paragraph at lines 605--606
+Overfull \hbox (0.23839pt too wide) in paragraph at lines 590--591
 \T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
  []
 
-[26]
-Overfull \hbox (2.61348pt too wide) in paragraph at lines 628--629
+[25]
+Overfull \hbox (2.61348pt too wide) in paragraph at lines 613--614
 []\T1/ppl/m/n/10.95 - State of the node - valid val-ues are: NEW, RUN-NING, UN-
 HEALTHY,
  []
 
-[27]
+[26]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 644--649
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 629--634
 \T1/ppl/m/n/10.95 hlavne o aka-demickú spoluprácu. Meta-Cen-trum spravuje výpo£
 etné prostriedky
  []
 
-[28
+[27
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 666--668
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 651--653
 \T1/ppl/m/n/10.95 Monitorovacia ap-liká-cia by mala posky-to-va´ zrov-nate©né v
 ýsledky v oblasti
  []
 
-[29] [30]
+[28] [29]
 Chapter 7.
-[31
+[30
 
 ]
 
-LaTeX Warning: Citation `18' on page 32 undefined on input line 766.
+LaTeX Warning: Citation `18' on page 31 undefined on input line 751.
 
-[32] [33]
+[31] [32]
 Chapter 8.
 No file dip-lezdik.bbl.
-[34
+[33
 
 ]
 Appendix A.
-[35
+[34
 
 ] (./dip-lezdik.aux)
 
@@ -773,10 +773,10 @@ Here is how much of TeX's memory you used:
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb>
-Output written on dip-lezdik.pdf (43 pages, 437827 bytes).
+Output written on dip-lezdik.pdf (42 pages, 436382 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
+ 218 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

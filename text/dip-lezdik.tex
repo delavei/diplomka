@@ -66,58 +66,124 @@ zaneprázdnenú aplikáciu v takej miere, ako keď plynulo odpovedala. Monitorov
 pýtať v menej častých intervaloch. Ak aplikácia začne odpovedať, všetko je v poriadku. Ak nie, je možné reagovať reštartovaním monitorovacej aplikácie. Ak ani táto reakcia problém nevyrieši, komplikácia 
 nastala zrejme v dotazovanej aplikácií.
 
-Cloud predstavuje heterogénnu infraštruktúru. Na reišenie výpočetných úloh sa použivajú rôzne technológie a aplikácie. Rôzne aplikácie pristupujú k výpočetným problém odlišnými postupmi. Všetky úlohy 
+Cloud predstavuje heterogénnu infraštruktúru. Na riešenie výpočetných úloh sa použivajú rôzne technológie a aplikácie. Rôzne aplikácie pristupujú k výpočetným problém odlišnými postupmi. Všetky úlohy 
 sú ale počítané na akoby jednom veľkom a veľmi výkonnom počítači. Tieto aplikácie teda používajú spoločné zdroje. Metrické dáta, ktoré budem zberať, by takisto mali vypovedať o vyťažení tých istých druhov 
 zdrojov. Je preto potrebné identifikovať, ktoré metrické dáta z jednej aplikácie je možné porovnať s údajmi z inej aplikácie. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú
 jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie zrovnávať a účtovať ich využitie. 
 
 
 
+\chapter{Cloudové technológie}
+\section{Cloud}
+Cloudové technológie umožňujú využívať veľkú množinu výkonných výpočetných zdrojov mnohým subjektom. Každý užívateľ cloudu využíva časť výpočetného výkonu. Spolu s rozdelením výkonu prichádzajú aj ďalšie výhody. Užívateľ sa nemusí starať
+o podliehajúci hardvér. Typ fyzického procesora alebo rýchlosť pamäte uzla cloudu sú v určitom zmysle dôležité, ale pre výkon je rozhodujúca veľkosť pamäte, kapacita disku resp. počet procesorových jadier. Tieto požiadavky
+cloud umožňuje jednoducho spravovať a transparentne meniť. Má to význam, ak sa rozrastú požiadavky užívateľa na výkon, alebo naopak z dôvodu obmedzenej prevádzky či 
+nedostatku výpočetných úloh sa nároky môžu zmenšiť. Klient môže dané prostriedky využívať hneď, bez veľkých počiatočných investicií, ktoré by si buď nemohol dovoliť, alebo ak sú výpočetné úlohy krátkodonejšieho rázu, nákup
+stroja s požadovaným výkonom by bol nevhodnou investíciou. Užívateľ sa nemusí starať o nákup hardvéru, jeho zostavovanie do funkčných serverov a ich následné rozširovanie a správu. Tieto služby zabezpečuje prevádzkovateľ cloudovej infraštruktúry.
+Pre neho je zase dôležité mať prehľad o tom, ako sú jeho inštalované kapacity využívané. Či už z pohľadu skvalitňovania vlastných poskytovaných služieb alebo vo vzťahu ku klientovi a k tomu, v akej miere spotrebováva poskytovaný výkon.
+Jednou z charakteristík cloudu je aj heterogénnosť v prístupe k zdrojom. Výpočetné prostriedky sú poskytované viacerými spôsobmi:
+
+\begin{description}
+\item[\emph{Infrastructure as a Service (IaaS)}] - Tento spôsob poskytuje užívateľovi priamo hardvérové prostriedky infraštruktúry. Ten má možnosť určiť, koľko pamäte, procesorov alebo diskovej kapacity požaduje. Je jeho voľbou
+aký operačný systém použije, aký softvér nainštaluje a aké výpočetné úlohy bude realizovať alebo aké služby bude prevádzkovať.
+\item[\emph{Platform as a Service (PaaS)}] - Užívateľ využíva priamo platformu prevádzkovateľa. Jedná sa vrstvu o úroveň vyššie ako pri využití infraštruktúry. Hardvérová konfigurácia je daná, ale užívateľ využíva operačný systém a 
+súbor aplikácií na vývoj a prevádzku vlastných programov. Vlastník cloudu volí platformu a inštaláciu ďalšieho softvéru. Užívateľ ho môže používať a prípadne meniť. Tento spôsob poskytovania zdrojov znižuje záťaž na infraštruktúru
+tak, že viacerí užívatelia využívajú jedno bežiace jadro operačného systému.
+\item[\emph{Software as a Service (SaaS)}] - V cloudovej infraštruktúre môže byť nainštalovaný softvér, ktorý špecifickým spôsobom zefektívňuje prácu s distribuovanými výpočetnými zdrojmi. Je preto niekedy vhodné poskytovať samotné
+prostredie jednej aplikácie ako službu. Užívateľ navrhuje výpočetné úlohy alebo aplikácie s využitím knižníc a architektúry konrétnej aplikácie a táto aplikácia sa zároveň stará o ich vykonávanie. 
+\end{description}
+
+Momentálne MetaCentrum poskytuje všetky formy využitia dostupného výkonu. Jednotlivým prístupom zodpovedá konkrétne softvérové riešenie, ktorému sa budem venovať v nasledujúcich častiach.
+
+\subsection{Kontrola zdrojov cloudu}
+Bez ohľadu na to, na akej vrstve si klient zvolí prístup k využívaniu zdieľaných výpočetných prostriedkov, jeho výpočty sa v konečnom dôsledku budú musieť realizovať na fyzickom hardvéri poskytovateľa. 
+Aj keď sa daná úloha vypočítava na viacerých uzloch cloudu a rozličnými postupmi, vlastník by mal mať prehľad ako je reálne celá infraštruktúra vyťažovaná.
+
+\section{Virtuálne stroje}
+Virtuálne stroje poskytujú úplnú virtualizáciu fyzickej hardvérovej štruktúry. Na jednom hosťujúcom počítači môže byť spustených viacero virtuálnych strojov. Každý má svoj vlastný virtuálny procesor, pamäť, grafický procesor, pevný disk 
+a periférie. Operačný systém spustený vo virtuálnom stroji je izolovaný od hosťovského opračného systému (ak ho hosťovský počítač má). Takéto riešenie má jednu bezpečnostnú výhodu oproti aplikačným 
+kontajnerom. Nežiadúce fungovanie jedného virtuálneho stroja neovplyvňuje beh ostatných.
+V súčasnosti existuje mnoho úrovní virtuálnych strojov. Emulácia inštrukčnej sady, prekladanie programov za behu a ich optimalizácia, vysokoúrovňové virtuálne stroje (napr. Java) a systémové virtuálne stroje používané ako
+jednotlivcami tak na serveroch.
+
+\subsection{Hypervízor}
+Hypervízor je softvér, ktorý vytvára a zabezpečuje beh virtuálnych strojov. Rozlišujeme 2 typy:
+\begin{description}
+\item[natívny] - na hosťujúcom počítači nie je nainštalovaný žiadny operačný systém. Hypervízor spravuje hardvér hosťujúceho počítača a kontroluje beh operačných systémov, ktoré sa javia ako procesy.
+Príkladom je VMware ESX/ESXi, Oracle VM Server for x86 alebo Citrix XenServer.
+\item[hosťovaný] - hypervízor je spustený ako bežný program v operačnom systéme hosťujúceho počítača. Príkladom je QEMU, VMware Workstation alebo VirtualBox.
+\end{description}
+\cite{hypervisorTypes}
+
+\section{Aplikačné kontajnery}
+Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
+nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje nasledovný obrázok: 
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[width=0.8\textwidth]{images/docker.png}
+       \caption{Porovnanie architektúry Docker a virtuálnych strojov}\cite{docker}
+\end{center}
+\end{figure}
+V kontajneri môže byť spustený nezávislý operačný systém spolu s požadovanými aplikáciami. Hosťovský počítač, na ktorom sú kontajnery spustené, má jeden operačný systém a jednu množinu prostriedkov, 
+ktoré tieto kontajnery zdieľajú. Jednotlivé kontajnery dostávajú kontrolovaný prístup k výpočtovému výkonu, pamäti, úložnej kapacite, sieti a prípadne ďalším prostriedkom.
+
+\subsection{Linux cgroups}
+Linux cgroups je technológia linuxového jadra, ktorá umožňuje limitovať, sledovať a izolovať spotrebu prostriedkov systému jednotlivými procesmi. Zavádza stromovo organizované kontrolné skupiny. 
+Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. susbsystém. Príklad subsystémov, ktoré poskytuje Red Hat Enterprise Linux: 
+\begin{description}
+\item[\emph{blkio}] - this subsystem sets limits on input/output access to and from block devices such as physical drives (disk, solid state, USB, etc.).
+\item[\emph{cpu}] - this subsystem uses the scheduler to provide cgroup tasks access to the CPU.
+\item[\emph{cpuacct}] - this subsystem generates automatic reports on CPU resources used by tasks in a cgroup.
+\item[\emph{cpuset}] - this subsystem assigns individual CPUs (on a multicore system) and memory nodes to tasks in a cgroup.
+\item[\emph{devices}] - his subsystem allows or denies access to devices by tasks in a cgroup.
+\item[\emph{freezer}] - this subsystem suspends or resumes tasks in a cgroup.
+\item[\emph{memory}] - this subsystem sets limits on memory use by tasks in a cgroup, and generates automatic reports on memory resources used by those tasks.
+\item[\emph{net\_cls}] - this subsystem tags network packets with a class identifier (classid) that allows the Linux traffic controller (tc) to identify packets originating from a particular cgroup task.
+\item[\emph{net\_prio}] - this subsystem provides a way to dynamically set the priority of network traffic per network interface.
+\item[\emph{ns}] - the namespace subsystem.
+\end{description}
+
+Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
+V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov,ktoré by sa obtiažne priraďovalo jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
+monitorovania nie je úplne vhodný.
 
 
-\\a
-\\a
-\\a
-\\a
-\\a
+\subsection{Docker}
+Docker umožňuje zabaliť aplikáciu so všetkými jej závislosťami do štandardizovanej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru obaľujú softvér kompletným súborovým systémom, ktorý
+zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
+je spustený.\cite{docker}
 
-Toto už je ten pôvodný úvod
 
-V súčasnosti sú informačné technológie rozšírené vo všetkých oblastiach nášho života. Používame jednoúčelové integrované obvody v elektrospotrebičoch a predmetoch dennej, ako napr. v automatickej práčke, v mikrovlnnej rúre,
-alebo v automobile. Spoločnosť ako celok denne využíva aj veľké výpočtové výkony na komplexné úlohy. Riadenie dopravných systémov, uskutočňovanie finančných transakcií, výpočty súvisiace s predpoveďami počasia,
-sociálne siete. Stretávame sa s počítačmi v štátnej správe, vo vzdelávacích inštitúciách a vo veľkej miere v priemyselnej výrobe. Zdrojom veľkého množstva dát je vedecký výskum a experimenty, ktoré skúmajú svet
-okolo nás. Spoločným rysom všetkých týchto využití je jedno - spracovávanie informácií.
 
-Podstatným ukazovateľom pri návrhu akéhokoľvek systému je objem spracovávaných dát. V jednoúčelových zariadenich je potrebné spracovať menej vstupov. Jedná sa prevažne o interakciu s užívateľom prípadne 
-s okolitým prostredím. Je kladený dôraz na rýchlu odozvu. Pri výpočtoch, ktorých
-výsledky využíva celá spoločnosť, je objem dát oveľa väčší. Ak by mala každá organizácia, ktorá potrebuje spracovať veľké množstvo informácií, budovať vlastnú infraštruktúru, nebolo by to vo všetkých prípadoch možné
-a zdroje by často mohli zostať neefektívne využité. Preto prišla snaha o budovanie veľkých systémov s množstvom výpočetného výkonu, ktoré by poskytovali zdieľaný výkon pre viacero subjektov. Nazývajú sa gridy.
 
-Jednotlivé výpočetné problémy sa v nich spracovávavjú v podobe dávkových úloh. Obsahujú dáta, nad ktorými sa budú vykonávať výpočty, programy, ktoré definujú, čo sa má s dátami urobiť, a takisto požiadavky na zdroje, ktoré
-bude úloha na svoje spracovanie potrebovať. Potom je úloha predaná plánovaču. Ten určí, kedy je úlohu možné spustiť, alokuje vyžadované prostriedky a určí uzly, na ktorých sa bude táto úloha spracovávať. Počas
-behu zároveň priebežne monitoruje záťaž výpočetných uzlov a to ako sú spotrebovávané prostriedky systému. 
+\subsection{libvirt/KVM}
+KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux pre x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
+Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko. Je možné virtualizovať obrazy 
+s operačným systémami Linux aj Windows. Každý virtuálny stroj má vlastný virtualizovaný hardvér: sieťovú kartu, disk, grafický adaptér, atď. KVM je open-source softvér. Virtualizačný modul jadra
+sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
 
-Infraštruktúra gridu spravidla predstavuje homogénne prostredie s jedným operačným systémom, kde je možné riešiť s veľkou efektivitou podobné problémy. S postupom času však pribúdali stále komplexnejšie 
-a špecifickejšie úlohy, ktoré bolo treba riešiť. Existujúce prostredie neposkytovalo potrebnú flexibilitu, aby sa mohlo prispôsobiť rôznorodým požiadavkam používateľov.
+libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
+Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky.\cite{libvirt}
 
-Reakciou na dané problémy bolo vytváranie heterogénneho výpočetného prostredia, ktoré poskytuje viacero odlišných prístupov k riešeniu výpočetných úloh. Nazýva sa cloud. Spája v sebe virtualizáciu na hardvérovej alebo
-softvérovej úrovni, aplikačné kontajnery a tzv. MapReduce prístup k riešeniu problémov. Rôznorodosť ponúkaných výpočetných modelov dáva užívateľom a orgranizáciám väčší priestor a zároveň aj motiváciu
-využívať tento druh služieb. Už nie sú obmedzovaní jedným operačným systémom, jednou architektúrou výpočetných clusterov. Avšak rozmanité prostredie zo sebou prináša aj niekoľko problémov. Aby bolo možné
-efektívne nakladať so zdrojmi cloudu, je dôležité mať možnosť zmerať, akou mierou sú využívané. Tieto merania sa uskutočňujú kontinuálne v čase v pravidelných intervaloch. Je tak generované množstvo dátových dvojíc -
-čas a hodnota sledovaného ukazovateľa v tomto čase. Takéto dáta sa nazývajú časové rady.
 
-Cieľom tejto práce je preskúmať jednotlivé technológie, ktoré sa v heterogénnom výpočetnom prostredí používajú, zistiť, aké metrické dáta je možné zberať v súvislosti s jednotlivými výpočetnými modelmi,
-identifikovať, ktoré metriky je v týchto modeloch možné považovať za ekvivalentné. Zároveň sa budem venovať prieskumu aktuálnych monitorovacích riešení, ktoré zberajú metrické dáta. Výstupom práce je návrh
-a implementácia monitorovacej aplikácie, slúžiacej na spoľahlivý zber metrík a ich odosielanie do centralizovanej databázy časových rád. Aplikácia bude integrovaná do existujúcej infraštruktúry Národnej 
-gridovej infraštruktúry – MetaCentra.
+\section{MapReduce aplikačné prostredia}
+\subsection{Hadoop}
+Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
+naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočetný výkon a úložný priestor.
+Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
+z ktorých každý je náchylný na chyby.
 
-Práca je rozdelené do ôsmych kapitol vrátane úvodu a záveru. V úvode je načrtnutá sučasná situácia a s ňou súvisiaci problém, ktorým sa moja práca zaoberá.  V druhej časti sa venujem tematike časových rád a
-prieskumu databáz, ktoré tieto dáta uchovávajú a spravujú. Tretia časť sa zaoberá cloudovými technológiami. Štvrtú kapitolu tvorí prieskum softvéru, ktorý slúži na monitorovanie systémov a zber metrických dát. 
-Piata časť sa venuje metrikám, ktoré je možné o daných technológiách zberať. V šiestej kapitole analyzujem požiadavky na integráciu do cloudovej infraštruktúry a problémy spojené zo zberom metrických 
-dát. Súčasťou je návrh monitorovacej aplikácie. Siedma kapitola popisuje implementáciu a techniky použité na zber metrických dát a ich odosielanie do databázy. Súčasťou sú výsledky z testovania aplikácie
-nasadenej v MetaCentre. Osmou kapitolou je záver, kde zhŕňam zistené poznatky a výsledky, ktoré dosiahla moja implementácia.
+Projekt pozostáva z týchto modulov:
+\begin{description}
+\item[\emph{Hadoop Common:}] spoločné nástroje, ktoré podporujú ostatné Hadoop moduly
+\item[\emph{Hadoop Distributed File System (HDFS™):}] distribuovaný súborový systém, ktorý poskytuje vysokú priepustnosť
+\item[\emph{Hadoop YARN:}] prostredie pre plánovanie úloh a správu zdrojov clustera
+\item[\emph{Hadoop MapReduce:}] systém založený na YARN pre paralelné spracovávanie veľkých množstiev dát, prostredie pre plánovanie úloh a správu zdrojov clustera
+\end{description}
 
-\chapter{Zber a uchovávanie časových rád}
+
+\chapter{Zber a uchovávanie monitorovacích dát}
+
 \section{Časové rady}
 Časová rada je sekvencia dát, kde danému časovému okamihu zodpovedá jedna hodnota. Príkladom je zaznamenávanie teplôt v priebehu roka, výšky oceánskeho prílivu alebo množstvo áut, ktoré za určitú dobu
 prejde jedným bodom diaľnice. Efektívnou metódou vizuálizácie dát časových rád sú čiarové grafy. Horizontálna os reprezentuje plynutie času a na vertikálnej osi sú znázornené hodnoty v danom čase.
@@ -362,87 +428,6 @@ Individual host metrics including CPU, disk, memory, JVM, load, network, process
 Service component metrics including CPU, disk, memory, JVM, load, network, process, RPC, and component-specific metrics
 \cite{17}
 
-\chapter{Cloudové technológie}
-
-\section{Aplikačné kontajnery}
-Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
-nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje nasledovný obrázok: 
-\begin{figure}[h]
-\begin{center}
-       \includegraphics[width=0.8\textwidth]{images/docker.png}
-       \caption{Porovnanie architektúry Docker a virtuálnych strojov}\cite{docker}
-\end{center}
-\end{figure}
-V kontajneri môže byť spustený nezávislý operačný systém spolu s požadovanými aplikáciami. Hosťovský počítač, na ktorom sú kontajnery spustené, má jeden operačný systém a jednu množinu prostriedkov, 
-ktoré tieto kontajnery zdieľajú. Jednotlivé kontajnery dostávajú kontrolovaný prístup k výpočtovému výkonu, pamäti, úložnej kapacite, sieti a prípadne ďalším prostriedkom.
-
-\subsection{Linux cgroups}
-Linux cgroups je technológia linuxového jadra, ktorá umožňuje limitovať, sledovať a izolovať spotrebu prostriedkov systému jednotlivými procesmi. Zavádza stromovo organizované kontrolné skupiny. 
-Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. susbsystém. Príklad subsystémov, ktoré poskytuje Red Hat Enterprise Linux: 
-\begin{description}
-\item[\emph{blkio}] - this subsystem sets limits on input/output access to and from block devices such as physical drives (disk, solid state, USB, etc.).
-\item[\emph{cpu}] - this subsystem uses the scheduler to provide cgroup tasks access to the CPU.
-\item[\emph{cpuacct}] - this subsystem generates automatic reports on CPU resources used by tasks in a cgroup.
-\item[\emph{cpuset}] - this subsystem assigns individual CPUs (on a multicore system) and memory nodes to tasks in a cgroup.
-\item[\emph{devices}] - his subsystem allows or denies access to devices by tasks in a cgroup.
-\item[\emph{freezer}] - this subsystem suspends or resumes tasks in a cgroup.
-\item[\emph{memory}] - this subsystem sets limits on memory use by tasks in a cgroup, and generates automatic reports on memory resources used by those tasks.
-\item[\emph{net\_cls}] - this subsystem tags network packets with a class identifier (classid) that allows the Linux traffic controller (tc) to identify packets originating from a particular cgroup task.
-\item[\emph{net\_prio}] - this subsystem provides a way to dynamically set the priority of network traffic per network interface.
-\item[\emph{ns}] - the namespace subsystem.
-\end{description}
-
-Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
-V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov,ktoré by sa obtiažne priraďovalo jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
-monitorovania nie je úplne vhodný.
-
-
-\subsection{Docker}
-Docker umožňuje zabaliť aplikáciu so všetkými jej závislosťami do štandardizovanej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru obaľujú softvér kompletným súborovým systémom, ktorý
-zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
-je spustený.\cite{docker}
-
-
-\section{Virtuálne stroje}
-Virtuálne stroje poskytujú úplnú virtualizáciu. Na jednom hosťujúcom počítači môže byť spustených viacero virtuálnych strojov. Každý má svoj vlastný virtuálny procesor, pamäť, grafický procesor, pevný disk 
-a periférie. Operačný systém spustený vo virtuálnom stroji je izolovaný od hosťovského opračného systému (ak ho hosťovský počítač má). Takéto riešenie má jednu bezpečnostnú výhodu oproti aplikačným 
-kontajnerom. Nežiadúce fungovanie jedného virtuálneho stroja neovplyvňuje beh ostatných.
-V súčasnosti existuje mnoho úrovní virtuálnych strojov. Emulácia inštrukčnej sady, prekladanie programov za beho a ich optimalizácia, vysokoúrovňové virtuálne stroje (napr. Java) a systémové virtuálne stroje používané ako
-jednotlivcami tak na serveroch.
-
-\subsection{Hypervízor}
-Hypervízor je softvér, ktorý vytvára a zabezpečuje beh virtuálnych strojov. Rozlišujeme 2 typy:
-\begin{description}
-\item[natívny] - na hosťujúcom počítači nie je nainštalovaný žiadny operačný systém. Hypervízor spravuje hardvér hosťujúceho počítača a kontroluje beh operačných systémov, ktoré sa javia ako procesy.
-Príkladom je VMware ESX/ESXi, Oracle VM Server for x86 alebo Citrix XenServer.
-\item[hosťovaný] - hypervízor je spustený ako bežný program v operačnom systéme hosťujúceho počítača. Príkladom je QEMU, VMware Workstation alebo VirtualBox.
-\end{description}
-\cite{hypervisorTypes}
-
-\subsection{libvirt/KVM}
-KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux pre x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
-Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko. Je možné virtualizovať obrazy 
-s operačným systémami Linux aj Windows. Každý virtuálny stroj má vlastný virtualizovaný hardvér: sieťovú kartu, disk, grafický adaptér, atď. KVM je open-source softvér. Virtualizačný modul jadra
-sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
-
-libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
-Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky.\cite{libvirt}
-
-
-\section{MapReduce aplikačné prostredia}
-\subsection{Hadoop}
-Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
-naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočetný výkon a úložný priestor.
-Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
-z ktorých každý je náchylný na chyby.
-
-Projekt pozostáva z týchto modulov:
-\begin{description}
-\item[\emph{Hadoop Common:}] spoločné nástroje, ktoré podporujú ostatné Hadoop moduly
-\item[\emph{Hadoop Distributed File System (HDFS™):}] distribuovaný súborový systém, ktorý poskytuje vysokú priepustnosť
-\item[\emph{Hadoop YARN:}] prostredie pre plánovanie úloh a správu zdrojov clustera
-\item[\emph{Hadoop MapReduce:}] systém založený na YARN pre paralelné spracovávanie veľkých množstiev dát, prostredie pre plánovanie úloh a správu zdrojov clustera
-\end{description}
 
 \chapter{Metriky}
 Každá z technolóǵií cloudového výpočetného strediska je zdrojom mnohých dát o vyťažení zdrojov. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. Je vhodné mať také metriky pre všetky využívané cloudové technológie, ktoré je možné
