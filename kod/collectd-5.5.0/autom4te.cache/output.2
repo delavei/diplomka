@@ -31326,7 +31326,7 @@ else
   
 	 if test "x$enable_all_plugins" = "xauto"
 	 then
-	     if test "xyes" = "xyes"
+	     if test "x$with_libpthread" = "xyes"
 	     then
 		     enable_plugin="yes"
 	     else
@@ -31340,12 +31340,12 @@ fi
 
     if test "x$enable_plugin" = "xyes"
     then
-	    if test "xyes" = "xyes" || test "x$force" = "xyes"
+	    if test "x$with_libpthread" = "xyes" || test "x$force" = "xyes"
 	    then
 		    
 $as_echo "@%:@define HAVE_PLUGIN_DOCKER 1" >>confdefs.h
 
-		    if test "xyes" != "xyes"
+		    if test "x$with_libpthread" != "xyes"
 		    then
 			    dependency_warning="yes"
 		    fi

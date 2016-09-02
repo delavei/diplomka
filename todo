@@ -1,12 +1,13 @@
 sudo ./configure --enable-docker --enable-virt --enable-hadoop --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
-python 
+python diplomka/kod/tsddrain.py 4242 ./opentsdb/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
 
 text
 nazvy metrik tak ako ich ukladam do databazy
+automatická detekcia nových spustených aplikácií a pridaných zdrojov
 
 docker
 robit pravidelne refresh zoznamu kontajnerov
@@ -17,14 +18,31 @@ aktualizovat verziu  dockeru- rozdiel v networkoch
 cJSON
 nacitavanie unsigned long long (napr. docker system cpu usage)
 
+hadoop
+adresa klastra do konfiguracie
+
+
+
+
 virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
      - pridat cpu kernelmode a usermode?
 
-
+otazky
 hadoop
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
-adresa klastra do konfiguracie
 
+text
+Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
+by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž?
+
+automatická detekcia nových spustených aplikácií a pridaných zdrojov??
+
+problematika vypoctu loadu na procesor - mozem predpokladat zberovy interval tyk aky si ho nakonfigurujem - asi nie, bude treba zistit aktualny
+
+okomentovať, že nie všetky poskytované metriky má význam aj zberať
+
+
+IDE O MONITORING TYCH JEDNOTLIVYCH STROJOV ALEBO APLIKACII SAMYCH O SEBE??
 
 
 

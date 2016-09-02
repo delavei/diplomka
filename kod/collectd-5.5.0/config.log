@@ -318,7 +318,7 @@ configure:11277: checking how to hardcode library paths into programs
 configure:11302: result: immediate
 configure:11396: checking for shl_load
 configure:11396: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccxWW1uH.o: In function `main':
+/tmp/ccPXlpMB.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:55: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11396: $? = 1
@@ -426,7 +426,7 @@ configure: failed program was:
 configure:11434: result: no
 configure:11439: checking for dlopen
 configure:11439: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccUjZM1R.o: In function `main':
+/tmp/ccC9xdbz.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:55: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11439: $? = 1
@@ -500,7 +500,7 @@ configure:11679: $? = 0
 configure:11697: result: yes
 configure:11702: checking whether a statically linked program can dlopen itself
 configure:11782: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c -ldl  >&5
-/tmp/cclX6MW4.o: In function `main':
+/tmp/ccGMguWR.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/configure:11761: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 /usr/bin/ld: dynamic STT_GNU_IFUNC symbol `strcmp' with pointer equality in `/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/libc.a(strcmp.o)' can not be used when making an executable; recompile with -fPIE and relink with -pie
 collect2: error: ld returned 1 exit status
@@ -522,7 +522,7 @@ configure:11998: checking for the default library search path
 configure:12005: result: /lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/lib/i386-linux-gnu/mesa /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa-egl /usr/lib/x86_64-linux-gnu/mesa 
 configure:12035: checking for library containing dlopen
 configure:12066: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cchITMra.o: In function `main':
+/tmp/ccQl8hDX.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:35: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:12066: $? = 1
@@ -1151,7 +1151,7 @@ configure:12968: $? = 0
 configure:12968: result: yes
 configure:12985: checking for strlcat
 configure:12985: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccqiikIH.o: In function `main':
+/tmp/cc3EOz8d.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:77: undefined reference to `strlcat'
 collect2: error: ld returned 1 exit status
 configure:12985: $? = 1
@@ -1239,7 +1239,7 @@ configure: failed program was:
 configure:12985: result: no
 configure:12985: checking for strlcpy
 configure:12985: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/cctKyQLM.o: In function `main':
+/tmp/cc2ugoyh.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:77: undefined reference to `strlcpy'
 collect2: error: ld returned 1 exit status
 configure:12985: $? = 1
@@ -1474,11 +1474,11 @@ configure:14986: checking lex output file root
 configure:15000: result: lex.yy
 configure:15005: checking lex library
 configure:15019: gcc -o conftest -g -O2   conftest.c  -ldl  >&5
-/tmp/ccBuCkng.o: In function `input':
+/tmp/cc60cIrM.o: In function `input':
 /home/juraj/diplomka/kod/collectd-5.5.0/lex.yy.c:1183: undefined reference to `yywrap'
-/tmp/ccBuCkng.o: In function `yylex':
+/tmp/cc60cIrM.o: In function `yylex':
 /home/juraj/diplomka/kod/collectd-5.5.0/lex.yy.c:882: undefined reference to `yywrap'
-/tmp/ccBuCkng.o: In function `main':
+/tmp/cc60cIrM.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.l:18: undefined reference to `yywrap'
 collect2: error: ld returned 1 exit status
 configure:15019: $? = 1
@@ -10824,7 +10824,7 @@ configure:17736: $? = 0
 configure:17736: result: yes
 configure:17749: checking for sysctlbyname
 configure:17749: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/cc9OFrJ6.o: In function `main':
+/tmp/ccfOK5bO.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:192: undefined reference to `sysctlbyname'
 collect2: error: ld returned 1 exit status
 configure:17749: $? = 1
@@ -11027,7 +11027,7 @@ configure: failed program was:
 configure:17749: result: no
 configure:17762: checking for host_statistics
 configure:17762: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccpDQPua.o: In function `main':
+/tmp/ccLq2NmR.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:192: undefined reference to `host_statistics'
 collect2: error: ld returned 1 exit status
 configure:17762: $? = 1
@@ -11230,7 +11230,7 @@ configure: failed program was:
 configure:17762: result: no
 configure:17775: checking for processor_info
 configure:17775: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/cct9J696.o: In function `main':
+/tmp/ccNEIfl0.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:192: undefined reference to `processor_info'
 collect2: error: ld returned 1 exit status
 configure:17775: $? = 1
@@ -11433,7 +11433,7 @@ configure: failed program was:
 configure:17775: result: no
 configure:17788: checking for thread_info
 configure:17788: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccReJo9e.o: In function `main':
+/tmp/ccbQVXA3.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:192: undefined reference to `thread_info'
 collect2: error: ld returned 1 exit status
 configure:17788: $? = 1
@@ -11861,7 +11861,7 @@ configure:17978: $? = 0
 configure:17985: result: yes
 configure:18006: checking for swapctl
 configure:18006: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/cclB3Uu8.o: In function `main':
+/tmp/ccUqwhrP.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:201: undefined reference to `swapctl'
 collect2: error: ld returned 1 exit status
 configure:18006: $? = 1
@@ -12083,7 +12083,7 @@ configure:18369: $? = 0
 configure:18381: result: yes
 configure:18584: checking for getfsstat
 configure:18584: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccS6v4Kf.o: In function `main':
+/tmp/ccGsBU44.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:203: undefined reference to `getfsstat'
 collect2: error: ld returned 1 exit status
 configure:18584: $? = 1
@@ -12297,7 +12297,7 @@ configure: failed program was:
 configure:18584: result: no
 configure:18596: checking for getvfsstat
 configure:18596: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccdV1kro.o: In function `main':
+/tmp/ccNTyqMa.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:203: undefined reference to `getvfsstat'
 collect2: error: ld returned 1 exit status
 configure:18596: $? = 1
@@ -12511,7 +12511,7 @@ configure: failed program was:
 configure:18596: result: no
 configure:18608: checking for listmntent
 configure:18608: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccUjA81s.o: In function `main':
+/tmp/ccT3aDhj.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:203: undefined reference to `listmntent'
 collect2: error: ld returned 1 exit status
 configure:18608: $? = 1
@@ -12940,7 +12940,7 @@ configure: failed program was:
 configure:18829: result: no
 configure:18864: checking if have htonll defined
 configure:18889: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccSljkoK.o: In function `main':
+/tmp/ccCjy09y.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:182: undefined reference to `htonll'
 collect2: error: ld returned 1 exit status
 configure:18889: $? = 1
@@ -19301,7 +19301,7 @@ configure: failed program was:
 configure:19343: result: no
 configure:19364: checking for res_search in -lresolv
 configure:19389: gcc -o conftest -g -O2   conftest.c -lresolv  -ldl  >&5
-/tmp/cctiRtOQ.o: In function `main':
+/tmp/ccAgv6PA.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:191: undefined reference to `res_search'
 collect2: error: ld returned 1 exit status
 configure:19389: $? = 1
@@ -19503,7 +19503,7 @@ configure: failed program was:
 configure:19398: result: no
 configure:19420: checking for libhal_device_property_exists in -lhal
 configure:19445: gcc -o conftest -g -O2   conftest.c -lhal  -ldl  >&5
-/tmp/ccjB06GY.o: In function `main':
+/tmp/ccFKulyG.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/conftest.c:191: undefined reference to `libhal_device_property_exists'
 collect2: error: ld returned 1 exit status
 configure:19445: $? = 1
@@ -21334,17 +21334,17 @@ configure:20139: result: no
 configure:20139: checking for hiredis/hiredis.h
 configure:20139: result: no
 configure:20271: checking curl/curl.h usability
-configure:20271: gcc -c -g -O2   conftest.c >&5
+configure:20271: gcc -c -g -O2  -I/usr/local/include conftest.c >&5
 configure:20271: $? = 0
 configure:20271: result: yes
 configure:20271: checking curl/curl.h presence
-configure:20271: gcc -E   conftest.c
+configure:20271: gcc -E  -I/usr/local/include conftest.c
 configure:20271: $? = 0
 configure:20271: result: yes
 configure:20271: checking for curl/curl.h
 configure:20271: result: yes
 configure:20296: checking for curl_easy_init in -lcurl
-configure:20321: gcc -o conftest -g -O2   conftest.c -lcurl -L/usr/lib/x86_64-linux-gnu -lcurl -ldl  >&5
+configure:20321: gcc -o conftest -g -O2   conftest.c -lcurl -L/usr/local/lib -lcurl -ldl  >&5
 configure:20321: $? = 0
 configure:20330: result: yes
 configure:20338: checking whether CURLOPT_USERNAME is declared
@@ -32926,9 +32926,9 @@ BUILD_WITH_LIBATASMART_FALSE=''
 BUILD_WITH_LIBATASMART_LDFLAGS=''
 BUILD_WITH_LIBATASMART_LIBS=''
 BUILD_WITH_LIBATASMART_TRUE='#'
-BUILD_WITH_LIBCURL_CFLAGS=''
+BUILD_WITH_LIBCURL_CFLAGS='-I/usr/local/include'
 BUILD_WITH_LIBCURL_FALSE='#'
-BUILD_WITH_LIBCURL_LIBS='-L/usr/lib/x86_64-linux-gnu -lcurl'
+BUILD_WITH_LIBCURL_LIBS='-L/usr/local/lib -lcurl'
 BUILD_WITH_LIBCURL_TRUE=''
 BUILD_WITH_LIBDBI_CPPFLAGS=''
 BUILD_WITH_LIBDBI_FALSE=''
@@ -33529,3 +33529,4 @@ generated by GNU Autoconf 2.69.  Invocation command line was
 on delavei
 
 config.status:1822: creating src/config.h
+config.status:2003: src/config.h is unchanged

@@ -280,7 +280,7 @@ static int docker_read (void)
 	}
 	
 	pthread_join (read_containers_threads[0], NULL);
-    
+
 	return 0;
 }
 

@@ -22,7 +22,11 @@ CURL* easy_handle;
 int new_read = 1;
 char app_json[BUFFER_SIZE] = "";
 enum states last_state;
+int apps_count=0;
 
+
+int bla =0;
+size_t hovno=0;
 
 static void init_value_list (value_list_t *vl)
 {
@@ -56,8 +60,9 @@ void submit_app_value (unsigned long value, const char* type_instance, const cha
 }
 
 void submit_app_stats (char* app_json) {
+	apps_count++;
 	cJSON* root = cJSON_Parse(app_json);
-	
+//printf("%s\n\n",app_json);
 	char* app_id = cJSON_GetObjectItem(root,"id")->valuestring;
 	char* user = cJSON_GetObjectItem(root,"user")->valuestring;
 	char* app_name = cJSON_GetObjectItem(root,"name")->valuestring;
@@ -122,11 +127,13 @@ enum states parse_response (char *app_json_begin, char *data_end) {
 }
 
 size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
+	if (bla==0) {
+		hovno=hovno+(nmemb*size);
+	}
+	
 	char* app_json_begin = 0;
 	size_t retval = nmemb*size;
-	
-	//printf ("%s",data);
-	
+		
 	if (new_read) {
 		new_read = 0;
 		
@@ -160,15 +167,18 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 
 static int hadoop_read (void)
 {
-	
+	printf("\n\n\n\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy11");
 	curl_easy_perform(easy_handle);
 	new_read = 1;
-	    
+	bla=1;
+	printf("\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  appps count %d",apps_count);
+	    apps_count=0;
 	return 0;
 }
 
 static int hadoop_shutdown (void)
 {
+	//printf ("\n  hovnoooooooooooooopp count   %lu\n ",hovno);
 	curl_easy_cleanup(easy_handle);  
 	
     return 0;
@@ -179,7 +189,7 @@ static int hadoop_init (void)
 	easy_handle = curl_easy_init();
 	curl_easy_setopt(easy_handle, CURLOPT_HTTPAUTH, (long)CURLAUTH_GSSNEGOTIATE);
   
-	curl_easy_setopt(easy_handle, CURLOPT_URL, "https://hador-c1.ics.muni.cz:8090/ws/v1/cluster/apps?states=finished");
+	curl_easy_setopt(easy_handle, CURLOPT_URL, "https://hador-c1.ics.muni.cz:8090/ws/v1/cluster/apps?states=running");
 	curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, read_response);
     curl_easy_setopt(easy_handle, CURLOPT_USERAGENT, "curl/7.50.1");	
 	curl_easy_setopt(easy_handle, CURLOPT_USERPWD, ":");        

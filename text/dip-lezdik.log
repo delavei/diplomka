@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.2.19)  14 MAR 2016 18:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  2 SEP 2016 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -500,9 +500,9 @@ l.78 \\a
 [2] [3] [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 127.
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 128.
 
-LaTeX Warning: Citation `openTSDB' on page 5 undefined on input line 139.
+LaTeX Warning: Citation `openTSDB' on page 5 undefined on input line 140.
 
 [5
 
@@ -510,14 +510,14 @@ LaTeX Warning: Citation `openTSDB' on page 5 undefined on input line 139.
 File: images/metrilyx.png Graphic file (type png)
 
 <use images/metrilyx.png>
-Package pdftex.def Info: images/metrilyx.png used on input line 144.
+Package pdftex.def Info: images/metrilyx.png used on input line 145.
 (pdftex.def)             Requested size: 289.08109pt x 157.84763pt.
 
 
-LaTeX Warning: Citation `Metrilyx' on page 6 undefined on input line 145.
+LaTeX Warning: Citation `Metrilyx' on page 6 undefined on input line 146.
 
 
-Overfull \hbox (0.10541pt too wide) in paragraph at lines 150--152
+Overfull \hbox (0.10541pt too wide) in paragraph at lines 151--153
 \T1/ppl/m/n/10.95 £Ì-taj˙ po-mo-cou rozhra-nia prÌka-zovÈho ri-adka, rÙznych kl
 ientskych kni∫nÌc,
  []
@@ -531,102 +531,99 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.191 \\T
+l.192 \\T
          EXT OUTPUT | OPTIONAL PERFDATA
 ? 
 [8
 
 ]
 
-LaTeX Warning: Citation `01' on page 9 undefined on input line 201.
+LaTeX Warning: Citation `01' on page 9 undefined on input line 202.
 
 
-Overfull \hbox (23.6799pt too wide) in paragraph at lines 205--208
+Overfull \hbox (23.6799pt too wide) in paragraph at lines 206--209
 \T1/ppl/m/n/10.95 Format: ser-vice_check_timeout=<seconds> Ex-am-ple: ser-vice_
 check_timeout=60
  []
 
 
-LaTeX Warning: Citation `02' on page 9 undefined on input line 213.
+LaTeX Warning: Citation `02' on page 9 undefined on input line 214.
 
 
-LaTeX Warning: Citation `03' on page 9 undefined on input line 219.
+LaTeX Warning: Citation `03' on page 9 undefined on input line 220.
 
 
-LaTeX Warning: Citation `04' on page 9 undefined on input line 225.
+LaTeX Warning: Citation `04' on page 9 undefined on input line 226.
 
 
-LaTeX Warning: Citation `20' on page 9 undefined on input line 229.
+LaTeX Warning: Citation `20' on page 9 undefined on input line 230.
 
 
-LaTeX Warning: Citation `05' on page 9 undefined on input line 233.
+LaTeX Warning: Citation `05' on page 9 undefined on input line 234.
 
 [9]
 
-LaTeX Warning: Citation `06' on page 10 undefined on input line 252.
+LaTeX Warning: Citation `06' on page 10 undefined on input line 253.
 
 
-LaTeX Warning: Citation `07' on page 10 undefined on input line 256.
+LaTeX Warning: Citation `07' on page 10 undefined on input line 257.
 
 
-LaTeX Warning: Citation `08' on page 10 undefined on input line 260.
+LaTeX Warning: Citation `08' on page 10 undefined on input line 261.
 
 
 Underfull \vbox (badness 2326) has occurred while \output is active []
 
  [10]
 
-LaTeX Warning: Citation `09' on page 11 undefined on input line 269.
+LaTeX Warning: Citation `09' on page 11 undefined on input line 270.
 
 
-LaTeX Warning: Citation `10' on page 11 undefined on input line 273.
+LaTeX Warning: Citation `10' on page 11 undefined on input line 274.
 
 
-LaTeX Warning: Citation `11' on page 11 undefined on input line 277.
+LaTeX Warning: Citation `11' on page 11 undefined on input line 278.
 
 
-LaTeX Warning: Citation `12' on page 11 undefined on input line 286.
+LaTeX Warning: Citation `12' on page 11 undefined on input line 287.
 
 
-LaTeX Warning: Citation `13' on page 11 undefined on input line 290.
+LaTeX Warning: Citation `13' on page 11 undefined on input line 291.
 
 [11]
 
-LaTeX Warning: Citation `14' on page 12 undefined on input line 308.
+LaTeX Warning: Citation `14' on page 12 undefined on input line 309.
 
 
-LaTeX Warning: Citation `15' on page 12 undefined on input line 319.
+LaTeX Warning: Citation `15' on page 12 undefined on input line 320.
 
 
-LaTeX Warning: Citation `16' on page 12 undefined on input line 321.
+LaTeX Warning: Citation `16' on page 12 undefined on input line 322.
 
 [12]
 
-LaTeX Warning: Citation `scout' on page 13 undefined on input line 332.
+LaTeX Warning: Citation `scout' on page 13 undefined on input line 333.
 
 
-Overfull \hbox (8.1424pt too wide) in paragraph at lines 338--339
+Overfull \hbox (8.1424pt too wide) in paragraph at lines 339--340
 \T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
 er-
  []
 
 [13]
 
-LaTeX Warning: Citation `17' on page 14 undefined on input line 362.
+LaTeX Warning: Citation `17' on page 14 undefined on input line 363.
 
 [14]
 Chapter 4.
-
-LaTeX Warning: Citation `torque' on page 15 undefined on input line 369.
-
 <images/docker.png, id=78, 640.3925pt x 702.625pt>
 File: images/docker.png Graphic file (type png)
  <use images/docker.png>
-Package pdftex.def Info: images/docker.png used on input line 384.
+Package pdftex.def Info: images/docker.png used on input line 372.
 (pdftex.def)             Requested size: 289.08109pt x 317.17538pt.
 
 
-LaTeX Warning: Citation `docker' on page 15 undefined on input line 385.
+LaTeX Warning: Citation `docker' on page 15 undefined on input line 373.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -634,137 +631,101 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [15
 
 ] [16 <./images/docker.png>]
-Overfull \hbox (32.2544pt too wide) in paragraph at lines 407--408
+Overfull \hbox (32.2544pt too wide) in paragraph at lines 395--398
 \T1/ppl/m/n/10.95 skupina ob-sahuje zoz-nam pro-cesov, ktorÈ podliehaj˙ defi-no
 -van˝m obmedzeniam.
  []
 
 
-LaTeX Warning: Citation `docker' on page 17 undefined on input line 413.
+LaTeX Warning: Citation `docker' on page 17 undefined on input line 403.
 
 
-Overfull \hbox (5.7443pt too wide) in paragraph at lines 411--414
+Overfull \hbox (5.7443pt too wide) in paragraph at lines 401--404
 \T1/ppl/m/n/10.95 za-hØ¨a v≤etko, £o dan˝ soft-vÈr potre-buje na spuste-nie: kÛ
 d, n·stroje potrebnÈ
  []
 
 [17]
 
-LaTeX Warning: Citation `hypervisorTypes' on page 18 undefined on input line 43
+LaTeX Warning: Citation `hypervisorTypes' on page 18 undefined on input line 42
 0.
 
 
-LaTeX Warning: Citation `kvm' on page 18 undefined on input line 436.
+LaTeX Warning: Citation `kvm' on page 18 undefined on input line 426.
 
 
-LaTeX Warning: Citation `libvirt' on page 18 undefined on input line 439.
+LaTeX Warning: Citation `libvirt' on page 18 undefined on input line 429.
 
 
-Overfull \hbox (14.17606pt too wide) in paragraph at lines 444--448
+Overfull \hbox (14.17606pt too wide) in paragraph at lines 434--438
 \T1/ppl/m/n/10.95 vate©nÈ, dis-tribuo-vanÈ v˝po£ty. Apache Hadoop je prostredie
 , ktorÈ umo∫¨uje
  []
 
 [18]
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
-(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 452.
+(Font)              Font shape `T1/ppl/b/sl' tried instead on input line 442.
 
-Overfull \hbox (1.86418pt too wide) in paragraph at lines 452--453
+Overfull \hbox (1.86418pt too wide) in paragraph at lines 442--443
 []\T1/ppl/m/n/10.95 distribuovan˝ s˙borov˝ sys-
  []
 
 [19]
 Chapter 5.
 
-! LaTeX Error: There's no line here to end.
+! Package inputenc Error: Unicode char \u8:«µ not set up for use with LaTeX.
 
-See the LaTeX manual or LaTeX Companion for explanation.
+See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.464 \begin
-            {enumerate}
+l.448 Ka≈æd√° z technol√≥«µ
+                           i√≠ cloudov√©ho v√Ωpoƒçetn√©ho strediska je zdroj...
+
 ? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.478 \begin
-            {enumerate}
-? 
-
-Overfull \hbox (1.0366pt too wide) in paragraph at lines 484--487
-\T1/ppl/m/n/10.95 R(estarted), s(uspended), S(uspended), t(ransfering), T(hresh
-old)
- []
-
 [20
 
 ]
-Overfull \hbox (23.41812pt too wide) in paragraph at lines 503--506
-\T1/ppl/m/n/10.95 s(uspended), S(uspended), T(hreshold), w(aiting), h(old), or 
-x(exited). 
- []
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.513 \begin
-            {enumerate}
-? 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 565--572
+Underfull \hbox (badness 10000) in paragraph at lines 481--488
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--572
+Underfull \hbox (badness 10000) in paragraph at lines 481--488
 
  []
 
-[22]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.593 \begin
-            {description}
-? 
-[23]
-Overfull \hbox (6.64348pt too wide) in paragraph at lines 627--628
+[21] [22] [23]
+Overfull \hbox (6.64348pt too wide) in paragraph at lines 547--548
 []\T1/ppl/m/n/10.95 - po£et pri-jat˝ch pake-
  []
 
-[24]
-Overfull \hbox (6.78548pt too wide) in paragraph at lines 632--633
+
+Overfull \hbox (6.78548pt too wide) in paragraph at lines 552--553
 []\T1/ppl/m/n/10.95 - The num-ber of statis-tics sup-ported
  []
 
-[25]
-Overfull \hbox (23.39641pt too wide) in paragraph at lines 684--685
+[24] [25]
+Overfull \hbox (23.39641pt too wide) in paragraph at lines 605--606
 \T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
 EW_SAVING,
  []
 
 
-Overfull \hbox (0.23839pt too wide) in paragraph at lines 684--685
+Overfull \hbox (0.23839pt too wide) in paragraph at lines 605--606
 \T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
  []
 
-[26] [27]
+[26]
+Overfull \hbox (2.61348pt too wide) in paragraph at lines 628--629
+[]\T1/ppl/m/n/10.95 - State of the node - valid val-ues are: NEW, RUN-NING, UN-
+HEALTHY,
+ []
+
+[27]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 705--710
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 644--649
 \T1/ppl/m/n/10.95 hlavne o aka-demick˙ spolupr·cu. Meta-Cen-trum spravuje v˝po£
 etnÈ prostriedky
  []
@@ -772,7 +733,7 @@ etnÈ prostriedky
 [28
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 727--729
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 666--668
 \T1/ppl/m/n/10.95 Monitorovacia ap-lik·-cia by mala posky-to-va¥ zrov-nate©nÈ v
 ˝sledky v oblasti
  []
@@ -783,7 +744,7 @@ Chapter 7.
 
 ]
 
-LaTeX Warning: Citation `18' on page 32 undefined on input line 827.
+LaTeX Warning: Citation `18' on page 32 undefined on input line 766.
 
 [32] [33]
 Chapter 8.
@@ -801,7 +762,7 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  2526 strings out of 495028
- 32128 string characters out of 6181497
+ 32125 string characters out of 6181498
  91054 words of memory out of 5000000
  5669 multiletter control sequences out of 15000+600000
  28419 words of font info for 51 fonts, out of 8000000 for 9000
@@ -812,7 +773,7 @@ Here is how much of TeX's memory you used:
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb>
-Output written on dip-lezdik.pdf (43 pages, 436864 bytes).
+Output written on dip-lezdik.pdf (43 pages, 437827 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  116 compressed objects within 2 object streams

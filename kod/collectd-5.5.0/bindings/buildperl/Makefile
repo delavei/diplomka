@@ -185,10 +185,10 @@ TO_INST_PM = Collectd.pm \
 	Collectd/Plugins/OpenVZ.pm \
 	Collectd/Unixsock.pm
 
-PM_TO_BLIB = Collectd/Plugins/OpenVZ.pm \
-	$(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
-	Collectd/Unixsock.pm \
+PM_TO_BLIB = Collectd/Unixsock.pm \
 	$(INST_LIB)/Collectd/Unixsock.pm \
+	Collectd/Plugins/OpenVZ.pm \
+	$(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
 	Collectd.pm \
 	$(INST_LIB)/Collectd.pm
 
@@ -442,22 +442,22 @@ clean_subdirs :
 
 clean :: clean_subdirs
 	- $(RM_F) \
-	  core.[0-9][0-9][0-9][0-9][0-9] perl.exe \
-	  *$(OBJ_EXT) perl \
-	  $(MAKE_APERL_FILE) lib$(BASEEXT).def \
-	  perlmain.c so_locations \
-	  MYMETA.json $(INST_ARCHAUTODIR)/extralibs.all \
-	  tmon.out $(INST_ARCHAUTODIR)/extralibs.ld \
-	  *perl.core perl$(EXE_EXT) \
-	  core.[0-9][0-9] core.[0-9][0-9][0-9][0-9] \
-	  $(BOOTSTRAP) blibdirs.ts \
-	  core.*perl.*.? core \
-	  pm_to_blib.ts $(BASEEXT).def \
-	  MYMETA.yml mon.out \
-	  core.[0-9][0-9][0-9] core.[0-9] \
-	  $(BASEEXT).exp pm_to_blib \
-	  *$(LIB_EXT) $(BASEEXT).x \
-	  $(BASEEXT).bso 
+	  $(BOOTSTRAP) MYMETA.json \
+	  core perl.exe \
+	  core.[0-9][0-9][0-9][0-9][0-9] pm_to_blib \
+	  perl mon.out \
+	  $(BASEEXT).x perlmain.c \
+	  blibdirs.ts so_locations \
+	  core.[0-9][0-9] core.*perl.*.? \
+	  *perl.core $(INST_ARCHAUTODIR)/extralibs.all \
+	  $(BASEEXT).bso $(BASEEXT).exp \
+	  tmon.out core.[0-9][0-9][0-9][0-9] \
+	  *$(OBJ_EXT) $(INST_ARCHAUTODIR)/extralibs.ld \
+	  MYMETA.yml *$(LIB_EXT) \
+	  lib$(BASEEXT).def core.[0-9][0-9][0-9] \
+	  $(MAKE_APERL_FILE) core.[0-9] \
+	  $(BASEEXT).def perl$(EXE_EXT) \
+	  pm_to_blib.ts 
 	- $(RM_RF) \
 	  blib 
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
@@ -830,8 +830,8 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  Collectd/Plugins/OpenVZ.pm $(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
 	  Collectd/Unixsock.pm $(INST_LIB)/Collectd/Unixsock.pm \
+	  Collectd/Plugins/OpenVZ.pm $(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
 	  Collectd.pm $(INST_LIB)/Collectd.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 

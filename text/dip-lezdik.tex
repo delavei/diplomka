@@ -364,19 +364,6 @@ Service component metrics including CPU, disk, memory, JVM, load, network, proce
 
 \chapter{Cloudové technológie}
 
-\section{Dávkové úlohy}
-\subsection{Torque}
-TORQUE Resource Manager poskytuje kontrolu nad dávkovými úlohami a distribuovanými výpočetnými zdrojmi. Je to pokročilý open-source product, založený na na pôvodnom PBS projekte. 
-Zahŕňa vyznamné pokroky v oblastiach škálovania, spoľahlivosti a funkcionality a je v súčasnosti používaný desiatkami tisícov vládnych, akademických a komerčných webových stránok po celom svete. Torque môže byť voľne používaný, modifikovaný a distribuovaný je v rámci obmedzení svojou licenciou.\cite{torque}
-
-Monitorovanie tejto aplikácie bude prebiehat prostredníctvom volania jej ovládacích príkazov:
-\begin{description}
-\item[\emph{momctl}] - sledovanie záťaže riadiaceho procesu a zisťovanie, ktoré úlohy sa práve spracovávajú
-\item[\emph{printjob}] - sledovanie zdrojov, ktoré spotrebováva konkrétna úloha 
-\end{description}
-
-
-
 \section{Aplikačné kontajnery}
 Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
 nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje nasledovný obrázok: 
@@ -406,6 +393,8 @@ Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. s
 \end{description}
 
 Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
+V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov,ktoré by sa obtiažne priraďovalo jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
+monitorovania nie je úplne vhodný.
 
 
 \subsection{Docker}
@@ -456,110 +445,36 @@ Projekt pozostáva z týchto modulov:
 \end{description}
 
 \chapter{Metriky}
-\section{Torque}
-\subsection{Zbierané metriky}
-Príkaz qstat -j poskytuje viacero režimov výstupu.
-\begin{description}
-\item[\emph{Cluster Queue Format}]
-\\
-\begin{enumerate}
-\item[] the cluster queue name
-\item[] an average of the normalized load average  of  all  queue
-        hosts.
-\item[] the number of currently used slots.
-\item[] the number of slots reserved in advance.
-\item[] the number of currently available slots.
-\item[] the total number of slots.
-\item[] the number of slots which is  in  at  least  one  of  the states  'aoACDS' and in none of the states 'cdsuE'
-\item[] the number of slots which are in one of these  states  or in any  combination of them: 'cdsuE'
-\end{enumerate}
+Každá z technolóǵií cloudového výpočetného strediska je zdrojom mnohých dát o vyťažení zdrojov. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. Je vhodné mať také metriky pre všetky využívané cloudové technológie, ktoré je možné
+nejakým spôsobom porovnať medzi sebou. V prípade procesora sa jedná o jeho aktuálne vyťaženie, ale zároveň je zaujímavým údajom aj prepočítaný procesorový čas. Táto metrika môže byť efektívnym
+nástrojom pre následné učtovanie jednotlivým úžívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné vždy o každom zdroji zberať rovnaké dáta. 
+O distribuovaných výpočtoch napríklad nie je možné efektívne zistiť aktuálne vyťaženie procesora. Takéto úlohy sa počítajú na viacerých uzloch clustera. O poradí a rozmiestnení požiadaviek na zdroje
+rozhodouje riadiaca aplikácia, takže sa nejedná o jeden procesor. Táto aplikácia má ale prehľad o tom, koľko času strávil celý cluster počítaním danej úlohy. Takže v určitom ohľade zrovnateľná s virtuálnym
+strojom a jeho spotrebou procesorového času.
 
-\item[\emph{Reduced Format}]
-\\
-\begin{enumerate}
-\item[]the job ID.
-\item[]the priority of the job determining its position  in  the
-        pending  jobs  list.
-\item[] the name of the job,
-\item[] the user name of the job owner.
-\item[] the status of the  job  -  one  of  d(eletion),  E(rror),
-        h(old), r(unning), R(estarted), s(uspended), S(uspended),
-        t(ransfering), T(hreshold) or w(aiting).
-\item[] the submission or start time and date of the job.
-\item[] the  queue  the  job  is  assigned  to  (for  running  or
-        suspended jobs only).
-\item[] the number of job slots or the function of  parallel  job
-        tasks if -g t is specified.
-\item[] the array job task id. Will be empty for non-array  jobs.
-        See  the  -t option to qsub(1) and the -g above for addi-
-        tional information.
-\end{enumerate}
-     If the -t option is supplied, each status line  always  con-
-     tains  parallel  job task information as if -g t were speci-
-     fied and each line contains the following parallel job  sub-
-     task information:
-\begin{enumerate}
-\item[] the parallel task ID (do not confuse parallel tasks  with
-        array job tasks),
-\item[] the status of the  parallel  task  -  one  of  r(unning),
-        R(estarted),   s(uspended),   S(uspended),   T(hreshold),
-        w(aiting), h(old), or x(exited).
-\item[] the cpu, memory, and I/O usage,
-\item[] the exit status of the parallel task,
-\item[] and the failure code and message for the parallel task.
-\end{enumerate}
+Podobná situácia nastáva aj u monitorovania sieťových rozhraní. Distribuované výpočty využívajú sieť svojským spôsobom a len na účel vypočítania komplexnejšieho problému. Jedná sa o prepojenie
+uzlov v rámci clustera. Je to jednoúčelová vysokorýchlostná sieť. Z hľadiska poskytovania výpočetných kapacít dáva väčší zmysel orientácia na využívanie konektivity smerom do internetu. 
 
-\item[\emph{Full Format}]
-\\
-\begin{enumerate}
-\item[] the queue name
-\item[] the  queue  type  -  one   of   B(atch),   I(nteractive),
-        C(heckpointing),  P(arallel),  T(ransfer) or combinations
-        thereof or N(one),
-\item[] the number of used and available job slots
-\item[] the load average of the queue host,
-\item[] the architecture of the queue host and
-\item[] the state  of  the  queue  -  one  of  u(nknown)  if  the
-        corresponding  sge\_execd(8) cannot be contacted, a(larm),
-        A(larm),     C(alendar      suspended),      s(uspended),
-        S(ubordinate),  d(isabled), D(isabled), E(rror) or combi-
-        nations thereof.
-\item[] resource availability information
-     is  printed  following  the  queue  status  line.  
-\item[] the job ID,
-\item[] the priority of the job determining its position  in  the
-        pending  jobs  list. 
-\item[] the job name,
-\item[] the job owner name,
-\item[] the status of the job - one of t(ransfering),  r(unning),
-        R(estarted), s(uspended), S(uspended) or T(hreshold) (see
-        the Reduced Format section for detailed information),
-\item[] the submission or start time and date of the job.
-\item[] the number of job slots or the function of  parallel  job
-        tasks if -g t is specified.
-\end{enumerate}
+\subsection{Význam popisných údajov metrík}
+Metrické dáta vypovedajú o využití zdrojov. Vieme určiť ako dlhý čas a v akej miere bol využívaný výpočtový výkon. Z nich samotných nevieme presne určiť, kto zdroje využíval. Pre to aby mali tieto dáta zmysel 
+pre neskoršie účtovanie, je potrebné mať možnosť ich priradiť k užívateľom, či už sa jedná o vlastnika virtuálneho stroja alebo uživateľa, ktorý spustil kontrétnu úlohu. Na základe týchto ďalších popisných  údajov je potom 
+možné zisťovať, kto zdroje vyťažoval za časové obdobie najviac a podľa toho stanoviť prípadnú cenu za používanie zdrojov. Okrem identity je vhodné metriky popisovať aj ďalšími údajmi, ako je miesto, kde
+sa zdroj nachádza, názov stroja, ktorý poskytuje svoje kapacity, a ďalšie špecifické údaje, ktoré sa týkajú jednotlivých technológií, ktoré budem popisovať konkrétnejšie v ďalších častiach.
 
-If the -t option is supplied, each job status line also con-
-     tains
-     \begin{enumerate}
+\subsection{Periodicita zberania metrík}
+Zberané metriky sa líšia tým, ako veľmi sa v čase menia. Kým záťaž procesora, vstupno-výstupné operácie alebo množstvo prenesených dát sa mení v čase pomerne rýchlo, veľkosť clustera v počte poskytnutých procesorov 
+alebo virtuálnej pamäte sa nemení tak často. Má preto zmysel uvažovať o kontrole intervalu zbierania jednotlivých metrík. Nie len 
+na úrovni zhluku metrík pre konrétnu technológiu ale aj pre jednotlivé metriky samostatne.
 
-\item[] the task ID,
-\item[] the status of the task - one of  r(unning),  R(estarted),
-        s(uspended), S(uspended), T(hreshold), w(aiting), h(old),
-        or x(exited) (see the Reduced Format section for detailed
-        information),
-\item[] the cpu, memory, and I/O usage,
-\item[] the exit status of the task,
-\item[] and the failure code and message for the task.
-\end{enumerate}
-\end{description}
- 
-Potrebné metriky poskytuje prepínač -t v redukovanom formáte, preto som použil túto metódu výstupu.
+\subsection{Formát hodnoty metriky}
+Metriky ako záznamy obsahujú čas, kedy bola hodnota nameraná, samotnú hodnotu nejakého sledovaného javu a popisné dáta. Na metrické
+hodnoty sa môžeme pozerať ako na prírastky alebo ako na absolútne hodnoty. Prírastky hovoria o rozdiele aktuálne nameranej hodnoty 
+a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu využitia zdroja. 
 
 \section{Docker}
 \subsection{Sieť}
 Aby mohli medzi sebou jednotlivé kontajnery komunikovať, Docker im poskytuje sieťové rozhrania. Každé rozhranie má nakonfigurovanú sieť,
-do ktorje patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
+do ktorej patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
 Užívatelia si môžu definovať vlastné siete. Docker na vytvorenie týchto sietí poskytuje dva ovládače.
 
 \subsubsection{Sieť typu most}
@@ -572,9 +487,9 @@ Po vytvorení siete je možné spustiť kontajnery v tejto sieti príkazom
 {\em \$ docker run --net=NÁZOV\_SIETE --name=NÁZOV\_KONTAJNERA}
 
 \subsubsection{Prekladaná sieť}
-Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hostov zároveň. To umožňuje komunikovať medzi sebou aj kontajnerom,
-ktoré sú spustené v rozličných k a ani na jednom hoste.
-An overlay network
+Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hosťujúcich počítačov zároveň. To umožňuje komunikovať medzi sebou aj kontajnerom,
+ktoré sú spustené v rozličných sieťach, prípadne na inom hosťujúcom počítači..
+
 
 \subsubsection{Metriky siete}
 Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
@@ -590,15 +505,19 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \end{description}
 
 \subsection{Pamäť}
-\\
+Cez API Dockeru je možné získať nasledovné metriky pamäte.
 \begin{description}
 \item[usage] - spotreba pamäte
 \item[failcnt] - počet chýb
 \end{description}
+Docker neposkytuje údaj o tom, koľko pamäte poskytuje hosťujúci počítač. Zistiť tento údaj však v implementácií nepredstavuje problém,
+a preto je tiež zberaná táto metrika.
 
 \subsection{Procesor}
+Procesor predstavuje jeden z najdôležitejších údajov o vyťažení zdrojov. Docker poskytuje viaceré metriky o procesore, ktorých hodnoty 
+predstavujú výpočetný čas strávený na procesore: 
 \begin{description}
-\item[percpu\_usage] - využitie jednotlivých procesorov/jadier
+\item[percpu\_usage] - využitie jednotlivých jadier procesora
 \item[usage\_in\_usermode] - 
 \item[total\_usage] - 
 \item[usage\_in\_kernelmode] - 
@@ -643,7 +562,7 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \end{description}
 
 \subsection{Metriky CPU}
-V dokumentácií sa presne neuvádza, budem musieť zstiť z implementácie.
+Libivirt poskytuje o procesore údaj o tom, koľko výpočetného času strávil daný virtuálny stroj na procesore hosťujúceho počítača.
 
 
 \section{Hadoop}
@@ -676,6 +595,7 @@ Toto API poskytuje metriky o celom clusteri.
 \end{description}
 
 \subsection{Cluster Application API}
+Tento koncový bod API poskytuje informácie o jednotlivých aplikáciách, ktoré boli alebo sú spustené na clusteri.
 \begin{description}
 \item[id] - The application id
 \item[user] - The user who started the application
@@ -699,6 +619,24 @@ Toto API poskytuje metriky o celom clusteri.
 \item[runningContainers] - The number of containers currently running for the application
 \item[memorySeconds] - The amount of memory the application has allocated (megabyte-seconds)
 \item[vcoreSeconds] - The amount of CPU resources the application has allocated (virtual core-seconds)
+\end{description}
+
+\subsection{Node Application API}
+Toto API poskytuje metriky o využití jednotlivých uzlov clusteri.
+\begin{description}
+\item[rack] - The rack location of this node
+\item[state] - State of the node - valid values are: NEW, RUNNING, UNHEALTHY, DECOMMISSIONED, LOST, REBOOTED
+\item[id] - The node id
+\item[nodeHostName] - The host name of the node
+\item[nodeHTTPAddress] - The nodes HTTP address
+\item[healthStatus] - The health status of the node - Healthy or Unhealthy
+\item[healthReport] - A detailed health report
+\item[lastHealthUpdate] - The last time the node reported its health (in ms since epoch)
+\item[usedMemoryMB] - The total amount of memory currently used on the node (in MB)
+\item[availMemoryMB] - The total amount of memory currently available on the node (in MB)
+\item[usedVirtualCores] - The total number of vCores currently used on the node
+\item[availableVirtualCores] - The total number of vCores available on the node
+\item[numContainers] - The total number of containers currently running on the node
 \end{description}
 
 \chapter{Analýza a návrh}
