@@ -13,10 +13,10 @@ clean:
 pdf: $(THESIS).pdf
 
 $(THESIS).pdf: $(THESIS).tex
-	pdflatex -output-format=pdf $(THESIS)
-	pdflatex -output-format=pdf $(THESIS)
+	pdflatex -output-format=pdf $(THESIS).tex
+	pdflatex -output-format=pdf $(THESIS).tex
 	bibtex $(THESIS).bib
-	pdflatex -output-format=pdf $(THESIS)
+	pdflatex -output-format=pdf $(THESIS).tex
 	@while grep -qs 'LaTeX Warning:.*references' $(THESIS).log; do echo; pdflatex -output-format=pdf $(THESIS); done
 	mv $(THESIS).pdf $(THESIS)-in.pdf
 	pdfopt $(THESIS)-in.pdf $(THESIS).pdf

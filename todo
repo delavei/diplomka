@@ -7,7 +7,7 @@ sudo docker run -it ubuntu  /bin/bash
 
 text
 nazvy metrik tak ako ich ukladam do databazy
-automatická detekcia nových spustených aplikácií a pridaných zdrojov
+metriky o konfigurácií zberať menej často 
 
 docker
 robit pravidelne refresh zoznamu kontajnerov
@@ -43,8 +43,9 @@ problematika vypoctu loadu na procesor - mozem predpokladat zberovy interval tyk
 okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
 cpu load na virtualku je vacsi mmozno ako cpu cas, preto je potrebne aj ten zberat
+napisat o tom, ako sa vypocitava cpu load
 
-ako riesit tie 
+v ramci pluginu paralelizacia - napr docker kontajnery
 
 IDE O MONITORING TYCH JEDNOTLIVYCH STROJOV ALEBO APLIKACII SAMYCH O SEBE??
 
