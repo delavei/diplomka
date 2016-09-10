@@ -285,92 +285,60 @@ monitorovania nie je úplne vhodný.
 
 \section{Nagios}
 Nagios je aplikácia, ktorá poskytuje komplexné riešenie na monitorovanie systémov. Poskytuje informácie o kľúčových komponentoch infraštruktúry vrátane aplikácií, služieb, operačného systému, sieťových protokolov, systémových metrík
-a sieťovej infraštruktúry. \cite{19}
+a sieťovej infraštruktúry. \cite{19} Aplikácia pozostáva z jadra, ktoré riadi zber údajov, a z množstva pluginov tretích strán. Tie sa zaoberajú monitorovaním jednotlivých oblastí systému. Ďalej aplikácia
+poskytuje grafické užívateľské rozhranie v podobe webového rozhrania. K dispozícií sú rôzne vizualizácie nameraných dát, grafy a histogramy. Nagios disponuje aj systémom užívateľských účtov. Tie sa delia na dva typy: 
+administrátorov a bežných užívatešov. Bežní užívatelia majú prístup k nameraným hodnotám a zobrazovaniu grafov. Administrátori môžu konfigurovať aplikáciu, pridávať služby, ktoré je potrebné monitorovať,
+ upravovať parametre monitorovania a spravovať užívateľské účty. K dispozícií je aj uchovávanie konfigurácie aplikácie a spravovanie týchto konfigurácií. Súčasťou je aj systém na upozorňovanie na kritické
+ hodnoty, či už formou emailu alebo SMS správou. Aplikácia je vyvíjaná pre platformu CentOS a Red Hat Enterprise Linux. Namerané metriky sa uchovávajú v logovacích súboroch. 
+ Pomocou pluginov je možné ich odosielať do MySQL databázy prípadne PostgreSQL. Nagios predstavuje centralizované riešenie pre  monitorovanie, kde výkonné jadro riadi zberanie metrík naprieč celým systémom. 
+ Jadro a pluginy sú dostupné zdarma, komplexné riešenie je potrebné zakúpiť. Cena sa odvíja od množstva zariadení, ktoré je potrebné monitorovať. Zariadením sa rozumie niečo, čo má IP adresu, 
+ prípadne doménové meno - či už sa jedná o firewall, switch, router, pracovnú stanicu alebo server. V súčasnosti Nagios disponuje pluginmi Docker, Hadoop aj libvirt/KVM, no ani jeden z pluginov 
+ nemonitoruje požadované metriky.
 
 \subsection{PluginAPI}
-Scripts and executables must do two things (at a minimum) in order to function as Nagios plugins:
+Nagios pluginy existujú vo forme skriptov alebo spustiteľných programov. Aby mohli fungovať ako pluginy ich činnosť musí spĺnať dve kritériá. Prvým je výpis aspoň jedného riadku na štandardný výstup.
+Ten sa týka nameraných metrík. Od verzie 3 je podporovaných aj viacerov riadkov na výstupe. Druhým kritériom je návratová hodnota.
+API rozoznáva štyri návratové hodnoty. Tie zodpovedajú stavom monitorovanej služby - či je služba v poriadku, či vygenerovala nejaké varovanie, či je jej stav kritický, alebo neznámy. Prednastavená maximálna dĺžka 
+výstupu je 4 kB, je ju však možé pomocou konfigurácie zmeniť.
 
-Exit with one of several possible return values
-Return at least one line of text output to STDOUT
-The inner workings of your plugin are unimportant to Nagios. Your plugin could check the status of a TCP port, run a database query, check disk free space, or do whatever else it needs to check something. The details will depend on what needs to be checked - that's up to you.
-
-Return Code
-
-Nagios determines the status of a host or service by evaluating the return code from plugins. The following tables shows a list of valid return codes, along with their corresponding service or host states.
-
-Plugin Return Code	Service State	Host State
-\\0	OK	UP
-\\1	WARNING	UP or DOWN/UNREACHABLE*
-\\2	CRITICAL	DOWN/UNREACHABLE
-\\3	UNKNOWN	DOWN/UNREACHABLE
-\\Note Note: If the use\_aggressive\_host\_checking option is enabled, return codes of 1 will result in a host state of DOWN or UNREACHABLE. Otherwise return codes of 1 will result in a host state of UP. The process by which Nagios determines whether or not a host is DOWN or UNREACHABLE is discussed here.
-
-Plugin Output Spec
-
-At a minimum, plugins should return at least one of text output. Beginning with Nagios 3, plugins can optionally return multiple lines of output. Plugins may also return optional performance data that can be processed by external applications. The basic format for plugin output is shown below:
-
-\\TEXT OUTPUT | OPTIONAL PERFDATA
-\\LONG TEXT LINE 1
-\\LONG TEXT LINE 2
-\\...
-\\LONG TEXT LINE N | PERFDATA LINE 2
-\\PERFDATA LINE 3
-\\...
-\\PERFDATA LINE N
-
-The performance data (shown in orange) is optional. If a plugin returns performance data in its output, it must separate the performance data from the other text output using a pipe (|) symbol. Additional lines of long text output (shown in blue) are also optional.
-\cite{01}
-
-\subsection{Timeouty}
-
-Format:	service\_check\_timeout=<seconds>
-Example:	service\_check\_timeout=60
-This is the maximum number of seconds that Nagios will allow service checks to run. If checks exceed this limit, they are killed and a CRITICAL state is returned. A timeout error will also be logged.
-
-There is often widespread confusion as to what this option really does. It is meant to be used as a last ditch mechanism to kill off plugins which are misbehaving and not exiting in a timely manner. 
-It should be set to something high (like 60 seconds or more), so that each service check normally finishes executing within this time limit. If a service check runs longer than this limit, N
-agios will kill it off thinking it is a runaway processes.
-
-\cite{02}
-
-
-Nie je mechanizmus pre reštart alebo individuálne timeouty.
-Má zastaralý Hadoop plugin, používa staré REST API.
-Last Release Date 2010-11-05
-\cite{03}
+\subsection{Riadenie intervalov zberu metrík}
+Pre jednotlivé monitorovacie sondy je možné nadefinovať interval v počte sekúnd, v ktorom je potrebné aby sonda ukončila svoju činnosť. Ak sa tak nestane, proces sondy je ukončený a jej návratová hodnota
+zaznamenaná ako kritická. Taktiež je toto zaznamenané do logov Nagiosu. Tento mechanizmus predstavuje akúsi poslednú záchranu pred zahltením systému pluginmi, ktoré sa nesprávajú podľa očakávaní.
 
 \section{Zabbix}
-\subsection{Timeouty}
-Timeout processing
-Zabbix will not process a simple check longer than Timeout seconds defined in Zabbix server configuration file.
-\cite{04}
+Zabbix je open-source aplikácia na monitorovanie systémov od malých systémov s malým počtom uzlov až po veľké firemné prostredia s tisíckami strojov. Architektúra aplikácie pozostáva zo serveru a agentov.
+Úlohou agentov je zber monitorovacích dát a ich odosielanie serveru. Komunikácia týchto dvoch častí môže prebiehať dvoma spôsobmi. V prvom prípade si agent vyžiada zoznam metrík, ktoré má sledovať. Následne 
+serveru odosiela všetky tieto metriky po jednom. Druhou alternatívou je postup, kedy sa server agenta pýta na jednotlivé hodnoty metrík a ten mu ich odosiela. Server spravuje konfiguráciu jednotlivých agentov,
+čo uľahčuje ovládanie ich správania naprieč celou infraštruktúrou.
+\\Aplikácia zberá udáje o dostupných zdrojoch uzlov, o počte procesorov, dostupnej pamäti a úložnej kapacite. Taktiež zberá údaje o aktuálnom vyťažení týchto zdrojov. Okrem toho sleduje dostupnosť a parametre
+služieb ako FTP, DNS, HTTP, SMTP, SSH a rôznych ďalších. Taktiež poskytuje údaje o proces bežiacich v systéme a o užívateľoch. Zaujímavým prvkom je monitorovanie logov, ich analýza a vytváranie varovaní 
+v prípade, že je to nutné.
+\\Zabbix vie zberané dáta vizualizovať pomocou grafov. Súčasťou je aj sledovanie zberaných hodnôt, ich kontrola na požadovaný rozsah a generovanie notifikácií. Poskytuje aj manažment užívateľov samotnej 
+aplikácie a ich práv na zaobchádzanie s ňou. Zabbix podporuje autodetekciou nových prvkov v infraštruktúre. Kontroluje zadaný sieťový rozsah na nové uzly, služby na nich bežiace alebo automaticky registruje
+nových spustených agentov.
+\\Na zvládanie záťaže vo veľkých systémoch je zavedený systém proxy serverov. Tie zhlukujú dáta z niekoľkých agentov a až potom sú odosielané centrálnemu serveru.
+\\Zabbix má vlastnú databázu na uchovávanie zozbieraných dát. Rozdeluje ich na históriu a trendy. História sú dáta tak, ako boli namerané, trendy predstavujú agregované dáta z pohľadu dlhších období, napr. v 
+rádoch rokov.
+\\V súčasnosti Zabbix nepodporuje zber metrík z Hadoopu. Je možné nainštalovať agenta do kontajneru alebo virtuálneho stroja. To ale nepredstavuje ideálne riešenie, nakoľko tieto služby v prvom rade
+slúžia pre potreby užívateľov a je chodné nechať na nich, čo v danom kontajneri alebo virtuálnom stroji chcú mať spustené.
 
-Zabbix Agent
-Timeout	 no	 1-30	3	Spend no more than Timeout seconds on processing
+\subsection{Riadenie intervalov zberu metrík}
+Konrola zberu jednotlivých metrík z hľadiska doby trvania tohoto zberu sa v Zabbixe odohráva na úrovni agenta a serveru. Na úrovni agenta ide o čas, ktorý je možné stráviť spracovávaním a získavaním
+jednotlivých metrík. Pre server je potom definovaná doba, ktorú je ochotný čakať na odpoveď agenta. Tieto doby je možné konfigurovať v rozsahu od 1 do 30 sekúnd.
 \cite{20}
-
-Zabbix Server
-Timeout	 no	 1-30	3	Specifies how long we wait for agent, SNMP device or external check (in seconds).
 \cite{05}
+Zabbix nespracuje jednoduchú kontrolu na hodnotu metriky, ktorá trvá dlhšie ako túto dobu.
+\cite{04}
+Dokumentácia však neuvádza, ako sa aplikácia riadi beh externých procesov, ktoré zberajú dáta.
 
-Neuvádza sa nič o zastavovaní procesov.
 \subsection{Moduly}
-
-Loadable modules offer a performance-minded option for extending Zabbix functionality.
-
-There already are ways of extending Zabbix functionality by way of:
-
-user parameters (agent metrics)
-external checks (agent-less monitoring)
-system.run[] Zabbix agent item.
-They work very well, but have one major drawback, namely fork(). Zabbix has to fork a new process every time it handles a user metric, which is not good for performance. It is not a big deal normally, however it could be a serious issue when monitoring embedded systems, having a large number of monitored parameters or heavy scripts with complex logic or long startup time.
-
-Zabbix 2.2 comes with support of loadable modules for extending Zabbix agent, server and proxy without sacrificing performance.
-
-A loadable module is basically a shared library used by Zabbix daemon and loaded on startup. The library should contain certain functions, so that a Zabbix process may detect that the file is indeed a module it can load and work with.
-
-Loadable modules have a number of benefits. Great performance and ability to implement any logic are very important, but perhaps the most important advantage is the ability to develop, use and share Zabbix modules. It contributes to trouble-free maintenance and helps to deliver new functionality easier and independently of the Zabbix core code base.
-\cite{06}
+Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôsobmi. \cite{06}
+\begin{description}
+\item[\emph{užívateľské parametre}] - v tomto prípade užívateľ definuje v agentovi názov metriky a príkaz, ktorý sa má vykonať na zber jej hodnoty
+\item[\emph{externé kontroly}] - jedná sa o kontrolu na strane servera, kedy je tiež definovaný skript zberajúci dáta a server ho spúšťa
+\item[\emph{system.run}] - jedná sa o kontrolu na strane agenta, ktorá podporuje väčší výstup spusteného príkazu ako len hodnota metriky
+\end{description}
+Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľaných knižníc, ktoré musia implementovať požadované funkcie.
 
 \section{Icinga}
 By default the Icinga 2 daemon is running as icinga user and group using the init script. Using Debian packages the user and group are set to nagios for historical reasons.
@@ -393,9 +361,7 @@ Ide len o spustenie nejakého systémového príkazu.
 these tiny pure shell+awk plugins for monitoring your hadoop cluster are a enhanced and uptodate version of exchange.nagios.org check\_hadoop-dfs.sh
 \cite{10}
 
-\section{Cacti}
-Cacti is a complete network graphing solution designed to harness the power of RRDTool's data storage and graphing functionality. Cacti provides a fast poller, advanced graph templating, multiple data acquisition methods, and user management features out of the box.
-\cite{11}
+
 
 \section{collectd}
 There are some key differences we think set collectd apart. For one, it's written in C for performance and portability, allowing it to run on systems without scripting language or cron daemon, such as embedded systems. 
@@ -428,25 +394,19 @@ if they are not received for Timeout iterations.  for example, Timeout is set to
 When a value comes within range again or is received after it was missing, an "OKAY-notification" is dispatched.
 \cite{14}
 
-\subsection{Ostatne} 
-\begin{description}
-\item[\emph{Zenoss}]
-\item[\emph{Munin}]
-\end{description}
+
 
 \section{Ganglia} 
-Ganglia is a scalable distributed monitoring system for high-performance computing systems such as clusters and Grids. It is based on a hierarchical design targeted at federations of clusters. It leverages widely used technologies such as XML for data representation, XDR for compact, portable data transport, and RRDtool for data storage and visualization. It uses carefully engineered data structures and algorithms to achieve very low per-node overheads and high concurrency. The implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. It has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
+Ganglia is a scalable distributed monitoring system for high-performance computing systems such as clusters and Grids. It is based on a hierarchical design targeted at federations of clusters. 
+It leverages widely used technologies such as XML for data representation, XDR for compact, portable data transport, and RRDtool for data storage and visualization. 
+It uses carefully engineered data structures and algorithms to achieve very low per-node overheads and high concurrency. 
+The implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. 
+It has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
 Ganglia is a BSD-licensed open-source project that grew out of the University of California, Berkeley Millennium Project
 \cite{15}
 Pre Gangliu je dostupný monitorovací plugin pre Hadoop.
 \cite{16}
 
-
-\section{Scout}
-Scout runs within Docker containers without any special configuration. \cite{scout}
-
-\section{New Relic}
-http://newrelic.com/docker
 
 \section{AppDynamics}
 https://www.appdynamics.com/community/exchange/extension/docker-monitoring-extension/
@@ -489,7 +449,7 @@ rôznych klientskych knižníc, alebo pomocou HTTP API. Na vizualizáciu dát po
 
 \subsection{Politiky udržiavania}
 Každá databáza obsahuje pravidlá, ktoré definujú, po akú dobu majú byť ukladané dáta časových rád a koľko kópií dát má byť vytvorených. Jedna databáza môže mať niekoľko takýchto politík. Pri zápise 
-do nej je môžné špeicifikovať, ktorá politika sa má pre zápis použiť. Pri vytvorení databázy je automaticky vytvorená jedna politika
+do nej je môžné špecifikovať, ktorá politika sa má pre zápis použiť. Pri vytvorení databázy je automaticky vytvorená jedna politika.
 
 \subsection{Kontinuálne dotazovanie}
 Databáza je schopná periodicky vykonávať požiadavky na dáta. Cieľom je zmenšovanie objemu dát. Ide o zhlukovanie dát s vysokou frekvenciou zberu, čím vzniknú dáta s menšou hustotou zberu. Táto hodnota je 
@@ -545,7 +505,7 @@ Po vytvorení siete je možné spustiť kontajnery v tejto sieti príkazom
 
 \subsubsection{Prekladaná sieť}
 Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hosťujúcich počítačov zároveň. To umožňuje komunikovať medzi sebou aj kontajnerom,
-ktoré sú spustené v rozličných sieťach, prípadne na inom hosťujúcom počítači..
+ktoré sú spustené v rozličných sieťach, prípadne na inom hosťujúcom počítači.
 
 
 \subsubsection{Metriky siete}
@@ -757,28 +717,9 @@ Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. 
 pomocou modulu WriteTSDB.
 
 \section{Techniky zbierania metrík}
-\subsection{Torque}
-Na zbieranie metrík som použil príkaz \emph{qstat -j}.
 
-			Prints either for all pending jobs  or  the  jobs  contained  in  job\_list  various information. The job\_list
-          can contain job\_ids, job\_names, or wildcard  expression
-          sge\_types(1).
 
-          For  jobs  in  E(rror)  state  the  error   reason   is
-          displayed. For jobs that could not be dispatched during
-          in the  last  scheduling  interval  the  obstacles  are
-          shown, if 'schedd\_job\_info' in sched\_conf(5) is config-
-          ured accordingly.
 
-          For running  jobs  available  information  on  resource
-          utilization   is  shown  about  consumed  cpu  time  in
-          seconds,  integral  memory  usage  in  Gbytes  seconds,
-          amount  of  data  transferred in io operations, current
-          virtual memory utilization in Mbytes, and maximum  vir-
-          tual  memory utilization in Mbytes. This information is
-          not available if resource utilization retrieval is  not
-          supported for the OS platform where the job is hosted.
-          
 \subsection{Docker}
 Budem zberať metriky o spotrebovávaných zdrojoch pre každý kontajner. Na komunikáciu s Dockerom je možné využiť:
 \begin{description}

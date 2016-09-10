@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  7 SEP 2016 01:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  9 SEP 2016 22:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -673,150 +673,120 @@ Overfull \hbox (32.2544pt too wide) in paragraph at lines 282--285
 
 LaTeX Warning: Citation `19' on page 15 undefined on input line 288.
 
-[15]
+[15] [16]
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.312 \\T
-         EXT OUTPUT | OPTIONAL PERFDATA
-? 
-
-LaTeX Warning: Citation `01' on page 16 undefined on input line 322.
+LaTeX Warning: Citation `20' on page 17 undefined on input line 328.
 
 
-Overfull \hbox (23.6799pt too wide) in paragraph at lines 326--329
-\T1/ppl/m/n/10.95 Format: ser-vice_check_timeout=<seconds> Ex-am-ple: ser-vice_
-check_timeout=60
- []
+LaTeX Warning: Citation `05' on page 17 undefined on input line 329.
 
 
-LaTeX Warning: Citation `02' on page 16 undefined on input line 334.
-
-[16]
-
-LaTeX Warning: Citation `03' on page 17 undefined on input line 340.
+LaTeX Warning: Citation `04' on page 17 undefined on input line 331.
 
 
-LaTeX Warning: Citation `04' on page 17 undefined on input line 346.
+LaTeX Warning: Citation `06' on page 17 undefined on input line 335.
 
 
-LaTeX Warning: Citation `20' on page 17 undefined on input line 350.
+Underfull \vbox (badness 2326) has occurred while \output is active []
+
+ [17]
+
+LaTeX Warning: Citation `07' on page 18 undefined on input line 345.
 
 
-LaTeX Warning: Citation `05' on page 17 undefined on input line 354.
+LaTeX Warning: Citation `08' on page 18 undefined on input line 349.
 
 
-LaTeX Warning: Citation `06' on page 17 undefined on input line 373.
+LaTeX Warning: Citation `09' on page 18 undefined on input line 358.
 
 
-LaTeX Warning: Citation `07' on page 17 undefined on input line 377.
-
-[17]
-
-LaTeX Warning: Citation `08' on page 18 undefined on input line 381.
-
-
-LaTeX Warning: Citation `09' on page 18 undefined on input line 390.
-
-
-LaTeX Warning: Citation `10' on page 18 undefined on input line 394.
-
-
-LaTeX Warning: Citation `11' on page 18 undefined on input line 398.
-
-
-LaTeX Warning: Citation `12' on page 18 undefined on input line 407.
+LaTeX Warning: Citation `10' on page 18 undefined on input line 362.
 
 [18]
 
-LaTeX Warning: Citation `13' on page 19 undefined on input line 411.
+LaTeX Warning: Citation `12' on page 19 undefined on input line 373.
 
 
-LaTeX Warning: Citation `14' on page 19 undefined on input line 429.
+LaTeX Warning: Citation `13' on page 19 undefined on input line 377.
 
 [19]
 
-LaTeX Warning: Citation `15' on page 20 undefined on input line 440.
+LaTeX Warning: Citation `14' on page 20 undefined on input line 395.
 
 
-LaTeX Warning: Citation `16' on page 20 undefined on input line 442.
+LaTeX Warning: Citation `15' on page 20 undefined on input line 406.
 
 
-LaTeX Warning: Citation `scout' on page 20 undefined on input line 446.
+LaTeX Warning: Citation `16' on page 20 undefined on input line 408.
 
 
-Overfull \hbox (8.1424pt too wide) in paragraph at lines 452--453
+Overfull \hbox (8.1424pt too wide) in paragraph at lines 412--413
 \T1/ppl/m/n/10.95 https://www.appdynamics.com/community/exchange/extension/dock
 er-
  []
 
 
-LaTeX Warning: Citation `17' on page 20 undefined on input line 468.
+LaTeX Warning: Citation `17' on page 20 undefined on input line 428.
 
-[20]
 
-LaTeX Warning: Citation `openTSDB' on page 21 undefined on input line 476.
+LaTeX Warning: Citation `openTSDB' on page 20 undefined on input line 436.
 
-<images/metrilyx.png, id=99, 937.5025pt x 511.9125pt>
+[20] <images/metrilyx.png, id=99, 937.5025pt x 511.9125pt>
 File: images/metrilyx.png Graphic file (type png)
 
 <use images/metrilyx.png>
-Package pdftex.def Info: images/metrilyx.png used on input line 481.
+Package pdftex.def Info: images/metrilyx.png used on input line 441.
 (pdftex.def)             Requested size: 289.08109pt x 157.84763pt.
 
 
-LaTeX Warning: Citation `Metrilyx' on page 21 undefined on input line 482.
+LaTeX Warning: Citation `Metrilyx' on page 21 undefined on input line 442.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (0.10541pt too wide) in paragraph at lines 487--489
+Overfull \hbox (0.10541pt too wide) in paragraph at lines 447--449
 \T1/ppl/m/n/10.95 £í-tajú po-mo-cou rozhra-nia príka-zového ri-adka, rôznych kl
 ientskych kniºníc,
  []
 
-[21] [22 <./images/metrilyx.png>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21 <./images/metrilyx.png>] [22]
 Chapter 5.
 [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 538--545
+Underfull \hbox (badness 10000) in paragraph at lines 498--505
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 538--545
+Underfull \hbox (badness 10000) in paragraph at lines 498--505
 
  []
 
 [24] [25] [26]
-Overfull \hbox (6.64348pt too wide) in paragraph at lines 604--605
+Overfull \hbox (6.64348pt too wide) in paragraph at lines 564--565
 []\T1/ppl/m/n/10.95 - po£et pri-jatých pake-
  []
 
 
-Overfull \hbox (6.78548pt too wide) in paragraph at lines 609--610
+Overfull \hbox (6.78548pt too wide) in paragraph at lines 569--570
 []\T1/ppl/m/n/10.95 - The num-ber of statis-tics sup-ported
  []
 
 [27] [28]
-Overfull \hbox (28.8714pt too wide) in paragraph at lines 662--663
+Overfull \hbox (28.8714pt too wide) in paragraph at lines 622--623
 \T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
 EW_SAVING,
  []
 
 
-Overfull \hbox (5.71338pt too wide) in paragraph at lines 662--663
+Overfull \hbox (5.71338pt too wide) in paragraph at lines 622--623
 \T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
  []
 
 [29]
-Overfull \hbox (2.61348pt too wide) in paragraph at lines 685--686
+Overfull \hbox (2.61348pt too wide) in paragraph at lines 645--646
 []\T1/ppl/m/n/10.95 - State of the node - valid val-ues are: NEW, RUN-NING, UN-
 HEALTHY,
  []
@@ -824,7 +794,7 @@ HEALTHY,
 [30]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 701--706
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 661--666
 \T1/ppl/m/n/10.95 hlavne o aka-demickú spoluprácu. Meta-Cen-trum spravuje výpo£
 etné prostriedky
  []
@@ -832,7 +802,7 @@ etné prostriedky
 [31
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 723--725
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 683--685
 \T1/ppl/m/n/10.95 Monitorovacia ap-liká-cia by mala posky-to-va´ zrov-nate©né v
 ýsledky v oblasti
  []
@@ -843,16 +813,16 @@ Chapter 7.
 
 ]
 
-LaTeX Warning: Citation `18' on page 35 undefined on input line 822.
+LaTeX Warning: Citation `18' on page 35 undefined on input line 763.
 
-[35] [36]
+[35]
 Chapter 8.
 No file dip-lezdik.bbl.
-[37
+[36
 
 ]
 Appendix A.
-[38
+[37
 
 ] (./dip-lezdik.aux)
 
@@ -860,22 +830,22 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2530 strings out of 495028
- 32185 string characters out of 6181498
- 91062 words of memory out of 5000000
- 5672 multiletter control sequences out of 15000+600000
+ 2525 strings out of 495028
+ 32162 string characters out of 6181498
+ 92062 words of memory out of 5000000
+ 5667 multiletter control sequences out of 15000+600000
  28419 words of font info for 51 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,7n,23p,810b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,23p,355b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./fi-logo.514pk>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb>
-Output written on dip-lezdik.pdf (46 pages, 449745 bytes).
+Output written on dip-lezdik.pdf (45 pages, 449137 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
+ 228 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

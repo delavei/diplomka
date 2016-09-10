@@ -5,10 +5,24 @@ sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
 
-text
+TEEEEEEEEEEEEEEEEEEEXT
+Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
+by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
+Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia 
+
+okomentovať, že nie všetky poskytované metriky má význam aj zberať
+
+cpu load na virtualku je vacsi mmozno ako cpu cas, preto je potrebne aj ten zberat
+napisat o tom, ako sa vypocitava cpu load
+
+v ramci pluginu paralelizacia - napr docker kontajnery
 nazvy metrik tak ako ich ukladam do databazy
 metriky o konfigurácií zberať menej často 
 
+
+rozdiely medzi bodmi predstavuju vlastne vytazenie tých zdrojov
+
+IMPLEMENTACIA
 docker
 robit pravidelne refresh zoznamu kontajnerov
 config - host-majbe
@@ -21,33 +35,28 @@ nacitavanie unsigned long long (napr. docker system cpu usage)
 hadoop
 adresa klastra do konfiguracie
 
-
-
-
 virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
-     - pridat cpu kernelmode a usermode?
+     - pridat cpu kernelmode a usermode - to tuším nejde
+     - dorobit cpu load celého procesu virtuálky
 
-otazky
+
+OTAZKY
 hadoop
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
 joby vs aplikacie - hadoop
 
-text
-Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
-by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
 
-automatická detekcia nových spustených aplikácií a pridaných zdrojov??
 
-problematika vypoctu loadu na procesor - mozem predpokladat zberovy interval tyk aky si ho nakonfigurujem - asi nie, bude treba zistit aktualny
+MAIL
+o softveroch pisem ake maju pluginy, ako sa spravaju z hladiska skalovatelnosti a distribucie a ako riesia ukladanie dat
 
-okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
-cpu load na virtualku je vacsi mmozno ako cpu cas, preto je potrebne aj ten zberat
-napisat o tom, ako sa vypocitava cpu load
 
-v ramci pluginu paralelizacia - napr docker kontajnery
 
-IDE O MONITORING TYCH JEDNOTLIVYCH STROJOV ALEBO APLIKACII SAMYCH O SEBE??
+
+
+
+
 
 
 
@@ -64,3 +73,22 @@ spokusy s history vo write_tsdb wt_format_values()
     printf ("%s-%s-%s-%s-%s gauge: " GAUGE_FORMAT " derive: %" PRIi64 " history: "GAUGE_FORMAT" rate: "GAUGE_FORMAT"\n",vl->plugin,ds->ds[i].name,vl->type,vl->type_instance,tsdbtags, vl->values[0].gauge, vl->values[0].derive , history, rates[ds_num]);
 	}
 	*/
+	
+	
+	
+	monitorovacie softy
+	\section{Cacti}
+Cacti is a complete network graphing solution designed to harness the power of RRDTool's data storage and graphing functionality. Cacti provides a fast poller, advanced graph templating, multiple data acquisition methods, and user management features out of the box.
+\cite{11}
+
+\subsection{Ostatne} 
+\begin{description}
+\item[\emph{Zenoss}]
+\item[\emph{Munin}]
+\end{description}
+
+\section{Scout}
+Scout runs within Docker containers without any special configuration. \cite{scout}
+
+\section{New Relic}
+http://newrelic.com/docker
