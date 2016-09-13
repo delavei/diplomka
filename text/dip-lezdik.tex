@@ -194,26 +194,46 @@ Taktiež na ich základe môžeme sledovať činnosť jednotlivých užívateľo
 
 \section{Všeobecné problémy monitorovania}
 Problematika monitorovania v sebe zahŕňa viacero aspektov, ktoré možno oddeliť, zistiť pre ne najlepšie riešenia a spojiť ich tak do funkčného celku. 
-\\V prvom rade je potrebné identifikovať, čo vlastne potrebujeme pre konkrétny systém
+\\
+\\ \emph{Identifikácia relevantných metrík}
+\\
+V prvom rade je potrebné identifikovať, čo vlastne potrebujeme pre konkrétny systém
 monitorovať. Jedná sa o určenie zdrojov kľúčových pre dané prostredie. Pre železničnú spoločnosť to môže byť vyťaženie vlakov alebo množstvo spotrebovanej energie. Niektoré údaje, ktoré potrebujeme vedieť, je možné odvodiť z iných už
 nameraných hodnôt. Takéto meriky budem nazývať sekundárne. Nakoľko môžu byť dopočítané, nie je vždy nevyhnutné ich v čase sledovať a uchovávať.
+\\
+\\ \emph{Analýza v reálnom čase a varovania}
+\\
 \\Namerané hodnoty metrík je okrem neskoršej štatistickej analýzy potrebné sledovať a analyzovať v reálnom čase. Metrika môže mať svoje kritické hodnoty. Sú to hodnoty, ktoré naznačujú, že daný zdroj sa vymyká bežným očakávaniam o využití.
 Na toto je vhodné reagovať. Či už sa jedná o zapísanie hlásenia do logu, zobrazenie varovania alebo prípadné zaslanie emailu či sms správy s popisom udalosti.
-\\Ďalším čiastkovým problémom je granularita metrík. Zdroje sú kontinuálne využívané v čase. Tieto dáta je potrebné nejakým spôsobom digitalizovať. V určitom momente sa pozrieme na zdroj, kvanitifikujeme, do akej miery je využitý a danú
+\\
+\\ \emph{Meracie intervaly}
+\\
+Ďalším čiastkovým problémom je granularita metrík. Zdroje sú kontinuálne využívané v čase. Tieto dáta je potrebné nejakým spôsobom digitalizovať. V určitom momente sa pozrieme na zdroj, kvanitifikujeme, do akej miery je využitý a danú
 hodnotu zobrazíme prípadne uložíme. Meranie je po uplynutí určitého intervalu zopakovať, aby sme získali opäť aktuálne údaje. Rôzne zdroje sa menia v čase rôznou intenzitou. Napr. kapacita vlaku sa v priebehu jazdy mení zriedkavo, zatiaľčo
 počet cestujúcich sa mení v každej stanici. Je preto dôležité určiť aj periodicitu zberania jednotlivých metrík. Niektoré metriky sa môžu meniť takým spôsobom, že nie je efektívne sledovať ich zmenu pravidelne v nejakých intervaloch. Namiesto
 toho je efektívnejšie pri zmene daného parametru túto zmenu ohlásiť spolu s novou hodnotou. U vlakov je to napríklad kapacita vlaku, ktorá sa mení len zriedkavo počas jazdy, napríklad pri prepriahaní vozňov z jedného vlaku do druhého.
-\\Množstvo zdrojov predstavuje ďalšiu oblasť, ktorú je potrebné zvážiť. Môžeme disponovať rôznym počtom zdrojov viacerých druhov, rozmiestnenými na viacerých miestach pod správou mnohých ľudí - prípadne oddelení. Metrické dáta vo svojej
+\\
+\\ \emph{Počet zdrojov}
+\\
+Množstvo zdrojov predstavuje ďalšiu oblasť, ktorú je potrebné zvážiť. Môžeme disponovať rôznym počtom zdrojov viacerých druhov, rozmiestnenými na viacerých miestach pod správou mnohých ľudí - prípadne oddelení. Metrické dáta vo svojej
 podstate len kvantifikujú využitie zdroja vo všeobecnosti. Zaobchádzajú s ním v tom zmysle, ako by bol len jeden. Napr. metrika vyťaženie vlaku v počte osôb. Nehovoria nič bližšie o tom, o aký zdroj sa jedná, kde je ho možné nájsť. V rámci širšieho
 systému je preto dôležitá jednoznačná identifikácia daného zdroja. O danom vlakom preto chceme zistiť napr. jeho názov, linku na ktorej premáva a prípadné ďalšie technické údaje. Takéto údaje sa nazývajú metadáta - čiže dáta o (v tomto 
 prípade o metrických) dátach.
-\\Uchovávanie metrických dát je kľúčovou sučasťou monitorovacieho systému. Doba, po ktorú vlastníci zdrojov uchovávajú metrické dáta, sa líši systém od systému. V niektorých oblastiach to je dokonca upravené zákonmi - napr. telekomunikácie,
+\\
+\\ \emph{Ukladanie dát}
+\\
+Uchovávanie metrických dát je kľúčovou sučasťou monitorovacieho systému. Doba, po ktorú vlastníci zdrojov uchovávajú metrické dáta, sa líši systém od systému. V niektorých oblastiach to je dokonca upravené zákonmi - napr. telekomunikácie,
 v iných je to na zvážení majiteľa ifraštruktúry. Množstvo dát, ktoré je treba uložiť, závisí od viacerých parametrov. Sú nimi počet druhov zdrojov, počet jednotlivých inštancií zdrojov, počet metrík, ktoré sa o zdrojoch
 uchovávajú, periodicita zbieraných metrík a do určitej miery aj spôsob identifikácie daného zdroja. Prikladám tabuľku, ktorá ilustruje ako sa mení počet záznamov v závislosti na uvedených parametroch.
-\\Ukladanie metrických dát predstavuje zároveň úzke hrdlo monitorovacieho riešenia. Zistenie hodnôt metrík pre kontrétny predstavuje v zásade serializovanú činnosť. V určitom čase sú všetky zdroje opýtané na to, ako sú vyťažené. Po jednom
-zistia svoje hodnoty a odošlú ich na uloženie. Množstvo metrík pre jeden zdroj je v bežnej praxi len zlomkom množstva zdrojov. Na časť systému, ktorá je zodpovedná za ukladanie metrík, sú preto v pravidelných intervaloch kladené pomerne 
+\\Ukladanie metrických dát predstavuje zároveň úzke hrdlo monitorovacieho riešenia. Zistenie hodnôt metrík pre kontrétny zdroj predstavuje v zásade serializovanú činnosť. V určitom čase sú všetky zdroje opýtané na to, ako sú vyťažené. Po jednom
+zistia svoje hodnoty a odošlú ich na uloženie. Počet metrík pre jeden zdroj je v bežnej praxi len zlomkom počtu zdrojov. Na časť systému, ktorá je zodpovedná za ukladanie metrík, sú preto v pravidelných intervaloch kladené pomerne 
 veľké nároky. Je ich už ale možné spracovávať paralelne. Centralizácia úložiska by znamenala prílišnú záťaž a monitorovacie uzly, preto je vhodné, aby takéto úložisko bolo distribuované a prispôsobené na paralelné spracovávanie veľkých
 objemov dát.
+\\
+\\ \emph{Vizualizácia a analýza dát}
+\\
+Zozbierané metrické dáta je ďalej potrebné nejakým spôsobom zobraziť. Na to sú vhodné čiarové grafy s dvoma osami, kde horizontálna os predstavuje čas a vertikálna os predstavuje hodnotu nameranej metriky.
+Analýza zozbieraných dát slúži na odhalenie trendov vo využívaní zdrojov a môže viesť k zdokonaľovaniu systému a k lepšiemu plánovaniu využívania zdrojov.
 
 
 \subsection{Monitorovanie v heterogénnom výpočetnom prostredí}
@@ -221,7 +241,7 @@ V oblasti cloudového a gridového výpočetného prostredia je pre monitorovani
 pre všetky technológie a okrem týchto zdrojov je vhodné sledovať aj parametre špecifické pre jednotlivé oblasti. Tým sa budem konkrétne venovať v kapitole Metriky.
 \\Automatizované monitorovanie výpočetného prostredia so sebou prináša aj špecifické problémy. Odvíjajú sa od toho, že monitorovanie je vykonávané strojovo (tj. pomocou počítača) a monitorované zdroje sú takisto stroje, ktorých
 stav z pohľadu využitia sa mení veľmi dynamicky.
-\\Rozdielny je aj prístup jednotlivých technogií v tom ako poskytujú výpočetné zdroje. Aplikačné kontajnery a virtuálne stroje sa snažia rozdeliť celú infraštruktúru na menšie viac-menej uzavreté celky, ktoré sú potom sprostredkované
+\\Rozdielny je aj prístup jednotlivých technológií v tom, ako poskytujú výpočetné zdroje. Aplikačné kontajnery a virtuálne stroje sa snažia rozdeliť celú infraštruktúru na menšie viac-menej uzavreté celky, ktoré sú potom sprostredkované
 užívateľom. Každý tento celok má pridelené zdroje, ktoré potom využíva. Množstvo týchto zdrojov je možné meniť, ale súvisí to s reštartovaním virtuálneho stroja alebo kontajnera. Z pohľadu gridu sú zanedbávané zdroje jedného uzla a na
 vypočítavanie úloh sa berú do úvahy všetky zdroje celého clustera. 
 
@@ -257,7 +277,7 @@ Analýza časových rád sa primárne zaoberá získavaniu štatistík o zozbier
 Mám sa viac o nich rozpísať?
 
 \subsection{Zaobchádzanie s historickými dátami}
-Niečo o tom, ako sa v rámci šetrenia priestoru dáta zhlukjú a vypočítavjú sa agregované štatistiky.
+Niečo o tom, ako sa v rámci šetrenia priestoru dáta zhlukjú a vypočítavajú sa agregované štatistiky.
 
 \chapter{Aktuálne monitorovacie riešenia}
 Problematike monitorovania softvéru a infraštruktúry sa venuje viacero komerčných alebo open-source aplikácií, prípadne aplikácií zadarmo. Rôznymi technológiami riešia zber dát, ich uchovávanie, vizualizáciu a operácie nad
@@ -280,8 +300,9 @@ Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. s
 \end{description}
 
 Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
-V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov,ktoré by sa obtiažne priraďovalo jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
-monitorovania nie je úplne vhodný.
+V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov, ktoré by sa obtiažne priraďovalo jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
+monitorovania nie je úplne vhodný. Takisto zberané metriky o subsystémoch sú agregované pre kontrolnú skupinu, tj. predstavujú súčet pre skupinu procesov, takže nie je možné jednoznačne určiť koľko zdrojov spotreboval
+ten ktorý proces.
 
 \section{Nagios}
 Nagios je aplikácia, ktorá poskytuje komplexné riešenie na monitorovanie systémov. Poskytuje informácie o kľúčových komponentoch infraštruktúry vrátane aplikácií, služieb, operačného systému, sieťových protokolov, systémových metrík
@@ -341,101 +362,78 @@ Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôs
 Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľaných knižníc, ktoré musia implementovať požadované funkcie.
 
 \section{Icinga}
-By default the Icinga 2 daemon is running as icinga user and group using the init script. Using Debian packages the user and group are set to nagios for historical reasons.
-\cite{07}
+Icinga predstavuje open-source monitorovací nástroj, ktorý je nástupcom Nagiosu. Je založená na princípe paralelnej činnosti viacerých vlákien, čo poskytuje možnosť vykonávať množstvo meraní
+za krátky časový interval. Zabezpečuje monitorovanie záťaže zdrojov ako disk, CPU, pamäť a sieť a to v operačných systémoch na základe Linuxu a aj v prostredí Windows. Ďalej podporuje zberanie
+dát o mnohých ďalších službách, ako je monitoring databáz, odozvy serverov, webových služieb, výkonu JVM, sledovanie logov. Podporuje monitorovanie virtualizačnej platformy VMWare. 
+Poskytuje aj bežné mechanizmy v oblasti monitorovania ako generovanie notifikácií o neštandardnom správaní, na ktoré je možné reagovať spustením nejakého systémové príkazu. Na ukladanie dát 
+používa svoju databázu, no podporuje aj odosielanie dát do databázy časových rád InfluxDB.
+\\V súčasnosti Icniga nie je schopná monitorovať ani jednu zo služieb v prostredí MetaCentra.
 
-\subsection{Externé pluginy}
-Icinga determines the status of a host or service by evaluating the return code from plugins. The following tables shows a list of valid return codes, along with their corresponding service or host states
-\cite{08}
-
-\subsection{Notifikácie a príkazy udalostí}
-Unlike notifications, event commands for hosts/services are called on every check execution if one of these conditions match:
-The host/service is in a soft state
-The host/service state changes into a hard state
-The host/service state recovers from a soft or hard state to OK/Up
-
-Ide len o spustenie nejakého systémového príkazu.
-\cite{09}
-
-\subsection{Itegrácie s aplikáciami} 
-these tiny pure shell+awk plugins for monitoring your hadoop cluster are a enhanced and uptodate version of exchange.nagios.org check\_hadoop-dfs.sh
-\cite{10}
-
-
+\subsection{Rozšíriteľnosť aplikácie}
+Icinga poskytuje systém, akým je možné do nej pridať kontroly nových metrík, prostredníctvom tzv. check príkazov. Jedná sa o kofiguračné objekty, kde užívateľ definuje príkaz,
+ktorý sa má spustiť, spolu s hodnotami jeho argumentov. Icinga určí stav tejto kontroly podľa návratovej hodnoty príkazu.\cite{08} Hodnoty a názvy metrík sú vracané vo forme textového výstupu.
 
 \section{collectd}
-There are some key differences we think set collectd apart. For one, it's written in C for performance and portability, allowing it to run on systems without scripting language or cron daemon, such as embedded systems. 
-At the same time it includes optimizations and features to handle hundreds of thousands of data sets. It comes with over 90 plugins. It provides powerful networking features and is extensible in numerous ways. 
+Collectd je open-source monitorovacia aplikácia vyvinutá v jazyku C. Má architektúru jadra a pluginov, ktoré sa starajú o mnoho činností súvisiacich s monitorovaním od zbierania dát, cez
+zapisovanie metrík a sledovanie prahových hodnôt a upozorňovanie. Jadro predovšetkým ovláda a kontroluje vykonávanie týchto aktivít. V pravidelných intervaloch spúšťa kontroly metrík, 
+analyzuje namerané hodnoty, generuje notifikácie v prípade, že hodnoty sú mimo požadovaný rozsah, alebo ak nedorazili 
+v požadovaných intervaloch. V súčasnosti je k dispozícií viac než 90 pluginov. Poskytujú monitorovanie základných výpočetných zdrojov ako sú procesor, pamäť, disky a sieťové rozhrania, ďalej monitorovanie
+mnohých aplikácií (napr. databázy, e-mail, webové servery) a protokolov. Zvolený programovací jazyk dáva dobré predpoklady na výkon a prenositeľnosť, čo umožňuje beh na systémoch bez 
+skriptovacích jazykoc alebo cron démona, ako napríklad zabudované systémy. Zároveň ale disponuje optimalizáciami a prvkami, aby zvládal stovky tisíc metrík. \cite{22} 
+\\Collectd nepodporuje vizualizáciu dát ani historickú analýzu. Samotný zápis dát je uskutočňovaný pomocou pluginov a teda je možné zvoliť z viacerých spôsobov uchovávania dát. V súčasnosti podporuje 
+zápis do viacerých databáz, napr. MongoDB, OpenTSDB, alebo metódou HTTP POST či do súborov RRD. V súčasnosti obsahuje plugin pre monitorovanie
+libvirt/KVM.
 
-\subsection{Obmedzenia}
-It does not generate graphs. It can write to RRD files, but it cannot generate graphs from these files. 
-Monitoring functionality has been added in version 4.3, but is so far limited to simple threshold checking. 
-\cite{12}
+\subsection{Rozšíriteľnosť aplikácie}
+Collectd poskytuje viacero spôsobov, akým je možné ho rozšíriť. Prvým aspektom je zber metrík. Umožňuje zber dodatočných metrík pomocou
+spúšťania systémových príkazov, pomocou rozšírení v rôznych programovacích jazykoch (Perl, Python, Java). Ďalej je možné využiť natívne
+API v jazyku C. Cez toto API je možné aplikáciu rozšíriť v ohľade notifikácií, zápisu metrických dát a spôsobu logovania udalostí.
 
-\subsection{Zapisovací plugin Write TSDB}
-The Write TSDB plugin writes metrics to OpenTSDB, an open-source distributed time-series database based on Apache HBase.
-\cite{13}
-
-\begin{description}
-\item[\emph{Host Address}] Hostname or address to connect to. Defaults to localhost.
-\item[\emph{Port Service}] Service name or port number to connect to. Defaults to 4242.
-\item[\emph{HostTags String}] When set, HostTags is added to the end of the metric. It is intended to be used for name=value pairs that the TSD will tag the metric with. Dots and whitespace are not escaped in this string.
-\item[\emph{StoreRates false|true}] If set to true, convert counter values to rates. If set to false (the default) counter values are stored as is, as an increasing integer number.
-\item[\emph{AlwaysAppendDS false|true}] If set the true, append the name of the Data Source (DS) to the "metric" identifier. If set to false (the default), this is only done when there is more than one DS.
-\end{description}
-
-\subsection{Prahy a notifikácie}
-
-The only action the Threshold plugin takes itself is to generate and dispatch a notification. Every time a value is out of range, 
-notification is dispatched. 
-Also, all values that match a threshold are considered to be relevant or "interesting". As a consequence collectd will issue a notification 
-if they are not received for Timeout iterations.  for example, Timeout is set to "2" (the default) and some hosts sends it's CPU statistics to the server every 60 seconds, a notification will be dispatched after about 120 seconds. It may take a little longer because the timeout is checked only once each Interval on the server.
-
-When a value comes within range again or is received after it was missing, an "OKAY-notification" is dispatched.
-\cite{14}
-
-
+\subsection{Kontrola intervalov}
+V prípade, že hodnota metriky nedorazila v požadovanom intervale, je generované hlásenie. Neprichádza k tomu ale hneď po prvej chybe. Collectd zavádza mechanizmus časových limitov.
+To znamená, že meranie niekoľkokrát zopakuje v požadovanom intervale a až potom vygeneruje hlásenie s varovaním. Počet opakovaní
+je možné definovať. 
 
 \section{Ganglia} 
-Ganglia is a scalable distributed monitoring system for high-performance computing systems such as clusters and Grids. It is based on a hierarchical design targeted at federations of clusters. 
-It leverages widely used technologies such as XML for data representation, XDR for compact, portable data transport, and RRDtool for data storage and visualization. 
-It uses carefully engineered data structures and algorithms to achieve very low per-node overheads and high concurrency. 
-The implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. 
-It has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
-Ganglia is a BSD-licensed open-source project that grew out of the University of California, Berkeley Millennium Project
-\cite{15}
-Pre Gangliu je dostupný monitorovací plugin pre Hadoop.
+Ganglia je škáľovateľný distribuovaný systém na monitorovanie výkonných systémov ako sú clustre a gridy. Je založená na hierarchickom návrhu 
+som zameraním na federácie clusterov. Využíva bežné štandardy, ako napr. XML na reprezentáciu dát, XDR na prenos dát a RRDTool na
+ukladanie a vizualizáciu dát.\cite{15} Cieľom aplikácie je zabezpečiť čo najmenšiu nabytočnú záťaž na uzloch a vysokú
+mieru súbežnosti. Ganglia vznikla na University of California v rámci Berkeley Millennium Project. Je to open-source projekt
+pod licenciou BSD. V súčasnosti je nasadená na mnohých operačných systémoch a podporuje viacero procesorových architektúr.
+\\Ganglia má architektúru monitorovacieho démona, ktorý je spustený na každom monitorovanom uzle, a démona, ktorý uchováva zozbierané údaje do
+round-robin archívu.
+K dispozícií sú aj nástroje na získanie aktuálnych údajov konkrétnej sondy a tiež webové rozhranie na zobrazovanie zaznamenaných údajov.
+\\Hadoop je možné nakonfigurovať tak, aby odosielal metriky zbernému démonovi Ganglie. Ostatné integrácie v súčasnosti neobsahuje.
+
+\subsection{Rozšírenia aplikácie}
+K dispozícií je mnoho pzásuvných modulov v podobe skriptov operačného systému alebo programov napísaných v skriptovacích jazykoch ako Ruby,
+Perl či Python. Pluginy poskytujú monitorovanie prihlásených užívateľov v systéme, rôznych aplikácií a služieb, ako napr. DNS, HTTP, ďalej
+podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.
 \cite{16}
 
 
 \section{AppDynamics}
-https://www.appdynamics.com/community/exchange/extension/docker-monitoring-extension/
+AppDynamics predstavuje zaujímavé riešnie v oblasti monitorovania. Snaží sa do istej miery zjednotiť a prepojiť monitorovanie aplikácií 
+a infaštruktúry a následne tak ľahšie identifikovať problémy s výkonom. Obsahuje bohaté vizualizácie nie len v podobe grafov o vyťažení,
+ale aj mapy a plošné grafy pozostávajúce s uzlov prepojených čiarami, ktoré reprezentujú vyťaženie spojenia jednotlivých služieb - 
+napr. webový server, databáza a servery aplikačnej logiky. Monitoruje vyťaženie zdrojov ako sú procesor, pamäť, vstupno-výstupné operácie
+a sieť u jednotlivých uzlov infraštruktúry a dáva ich do súvisu s tým, aké role tieto uzly vykonávajú v danej business aplikácií.
+\\Okrem toho disponuje aj integráciami s IaaS a PaaS cloudovými službami od Amazonu, RedHatu či Microsoftu a integráciami s mnohými aplikáciami
+vrátane zberu metrík o zdrojoch v Hadoope a Dockeri.\cite{17}
+\\AppDynamics predstavuje komerčné riešenie. Verzia s obmedzeným monitorovacím záberom a s obmedzenou dĺžkou ukladania údajov je k 
+dispozícií aj zdarma, plná verzia je platená.
 
-This extension works only with the standalone machine agent.
-
-
-Metrics include:
-
-Hadoop Resource Manager
-App status and progress: submitted, pending, running, completed, killed, and failed app count
-Memory size, memory usage
-Allocated containers, container count in different states
-Node status, count of nodes in different states
-Scheduler capacity, app and container count
-Ambari
-Individual host metrics including CPU, disk, memory, JVM, load, network, process, and RPC metrics
-Service component metrics including CPU, disk, memory, JVM, load, network, process, RPC, and component-specific metrics
-\cite{17}
 
 
 \section{OpenTSDB}
-OpenTSDB je databáza na uchovávanie a sprístupňovanie veľkých objemov časových dát. Pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
+OpenTSDB je open-source databáza na uchovávanie a sprístupňovanie veľkých objemov časových dát. Pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
 na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimalizovaná na rýchlu agregáciu podobných časových rád, aby minimalizovala požiadavky na úložný priestor. 
 Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
 sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
-
-Na vizualizáciu dát existuje nástroj Metrilyx. Je to open-source webový engine, ktorý vytvára grafy zo zhromaždených dát. Je možné meniť časové rozpätie, za ktoré sa majú grafy metrík zobraziť .
+\\OpenTSDB uchováva čas zozbierania metriky, jej hodnotu a súbor popisných dát, ktoré sa nazývajú tagy. Na ich základe je potom možné
+v nameraných dáta vyhľadávať, zhlukovať ich a analyzovať.
+\\Na vizualizáciu dát existuje nástroj Metrilyx. Je to open-source webový engine, ktorý vytvára grafy zo zhromaždených dát. Je možné meniť časové rozpätie, za ktoré sa majú grafy metrík zobraziť .
 \begin{figure}[h]
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/metrilyx.png}
@@ -444,26 +442,29 @@ Na vizualizáciu dát existuje nástroj Metrilyx. Je to open-source webový engi
 \end{figure}
 
 \section{InfluxDB}
-InfluxDB je platforma na zbieranie, uchovávanie, vizualizáciu a správu časových dát. Užívateľ môže vytvoriť viacero databáz. Dáta sa zapisujú a čítajú pomocou rozhrania príkazového riadka, 
-rôznych klientskych knižníc, alebo pomocou HTTP API. Na vizualizáciu dát používa modul \emph{chronograf}.
+InfluxDB je platforma v jazyku Go na zbieranie, uchovávanie, vizualizáciu a správu časových dát. InfluxDB je určená na použitie ako úložisko dát v takých prípadoch, ktoré zahŕňajú veľké množstvo
+dát označených časovou známkou, vrátane DevOps monitorovania, aplikačných metrík, senzorových dát internetu vecí, a na analýzu dát v reálnom čase.\cite{21} Užívateľ môže vytvoriť viacero nezávislých databáz. 
+Dáta sa zapisujú a čítajú pomocou rozhrania príkazového riadka, rôznych klientskych knižníc, alebo pomocou HTTP API. Na vizualizáciu dát používa modul \emph{chronograf}.
 
 \subsection{Politiky udržiavania}
 Každá databáza obsahuje pravidlá, ktoré definujú, po akú dobu majú byť ukladané dáta časových rád a koľko kópií dát má byť vytvorených. Jedna databáza môže mať niekoľko takýchto politík. Pri zápise 
 do nej je môžné špecifikovať, ktorá politika sa má pre zápis použiť. Pri vytvorení databázy je automaticky vytvorená jedna politika.
 
-\subsection{Kontinuálne dotazovanie}
+\subsection{Kontinuálne dotazovanie a agregácia}
 Databáza je schopná periodicky vykonávať požiadavky na dáta. Cieľom je zmenšovanie objemu dát. Ide o zhlukovanie dát s vysokou frekvenciou zberu, čím vzniknú dáta s menšou hustotou zberu. Táto hodnota je 
 potom zvyčajne uložená do inej databázy.
 
 \section{RRDTool}
-RRDTool je nástroj na uchovávanie, spravovanie a vizuálizáciu časových dát. Využíva round-robin databázu. Je to databáza s dopredu danou maximálnou veľkosťou. V prípade, že príde požiadavka na zápis hodnoty 
-a databáza je už plná, dôjde k prepisu nasjtaršej hodnoty. Tento nástroj takisto obsahuje funkcie na konsolidáciu dát. Konsolidovaná hodnota je typicky priemer, minimum alebo maximum z viacerých hodnôt zozbieraných 
-za dlhší časový úsek. Tieto hodnoty sú ukladané do round-robin archívu.
+RRDTool je nástroj na uchovávanie, spravovanie a vizuálizáciu časových dát. Využíva round-robin databázu. Je to databáza s dopredu daným maximálnou časovým rozpätím, za ktoré uchováva metrické dáta.
+V prípade, že príde požiadavka na zápis hodnoty 
+a databáza je už plná, dôjde k prepisu najstaršej hodnoty. Tento nástroj takisto obsahuje funkcie na konsolidáciu dát. Konsolidovaná hodnota je typicky priemer, minimum alebo maximum z viacerých hodnôt zozbieraných 
+za dlhší časový úsek. Tieto hodnoty sú taktiež ukladané do round-robin archívu.
 
 
 
 \chapter{Metriky}
-Každá z technológií cloudového výpočetného strediska je zdrojom mnohých dát o vyťažení zdrojov. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. Je vhodné mať také metriky pre všetky využívané cloudové technológie,
+Každá z technológií cloudového výpočetného strediska je zdrojom mnohých dát o vyťažení zdrojov. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. V prípade MetaCentra podstatné
+zdroje predstavujú \emph{procesor, pamät, pevné disky a sieťové rozhrania}. Je vhodné mať také metriky pre všetky využívané cloudové technológie,
 ktoré je možné nejakým spôsobom porovnať medzi sebou. V prípade procesora sa jedná o jeho aktuálne vyťaženie, ale zároveň je zaujímavým údajom aj prepočítaný procesorový čas. Táto metrika môže byť efektívnym
 nástrojom pre následné učtovanie jednotlivým úžívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné vždy o každom zdroji zberať rovnaké dáta. 
 O distribuovaných výpočtoch napríklad nie je možné efektívne zistiť aktuálne vyťaženie procesora. Takéto úlohy sa počítajú na viacerých uzloch clustera. O poradí a rozmiestnení požiadaviek na zdroje
@@ -579,12 +580,13 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \end{description}
 
 \subsection{Metriky CPU}
-Libivirt poskytuje o procesore údaj o tom, koľko výpočetného času strávil daný virtuálny stroj na procesore hosťujúceho počítača.
+Libivirt poskytuje údaje o tom, koľko výpočetného času strávil daný virtuálny stroj na procesore hosťujúceho počítača. Keďže sa jedná
+o plnú hardvérovú vritualizáciu, má zmysel zberať aj informácie o tom, ako sú vyťažené jednotlivé virtuálne procesory.
 
 
 \section{Hadoop}
 \subsection{Cluster Metrics API}
-Toto API poskytuje metriky o celom clusteri.
+Toto API poskytuje metriky o vyťažení celého clustera.
 \begin{description}
 \item[appsSubmitted] - The number of applications submitted
 \item[appsCompleted] - The number of applications completed
@@ -612,7 +614,7 @@ Toto API poskytuje metriky o celom clusteri.
 \end{description}
 
 \subsection{Cluster Application API}
-Tento koncový bod API poskytuje informácie o jednotlivých aplikáciách, ktoré boli alebo sú spustené na clusteri.
+Tento koncový bod API poskytuje informácie o jednotlivých aplikáciách, ktoré sú spustené na clusteri.
 \begin{description}
 \item[id] - The application id
 \item[user] - The user who started the application
@@ -671,57 +673,69 @@ infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoc
 \section{Požiadavky na aplikáciu}
 \subsection{Vysoký monitorovací výkon}
 Cloudová infraštruktúra MetaCentra pozostáva z mnohých výpočetných uzlov. Sú prepojené sieťami s veľkou prenosovou kapacitou a vysokou priepustnosťou. Je potrebné zbierať dáta o využití množstva zapojených
-clusterov, na ktorých je tiež spustených mnoho výpočetných úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. Veľká záťaž je kladená na databázu, do ktorej
+clusterov a uzlov, na ktorých je tiež spustených mnoho výpočetných úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. Veľká záťaž je kladená na databázu, do ktorej
 sú tieto metrické dáta pravidelne odosielané.
 
 \subsection{Nízka nadbytočná záťaž}
 Primárnou úlohou cloudu je poskytovanie svojho výpočetného výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
 samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++, prípadne rýchle skriptovacie 
-jazyky ako Python, Ruby či Go. Nie je príliš vhodné používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
+jazyky ako Python, Ruby či Go. Tie ale predsalen predstavujú istú nadmernú záťaž súvisiacu so spúšťaním interpretera. 
+Nie je príliš vhodné používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
 
 \subsection{Škálovateľnosť}
-Monitorovacia aplikácia by mala poskytovať zrovnateľné výsledky v oblasti rýchlosti odozvy v prípade, že bude spustená na jednom uzle, ale aj v prípade, že jej úlohou bude monitorovať desiatky až stovky 
-výpočetných uzlov s množstvom spustených aplikácií. To je možné docieliť vhodným paralelizovaním dotazov na metriky
+Monitorovacia aplikácia by mala poskytovať zrovnateľné výsledky v oblasti rýchlosti odozvy v prípade, že bude spustená na jednom uzle, ale aj v prípade, že jej úlohou bude monitorovať stovky 
+výpočetných uzlov s množstvom spustených inštancií, ktoré treba sledovať. To je možné docieliť paralelizovaním dotazov na metriky.
 
-Monitorovacia aplikácia bude pozostávať z dvoch častí.
-\begin{description}
-\item[démon] - jeho úlohou je zber metrík a odosielanie do databázy
-\item[zásúvné moduly] - ich úlohou je zisťovanie metrických dát a odosielanie démonovi
-\end{description}
-
-Démon je program, ktorý je spustený raz a beží v systéme na pozadí. Podľa konfigurácie pri štarte zistí, ktoré moduly sa budú používať. Takisto dôjde ku konfigurácií jednotlivých modulov, napr. nastavenie
-potrebných ciest k požadovaným súborom. Následne dôjde k inicializácií jednotlivých modulov. V tejto fáze moduly inicializujú prostriedky, ktoré potrebujú v priebehu zberu metrík. Napr. pripojenie na správcu kontajnerov alebo hypervízora. Nie je efektívne, aby boli tieto prostriedky incializované pri
-každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zberu dát. Potom nasleduje fáza behu. Démon periodicky spúšťa jednotlivé moduly, ktoré zisťujú metrické dáta. Tie následne
-vracajú ako odpoveď démonovi. V prípade, že je potrebné démona ukončiť, dôjde najprv k ukončeniu jednotlivých modulov. V tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
+\section{Miesto nasadenia zbernej aplikácie}
+Zber metrík je možné realizovať v prípade virtuálnych strojov alebo aplikačných kontajnerov aj z ich vnútra. Bolo by možné v každej
+takejto virtualizovanej inštancií spustiť jednoduchú monitorovaciu aplikáciu, ktorá by interagovala priamo so systémom a potom by odosielala dáta.
+To ale nie je vhodné riešenie, nakoľko sa nedá predpokladať virtualizovaný operačný systém a zároveň to predstavuje zásah do užívateľského
+priestoru. Je lepšie realizovať zber metrík na základe integrácií s aplikáciami, kedy je monitorvacia aplikácia nasadená na fyzickom
+operačnom systéme a zberá metriky o virtualizačných aplikáciách, ktoré sú využívané.
 
 
-\section{Reakcia na dlhú odozvu modulu}
-Ak je hodnota nejakej metriky mimo určitý rozsah, je generované hlásenie. Na to je možné reagovať.
-Na situáciu, keď časť zodpovedná za zbieranie dát neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. Nie je možné jednotlivé pluginy ovládať nezávisle. 
+\section{Návrh aplikácie}
+Monitorovacia aplikácia bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
+Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. Samotný proces zberu metrických dát bude zabezpečený aplikáciou collectd. Oproti ostatným dostupným aplikáciám disponuje
+veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsobom, ako a kam sa budú dané dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
+aj v systéme upozornení. Collectd bude zabezpečovať prípadné odosielanie notifikácií prostredníctvom emailu. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
+paralelne bežiacich vlákien, ktoré si medzi sebou rovnomerne delia záťaž. Ich počet je možné definovať pri konfigurácií. 
+\\Jednou z ďalších výhod collectd oproti iným softvérom je spôsob, akým pristupuje k spúšťaniu kontrol. Podľa konfigurácie pri štarte zistí, ktoré moduly sa budú používať. Takisto dôjde ku konfigurácií 
+jednotlivých modulov, napr. nastavenie potrebných ciest k požadovaným súborom. Následne dôjde k inicializácií jednotlivých modulov. V tejto fáze moduly inicializujú prostriedky, ktoré potrebujú v priebehu 
+zberu metrík. Napr. pripojenie na správcu kontajnerov alebo hypervízora. Nie je efektívne, aby boli tieto prostriedky incializované pri
+každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zberu dát. Takýto spôsob bol jedinou možnosťou pri niektorých iných aplikáciách.
+\\Potom nasleduje fáza behu. Collectd beží v režime démona na pozadí a periodicky spúšťa jednotlivé moduly, ktoré zisťujú metrické dáta. 
+V rámci modulov sa periodicky zisťuje, ktoré virtuálne stroje alebo kontajnery sú spustené a ktorých sa tým pádom budú zberať metriky. 
+\\Po nameraní hodnoty collectd inicializuje zápis prostredníctvom modulu Write TSDB. Tu dochádza k ďalším optimalizáciám, ako sú cachovanie
+hodnôt a ich odosielanie vo väčších dávkach.
+\\V prípade, že je potrebné démona ukončiť, dôjde najprv k ukončeniu jednotlivých modulov. Až v tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
+\\Samotný collectd bez pluginov predstavuje riadiaciu aplikáciu v podobe démona, ktorá na svoju inštaláciu vyžaduje minimum závislostí. To je ďalšou z výhod, keďže 
+démon na zber metrík bude nainštalovaný na každom monitorovanom uzle.
+\\Na zápis monitorovacích dát bude využitá databáza časových rád OpenTSDB. Budem sa jej venovať v nasledujúcej časti.
+\\Takýto návrh zabezpečuje decentralizované a škálovateľné riešenie, kedy je distribuovaný nielen zber metrických údajov, ale aj ich zápis a uchovávanie.
 
-V princípe nejde nijako odlíšiť, či daný modul čaká na údaje alebo došlo k chybe a modul neodpovedá. Preto bude potrebné vytvoriť niektoré pluginy tak, aby jedna časť bola neustále dostupná 
-a reagovala na výzvy od riadiacej aplikácie. Bude definovaný časový interval na vrátenie hodnoty. V prípade ak plugin úspešne v časovom intervale zistil dané metrické dáta, vráti ich riadiacej aplikácií. V prípade, že v danom intervale plugin neobdržal metrické dáta,
-vráti poslednú hodnotu. Zároveň sa nebudú vytvárať nové požiadavky na tento údaj. Tento časový interval si bude môcť užívateľ nastaviť pre každú sondu. Predmetom testovania bude zistiť, 
-aký interval by bol vhodný pre tú ktorú sondu.
-
-Ďalšou prahovou hodnotou bude počet opakovaní, pri ktorých plugin vracia poslednú hodnotu danej metriky. Ak dôjde k prekročeniu tejto hodnoty, bude reštartovaná celá monitorovacia aplikácia.
+\subsection{Centrálny systém notifikácií a manažmentu zberných modulov}
+Vyššie popísané riešenie predstavuje decentralizovanú architektúru. Každá zo sond funguje nezávisle, čo sťažuje prípadné mechanizmy konfigurácie
+a riešenie krízových situácií ako napr. zastavenie činnosti démona. Toto je jeden z aspektov kde má navrch napr. systém Zabbix. Súčasťou
+môjho riešenia bude zároveň aplikácia, ktorá bude spravovať konfigurácie jednotlivých inštancií collectd, umožní ich meniť a podľa toho ich reštartovať.
+Umožní prehliadať notifikácie z jednotlivých sond a manuálne ovládať inštancie a ich moduly. To bude zároveň vyžadovať modifikáciu démona
+collectd, ktorý v súčasnosti neumožňuje reštartovanie jednotlivých modulov.
 
 \section{OpenTSDB}
 Ako databázu na uchovávanie časových dát som si zvolil OpenTSDB. Dôvodom je používanie databázy HBase. Je to distribuovaná databáza určená pre veľké objemy dát v rádoch stoviek miliónov a milárd záznamov. 
-Je typom NoSQL databázy. Oproti SQL databázam je linárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočetných zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých uzlov,
-ktoré sa v gridovej infraštruktúre MetaCentra nachádzajú. Ďalším dôvodom je, že v MetaCentre je aktuálne databáza HBase využívaná.
+Je typom NoSQL databázy. Oproti SQL databázam je linárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočetných zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých
+uzlov, ktoré sa v infraštruktúre MetaCentra nachádzajú. Ďalším dôvodom je, že v MetaCentre je aktuálne databáza HBase využívaná, čo predstavuje zjednodušenie nasadenia. 
 
 
 \chapter{Implementácia}
-Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. Na zbieranie jednotlivých metrík som vytvoril moduly pre tento program. Tieto údaje následne bude odosielať do databázy OpenTSDB
+Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. Tá poskytuje mechanizmy na periodické spúšťanie merania metrík,
+analýzu zozbieraných hodnôt a generovanie hlásení. Na zbieranie jednotlivých metrík som vytvoril moduly pre tento program. Tieto údaje následne bude odosielať do databázy OpenTSDB
 pomocou modulu WriteTSDB.
 
 \section{Techniky zbierania metrík}
 
-
-
 \subsection{Docker}
-Budem zberať metriky o spotrebovávaných zdrojoch pre každý kontajner. Na komunikáciu s Dockerom je možné využiť:
+Na komunikáciu s Dockerom je možné využiť:
 \begin{description}
 \item[príkazy aplikácie v príkazovom riadku]
 \item[Remote API]
@@ -729,43 +743,58 @@ Budem zberať metriky o spotrebovávaných zdrojoch pre každý kontajner. Na ko
 
 Používanie príkazov aplikácie môže byť o čosi rýchlejšie, ale následne by bolo potrebné analyzovať textový výstup programu.
 Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST a odpovede vracia vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Démon Dockeru "počúva" na 
-lokálnom sockete, čo by nemalo spôsobovať výrazné oneskorenie odpovede.
-
-O každom kontajneri spustenom v Dockeri budem sledovať využívanie týchto zdrojov :
-\begin{description}
-\item[\emph{procesor}]
-\item[\emph{pevný disk}]
-\item[\emph{sieť}]
-\item[\emph{pamäť}]
-\end{description}
-
-  
-Dáta je možné zberať buď ako prúd, alebo po jednorazových žiadostiach. To ešte nemám veľmi preštudované, neviem aké sú tam intervaly, tak sa rozhodnem až neskôr.
-Predpokladám ale, že z hľadiska rýchlosti a alokácie bude cesta asi ten stream.
+lokálnom sockete, čo by nemalo spôsobovať výrazné oneskorenie odpovede. Každému kontajneru zodpovedá adresa, ktorá zahŕňa identifikačný reťazec kontajnera.
 
 \subsection{libvirt/KVM}
-Na monitorovanie virtuálnych strojov použijem existujúcu implementáciu sond v jazyku Python. Je šírená pod licenciou open-source a vznika v rámci organizácie Cesnet. 
+Na získavanie metrických údajov o virtuálnych strojoch som použil knižnicu libvirt. Je to knižnica napísaná v jazyku C. Poskytuje množstvo
+rozhraní, ktoré umožňujú vytvárať virtuálne stroje, zapínať ich a vypínať, meniť ich konfiguráciu. Poskytuje tiež údaje o tom, ako virtuálny
+stroj využíva virtualizované zdroje. 
+\\Najprv je potrebné vytvoriť spojenie s hosťujúcim počítačom. Toto je udržované počas celého zberu metrík. Cez vytvorené spojenie
+je možné zisťovať, ktoré virtuálne stroje sú spustené. V periodických intervaloch aktualizujem zoznam bežiacich strojov a odosielam
+metriky len o nich.
+\\Collectd už obsahoval plugin pre libvirt, no bolo potrebné doplniť niektoré popisné údaje metrík, ako názov hosťujúceho počítača,
+názov virtuálneho stroja a iné.
 
 \subsection{Hadoop}
-The Hadoop YARN web service REST APIs are a set of URI resources that give access to the cluster, nodes, applications, and application historical information. 
-The URI resources are grouped into APIs based on the type of information returned. Some URI resources return collections while others return singletons.
-HTTP Requests
+Na monitorovanie Hadoopu som si zvolil REST API YARN-u. YARN zabezpečuje správu zdrojov a plánovanie/monitorovanie vykonávania úloh do dvoch
+oddelených démonov.\cite{23} ResourceManager je autoritou, ktorá rozhoduje o využívaní zdrojov aplikáciami v celom systéme. NodeManager
+je agent, nainštalovaný na jednotlivých uzloch, ktorý sa stará o beh kontajner a monitorovanie zdrojov, ktoré spotrebovávajú. Toto
+nahlasuje ResourceManagerovi. Preto som zvolil toto API.
+\\REST API poskytuje odpovede vo formáte JSON a XML. Vo svojej implementácií využívam odpovede vo formáte JSON.
 
-To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.
+\section{libcurl}
+libcurl je voľne šíriteľná klientska knižnica v jazyku C určená na manipuláciu so zdrojmi identifikovanými pomocou URL. Podporuje
+množstvo protokolov ako FTP, FILE, HTTPS, IMAPS, LDAP, POP3, SMTP, SCP atď. Podpourje taktiež SSL certifikáty,
+HTTP POST a PUT metódy a rôzne formy autentifikácie. V mojej implementácií túto knižnicu využívam na získavanie metrík zo systému
+Hadoop. Využívané REST API sú chránené autentifikačným mechanizmom Kerberos. libcurl vie využiť autorizačné tokeny,
+ktoré sú vygenerované pri autentifikácií pomocou Kerberosu. Posiela ich spolu s HTTP GET žiadosťou a týmto spôsobom
+sa autentifikuje voči Hadoopu.
+\\libcurl je ľahko prenositeľná medzi rôznymi platformami, ako sú Solaris, BSD platformy, Windows, Linux, OS X a iné. Je vláknovo
+bezpečná, rýchla, dobre zdokumentovaná a kompatibilná s protokolom IPv6. \cite{24}
 
-Summary of HTTP operations
+\section{libpthread}
+libpthread je knižnica, ktorá umožňuje programovanie aplikácií s paralelne vykonávanými procedúrami. Tie sa nazývajú vlákna. Paralelizáciu
+v systéme na vyššej úrovni prináša koncept procesov. Pri
+vytváraní procesu ale dochádza k režijnej záťaži v operačnom systéme. Procesy si v systéme udržujú viacero parametrov, ako identifikačné
+číslo, identifikáciu užívateľa, premenné prostredia, zásobník, haldu, registre, zdieľané knižnice a reagujú na signály. Vlákna využívajú
+tieto atribúty a zavádzajú menšiu množinu parametrov a kontrolných signálov, ktoré umožňujú paralelné vykonávanie aj v rámci jedného procesu.
+\\Túto knižnicu využívam v plugine pre Docker. V pravidelných intervaloch dochádza k zisťovaniu, ktoré kontajnery sú spustené a na REST API
+zodpovedajúcich kontajnerov sú potom paralelne vytvorené a zaslané požiadavky na metrické údaje.
 
-Currently only GET is supported. It retrieves information about the resource specified.
+\section{cJSON}
+cJSON je miniatúrna knižnica v jazyku C, ktorej úlohou je prevod reťazca vo formáte JSON do hierarchickej štruktúry objektov. Zjednodušuje
+to analýzu obdržaných informácií vo formáte JSON. Keďže jazyk C nepozná
+objekty, namiesto toho sú používané štruktúry jazyka C. Knižnica neobsahuje žiadne závislosti, na jej činnosť sú potrebné dva súbory - 
+jeden so zdrojovými kódmi a jeden hlavičkový súbor.
+\\Knižnicu bolo potrebné mierne upraviť, pretože nesprávne narábala s dátovým typom long, ktorý sa vyskytuje ako hodnota niektorých parametrov
+vo vracaných JSON reťazcoch. Aj keď knižnica obsahovala tento nedsotatok, zvolil som si ju pre jej minimalistickú formu.
 
-Security
-
-The web service REST API’s go through the same security as the web UI. 
-\cite{18}
-
-\subsubsection{Kerberos}
-
-
-
+\section{Zapisovací plugin Write TSDB}
+Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB.\cite{13} Je napísaný v jazyku C. Bolo potrebné ho upraviť,
+aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy zberajúce metriky. Plugin využíva mechanizmy
+dočasného zhlukovania správ a ich odosielania vo väčších dávkach. Je možné nakonfigurovať adresu a port, na ktorom je spustený
+démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol. Toto vo svojej implementácií nevyužívam,
+všetky tagy metrík sú generované pluginmi.
 
 \chapter{Záver}
 

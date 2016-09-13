@@ -19,7 +19,6 @@ v ramci pluginu paralelizacia - napr docker kontajnery
 nazvy metrik tak ako ich ukladam do databazy
 metriky o konfigurácií zberať menej často 
 
-
 rozdiely medzi bodmi predstavuju vlastne vytazenie tých zdrojov
 
 IMPLEMENTACIA
@@ -92,3 +91,16 @@ Scout runs within Docker containers without any special configuration. \cite{sco
 
 \section{New Relic}
 http://newrelic.com/docker
+
+
+
+\section{Reakcia na dlhú odozvu modulu}
+Ak je hodnota nejakej metriky mimo určitý rozsah, je generované hlásenie. Na to je možné reagovať.
+Na situáciu, keď časť zodpovedná za zbieranie dát neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. Nie je možné jednotlivé pluginy ovládať nezávisle. 
+
+V princípe nejde nijako odlíšiť, či daný modul čaká na údaje alebo došlo k chybe a modul neodpovedá. Preto bude potrebné vytvoriť niektoré pluginy tak, aby jedna časť bola neustále dostupná 
+a reagovala na výzvy od riadiacej aplikácie. Bude definovaný časový interval na vrátenie hodnoty. V prípade ak plugin úspešne v časovom intervale zistil dané metrické dáta, vráti ich riadiacej aplikácií. V prípade, že v danom intervale plugin neobdržal metrické dáta,
+vráti poslednú hodnotu. Zároveň sa nebudú vytvárať nové požiadavky na tento údaj. Tento časový interval si bude môcť užívateľ nastaviť pre každú sondu. Predmetom testovania bude zistiť, 
+aký interval by bol vhodný pre tú ktorú sondu.
+
+Ďalšou prahovou hodnotou bude počet opakovaní, pri ktorých plugin vracia poslednú hodnotu danej metriky. Ak dôjde k prekročeniu tejto hodnoty, bude reštartovaná celá monitorovacia aplikácia.
