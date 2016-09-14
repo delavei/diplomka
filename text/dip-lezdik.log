@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  13 SEP 2016 18:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  14 SEP 2016 00:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -828,7 +828,7 @@ rád OpenTSDB.
 [33] [34] [35]
 Chapter 7.
 
-Overfull \hbox (4.74774pt too wide) in paragraph at lines 749--757
+Overfull \hbox (4.74774pt too wide) in paragraph at lines 751--759
 \T1/ppl/m/n/10.95 Na získa-vanie met-rick-ých úda-jov o vir-tuál-nych stro-joch
  som pouºil kniºnicu
  []
@@ -837,14 +837,14 @@ Overfull \hbox (4.74774pt too wide) in paragraph at lines 749--757
 
 ]
 
-LaTeX Warning: Citation `23' on page 37 undefined on input line 760.
+LaTeX Warning: Citation `23' on page 37 undefined on input line 762.
 
 
-LaTeX Warning: Citation `24' on page 37 undefined on input line 773.
+LaTeX Warning: Citation `24' on page 37 undefined on input line 775.
 
 [37]
 
-LaTeX Warning: Citation `13' on page 38 undefined on input line 793.
+LaTeX Warning: Citation `13' on page 38 undefined on input line 795.
 
 [38]
 Chapter 8.
@@ -863,7 +863,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  2523 strings out of 495028
  32154 string characters out of 6181498
- 93062 words of memory out of 5000000
+ 92062 words of memory out of 5000000
  5665 multiletter control sequences out of 15000+600000
  28419 words of font info for 51 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -873,7 +873,7 @@ Here is how much of TeX's memory you used:
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb>
-Output written on dip-lezdik.pdf (48 pages, 457988 bytes).
+Output written on dip-lezdik.pdf (48 pages, 458352 bytes).
 PDF statistics:
  237 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams

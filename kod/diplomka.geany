@@ -22,8 +22,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=586;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
+current_page=1
+FILE_NAME_0=4400;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
+FILE_NAME_1=46145;LaTeX;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.tex;0;4
+FILE_NAME_2=1944;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.bib;0;4
+FILE_NAME_3=3856;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fwrite_tsdb.c;0;4
+FILE_NAME_4=17081;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fvirt.c;0;4
+FILE_NAME_5=5578;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop.c;0;4
 
 [VTE]
 last_dir=/home/juraj

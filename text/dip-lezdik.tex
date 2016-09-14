@@ -245,7 +245,7 @@ stav z pohľadu využitia sa mení veľmi dynamicky.
 užívateľom. Každý tento celok má pridelené zdroje, ktoré potom využíva. Množstvo týchto zdrojov je možné meniť, ale súvisí to s reštartovaním virtuálneho stroja alebo kontajnera. Z pohľadu gridu sú zanedbávané zdroje jedného uzla a na
 vypočítavanie úloh sa berú do úvahy všetky zdroje celého clustera. 
 
-\subsubsection{\textbf{Problematika intervalov}}
+\subsubsection{Problematika intervalov}
 U vysoko výkonných výpočetných systémov sa jednotlivé operácie vykonávajú vo veľmi krátkych časových intervaloch. Rádovo sú to nanosekundy. Jednotlivé procesy a výpočetné úlohy dostávajú na krátky čas k dispozícií všetky zdroje, čím 
 sa z vyššieho pohľadu zabezpečuje paralelizácia. To spôsobuje vyťaženie množstva inštancií zdrojov mnohými učastníkmi. Celkový stav infraštruktúry z pohľadu vykonaných úloh a prenesených dát sa preto mení veľmi dynamicky a je vhodné
 zbierať dáta o zdrojoch v rozmedzí jednej až troch sekúnd. 
@@ -256,7 +256,7 @@ vhodné automaticky paralelne vygenerovať ďalšiu požiadavku na "snímku". Ž
 celého systému.
 \\To, ako sa systém vysporiadava z takýmto neočakávaným správaním, som zohľadňoval pri jednotlivých dostupných softvérových riešeniach.
 
-\subsubsection{\textbf{Detekcia nových zdrojov a užívateľov}}
+\subsubsection{Detekcia nových zdrojov a užívateľov}
 Heterogénna štruktúra v čase mení aj množstvo a kapacitu svojich poskytovaných zdrojov. Nie je možné staticky definovať zoznam procesorov, diskov, alebo virtuálnych strojov ktoré treba monitorovať. Podobne je to aj s užívateľmi. Proces
 vytvárania nových užívateľov je zautomatizovaný, takisto užívatelia môžu automatizovať vykonávanie svojich výpočetných úloh. Monitorovacie riešenie sa preto musí vedieť vysporiadať s týmito dynamickými zmenami, musí ich vedieť 
 automaticky detegovať a zberať o nich metrické dáta.
@@ -432,7 +432,7 @@ na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimaliz
 Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
 sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
 \\OpenTSDB uchováva čas zozbierania metriky, jej hodnotu a súbor popisných dát, ktoré sa nazývajú tagy. Na ich základe je potom možné
-v nameraných dáta vyhľadávať, zhlukovať ich a analyzovať.
+v nameraných dáta vyhľadávať, zhlukovať ich a analyzovať. Jednou z odlišností od iných databáz je, že má schopnosť uchovávať "surové" nezhlukované dáta po veľmi dlhú dobu (čiže od začiatku merania až do prítomnosti).
 \\Na vizualizáciu dát existuje nástroj Metrilyx. Je to open-source webový engine, ktorý vytvára grafy zo zhromaždených dát. Je možné meniť časové rozpätie, za ktoré sa majú grafy metrík zobraziť .
 \begin{figure}[h]
 \begin{center}
@@ -720,6 +720,8 @@ a riešenie krízových situácií ako napr. zastavenie činnosti démona. Toto 
 môjho riešenia bude zároveň aplikácia, ktorá bude spravovať konfigurácie jednotlivých inštancií collectd, umožní ich meniť a podľa toho ich reštartovať.
 Umožní prehliadať notifikácie z jednotlivých sond a manuálne ovládať inštancie a ich moduly. To bude zároveň vyžadovať modifikáciu démona
 collectd, ktorý v súčasnosti neumožňuje reštartovanie jednotlivých modulov.
+\\Takýto systém konfigurácie môže mať význam pre lepšiu distribúciu monitorovacej záťaže, kedy skupina démonov môže odosielať dáta jednému 
+démonovi časovej rady a iná skupina bude využívať iného časového démona.
 
 \section{OpenTSDB}
 Ako databázu na uchovávanie časových dát som si zvolil OpenTSDB. Dôvodom je používanie databázy HBase. Je to distribuovaná databáza určená pre veľké objemy dát v rádoch stoviek miliónov a milárd záznamov. 
