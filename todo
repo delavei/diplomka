@@ -12,42 +12,65 @@ Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívan
 
 okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
-cpu load na virtualku je vacsi mmozno ako cpu cas, preto je potrebne aj ten zberat
-napisat o tom, ako sa vypocitava cpu load
+napisat o tom, ako sa vypocitava cpu load - podporit citaciou, ako sa to vlastne vyratava - napriklad aj ze zo zdrojaku
 
-v ramci pluginu paralelizacia - napr docker kontajnery
-nazvy metrik tak ako ich ukladam do databazy
+tabulka - nazvy metrik tak ako ich ukladam do databazy
 metriky o konfigurácií zberať menej často 
 
-rozdiely medzi bodmi predstavuju vlastne vytazenie tých zdrojov
+hodnoty v tsd - ikrementalne vs. absolutne
+
+
+
+
+cloudove technologie -reorganizacia, najprv uvod, ze  preco vlastne ich uvádzam metacentrum je hetergoenny, ma abc, teraz idem popisovat tiet technologie..
+dat tam aj grid. vo virtualkach mozu byt kontajnery, ale zaujimaju nas len virtualky. obrazky - hadoop, metacentrum
+
+prirovnanie s vlakmi - obmedzit
+
+citacia - kvm, zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody
+nejake nejasne o tom.
+
+oddelit monitorovanie a uctovanie - napr. detekcia zdrojov a uzivatelov - ak su vhodne zbierane metriky a metedata, da sa to vyuzit
+na accounting. mozem uvadzat misovu diplomku
+
+cgroup - zaradiť neskôr, nie je to úplne monitorovanie, skôr kontrola prístupu k zdrojom. v gride server distribuuje ulohy, obali ich do 
+ cgroup na konkretnom stroji a obcas sa tam pozrie, kolko zozerie
+ 
+aktualne riesenia - podsekcie v programoch pomenovat rovnako, v uvode napisat ze co budem pri kazdom riesit
+				  - collectd je nastroj na zber, nie cele riesenie, aj cgroup
+				  - obrazok uviest do kontextu- ze co na nom je 
+				  
+brendan gregg linuxperf
+
+je viac aplikacno kontajnerovych appiek, docker som vybral lebo je v metacentre
+
+nestriedat cpu a procesor
+analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, porovnat to s niecim a presne na com som to testoval
+				a vsetko o merani - napr. tcollector
+
+
+
+
+
 
 IMPLEMENTACIA
 docker
-robit pravidelne refresh zoznamu kontajnerov
-config - host-majbe
-cpu kernelmode, usermode treba - odosielat
 aktualizovat verziu  dockeru- rozdiel v networkoch
+robit pravidelne refresh zoznamu kontajnerov
+config - host-majbe, refresh interval pre kontajnery
+cpu kernelmode, usermode treba - odosielat
 
 cJSON
 nacitavanie unsigned long long (napr. docker system cpu usage)
 
 hadoop
 adresa klastra do konfiguracie
+mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
 
 virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
      - pridat cpu kernelmode a usermode - to tuším nejde
      - dorobit cpu load celého procesu virtuálky
-
-
-OTAZKY
-hadoop
-mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
-joby vs aplikacie - hadoop
-
-
-
-MAIL
-o softveroch pisem ake maju pluginy, ako sa spravaju z hladiska skalovatelnosti a distribucie a ako riesia ukladanie dat
+     - dorobit pralaleizáciu dotazovania jednotlivých domén
 
 
 
@@ -59,21 +82,13 @@ o softveroch pisem ake maju pluginy, ako sa spravaju z hladiska skalovatelnosti 
 
 
 
-spokusy s history vo write_tsdb wt_format_values()
-/*
-    gauge_t history;
-    int bla = uc_get_history (ds, vl, &history, 1, 1);
-    if (bla) bla = 0;
-    char* tsdbtags;
-    meta_data_get_string (vl->meta, "tsdb_tags",&tsdbtags);
-    int i;
-    rates = uc_get_rate (ds, vl);
-    for (i=0;i<ds->ds_num;i++) {
-    printf ("%s-%s-%s-%s-%s gauge: " GAUGE_FORMAT " derive: %" PRIi64 " history: "GAUGE_FORMAT" rate: "GAUGE_FORMAT"\n",vl->plugin,ds->ds[i].name,vl->type,vl->type_instance,tsdbtags, vl->values[0].gauge, vl->values[0].derive , history, rates[ds_num]);
-	}
-	*/
-	
-	
+
+
+
+
+
+
+
 	
 	monitorovacie softy
 	\section{Cacti}
@@ -104,3 +119,13 @@ vráti poslednú hodnotu. Zároveň sa nebudú vytvárať nové požiadavky na t
 aký interval by bol vhodný pre tú ktorú sondu.
 
 Ďalšou prahovou hodnotou bude počet opakovaní, pri ktorých plugin vracia poslednú hodnotu danej metriky. Ak dôjde k prekročeniu tejto hodnoty, bude reštartovaná celá monitorovacia aplikácia.
+
+
+\subsection{Centrálny systém notifikácií a manažmentu zberných modulov}
+Vyššie popísané riešenie predstavuje decentralizovanú architektúru. Každá zo sond funguje nezávisle, čo sťažuje prípadné mechanizmy konfigurácie
+a riešenie krízových situácií ako napr. zastavenie činnosti démona. Toto je jeden z aspektov kde má navrch napr. systém Zabbix. Súčasťou
+môjho riešenia bude zároveň aplikácia, ktorá bude spravovať konfigurácie jednotlivých inštancií collectd, umožní ich meniť a podľa toho ich reštartovať.
+Umožní prehliadať notifikácie z jednotlivých sond a manuálne ovládať inštancie a ich moduly. To bude zároveň vyžadovať modifikáciu démona
+collectd, ktorý v súčasnosti neumožňuje reštartovanie jednotlivých modulov.
+\\Takýto systém konfigurácie môže mať význam pre lepšiu distribúciu monitorovacej záťaže, kedy skupina démonov môže odosielať dáta jednému 
+démonovi časovej rady a iná skupina bude využívať iného časového démona.

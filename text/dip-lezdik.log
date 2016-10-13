@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  14 SEP 2016 00:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  14 OCT 2016 01:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -535,16 +535,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: Citation `kvm' on page 5 undefined on input line 143.
 
+[5]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-[6 <./images/docker.png>]
-
-LaTeX Warning: Citation `libvirt' on page 7 undefined on input line 146.
+LaTeX Warning: Citation `libvirt' on page 6 undefined on input line 146.
 
 
-LaTeX Warning: Citation `docker' on page 7 undefined on input line 151.
+LaTeX Warning: Citation `docker' on page 6 undefined on input line 151.
 
 
 Overfull \hbox (5.7443pt too wide) in paragraph at lines 149--152
@@ -553,6 +549,9 @@ d, nástroje potrebné
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./images/docker.png>]
 Overfull \hbox (14.17606pt too wide) in paragraph at lines 155--159
 \T1/ppl/m/n/10.95 vate©né, dis-tribuo-vané výpo£ty. Apache Hadoop je prostredie
 , ktoré umoº¬uje
@@ -759,46 +758,37 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: Citation `21' on page 21 undefined on input line 446.
 
-[21]
-Underfull \vbox (badness 6396) has occurred while \output is active []
 
- [22 <./images/metrilyx.png>] [23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+[22 <./images/metrilyx.png>] [23]
 Chapter 5.
 [24
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 499--506
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 499--506
-
- []
-
-[25] [26] [27]
-Overfull \hbox (6.64348pt too wide) in paragraph at lines 565--566
+] [25] [26]
+Overfull \hbox (6.64348pt too wide) in paragraph at lines 557--558
 []\T1/ppl/m/n/10.95 - po£et pri-jatých pake-
  []
 
-
-Overfull \hbox (6.78548pt too wide) in paragraph at lines 570--571
+[27]
+Overfull \hbox (6.78548pt too wide) in paragraph at lines 562--563
 []\T1/ppl/m/n/10.95 - The num-ber of statis-tics sup-ported
  []
 
 [28] [29]
-Overfull \hbox (28.8714pt too wide) in paragraph at lines 624--625
+Overfull \hbox (28.8714pt too wide) in paragraph at lines 616--617
 \T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
 EW_SAVING,
  []
 
 
-Overfull \hbox (5.71338pt too wide) in paragraph at lines 624--625
+Overfull \hbox (5.71338pt too wide) in paragraph at lines 616--617
 \T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
  []
 
 [30]
-Overfull \hbox (2.61348pt too wide) in paragraph at lines 647--648
+Overfull \hbox (2.61348pt too wide) in paragraph at lines 639--640
 []\T1/ppl/m/n/10.95 - State of the node - valid val-ues are: NEW, RUN-NING, UN-
 HEALTHY,
  []
@@ -806,54 +796,76 @@ HEALTHY,
 [31]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 663--668
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 655--660
 \T1/ppl/m/n/10.95 hlavne o aka-demickú spoluprácu. Meta-Cen-trum spravuje výpo£
 etné prostriedky
  []
 
-[32
+Runaway argument?
+! Paragraph ended before \@citex was complete.
+<to be read again> 
+                   \par 
+l.664 
+      
+? 
+
+Overfull \hbox (12.36874pt too wide) in paragraph at lines 671--674
+\T1/ppl/m/n/10.95 o vyuºití mnoºstva za-po-jených clus-terov a uzlov, na ktorýc
+h je tieº spustených
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 686--688
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 684--686
 \T1/ppl/m/n/10.95 Monitorovacia ap-liká-cia by mala posky-to-va´ zrov-nate©né v
 ýsledky v oblasti
  []
 
-
-Overfull \hbox (11.80038pt too wide) in paragraph at lines 698--716
-\T1/ppl/m/n/10.95 Na zápis mon-i-torovacích dát bude vyuºitá databáza £asových 
-rád OpenTSDB.
+[33]
+Overfull \hbox (11.4928pt too wide) in paragraph at lines 696--718
+\T1/ppl/m/n/10.95 pouºíva vi-acero par-alelne beºiacich vlákien, ktoré si medzi
+ se-bou rovnomerne
  []
 
-[33] [34] [35]
+
+Overfull \hbox (8.13147pt too wide) in paragraph at lines 696--718
+\T1/ppl/m/n/10.95 vyuºití zdro-jov jed-notlivými tech-noló-giami. Plug-iny budú
+ kon-fig-urovate©né,
+ []
+
+[34] [35] [36] [37]
 Chapter 7.
 
-Overfull \hbox (4.74774pt too wide) in paragraph at lines 751--759
+Overfull \hbox (4.74774pt too wide) in paragraph at lines 780--788
 \T1/ppl/m/n/10.95 Na získa-vanie met-rick-ých úda-jov o vir-tuál-nych stro-joch
  som pouºil kniºnicu
  []
 
-[36
+[38
 
 ]
 
-LaTeX Warning: Citation `23' on page 37 undefined on input line 762.
+LaTeX Warning: Citation `23' on page 39 undefined on input line 791.
 
 
-LaTeX Warning: Citation `24' on page 37 undefined on input line 775.
+LaTeX Warning: Citation `24' on page 39 undefined on input line 804.
 
-[37]
+[39]
 
-LaTeX Warning: Citation `13' on page 38 undefined on input line 795.
+LaTeX Warning: Citation `13' on page 40 undefined on input line 824.
 
-[38]
+[40]
 Chapter 8.
 No file dip-lezdik.bbl.
-[39
+[41
 
 ]
 Appendix A.
-[40
+[42
 
 ] (./dip-lezdik.aux)
 
@@ -861,22 +873,23 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2523 strings out of 495028
- 32154 string characters out of 6181498
+ 2526 strings out of 495028
+ 32185 string characters out of 6181498
  92062 words of memory out of 5000000
- 5665 multiletter control sequences out of 15000+600000
- 28419 words of font info for 51 fonts, out of 8000000 for 9000
+ 5666 multiletter control sequences out of 15000+600000
+ 29972 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,6n,23p,355b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./fi-logo.514pk>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/urw/palatino/uplr8a.pfb>
-Output written on dip-lezdik.pdf (48 pages, 458352 bytes).
+/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
+alatino/uplri8a.pfb>
+Output written on dip-lezdik.pdf (50 pages, 471799 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 126 compressed objects within 2 object streams
+ 248 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

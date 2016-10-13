@@ -74,8 +74,8 @@ jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie zrovn�
 
 
 
-\chapter{Cloudové technológie}
-\section{Cloud}
+\chapter{Cloud}
+
 Cloudové technológie umožňujú využívať veľkú množinu výkonných výpočetných zdrojov mnohým subjektom. Každý užívateľ cloudu využíva časť výpočetného výkonu. Spolu s rozdelením výkonu prichádzajú aj ďalšie výhody. Užívateľ sa nemusí starať
 o podliehajúci hardvér. Typ fyzického procesora alebo rýchlosť pamäte uzla cloudu sú v určitom zmysle dôležité, ale pre výkon je rozhodujúca veľkosť pamäte, kapacita disku resp. počet procesorových jadier. Tieto požiadavky
 cloud umožňuje jednoducho spravovať a transparentne meniť. Má to význam, ak sa rozrastú požiadavky užívateľa na výkon, alebo naopak z dôvodu obmedzenej prevádzky či 
@@ -495,19 +495,11 @@ Aby mohli medzi sebou jednotlivé kontajnery komunikovať, Docker im poskytuje s
 do ktorej patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
 Užívatelia si môžu definovať vlastné siete. Docker na vytvorenie týchto sietí poskytuje dva ovládače.
 
-\subsubsection{Sieť typu most}
-Je to jednoduchý typ siete určený pre malé siete. Je ju možné vytvoriť príkazom 
-\\
-{\em \$ docker network create --driver bridge NÁZOV\_SIETE}
-\\ \\
-Po vytvorení siete je možné spustiť kontajnery v tejto sieti príkazom
-\\ \\
-{\em \$ docker run --net=NÁZOV\_SIETE --name=NÁZOV\_KONTAJNERA}
-
-\subsubsection{Prekladaná sieť}
-Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hosťujúcich počítačov zároveň. To umožňuje komunikovať medzi sebou aj kontajnerom,
-ktoré sú spustené v rozličných sieťach, prípadne na inom hosťujúcom počítači.
-
+\begin{description}
+\item[\emph{sieť typu most}] - jednoduchý typ určený pre malé siete.
+\item[\emph{prekladaná sieť}] - Docker umožňuje vytvoriť aj sieť, v ktorej sa nachádza viacero hosťujúcich počítačov zároveň. To umožňuje 
+komunikovať medzi sebou aj kontajnerom, ktoré sú spustené v rozličných sieťach, prípadne na inom hosťujúcom počítači.
+\end{description}
 
 \subsubsection{Metriky siete}
 Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
@@ -638,7 +630,7 @@ Tento koncový bod API poskytuje informácie o jednotlivých aplikáciách, ktor
 \item[runningContainers] - The number of containers currently running for the application
 \item[memorySeconds] - The amount of memory the application has allocated (megabyte-seconds)
 \item[vcoreSeconds] - The amount of CPU resources the application has allocated (virtual core-seconds)
-\end{description}cit
+\end{description}
 
 \subsection{Node Application API}
 Toto API poskytuje metriky o využití jednotlivých uzlov clusteri.
@@ -659,7 +651,7 @@ Toto API poskytuje metriky o využití jednotlivých uzlov clusteri.
 \end{description}
 
 \chapter{Analýza a návrh}
-\section{MetaCentrum}
+\section{Heterogénna infraštruktúra MetaCentrum}
 Projekt MetaCentrum vznikol v roku 1996 a od roku 1999 je jeho činnosť zastrešovaná organizáciou CESNET. Zaoberá sa budovaním nárdonej gridovej infraštruktúry a prepojením s podobnými projektami za hranicami
 Českej republiky. Projekt je oficiálnou súčasťou Európskej gridovej iniciatívy (EGI). Úlohou MetaCentra je predovšetkým koordinácia a rozširovanie infraštruktúry či už o vlastné zdroje alebo prostredníctvom
 partnerov, ktorý poskytujú výpočetný výkon svojich clusterov. Jedná sa hlavne o akademickú spoluprácu. MetaCentrum spravuje výpočetné prostriedky a dátové úložiská AV, JČU, MU, MZLU, UK, VUT, ZČU.
@@ -668,19 +660,25 @@ spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času.
 
 MetaCentrum primárne poskytuje svoj výpočetný výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
 Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
-infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočetnej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.
+infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočetnej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.\cite[25]
+
+Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Zahŕňa dedikované Hadoop klastre na spúšťanie špecifických aplikácií, ktoré
+riešia náročné úlohy. Pre potreby zložitejšieho využitia výkonu MetaCentrum poskytuje možnosť vytvárania virtuálnych strojov alebo 
+spúšťanie aplikačných kontajnerov.
 
 \section{Požiadavky na aplikáciu}
 \subsection{Vysoký monitorovací výkon}
-Cloudová infraštruktúra MetaCentra pozostáva z mnohých výpočetných uzlov. Sú prepojené sieťami s veľkou prenosovou kapacitou a vysokou priepustnosťou. Je potrebné zbierať dáta o využití množstva zapojených
-clusterov a uzlov, na ktorých je tiež spustených mnoho výpočetných úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. Veľká záťaž je kladená na databázu, do ktorej
-sú tieto metrické dáta pravidelne odosielané.
+Cloudová infraštruktúra MetaCentra pozostáva z mnohých výpočetných uzlov. Sú prepojené vysokorýchlostnými sieťami. Je potrebné zbierať dáta o využití množstva zapojených
+clusterov a uzlov, na ktorých je tiež spustených mnoho výpočetných úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. 
+Databáza, do ktorej sú pravidelne odosielané metrické dáta, musí byť schopná spracovávať desiatky tisíc záznamov za sekundu.
 
 \subsection{Nízka nadbytočná záťaž}
 Primárnou úlohou cloudu je poskytovanie svojho výpočetného výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
-samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++, prípadne rýchle skriptovacie 
+samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť, nakoľko by samotná kapacita infraštruktúry bola obmedzená už len behom
+monitorovacej aplikácie. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++, prípadne rýchle skriptovacie 
 jazyky ako Python, Ruby či Go. Tie ale predsalen predstavujú istú nadmernú záťaž súvisiacu so spúšťaním interpretera. 
 Nie je príliš vhodné používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
+\\Pre porovnanie uvádzam test niekoľkých aplikácií, ktorý sleduje spotrebu zdrojov jednotlivých monitorovacích aplikácií. Tieto 
 
 \subsection{Škálovateľnosť}
 Monitorovacia aplikácia by mala poskytovať zrovnateľné výsledky v oblasti rýchlosti odozvy v prípade, že bude spustená na jednom uzle, ale aj v prípade, že jej úlohou bude monitorovať stovky 
@@ -690,13 +688,14 @@ výpočetných uzlov s množstvom spustených inštancií, ktoré treba sledova�
 Zber metrík je možné realizovať v prípade virtuálnych strojov alebo aplikačných kontajnerov aj z ich vnútra. Bolo by možné v každej
 takejto virtualizovanej inštancií spustiť jednoduchú monitorovaciu aplikáciu, ktorá by interagovala priamo so systémom a potom by odosielala dáta.
 To ale nie je vhodné riešenie, nakoľko sa nedá predpokladať virtualizovaný operačný systém a zároveň to predstavuje zásah do užívateľského
-priestoru. Je lepšie realizovať zber metrík na základe integrácií s aplikáciami, kedy je monitorvacia aplikácia nasadená na fyzickom
+priestoru. Je lepšie realizovať zber metrík na základe integrácií s aplikáciami, kedy je monitorovacia aplikácia nasadená na fyzickom
 operačnom systéme a zberá metriky o virtualizačných aplikáciách, ktoré sú využívané.
 
 
-\section{Návrh aplikácie}
-Monitorovacia aplikácia bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
-Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. Samotný proces zberu metrických dát bude zabezpečený aplikáciou collectd. Oproti ostatným dostupným aplikáciám disponuje
+\section{Návrh monitorovacieho riešenia}
+Monitorovacie riešenie bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
+Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. 
+\\Samotný proces zberu metrických dát bude zabezpečený aplikáciou collectd. Oproti ostatným dostupným aplikáciám disponuje
 veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsobom, ako a kam sa budú dané dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
 aj v systéme upozornení. Collectd bude zabezpečovať prípadné odosielanie notifikácií prostredníctvom emailu. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
 paralelne bežiacich vlákien, ktoré si medzi sebou rovnomerne delia záťaž. Ich počet je možné definovať pri konfigurácií. 
@@ -706,28 +705,56 @@ zberu metrík. Napr. pripojenie na správcu kontajnerov alebo hypervízora. Nie 
 každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zberu dát. Takýto spôsob bol jedinou možnosťou pri niektorých iných aplikáciách.
 \\Potom nasleduje fáza behu. Collectd beží v režime démona na pozadí a periodicky spúšťa jednotlivé moduly, ktoré zisťujú metrické dáta. 
 V rámci modulov sa periodicky zisťuje, ktoré virtuálne stroje alebo kontajnery sú spustené a ktorých sa tým pádom budú zberať metriky. 
-\\Po nameraní hodnoty collectd inicializuje zápis prostredníctvom modulu Write TSDB. Tu dochádza k ďalším optimalizáciám, ako sú cachovanie
-hodnôt a ich odosielanie vo väčších dávkach.
-\\V prípade, že je potrebné démona ukončiť, dôjde najprv k ukončeniu jednotlivých modulov. Až v tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
+\\Po nameraní hodnoty collectd inicializuje zápis prostredníctvom modulu Write TSDB. Modul má optimalizovanú činnosť v podobe cachovania
+hodnôt a ich odosielania nie po jednom ale vo väčších dávkach.
+\\Démon takisto riadi ukončovanie činnosti modulov. Až v tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
 \\Samotný collectd bez pluginov predstavuje riadiaciu aplikáciu v podobe démona, ktorá na svoju inštaláciu vyžaduje minimum závislostí. To je ďalšou z výhod, keďže 
 démon na zber metrík bude nainštalovaný na každom monitorovanom uzle.
-\\Na zápis monitorovacích dát bude využitá databáza časových rád OpenTSDB. Budem sa jej venovať v nasledujúcej časti.
+\\Na zápis monitorovacích dát bude využitá databáza časových rád. Budem sa jej venovať v nasledujúcej časti.
 \\Takýto návrh zabezpečuje decentralizované a škálovateľné riešenie, kedy je distribuovaný nielen zber metrických údajov, ale aj ich zápis a uchovávanie.
+\\Collectd rozšírim o jednotlivé pluginy, ktoré budú zberať metrické údaje o využití zdrojov jednotlivými technológiami. Pluginy budú 
+konfigurovateľné, vyvinuté s dôrazom na paralelizáciu. Budú mať schopnosť automatickej detekcie nových inštancií kontajnerov a virtuálnych
+strojov.
 
-\subsection{Centrálny systém notifikácií a manažmentu zberných modulov}
-Vyššie popísané riešenie predstavuje decentralizovanú architektúru. Každá zo sond funguje nezávisle, čo sťažuje prípadné mechanizmy konfigurácie
-a riešenie krízových situácií ako napr. zastavenie činnosti démona. Toto je jeden z aspektov kde má navrch napr. systém Zabbix. Súčasťou
-môjho riešenia bude zároveň aplikácia, ktorá bude spravovať konfigurácie jednotlivých inštancií collectd, umožní ich meniť a podľa toho ich reštartovať.
-Umožní prehliadať notifikácie z jednotlivých sond a manuálne ovládať inštancie a ich moduly. To bude zároveň vyžadovať modifikáciu démona
-collectd, ktorý v súčasnosti neumožňuje reštartovanie jednotlivých modulov.
-\\Takýto systém konfigurácie môže mať význam pre lepšiu distribúciu monitorovacej záťaže, kedy skupina démonov môže odosielať dáta jednému 
-démonovi časovej rady a iná skupina bude využívať iného časového démona.
+\subsection{Paralelizácia v rámci pluginov}
+Collectd poskytuje mechanizmus pracovných vlákien, v ktorých vykonávajú pluginy zber dát. To umožňuje paralelne spúšťať jednotlivé pluginy.
+Môže ale nastať situácia, kedy plugin zberá dáta o stovkách kontajnerov či virtuálnych strojov. Pluginy som preto navrhol tak, že využívajú
+paralelizáciu pri zisťovaní monitorovacích dát o jednotlivých inštanciách. 
 
-\section{OpenTSDB}
+\subsection{Databáza časových rád}
 Ako databázu na uchovávanie časových dát som si zvolil OpenTSDB. Dôvodom je používanie databázy HBase. Je to distribuovaná databáza určená pre veľké objemy dát v rádoch stoviek miliónov a milárd záznamov. 
 Je typom NoSQL databázy. Oproti SQL databázam je linárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočetných zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých
 uzlov, ktoré sa v infraštruktúre MetaCentra nachádzajú. Ďalším dôvodom je, že v MetaCentre je aktuálne databáza HBase využívaná, čo predstavuje zjednodušenie nasadenia. 
-
+\\Monitorovacie dáta môžu byť uchovávané po dobu rokov až desiatky rokov. Súčasťou môjhom riešenia bude aj sada nástrojov, ktoré budú
+umožňovať zmenu granularity už zapísaných metrických dát. Tým je možné prispieť k úspore úložnej kapacity a zároveň kontinuálne reagovať na
+zastarávanie údajov. 
+\\Pre potreby monitorovania záťaže a reakcie na danú hodnotu je vo svojej podstate významná len aktuálna záťaž prostriedkov, prípadne záťaž v okne niekoľkých hodín 
+dozadu. Potreba uchovávania dát je tu z dôvodu účtovania a pre možnosť sledovať vývoj využívania zdrojov v čase.
+Podľa toho, ako dlho zberáme metriku, sa mení aj požiadavka na interval v akom je potrebné hodnoty uchovávať. Čím staršie hodnoty sú,
+tým menšia granularita nám postačuje.
+\\OpenTSDB podporuje podobnú funkciu pri vyhodnocovaní požiadaviek - tj. ak by vo vyhodnotení požiadavky mali byť státisíce dátových bodov,
+dôdje k súčtu hodnôt za určité obdobie, ktoré je nahradené len jedným bodom s hodnotou tohoto súčtu. Nie je ale podporovaná kontinuálna
+zmena na úrovni záznamov v databáze.
+  
+\subsubsection{Zmena granularity dát}
+Zmena granularity už zapísaných dát je daná dvojicami parametrov, ktoré pre účely tejto práce nazývam
+\textit{historický interval} a \textit{požadovaná granularita}. \textit{Historický interval} definuje, s akými dátami pracovať a 
+\textit{požadovaná granularita} určuje
+interval, v ktorom sa za danú dobu majú uchovávať dáta. Napr. dáta staršie ako rok je potrebné uchovávať v intervale jedného dňa a 
+dáta staršie ako mesiac v intervale jednej hodiny. 
+\\Jednou súčasťou monitorovacieho riešenia bude nástroj, ktorý upraví dáta v časovej databáze do požadovanej podoby.
+Taktiež bude možné vybrať,
+na ktorých metrikách prebehne táto transformácia. Nástroj bude spúšťaný jednorázovo v dobe, keď bude infraštruktúra pomerne slabšie vyťažená.
+Nebude sa teda jednať o kontinuálny dohľad nad starnutím hodnôt a ich úpravy. Takýto prístup by vyťažoval zdroje neustálym prepočtom hodnôt,
+ktoré sa plynutím času presúvajú medzi intervalmi s rôznymi granularitami. Vzhľadom na to, aké ciele plní táto funkcionalita,
+je vhodnejšie spúšťať transformáciu databázy ručne - aj keď prakticky v určitých časových intervaloch, napr. každý týždeň alebo mesiac.
+\\Vo svojej podstate kontinuálny dohľad tiež predstavuje len periodické prepočítavanie, kde je interval prepočtov daný najmenším intervalom zo 
+spomínaných dvojíc. Intervaly \textit{požadovanej granularity} sú spravidla jeden násobkom druhého (napr. hodina a deň), takže
+by sa periodicky opakovala náročnosť prepočtov a teda aj dĺžka ich trvania. Periodicita však môže byť udaná aj ručným spúšťaním aplikácie, 
+kde množstvo prepočtov závisí od toho, koľko intervalov \textit{požadovanej granularity} bolo prekročených od poslednej agregácie.
+Avšak prepočty je možné naplánovať na vhodnú dobu, kedy je infraštruktúra menej vyťažená. 
+\\Nástroj bude ako svoj vstup využívať historické politiky, ktoré definujú spomínané dvojice intervalov a zároveň aj zoznam metrík
+a ich príslušnosť k jednotlivým politikám.
 
 \chapter{Implementácia}
 Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. Tá poskytuje mechanizmy na periodické spúšťanie merania metrík,
@@ -735,6 +762,8 @@ analýzu zozbieraných hodnôt a generovanie hlásení. Na zbieranie jednotlivý
 pomocou modulu WriteTSDB.
 
 \section{Techniky zbierania metrík}
+Rôzne technológie MetaCentra poskytujú svoje metrické údaje cez rôzne programové rozhrania alebo prostredníctvom textového výstupu zvyčajne
+dostupného prostredníctvom HTTP servera.
 
 \subsection{Docker}
 Na komunikáciu s Dockerom je možné využiť:
@@ -755,7 +784,7 @@ stroj využíva virtualizované zdroje.
 je možné zisťovať, ktoré virtuálne stroje sú spustené. V periodických intervaloch aktualizujem zoznam bežiacich strojov a odosielam
 metriky len o nich.
 \\Collectd už obsahoval plugin pre libvirt, no bolo potrebné doplniť niektoré popisné údaje metrík, ako názov hosťujúceho počítača,
-názov virtuálneho stroja a iné.
+názov virtuálneho stroja a iné. Taktiež som rozšíril tento plugin o paralelný zber metrík z jednotlivých virtuálnych strojov.
 
 \subsection{Hadoop}
 Na monitorovanie Hadoopu som si zvolil REST API YARN-u. YARN zabezpečuje správu zdrojov a plánovanie/monitorovanie vykonávania úloh do dvoch
