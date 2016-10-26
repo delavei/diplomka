@@ -19,32 +19,24 @@ metriky o konfigurácií zberať menej často
 
 hodnoty v tsd - ikrementalne vs. absolutne
 
+cloud - v uvode co to je - citacia z nejakej knihy
+
+v analyze a navrhu spomenúť že zberám aj metadáta
 
 
 
-cloudove technologie -reorganizacia, najprv uvod, ze  preco vlastne ich uvádzam metacentrum je hetergoenny, ma abc, teraz idem popisovat tiet technologie..
-dat tam aj grid. vo virtualkach mozu byt kontajnery, ale zaujimaju nas len virtualky. obrazky - hadoop, metacentrum
 
-prirovnanie s vlakmi - obmedzit
 
-citacia - kvm, zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody
-nejake nejasne o tom.
+POZNAMKYYYYYYYYYYYYYYYYYYYYYY
 
-oddelit monitorovanie a uctovanie - napr. detekcia zdrojov a uzivatelov - ak su vhodne zbierane metriky a metedata, da sa to vyuzit
-na accounting. mozem uvadzat misovu diplomku
+cgroup - v gride server distribuuje ulohy, obali ich do  cgroup na konkretnom stroji a obcas sa tam pozrie, kolko zozerie
 
-cgroup - zaradiť neskôr, nie je to úplne monitorovanie, skôr kontrola prístupu k zdrojom. v gride server distribuuje ulohy, obali ich do 
- cgroup na konkretnom stroji a obcas sa tam pozrie, kolko zozerie
- 
-aktualne riesenia - podsekcie v programoch pomenovat rovnako, v uvode napisat ze co budem pri kazdom riesit
-				  - collectd je nastroj na zber, nie cele riesenie, aj cgroup
-				  - obrazok uviest do kontextu- ze co na nom je 
-				  
+citacie - zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody nejake nejasne o tom.
+
+oddelit monitorovanie a uctovanie - napr. detekcia zdrojov a uzivatelov - ak su vhodne zbierane metriky a metedata, da sa to vyuzit na accounting. mozem uvadzat misovu diplomku
+
 brendan gregg linuxperf
 
-je viac aplikacno kontajnerovych appiek, docker som vybral lebo je v metacentre
-
-nestriedat cpu a procesor
 analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, porovnat to s niecim a presne na com som to testoval
 				a vsetko o merani - napr. tcollector
 
@@ -59,6 +51,7 @@ aktualizovat verziu  dockeru- rozdiel v networkoch
 robit pravidelne refresh zoznamu kontajnerov
 config - host-majbe, refresh interval pre kontajnery
 cpu kernelmode, usermode treba - odosielat
+zbierat info o pamati hosta
 
 cJSON
 nacitavanie unsigned long long (napr. docker system cpu usage)
