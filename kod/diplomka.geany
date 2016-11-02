@@ -23,12 +23,15 @@ long_line_column=72
 
 [files]
 current_page=1
-FILE_NAME_0=2466;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
-FILE_NAME_1=52970;LaTeX;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.tex;0;4
-FILE_NAME_2=2437;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.bib;0;4
+FILE_NAME_0=766;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
+FILE_NAME_1=61154;LaTeX;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.tex;0;4
+FILE_NAME_2=2456;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.bib;0;4
 FILE_NAME_3=3856;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fwrite_tsdb.c;0;4
-FILE_NAME_4=16020;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fvirt.c;0;4
-FILE_NAME_5=5578;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop.c;0;4
+FILE_NAME_4=1998;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fdocker.c;0;4
+FILE_NAME_5=241410;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fopentsdb%2F127.0.0.1;0;4
+FILE_NAME_6=1399;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop.c;0;4
+FILE_NAME_7=16836;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fvirt.c;0;4
+FILE_NAME_8=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Ftypes.db;0;4
 
 [VTE]
 last_dir=/home/juraj

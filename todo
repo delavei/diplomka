@@ -1,37 +1,42 @@
 sudo ./configure --enable-docker --enable-virt --enable-hadoop --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
-python diplomka/kod/tsddrain.py 4242 ./opentsdb/
+python diplomka/kod/tsddrain.py 4242 opentsdb/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
+OTAZKYYYYY
+analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
+jake verzie softov sa používajú? dať to do textu
+zberat z dockeru pre jednotlivé jadrá?
+hadoop kontajnery?
+hadoop node state zberať?
+pamatove statsitiky libvirt, iba niektore ide zberat, ostatne mam vyhodit?
+vyhodil som z hadoopu aj z inych zoznamov metrik to, co nema moc vyznam zberat, nie su tam komplet podrobne vypisy, co to poskytuje - to asi skor len do prilohy
 
 TEEEEEEEEEEEEEEEEEEEXT
 Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
 by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
-Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia 
+Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - v implementácií asi rozdeliť metriky na konfiguračné
+a monitorovacie a mať možnosť nakonfigurovať pre tie konfiguračné interval - ale ten už sa bude čekovať len v rámci pluginu
 
 okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
 napisat o tom, ako sa vypocitava cpu load - podporit citaciou, ako sa to vlastne vyratava - napriklad aj ze zo zdrojaku
 
-tabulka - nazvy metrik tak ako ich ukladam do databazy
-metriky o konfigurácií zberať menej často 
-
-hodnoty v tsd - ikrementalne vs. absolutne
-
-cloud - v uvode co to je - citacia z nejakej knihy
+tabulka - nazvy metrik tak ako ich ukladam do databazy vs nazvy ako ich dostavam z vystupov 
 
 v analyze a navrhu spomenúť že zberám aj metadáta
 
+v implementácií napísať o zmene modulu pre libvirt - zber cpu 
 
-
+pamatove statistiky ktor0 presne sa mi podarilo zberat
 
 
 POZNAMKYYYYYYYYYYYYYYYYYYYYYY
 obrazky - hadoop, metacentrum
 cgroup - v gride server distribuuje ulohy, obali ich do  cgroup na konkretnom stroji a obcas sa tam pozrie, kolko zozerie
 
-citacie - zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody nejake nejasne o tom.
+citacie - co je cloud, zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody nejake nejasne o tom.
 
 oddelit monitorovanie a uctovanie - napr. detekcia zdrojov a uzivatelov - ak su vhodne zbierane metriky a metedata, da sa to vyuzit na accounting. mozem uvadzat misovu diplomku
 
@@ -47,7 +52,7 @@ analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, p
 
 IMPLEMENTACIA
 docker
-aktualizovat verziu  dockeru- rozdiel v networkoch
+aktualizovat verziu  dockeru- rozdiel v networkoch a možno aj v pamäti - limit
 robit pravidelne refresh zoznamu kontajnerov
 config - host-majbe, refresh interval pre kontajnery
 cpu kernelmode, usermode treba - odosielat
@@ -59,6 +64,8 @@ nacitavanie unsigned long long (napr. docker system cpu usage)
 hadoop
 adresa klastra do konfiguracie
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
+dorobiť cluster a node metriky
+
 
 virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
      - pridat cpu kernelmode a usermode - to tuším nejde

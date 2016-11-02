@@ -79,7 +79,8 @@ void submit_cpu_stats (cJSON* root, container_t* container){
 	int cpus_num,i;
 	
 	
-	int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valueint;
+	//int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valueint;
+	int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"system_cpu_usage")->valueint;
 	cpu_submit (cpu, container, "cpu");
 	
 	cJSON* cpus_array = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"percpu_usage");
@@ -176,6 +177,9 @@ void submit_memory_stats (cJSON* root, container_t* container) {
 	
 	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"failcnt")->valueint;
 	memory_submit(mem_value,container,"fail_count");
+	
+	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"limit")->valueint;
+	memory_submit(mem_value,container,"limit");
 
 	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"stats"),"rss")->valueint;
 	memory_submit(mem_value,container,"rss");
@@ -185,6 +189,7 @@ void submit_memory_stats (cJSON* root, container_t* container) {
 	
 	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"stats"),"pgfault")->valueint;
 	memory_submit(mem_value,container,"pgfault_minor");
+	
 }
 
 static void get_network_stats (cJSON* root, unsigned long* rx_val, unsigned long* tx_val, const char* rx_string, const char* tx_string) {

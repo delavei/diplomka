@@ -22,11 +22,11 @@ CURL* easy_handle;
 int new_read = 1;
 char app_json[BUFFER_SIZE] = "";
 enum states last_state;
-int apps_count=0;
+//int apps_count=0;
 
 
-int bla =0;
-size_t hovno=0;
+//int bla =0;
+//size_t hovno=0;
 
 static void init_value_list (value_list_t *vl)
 {
@@ -60,7 +60,7 @@ void submit_app_value (unsigned long value, const char* type_instance, const cha
 }
 
 void submit_app_stats (char* app_json) {
-	apps_count++;
+	//apps_count++;
 	cJSON* root = cJSON_Parse(app_json);
 //printf("%s\n\n",app_json);
 	char* app_id = cJSON_GetObjectItem(root,"id")->valuestring;
@@ -127,9 +127,9 @@ enum states parse_response (char *app_json_begin, char *data_end) {
 }
 
 size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
-	if (bla==0) {
+	/*if (bla==0) {
 		hovno=hovno+(nmemb*size);
-	}
+	}*/
 	
 	char* app_json_begin = 0;
 	size_t retval = nmemb*size;
@@ -167,12 +167,12 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 
 static int hadoop_read (void)
 {
-	printf("\n\n\n\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy11");
+	//printf("\n\n\n\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy11");
 	curl_easy_perform(easy_handle);
 	new_read = 1;
-	bla=1;
-	printf("\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  appps count %d",apps_count);
-	    apps_count=0;
+	//bla=1;
+	//printf("\nnovyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  appps count %d",apps_count);
+	//apps_count=0;
 	return 0;
 }
 

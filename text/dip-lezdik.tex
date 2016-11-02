@@ -135,7 +135,6 @@ sieti a prípadne ďalším prostriedkom. Takýto spôsob virtualizácie predsta
 
 \subsection{Gridové počítanie}
 
-
 \section{Cloudové technológie MetaCentra}
 V prostredí MetaCentra sú nasadené do produkčnej prevádzky softvéry, ktoré umožňujú využívať výkon spomínanými technológiami. Jedná sa o heterogénnu infraštruktúru, ktorú tvoria výkonné clustre ale 
 aj jednotlivé uzly rozmiestnené po celej republike. Virtuálne stroje sú poskytované prostredníctvom linuxového modulu jadra \textit{KVM}. Na prácu s nimi je využívaná knižnica \textit{libvirt}. 
@@ -147,21 +146,22 @@ KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualiza�
 Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko, ktoré simulujú procesor od daného výrobcu.
 Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo aj ďalšími. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
 KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
-
-libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
+\\libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
 Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C#, Java, Ruby alebo Go.\cite{libvirt}
+\\Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
 
 \subsection{Docker}
 Docker umožňuje zabaliť aplikáciu so všetkými jej závislosťami do štandardizovanej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru obaľujú softvér kompletným súborovým systémom, ktorý
 zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
 je spustený.\cite{docker}
-
+\\Docker rozlišuje kontajnery a obrazy. Obraz predstavuje softvérový balík so všetkými závislosťami, kontajner reprezentuje jeho beh. Preto môže existovať viacero kontajnerov, v ktorých je spustený ten istý
+softvér. 
 
 \subsection{Hadoop}
 Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
 naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočetný výkon a úložný priestor.
 Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
-z ktorých každý je náchylný na chyby.
+z ktorých každý je náchylný na chyby. \cite{hadoop}
 
 Projekt pozostáva z týchto modulov:
 \begin{description}
@@ -486,13 +486,14 @@ Konsolidovaná hodnota je typicky priemer, minimum alebo maximum z viacerých ho
 Každá z technológií cloudového výpočetného strediska je zdrojom mnohých dát o vyťažení zdrojov. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. V prípade MetaCentra podstatné
 zdroje predstavujú \emph{procesor, pamät, pevné disky a sieťové rozhrania}. Je vhodné mať také metriky pre všetky využívané cloudové technológie,
 ktoré je možné nejakým spôsobom porovnať medzi sebou. V prípade procesora sa jedná o jeho aktuálne vyťaženie, ale zároveň je zaujímavým údajom aj prepočítaný procesorový čas. Táto metrika môže byť efektívnym
-nástrojom pre následné učtovanie jednotlivým úžívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné vždy o každom zdroji zberať rovnaké dáta. 
+nástrojom pre následné učtovanie jednotlivým užívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné vždy o každom zdroji zberať rovnaké dáta. 
 O distribuovaných výpočtoch napríklad nie je možné efektívne zistiť aktuálne vyťaženie procesora. Takéto úlohy sa počítajú na viacerých uzloch clustera. O poradí a rozmiestnení požiadaviek na zdroje
-rozhodouje riadiaca aplikácia, takže sa nejedná o jeden procesor. Táto aplikácia má ale prehľad o tom, koľko času strávil celý cluster počítaním danej úlohy. Takže v určitom ohľade zrovnateľná s virtuálnym
+rozhodouje riadiaca aplikácia, takže sa nejedná o jeden procesor. Táto aplikácia má ale prehľad o tom, koľko času strávil celý cluster počítaním danej úlohy. Takže v určitom ohľade je zrovnateľná s virtuálnym
 strojom a jeho spotrebou procesorového času.
-
-Podobná situácia nastáva aj u monitorovania sieťových rozhraní. Distribuované výpočty využívajú sieť svojským spôsobom a len na účel vypočítania komplexnejšieho problému. Jedná sa o prepojenie
+\\Podobná situácia nastáva aj u monitorovania sieťových rozhraní. Distribuované výpočty využívajú sieť svojským spôsobom a len na účel vypočítania komplexnejšieho problému. Jedná sa o prepojenie
 uzlov v rámci clustera. Je to jednoúčelová vysokorýchlostná sieť. Z hľadiska poskytovania výpočetných kapacít dáva väčší zmysel orientácia na využívanie konektivity smerom do internetu. 
+\\Názvy metrík uvádzam tak, ako sú pomenované vo výstupoch získavaných od jednotlivých cloudových technológií. Do databázy ukladám metriky o rovnakých zdrojoch a ich parametroch pod rovnakými názvami aj pre
+rôzne technológie. V prílohe sa nachádza tabuľka, ktorá popisuje prevod týchto názvov.
 
 \subsection{Význam popisných údajov metrík}
 Metrické dáta vypovedajú o využití zdrojov. Vieme určiť ako dlhý čas a v akej miere bol využívaný výpočtový výkon. Z nich samotných nevieme presne určiť, kto zdroje využíval. Pre to aby mali tieto dáta zmysel 
@@ -502,14 +503,37 @@ sa zdroj nachádza, názov stroja, ktorý poskytuje svoje kapacity, a ďalšie �
 
 \subsection{Periodicita zberania metrík}
 Zberané metriky sa líšia tým, ako veľmi sa v čase menia. Kým záťaž procesora, vstupno-výstupné operácie alebo množstvo prenesených dát sa mení v čase pomerne rýchlo, veľkosť clustera v počte poskytnutých procesorov 
-alebo virtuálnej pamäte sa nemení tak často. Má preto zmysel uvažovať o kontrole intervalu zbierania jednotlivých metrík. Nie len na úrovni zhluku metrík pre konrétnu technológiu ale aj pre jednotlivé metriky samostatne.
+alebo virtuálnej pamäte sa nemení tak často. Má preto zmysel uvažovať o kontrole intervalu zbierania jednotlivých metrík. Nie len na úrovni zhluku metrík pre konkrétnu technológiu ale aj pre jednotlivé metriky samostatne.
 
 \subsection{Formát hodnoty metriky}
-Metriky ako záznamy obsahujú čas, kedy bola hodnota nameraná, samotnú hodnotu nejakého sledovaného javu a popisné dáta. Na metrické
+Metriky v podobe záznamov obsahujú čas, kedy bola hodnota nameraná, samotnú hodnotu nejakého sledovaného javu a popisné dáta. Na metrické
 hodnoty sa môžeme pozerať ako na prírastky alebo ako na absolútne hodnoty. Prírastky hovoria o rozdiele aktuálne nameranej hodnoty 
 a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu využitia zdroja. 
 
 \section{Docker}
+O kontajneroch je možné zberať metriky o všetkých požadovaných zdrojoch, tj. procesor, pamäť, sieť a vstupno-výstupné diskové operácie.
+
+\subsection{Procesor}
+Procesor predstavuje jeden z najdôležitejších údajov o vyťažení zdrojov. Docker poskytuje viaceré metriky o procesore, ktorých hodnoty 
+predstavujú výpočetný čas strávený na procesore v jednotkách nanosekúnd: 
+\begin{description}
+\item[percpu\_usage] - obsahuje pole hodnôt, kde každá reprezentuje čas strávený na danom jadre procesora
+\item[total\_usage] - predstavuje sumárnu hodnotu času, ktorý strávil kontajner na všetkých jadrách spolu
+\item[usage\_in\_usermode] - predstavuje procesorový čas (pre všetka jadrá), v ktorom došlo k vykonávaniu aplikačného kódu
+\item[usage\_in\_kernelmode] - predstavuje procesorový čas (pre všetka jadrá), v ktorom došlo k volaniu kódu jadra operačného systému
+\end{description}
+
+\subsection{Pamäť}
+Cez API Dockeru je možné získať mnoho podrobných údajov o pamäti. Nie všetky však má význam zberať, preto uvádzam len tie metriky, ktoré zberám. Ich jen
+\begin{description}
+\item[usage] - spotreba pamäte v bajtoch
+\item[failcnt] - počet chýb v pamäti
+\item[rss] - množstvo pamäte v bajtoch, ktoré kontajner využíva priamo v RAM, tj. okrem stránok uložených na disku alebo okrem častí kódu kontajneru, ktorý ani nebol nahratý do pamäte
+\item[pgmajfault] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäte z disku.
+\item[pgfault] - počet prípadov, kedy chýbajúca stránka virtuálnej pamäte je načítaná vo fyzickej pamäti, ale nie je o tom záznam v riadacej jednotke pamäte v procesore.
+\item[limit] - obmedzenie na množstvo použiteľnej pamäte v bajtoch. Buď je táto hodnota nastavená pri spustení kontajnera, alebo predstavuje množstvo pamäte inštalovanej na hosťujúcom počítači.
+\end{description}
+
 \subsection{Sieť}
 Aby mohli medzi sebou jednotlivé kontajnery komunikovať, Docker im poskytuje sieťové rozhrania. Každé rozhranie má nakonfigurovanú sieť,
 do ktorej patrí. Na to, aby kontajnery spolu mohli komunikovať, musia byť členmi rovnakej siete. Komunikácia naprieč sieťami nie je možná.
@@ -534,29 +558,69 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \item[tx\_packets] - počet odoslaných paketov
 \end{description}
 
-\subsection{Pamäť}
-Cez API Dockeru je možné získať nasledovné metriky pamäte.
+\subsection{Zápis a čítanie z disku}
+Docker poskytuje metriky o vstupno-výstupných operáciách aj o počte bajtov, ktoré tieto operácie preniesli.
 \begin{description}
-\item[usage] - spotreba pamäte
-\item[failcnt] - počet chýb
+\item[io\_service\_recursive-Read] - predstavuje počet operácií čítania
+\item[io\_serviced\_recursive-Write] - predstavuje počet operácií zápisu
+\item[io\_service\_bytes\_recursive-Read] - predstavuje počet prečítaných bajtov
+\item[io\_service\_bytes\_recursive-Write] - predstavuje počet zapísaných bajtov
 \end{description}
-Docker neposkytuje údaj o tom, koľko pamäte poskytuje hosťujúci počítač. Zistiť tento údaj však v implementácií nepredstavuje problém,
-a preto je tiež zberaná táto metrika.
 
-\subsection{Procesor}
-Procesor predstavuje jeden z najdôležitejších údajov o vyťažení zdrojov. Docker poskytuje viaceré metriky o procesore, ktorých hodnoty 
-predstavujú výpočetný čas strávený na procesore: 
+\subsection{Popisné údaje}
+Okrem metrických údajov zberám aj nasledovné popisné údaje:
 \begin{description}
-\item[percpu\_usage] - využitie jednotlivých jadier procesora
-\item[usage\_in\_usermode] - 
-\item[total\_usage] - 
-\item[usage\_in\_kernelmode] - 
-\item[system\_cpu\_usage] - 
+\item[container\_id] - je to identifikačný reťazec kontajnera, ktorý ho jednoznačne identifikuje na hosťujúcom stroji
+\item[host] - názov hosťujúceho počítača
+\item[image\_name] - názov Docker obrazu, ktorému zodpovedá spustený kontajner
 \end{description}
 
 \section{libvirt/KVM}
+Knižnica libvirt taktiež poskytuje údaje o všetkých sledovaných zdrojoch.
 
-\subsection{Metriky siete}
+\subsection{Procesor}
+Libivirt poskytuje údaje o tom, koľko času prepočítal daný virtuálny stroj na svojich virtuálnych procesoroch. Ďalej je možné zistiť, koľko času virtuálny stroj strávil na procesore hosťujúceho počítača. 
+Z hľadiska využitia zdrojov je podstatný druhý údaj. Virtuálne procesory môžu, ale nemusia byť priamo namapované na fyzické procesory. Takisto záťaž na fyzický procesor nepredstavuje len čas prepočítaný
+na virtuálnom procesore, ale aj režijné náklady spojené s virtualizáciou.
+
+\begin{description}
+\item[cpu\_time] - suma času, ktorý strávil virtuálny stroj na procesore hosťujúceho počítača \cite{libvirt-cpu}
+\item[user\_time] - procesorový čas v nanosekundách, v ktorom došlo k vykonávaniu aplikačného kódu
+\item[system\_time] - procesorový čas v nanosekundách, v ktorom došlo k volaniu kódu jadra operačného systému
+\end{description}
+
+\subsection{Pamäť}
+O pamäti poskytuje \textit{libivrt} nasledovné štatistiky:
+\begin{description}
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN] - množstvo pamäte v kB, ktoré bolo načítané zo swapovacieho priestoru.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_OUT] - množstvo pamäte v kB, ktoré bolo odložené do swapovacieho priestoru.available.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäte z disku.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_MINOR\_FAULT] - počet prípadov, kedy chýbajúca stránka virtuálnej pamäte je načítaná vo fyzickej pamäti, ale nie je o tom záznam v riadacej jednotke pamäte v procesore.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_UNUSED] - množstvo pamäte v kB, ktoré je úplne nevyužité systémom.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE] - množstvo pamäte v kB, o ktorej virtuálny stroj vie, že ju môže využiť. Títo hodnota môže byť menšia, ako veľkosť pamäte pripísaná virtuálnemu stroju, 
+ak sa používa technika pamäťového balónu.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON] - aktuálna veľkosť pamäťového balónu v kB.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_RSS] - množstvo pamäte v kB obsadené procesom, v ktorom beží virtuálny stroj.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_USABLE] - maximálna veľkosť pamäťového balónu, kedy ešte nedochádza k swapovaniu pamäte virtuálneho stroja na disk.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_LAST\_UPDATE] - Unixová časová známka poslednej aktualizácie štatistík o pamäti.
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - počet štatistík, ktoré podporuje daný hypervízor.
+\end{description}
+\cite{libvirt-mem}
+Množstvo poskytovaných štatistík závisí od použitého hypervízora. V prípade MetaCentra sa mi podarilo zberať len niektoré z týchto štatistík. Zároveň ich jednotky neboli kilobajty, ale bajty.
+
+\subsubsection{Pamäťový balón}
+Technika pamäťového balónu umožňuje virtuálnym strojom na jednom hostiteľskom počítači zdieľať pamäť podľa aktuálnych požiadaviek. Ak existujú virtuálne stroje, ktoré pridelenú pamäť využívajú málo,
+hosťujúci stroj môže túto pamäť prideliť virtuálnym strojom, ktoré jej požadujú viac.
+
+\subsection{Zápis a čítanie z disku}
+\begin{description}
+\item[rd\_req] - množstvo požiadaviek na čítanie
+\item[rd\_bytes] - počet prečítaných bajtov
+\item[wr\_req] - množstvo požiadaviek na zápis
+\item[wr\_bytes] - počet zapísaných bajtov
+\end{description}
+
+\subsection{Sieť}
 Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \begin{description}
 \item[rx\_bytes] - počet prijatých bajtov
@@ -569,105 +633,80 @@ Pre jednotlivé sieťové rozhrania je možné zbierať tieto metriky:
 \item[tx\_packets] - počet odoslaných paketov
 \end{description}
 
-\subsection{Metriky pamäte}
+\subsection{Popisné údaje}
+Okrem metrických údajov zberám aj nasledovné popisné údaje:
 \begin{description}
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN] - The total amount of memory written out to swap space (in kB).
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_OUT] - Page faults occur when a process makes a valid access to virtual memory that is not available. When servicing the page fault, if disk IO is required, it is considered a major fault. If not, it is a minor fault. These are expressed as the number of faults that have occurred.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT] - počet chybných bajtov
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_MINOR\_FAULT] - počet prijatých paketov
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_UNUSED] - The amount of memory left completely unused by the system. Memory that is available but used for reclaimable caches should NOT be reported as free. This value is expressed in kB.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE] - The total amount of usable memory as seen by the domain. This value may be less than the amount of memory assigned to the domain if a balloon driver is in use or if the guest OS does not initialize all assigned pages. This value is expressed in kB.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON] - Current balloon value (in KB).
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_RSS] - Resident Set Size of the process running the domain. This value is in kB
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - The number of statistics supported by this version of the interface. To add new statistics, add them to the enum and increase this value.
+\item[host] - názov hosťujúceho počítača
+\item[guest\_name] - názov virtuálneho stroja
 \end{description}
-
-\subsection{Metriky zápisu dát}
-\begin{description}
-\item[rd\_req] - number of read requests
-\item[rd\_bytes] - number of read bytes
-\item[wr\_req] - number of write requests
-\item[wr\_bytes] - number of written bytes
-\item[errs] - In Xen this returns the mysterious 'oo\_req'.
-\end{description}
-
-\subsection{Metriky procesora}
-Libivirt poskytuje údaje o tom, koľko výpočetného času strávil daný virtuálny stroj na procesore hosťujúceho počítača. Keďže sa jedná
-o plnú hardvérovú vritualizáciu, má zmysel zberať aj informácie o tom, ako sú vyťažené jednotlivé virtuálne procesory.
-
 
 \section{Hadoop}
-\subsection{Cluster Metrics API}
-Toto API poskytuje metriky o vyťažení celého clustera.
+\subsection{Metriky clustera}
+Hadoop poskytuje o clusteri cez svoje Cluster Metrics API YARN-u rôzne údaje. Niektoré reprezentujú využitie zdrojov ako procesor a pamäť, iné poskytujú prehľad o aplikáciách a o uzloch v rámci celého clustera. Využívam všetky
+informácie poskytnuté týmto API.
 \begin{description}
-\item[appsSubmitted] - The number of applications submitted
-\item[appsCompleted] - The number of applications completed
-\item[appsPending] - The number of applications pending
-\item[appsRunning] - The number of applications running
-\item[appsFailed] - The number of applications failed
-\item[appsKilled] - The number of applications killed
-\item[reservedMB] - The amount of memory reserved in MB
-\item[availableMB] - The amount of memory available in MB
-\item[allocatedMB] - The amount of memory allocated in MB
-\item[totalMB] - The amount of total memory in MB
-\item[reservedVirtualCores] - The number of reserved virtual cores
-\item[availableVirtualCores] - The number of available virtual cores
-\item[allocatedVirtualCores] - The number of allocated virtual cores
-\item[totalVirtualCores] - The total number of virtual cores
-\item[containersAllocated] - The number of containers allocated
+\item[appsSubmitted] - počet nahratých aplikácií.
+\item[appsCompleted] - počet dokončených aplikácií.
+\item[appsPending] - počet aplikácií, ktoré čakajú na svoje spustenie.
+\item[appsRunning] - počet aplikácií práve počítaných v clusteri.
+\item[appsFailed] - počet aplikácií, ktorých výpočet zlyhal.
+\item[appsKilled] - počet aplikácií, ktorých beh bol ukončený pred dokončením výpočtu.
+\item[reservedMB] - množstvo pamäte v MB rezervovanej pre beh aplikácií.
+\item[availableMB] - množstvo pamäte v MB, ktorá je dostupná pre beh aplikácií.
+\item[allocatedMB] - množstvo pamäte v MB, ktorá je práve alokovaná bežiacimi aplikáciami.
+\item[totalMB] - celkové množstvo pamäte clustera.
+\item[reservedVirtualCores] - počet virtuálnych jadier rezervovaných pre beh aplikácií.
+\item[availableVirtualCores] - počet dostupných virtuálnych jadier.
+\item[allocatedVirtualCores] - počet alokovaných virtuálnych jadier.
+\item[totalVirtualCores] - celkový počet virtuálnych jadier v clusteri.
+\item[containersAllocated] - poček alokovaných kontajnerov.
 \item[containersReserved] - The number of containers reserved
 \item[containersPending] - The number of containers pending
-\item[totalNodes] - The total number of nodes
-\item[activeNodes] - The number of active nodes
-\item[lostNodes] - The number of lost nodes
-\item[unhealthyNodes] - The number of unhealthy nodes
-\item[decommissionedNodes] - The number of nodes decommissioned
-\item[rebootedNodes] - The number of nodes rebooted
+\item[totalNodes] - počet fyzických uzlov clustera.
+\item[activeNodes] - počet aktívnych uzlov clustera.
+\item[lostNodes] - počet nedostupných uzlov.
+\item[unhealthyNodes] - počet "nezdravých" uzlov - tj. uzly, ktoré majú napríklad málo voľného diskového priestoru, alebo sú inak obmedzené.
+\item[decommissionedNodes] - počet uzlov vyradených z prevádzky.
+\item[rebootedNodes] - počet reštartovaných uzlov.
 \end{description}
 
-\subsection{Cluster Application API}
-Tento koncový bod API poskytuje informácie o jednotlivých aplikáciách, ktoré sú spustené na clusteri.
+\subsection{Metriky aplikácií}
+Cluster Application API YARN-u poskytuje informácie o jednotlivých aplikáciách, ktoré sú spustené na clusteri. Niektoré údaje využívam ako zdroj metrických dát, iné ako metadáta. Niektoré nemá význam zberať.
+Zbieram nasledovné metrické dáta o spustených aplikáciách:
 \begin{description}
-\item[id] - The application id
-\item[user] - The user who started the application
-\item[name] - The application name
-\item[Application Type] - The application type
-\item[queue] - The queue the application was submitted to
-\item[state] - The application state according to the ResourceManager - valid values are members of the YarnApplicationState enum: NEW, NEW\_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED
-\item[finalStatus] - The final status of the application if finished - reported by the application itself - valid values are: UNDEFINED, SUCCEEDED, FAILED, KILLED
-\item[progress] - The progress of the application as a percent
-\item[trackingUI] - Where the tracking url is currently pointing - History (for history server) or ApplicationMaster
-\item[trackingUrl] - The web URL that can be used to track the application
-\item[diagnostics] - Detailed diagnostics information
-\item[clusterId] - The cluster id
-\item[startedTime] - The time in which application started (in ms since epoch)
-\item[finishedTime] - The time in which the application finished (in ms since epoch)
-\item[elapsedTime] - The elapsed time since the application started (in ms)
-\item[amContainerLogs] - The URL of the application master container logs
-\item[amHostHttpAddress] - The nodes http address of the application master
-\item[allocatedMB] - The sum of memory in MB allocated to the application’s running containers
-\item[allocatedVCores] - The sum of virtual cores allocated to the application’s running containers
-\item[runningContainers] - The number of containers currently running for the application
-\item[memorySeconds] - The amount of memory the application has allocated (megabyte-seconds)
-\item[vcoreSeconds] - The amount of CPU resources the application has allocated (virtual core-seconds)
+\item[allocatedMB] - suma pamäte v megabajtoch, ktorá je alokovaná kontajnermi, v ktorých beží aplikácia.
+\item[allocatedVCores] - súčet virtuálnych jadier, ktoré sú alokované kontajmermi, v ktorých beží aplikácia.
+\item[elapsedTime] - čas v milisekundách, ktorý uplynul od spustenia aplikácie.
+\item[runningContainers] - počet kontajnerov, v ktorých je spustená aplikácia.
+\item[memorySeconds] - množstvo pamäte v megabajtoch, ktoré aplikácia alokovala, vynásobené časom behu aplikácie v milisekundách.
+\item[vcoreSeconds] - počet procesorových jadier, ktoré aplikácia alokovala, vynásobený časom behu aplikácie v milisekundách.
 \end{description}
 
-\subsection{Node Application API}
-Toto API poskytuje metriky o využití jednotlivých uzlov clusteri.
+Ako popisné dáta k metrikám pripájam tieto údaje:
 \begin{description}
-\item[rack] - The rack location of this node
-\item[state] - State of the node - valid values are: NEW, RUNNING, UNHEALTHY, DECOMMISSIONED, LOST, REBOOTED
-\item[id] - The node id
-\item[nodeHostName] - The host name of the node
-\item[nodeHTTPAddress] - The nodes HTTP address
-\item[healthStatus] - The health status of the node - Healthy or Unhealthy
-\item[healthReport] - A detailed health report
-\item[lastHealthUpdate] - The last time the node reported its health (in ms since epoch)
-\item[usedMemoryMB] - The total amount of memory currently used on the node (in MB)
-\item[availMemoryMB] - The total amount of memory currently available on the node (in MB)
-\item[usedVirtualCores] - The total number of vCores currently used on the node
-\item[availableVirtualCores] - The total number of vCores available on the node
-\item[numContainers] - The total number of containers currently running on the node
+\item[id] - identifikátor aplikácie v rámci clustera.
+\item[user] - užívateľ, ktorý spustil aplikáciu.
+\item[name] - názov aplikácie.
+\item[clusterId] - identifikátor clustera, v ktorom je spustená aplikácia.
+\end{description}
+
+\subsection{Metriky uzlov}
+Nodes API systému YARN poskytuje metriky o využití jednotlivých uzlov clustera. Podobne ako aplikačné API, poskytuje aj nadbytočné informácie, ktoré nemajú pre monitorovanie využitia zdrojov význam.
+Zbieram nasledovné metrické dáta o využití zdrojov uzlov:
+
+\begin{description}
+\item[usedMemoryMB] - celkové množstvo pamäte v megabajtoch aktuálne využívané uzlom na beh aplikácií.
+\item[availMemoryMB] - celkové množstvo pamäte v megabajtoch aktuálne dostupné uzlu na beh aplikácií.
+\item[usedVirtualCores] - počet virtuálnych jadier, ktoré uzol využíva na beh aplikácií.
+\item[availableVirtualCores] - počet virtuálnych jadier, ktoré uzol využíva na beh aplikácií.The total number of vCores available on the node
+\item[numContainers] - celkový počet kontajnerov aktuálne spustených na uzle.
+\end{description}
+
+Ako popisné dáta k metrikám pripájam tieto údaje:
+\begin{description}
+\item[rack] - umiestnenie uzla v racku.
+\item[id] - identifikátor uzla.
+\item[nodeHostName] - názov uzla.
 \end{description}
 
 \chapter{Analýza a návrh}

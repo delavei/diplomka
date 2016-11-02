@@ -1,4 +1,4 @@
-\contentsline {chapter}{Obsah}{viii}
+\contentsline {chapter}{Obsah}{vi}
 \contentsline {chapter}{\numberline {1}\bfseries \IeC {\'U}vod}{1}
 \contentsline {chapter}{\numberline {2}\bfseries Cloud}{3}
 \contentsline {subsection}{\numberline {2.0.1}\rmfamily Kontrola zdrojov cloudu}{4}
@@ -46,43 +46,47 @@
 \contentsline {subsubsection}{ Kontinu\IeC {\'a}lne dotazovanie a agreg\IeC {\'a}cia}{24}
 \contentsline {subsection}{\numberline {4.3.3}\rmfamily RRDTool}{24}
 \contentsline {chapter}{\numberline {5}\bfseries Metriky}{26}
-\contentsline {subsection}{\numberline {5.0.4}\rmfamily V\IeC {\'y}znam popisn\IeC {\'y}ch \IeC {\'u}dajov metr\IeC {\'\i }k}{26}
+\contentsline {subsection}{\numberline {5.0.4}\rmfamily V\IeC {\'y}znam popisn\IeC {\'y}ch \IeC {\'u}dajov metr\IeC {\'\i }k}{27}
 \contentsline {subsection}{\numberline {5.0.5}\rmfamily Periodicita zberania metr\IeC {\'\i }k}{27}
 \contentsline {subsection}{\numberline {5.0.6}\rmfamily Form\IeC {\'a}t hodnoty metriky}{27}
 \contentsline {section}{\numberline {5.1}\slshape Docker}{27}
-\contentsline {subsection}{\numberline {5.1.1}\rmfamily Sie\IeC {\v t}}{27}
-\contentsline {subsubsection}{ Metriky siete}{28}
+\contentsline {subsection}{\numberline {5.1.1}\rmfamily Procesor}{28}
 \contentsline {subsection}{\numberline {5.1.2}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{28}
-\contentsline {subsection}{\numberline {5.1.3}\rmfamily Procesor}{28}
-\contentsline {section}{\numberline {5.2}\slshape libvirt/KVM}{29}
-\contentsline {subsection}{\numberline {5.2.1}\rmfamily Metriky siete}{29}
-\contentsline {subsection}{\numberline {5.2.2}\rmfamily Metriky pam\IeC {\"a}te}{29}
-\contentsline {subsection}{\numberline {5.2.3}\rmfamily Metriky z\IeC {\'a}pisu d\IeC {\'a}t}{30}
-\contentsline {subsection}{\numberline {5.2.4}\rmfamily Metriky procesora}{30}
-\contentsline {section}{\numberline {5.3}\slshape Hadoop}{31}
-\contentsline {subsection}{\numberline {5.3.1}\rmfamily Cluster Metrics API}{31}
-\contentsline {subsection}{\numberline {5.3.2}\rmfamily Cluster Application API}{32}
-\contentsline {subsection}{\numberline {5.3.3}\rmfamily Node Application API}{33}
-\contentsline {chapter}{\numberline {6}\bfseries Anal\IeC {\'y}za a n\IeC {\'a}vrh}{34}
-\contentsline {section}{\numberline {6.1}\slshape Heterog\IeC {\'e}nna infra\IeC {\v s}trukt\IeC {\'u}ra MetaCentrum}{34}
-\contentsline {section}{\numberline {6.2}\slshape Po\IeC {\v z}iadavky na aplik\IeC {\'a}ciu}{35}
-\contentsline {subsection}{\numberline {6.2.1}\rmfamily Vysok\IeC {\'y} monitorovac\IeC {\'\i } v\IeC {\'y}kon}{35}
-\contentsline {subsection}{\numberline {6.2.2}\rmfamily N\IeC {\'\i }zka nadbyto\IeC {\v c}n\IeC {\'a} z\IeC {\'a}\IeC {\v t}a\IeC {\v z}}{35}
-\contentsline {subsection}{\numberline {6.2.3}\rmfamily \IeC {\v S}k\IeC {\'a}lovate\IeC {\v l}nos\IeC {\v t}}{35}
-\contentsline {section}{\numberline {6.3}\slshape Miesto nasadenia zbernej aplik\IeC {\'a}cie}{35}
-\contentsline {section}{\numberline {6.4}\slshape N\IeC {\'a}vrh monitorovacieho rie\IeC {\v s}enia}{36}
-\contentsline {subsection}{\numberline {6.4.1}\rmfamily Paraleliz\IeC {\'a}cia v r\IeC {\'a}mci pluginov}{37}
-\contentsline {subsection}{\numberline {6.4.2}\rmfamily Datab\IeC {\'a}za \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{37}
-\contentsline {subsubsection}{ Zmena granularity d\IeC {\'a}t}{38}
-\contentsline {chapter}{\numberline {7}\bfseries Implement\IeC {\'a}cia}{40}
-\contentsline {section}{\numberline {7.1}\slshape Techniky zbierania metr\IeC {\'\i }k}{40}
-\contentsline {subsection}{\numberline {7.1.1}\rmfamily Docker}{40}
-\contentsline {subsection}{\numberline {7.1.2}\rmfamily libvirt/KVM}{40}
-\contentsline {subsection}{\numberline {7.1.3}\rmfamily Hadoop}{41}
-\contentsline {section}{\numberline {7.2}\slshape libcurl}{41}
-\contentsline {section}{\numberline {7.3}\slshape libpthread}{42}
-\contentsline {section}{\numberline {7.4}\slshape cJSON}{42}
-\contentsline {section}{\numberline {7.5}\slshape Zapisovac\IeC {\'\i } plugin Write TSDB}{42}
-\contentsline {chapter}{\numberline {8}\bfseries Z\IeC {\'a}ver}{43}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{43}
-\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{44}
+\contentsline {subsection}{\numberline {5.1.3}\rmfamily Sie\IeC {\v t}}{29}
+\contentsline {subsubsection}{ Metriky siete}{29}
+\contentsline {subsection}{\numberline {5.1.4}\rmfamily Z\IeC {\'a}pis a \IeC {\v c}\IeC {\'\i }tanie z disku}{29}
+\contentsline {subsection}{\numberline {5.1.5}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{30}
+\contentsline {section}{\numberline {5.2}\slshape libvirt/KVM}{30}
+\contentsline {subsection}{\numberline {5.2.1}\rmfamily Procesor}{30}
+\contentsline {subsection}{\numberline {5.2.2}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{30}
+\contentsline {subsubsection}{ Pam\IeC {\"a}\IeC {\v t}ov\IeC {\'y} bal\IeC {\'o}n}{31}
+\contentsline {subsection}{\numberline {5.2.3}\rmfamily Z\IeC {\'a}pis a \IeC {\v c}\IeC {\'\i }tanie z disku}{32}
+\contentsline {subsection}{\numberline {5.2.4}\rmfamily Sie\IeC {\v t}}{32}
+\contentsline {subsection}{\numberline {5.2.5}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{32}
+\contentsline {section}{\numberline {5.3}\slshape Hadoop}{32}
+\contentsline {subsection}{\numberline {5.3.1}\rmfamily Metriky clustera}{32}
+\contentsline {subsection}{\numberline {5.3.2}\rmfamily Metriky aplik\IeC {\'a}ci\IeC {\'\i }}{34}
+\contentsline {subsection}{\numberline {5.3.3}\rmfamily Metriky uzlov}{34}
+\contentsline {chapter}{\numberline {6}\bfseries Anal\IeC {\'y}za a n\IeC {\'a}vrh}{36}
+\contentsline {section}{\numberline {6.1}\slshape Heterog\IeC {\'e}nna infra\IeC {\v s}trukt\IeC {\'u}ra MetaCentrum}{36}
+\contentsline {section}{\numberline {6.2}\slshape Po\IeC {\v z}iadavky na aplik\IeC {\'a}ciu}{37}
+\contentsline {subsection}{\numberline {6.2.1}\rmfamily Vysok\IeC {\'y} monitorovac\IeC {\'\i } v\IeC {\'y}kon}{37}
+\contentsline {subsection}{\numberline {6.2.2}\rmfamily N\IeC {\'\i }zka nadbyto\IeC {\v c}n\IeC {\'a} z\IeC {\'a}\IeC {\v t}a\IeC {\v z}}{37}
+\contentsline {subsection}{\numberline {6.2.3}\rmfamily \IeC {\v S}k\IeC {\'a}lovate\IeC {\v l}nos\IeC {\v t}}{37}
+\contentsline {section}{\numberline {6.3}\slshape Miesto nasadenia zbernej aplik\IeC {\'a}cie}{37}
+\contentsline {section}{\numberline {6.4}\slshape N\IeC {\'a}vrh monitorovacieho rie\IeC {\v s}enia}{38}
+\contentsline {subsection}{\numberline {6.4.1}\rmfamily Paraleliz\IeC {\'a}cia v r\IeC {\'a}mci pluginov}{39}
+\contentsline {subsection}{\numberline {6.4.2}\rmfamily Datab\IeC {\'a}za \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{39}
+\contentsline {subsubsection}{ Zmena granularity d\IeC {\'a}t}{40}
+\contentsline {chapter}{\numberline {7}\bfseries Implement\IeC {\'a}cia}{42}
+\contentsline {section}{\numberline {7.1}\slshape Techniky zbierania metr\IeC {\'\i }k}{42}
+\contentsline {subsection}{\numberline {7.1.1}\rmfamily Docker}{42}
+\contentsline {subsection}{\numberline {7.1.2}\rmfamily libvirt/KVM}{42}
+\contentsline {subsection}{\numberline {7.1.3}\rmfamily Hadoop}{43}
+\contentsline {section}{\numberline {7.2}\slshape libcurl}{43}
+\contentsline {section}{\numberline {7.3}\slshape libpthread}{44}
+\contentsline {section}{\numberline {7.4}\slshape cJSON}{44}
+\contentsline {section}{\numberline {7.5}\slshape Zapisovac\IeC {\'\i } plugin Write TSDB}{44}
+\contentsline {chapter}{\numberline {8}\bfseries Z\IeC {\'a}ver}{45}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{45}
+\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{46}

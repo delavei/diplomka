@@ -33,6 +33,7 @@
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xpath.h>
+#include <stdio.h>
 
 /* Plugin name */
 #define PLUGIN_NAME "virt"
@@ -591,6 +592,29 @@ lv_read (void)
         cpu_submit (info.cpuTime, domains[i], "virt_cpu_total");
         memory_submit ((gauge_t) info.memory * 1024, domains[i]);
 
+
+		int nparams = virDomainGetCPUStats(domains[i], NULL, 0, -1, 1, 0); // nparams
+		virTypedParameterPtr params = calloc(nparams, sizeof(virTypedParameter));
+		virDomainGetCPUStats(domains[i], params, nparams, -1, 1, 0);
+		
+		int k;
+		for (k=0; k<nparams; k++) {
+			printf("%s %s %lld \n", virDomainGetName (domains[i]),params[k].field, params[k].value.l);
+		}
+		/*
+		int ncpus = virDomainGetCPUStats(domains[i], NULL, 0, 0, 0, 0); // ncpus
+		nparams = virDomainGetCPUStats(domains[i], NULL, 0, 0, 1, 0); // nparams
+		params = calloc(ncpus * nparams, sizeof(virTypedParameter));
+		virDomainGetCPUStats(domains[i], params, nparams, 0, ncpus, 0); 
+		
+		int l;
+		for (k=0; k<ncpus; k++) {
+			for (l=0; l<nparams; l++) {
+				printf("%s %lld \n",params[k*nparams+l].field, params[k*nparams+l].value.l);
+			}
+		}*/
+		
+		
         vinfo = malloc (info.nrVirtCpu * sizeof (vinfo[0]));
         if (vinfo == NULL) {
             ERROR (PLUGIN_NAME " plugin: malloc failed.");
@@ -606,7 +630,7 @@ lv_read (void)
             sfree (vinfo);
             continue;
         }
-
+		
         for (j = 0; j < info.nrVirtCpu; ++j)
             vcpu_submit (vinfo[j].cpuTime, domains[i], vinfo[j].number, "virt_vcpu");
 

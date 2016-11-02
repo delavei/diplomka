@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  27 OCT 2016 00:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  1 NOV 2016 17:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -366,7 +366,7 @@ Type  H <return>  for immediate help.
 l.11 
      
 ? 
-(./dip-lezdik.aux)
+No file dip-lezdik.aux.
 \openout1 = `dip-lezdik.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -382,7 +382,7 @@ LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Try loading font information for T1+ppl on input line 25.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -465,20 +465,13 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 ] [5
 
 ]
-(./dip-lezdik.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 1.
- [6
-
-] [7])
+No file dip-lezdik.toc.
 \tf@toc=\write3
 \openout3 = `dip-lezdik.toc'.
 
- [8]
+[6
+
+]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 49.
@@ -507,6 +500,12 @@ rá zdroj vyuºíva,
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/sl' tried instead on input line 88.
+
+Overfull \hbox (2.09914pt too wide) in paragraph at lines 88--90
+\T1/ppl/m/n/10.95 pri-amo hard-vérové prostriedky in-fra²truk-túry. Ten má moºn
+os´ ur£i´,
+ []
+
 [3
 
 ]
@@ -526,7 +525,7 @@ Overfull \hbox (6.34624pt too wide) in paragraph at lines 106--111
 LaTeX Warning: Citation `hypervisorTypes' on page 5 undefined on input line 119
 .
 
-<images/kontajnery-virtualky.png, id=45, 550.055pt x 371.3875pt>
+<images/kontajnery-virtualky.png, id=38, 550.055pt x 371.3875pt>
 File: images/kontajnery-virtualky.png Graphic file (type png)
 
 <use images/kontajnery-virtualky.png>
@@ -541,26 +540,36 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 1137) has occurred while \output is active []
 
  [5]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 145.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 145.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 145.
 
-LaTeX Warning: Citation `kvm' on page 6 undefined on input line 149.
 
-[6 <./images/kontajnery-virtualky.png>]
+LaTeX Warning: Citation `kvm' on page 6 undefined on input line 148.
+
 ! You can't use `macro parameter character #' in horizontal mode.
-l.152 ...rogramovacie jazyky, ako napr. Python, C#
+l.150 ...rogramovacie jazyky, ako napr. Python, C#
                                                   , Java, Ruby alebo Go.\cit...
 
 ? 
 
-LaTeX Warning: Citation `libvirt' on page 7 undefined on input line 152.
+LaTeX Warning: Citation `libvirt' on page 6 undefined on input line 150.
+
+[6 <./images/kontajnery-virtualky.png>]
+
+LaTeX Warning: Citation `docker' on page 7 undefined on input line 156.
 
 
-LaTeX Warning: Citation `docker' on page 7 undefined on input line 157.
-
-
-Overfull \hbox (5.7443pt too wide) in paragraph at lines 155--158
+Overfull \hbox (5.7443pt too wide) in paragraph at lines 154--159
 \T1/ppl/m/n/10.95 za-h¯¬a v²etko, £o daný soft-vér potre-buje na spuste-nie: kó
 d, nástroje potrebné
  []
+
+
+LaTeX Warning: Citation `hadoop' on page 7 undefined on input line 164.
 
 
 Overfull \hbox (14.17606pt too wide) in paragraph at lines 161--165
@@ -568,6 +577,7 @@ Overfull \hbox (14.17606pt too wide) in paragraph at lines 161--165
 , ktoré umoº¬uje
  []
 
+[7]
 LaTeX Font Info:    Font shape `T1/ppl/bx/sl' in size <8> not available
 (Font)              Font shape `T1/ppl/b/sl' tried instead on input line 169.
 
@@ -575,7 +585,7 @@ Overfull \hbox (1.86418pt too wide) in paragraph at lines 169--170
 []\T1/ppl/m/n/10.95 distribuovaný súborový sys-
  []
 
-[7] [8]
+[8]
 Chapter 3.
 
 Overfull \hbox (3.10512pt too wide) in paragraph at lines 176--180
@@ -586,12 +596,6 @@ e dôleºitá oblas´,
 
 Overfull \hbox (8.31856pt too wide) in paragraph at lines 182--184
 []\T1/ppl/m/n/10.95 Pri zbere dát toto zod-povedá mera-
- []
-
-
-Overfull \hbox (1.17932pt too wide) in paragraph at lines 182--184
-\T1/ppl/m/n/10.95 "teraz", £iºe v prí-tom-nosti. Môºeme tak de-te-go-va´ prí-pa
-dné pre´aºe-
  []
 
 
@@ -607,20 +611,8 @@ Overfull \hbox (4.77113pt too wide) in paragraph at lines 193--196
  []
 
 
-Overfull \hbox (0.87166pt too wide) in paragraph at lines 193--196
-\T1/ppl/m/n/10.95 ich ne-jakým spô-sobom roz²íri´ prí-padne zlep²i´ efek-tiv-it
-u ich vyuºí-
- []
-
-
 Overfull \hbox (33.29488pt too wide) in paragraph at lines 197--199
 []\T1/ppl/m/n/10.95 Kaºdá posky-to-vaná sluºba má svo-jho spotrebite©a.
- []
-
-
-Overfull \hbox (1.04794pt too wide) in paragraph at lines 197--199
-\T1/ppl/m/n/10.95 moºným spô-sobom ako rozumne stanovi´ cenu za pouºí-vané zdro
-je.
  []
 
 
@@ -756,7 +748,7 @@ nych pro-gramovacích
 
 LaTeX Warning: Citation `openTSDB' on page 22 undefined on input line 454.
 
-<images/metrilyx.png, id=103, 937.5025pt x 511.9125pt>
+<images/metrilyx.png, id=97, 937.5025pt x 511.9125pt>
 File: images/metrilyx.png Graphic file (type png)
 
 <use images/metrilyx.png>
@@ -779,45 +771,73 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [23]
 [24 <./images/metrilyx.png>] [25]
 Chapter 5.
-[26
 
-] [27] [28]
-Overfull \hbox (6.64348pt too wide) in paragraph at lines 577--578
-[]\T1/ppl/m/n/10.95 - po£et pri-jatých pake-
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26
+
+]
+Underfull \vbox (badness 2080) has occurred while \output is active []
+
+ [27]
+Overfull \hbox (2.21841pt too wide) in paragraph at lines 532--533
+[]\T1/ppl/m/n/10.95 - po£et prí-padov, kedy bolo potrebné na£í-ta´ chýba-júcu s
+tránku
  []
 
-[29]
-Overfull \hbox (6.78548pt too wide) in paragraph at lines 582--583
-[]\T1/ppl/m/n/10.95 - The num-ber of statis-tics sup-ported
+[28] [29]
+
+LaTeX Warning: Citation `libvirt-cpu' on page 30 undefined on input line 587.
+
+
+Overfull \hbox (6.57794pt too wide) in paragraph at lines 597--598
+[]\T1/ppl/m/n/10.95 - po£et prí-padov, kedy
  []
 
-[30] [31]
-Overfull \hbox (28.8714pt too wide) in paragraph at lines 636--637
-\T1/ppl/m/n/10.95 ues are mem-bers of the YarnAp-pli-ca-tion-State enum: NEW, N
-EW_SAVING,
+[30]
+Overfull \hbox (7.18027pt too wide) in paragraph at lines 598--599
+[]\T1/ppl/m/n/10.95 - po£et prí-padov, kedy
  []
 
 
-Overfull \hbox (5.71338pt too wide) in paragraph at lines 636--637
-\T1/ppl/m/n/10.95 SUB-MIT-TED, AC-CEPTED, RUN-NING, FIN-ISHED, FAILED, KILLED 
+Overfull \hbox (16.54247pt too wide) in paragraph at lines 602--603
+[]\T1/ppl/m/n/10.95 - ak-tuálna ve©kos´
  []
 
-[32]
-Overfull \hbox (2.61348pt too wide) in paragraph at lines 659--660
-[]\T1/ppl/m/n/10.95 - State of the node - valid val-ues are: NEW, RUN-NING, UN-
-HEALTHY,
+
+Overfull \hbox (1.81432pt too wide) in paragraph at lines 603--604
+[]\T1/ppl/m/n/10.95 - mnoºstvo pamäte v kB ob-sadené
  []
 
-[33]
+
+Overfull \hbox (28.20404pt too wide) in paragraph at lines 604--605
+[]\T1/ppl/m/n/10.95 - max-imálna ve©kos´ pamä´ového
+ []
+
+
+Overfull \hbox (20.86798pt too wide) in paragraph at lines 605--606
+[]\T1/ppl/m/n/10.95 - Unixová £asová známka
+ []
+
+
+LaTeX Warning: Citation `libvirt-mem' on page 31 undefined on input line 608.
+
+[31] [32] [33]
+Overfull \hbox (3.40112pt too wide) in paragraph at lines 682--683
+[]\T1/ppl/m/n/10.95 - po£et pro-ce-sorových jadier, ktoré ap-liká-cia aloko-val
+a, vyná-
+ []
+
+[34] [35]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 675--680
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 714--719
 \T1/ppl/m/n/10.95 hlavne o aka-demickú spoluprácu. Meta-Cen-trum spravuje výpo£
 etné prostriedky
  []
 
 
-Overfull \hbox (4.54079pt too wide) in paragraph at lines 675--680
+Overfull \hbox (4.54079pt too wide) in paragraph at lines 714--719
 \T1/ppl/m/n/10.95 disponuje (stav k 30.7. 2010) 1500 pro-ce-sorovými jadrami, 1
 00 TB vyuºite©nej
  []
@@ -826,11 +846,11 @@ Runaway argument?
 ! Paragraph ended before \@citex was complete.
 <to be read again> 
                    \par 
-l.684 
+l.723 
       
 ? 
 
-Overfull \hbox (12.36874pt too wide) in paragraph at lines 691--694
+Overfull \hbox (12.36874pt too wide) in paragraph at lines 730--733
 \T1/ppl/m/n/10.95 o vyuºití mnoºstva za-po-jených clus-terov a uzlov, na ktorýc
 h je tieº spustených
  []
@@ -838,55 +858,55 @@ h je tieº spustených
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34
+ [36
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 704--706
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 743--745
 \T1/ppl/m/n/10.95 Monitorovacia ap-liká-cia by mala posky-to-va´ zrov-nate©né v
 ýsledky v oblasti
  []
 
-[35]
-Overfull \hbox (11.4928pt too wide) in paragraph at lines 716--738
+[37]
+Overfull \hbox (11.4928pt too wide) in paragraph at lines 755--777
 \T1/ppl/m/n/10.95 pouºíva vi-acero par-alelne beºiacich vlákien, ktoré si medzi
  se-bou rovnomerne
  []
 
 
-Overfull \hbox (8.13147pt too wide) in paragraph at lines 716--738
+Overfull \hbox (8.13147pt too wide) in paragraph at lines 755--777
 \T1/ppl/m/n/10.95 vyuºití zdro-jov jed-notlivými tech-noló-giami. Plug-iny budú
  kon-fig-urovate©né,
  []
 
-[36] [37] [38] [39]
+[38] [39] [40] [41]
 Chapter 7.
 
-Overfull \hbox (4.74774pt too wide) in paragraph at lines 800--808
+Overfull \hbox (4.74774pt too wide) in paragraph at lines 839--847
 \T1/ppl/m/n/10.95 Na získa-vanie met-rick-ých úda-jov o vir-tuál-nych stro-joch
  som pouºil kniºnicu
  []
 
-[40
+[42
 
 ]
 
-LaTeX Warning: Citation `23' on page 41 undefined on input line 811.
+LaTeX Warning: Citation `23' on page 43 undefined on input line 850.
 
 
-LaTeX Warning: Citation `24' on page 41 undefined on input line 824.
+LaTeX Warning: Citation `24' on page 43 undefined on input line 863.
 
-[41]
+[43]
 
-LaTeX Warning: Citation `13' on page 42 undefined on input line 844.
+LaTeX Warning: Citation `13' on page 44 undefined on input line 883.
 
-[42]
+[44]
 Chapter 8.
 No file dip-lezdik.bbl.
-[43
+[45
 
 ]
 Appendix A.
-[44
+[46
 
 ] (./dip-lezdik.aux)
 
@@ -894,20 +914,20 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2527 strings out of 495028
- 32264 string characters out of 6181498
+ 2526 strings out of 495028
+ 32238 string characters out of 6181498
  92062 words of memory out of 5000000
- 5667 multiletter control sequences out of 15000+600000
+ 5670 multiletter control sequences out of 15000+600000
  29972 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,23p,355b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,23p,315b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./fi-logo.514pk>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
 alatino/uplri8a.pfb>
-Output written on dip-lezdik.pdf (52 pages, 470315 bytes).
+Output written on dip-lezdik.pdf (52 pages, 467248 bytes).
 PDF statistics:
  254 PDF objects out of 1000 (max. 8388607)
  138 compressed objects within 2 object streams
