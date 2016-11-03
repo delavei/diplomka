@@ -147,7 +147,7 @@ Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtu
 Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo aj ďalšími. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
 KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
 \\libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
-Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C#, Java, Ruby alebo Go.\cite{libvirt}
+Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C\#, Java, Ruby alebo Go.\cite{libvirt}
 \\Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
 
 \subsection{Docker}
@@ -510,6 +510,14 @@ Metriky v podobe záznamov obsahujú čas, kedy bola hodnota nameraná, samotnú
 hodnoty sa môžeme pozerať ako na prírastky alebo ako na absolútne hodnoty. Prírastky hovoria o rozdiele aktuálne nameranej hodnoty 
 a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu využitia zdroja. 
 
+\subsection{Výpočet percentuálnej záťaže na procesor}
+Žiadna z monitorovaných technológií neposkytuje údaje o precentuálnej záťaži, ktorú vyvíja na procesor. libvirt a Docker poskytujú len údaje o čase, ktorý kontajner alebo virtuálny stroj strávil
+počítaním na procesre. Linuxové jadro cez systém súborov \textit{/proc} sprístupňuje svoje dátové štruktúry. V súbore \textit{/proc/stat} sa nachádzajú rôzne štatistiky o systéme, medzi ktoré patrí aj 
+využitie procesora. Obsahuje viacero čísel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).\cite{proc-stat}
+Presný význam jednotiek je určený jednou z konštánt jadra.
+\\Metriky sa zberajú v pravidelných intervaloch. V každom intervale zistím čas prepočítaný danou technológiou a celkový prepočítaný čas. Zistím rozdiely oproti posledným nameraným hodnotám a dám ich do pomeru.
+Táto hodnota predstavuje percentuálnu záťaž, ktorú vyvinul kontajner alebo virtuálny stroj na hosťujúci procesor.
+
 \section{Docker}
 O kontajneroch je možné zberať metriky o všetkých požadovaných zdrojoch, tj. procesor, pamäť, sieť a vstupno-výstupné diskové operácie.
 
@@ -517,10 +525,8 @@ O kontajneroch je možné zberať metriky o všetkých požadovaných zdrojoch, 
 Procesor predstavuje jeden z najdôležitejších údajov o vyťažení zdrojov. Docker poskytuje viaceré metriky o procesore, ktorých hodnoty 
 predstavujú výpočetný čas strávený na procesore v jednotkách nanosekúnd: 
 \begin{description}
-\item[percpu\_usage] - obsahuje pole hodnôt, kde každá reprezentuje čas strávený na danom jadre procesora
-\item[total\_usage] - predstavuje sumárnu hodnotu času, ktorý strávil kontajner na všetkých jadrách spolu
-\item[usage\_in\_usermode] - predstavuje procesorový čas (pre všetka jadrá), v ktorom došlo k vykonávaniu aplikačného kódu
-\item[usage\_in\_kernelmode] - predstavuje procesorový čas (pre všetka jadrá), v ktorom došlo k volaniu kódu jadra operačného systému
+\item[total\_usage] - predstavuje sumárnu hodnotu času v nanosekundách, ktorý strávil kontajner na všetkých jadrách spolu
+\item[cpu\_load] - hodnota v percentách, ktorá predstavuje záťaž kontajnera na procesor hosťujúceho počítača
 \end{description}
 
 \subsection{Pamäť}
@@ -584,9 +590,8 @@ Z hľadiska využitia zdrojov je podstatný druhý údaj. Virtuálne procesory m
 na virtuálnom procesore, ale aj režijné náklady spojené s virtualizáciou.
 
 \begin{description}
-\item[cpu\_time] - suma času, ktorý strávil virtuálny stroj na procesore hosťujúceho počítača \cite{libvirt-cpu}
-\item[user\_time] - procesorový čas v nanosekundách, v ktorom došlo k vykonávaniu aplikačného kódu
-\item[system\_time] - procesorový čas v nanosekundách, v ktorom došlo k volaniu kódu jadra operačného systému
+\item[cpu\_time] - suma času v nanosekundách, ktorý strávil virtuálny stroj na procesore hosťujúceho počítača \cite{libvirt-cpu}
+\item[cpu\_load] - hodnota v percentách, ktorá predstavuje záťaž virtuálneho stroja na procesor hosťujúceho počítača
 \end{description}
 
 \subsection{Pamäť}
@@ -604,8 +609,8 @@ ak sa používa technika pamäťového balónu.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_USABLE] - maximálna veľkosť pamäťového balónu, kedy ešte nedochádza k swapovaniu pamäte virtuálneho stroja na disk.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_LAST\_UPDATE] - Unixová časová známka poslednej aktualizácie štatistík o pamäti.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - počet štatistík, ktoré podporuje daný hypervízor.
-\end{description}
 \cite{libvirt-mem}
+\end{description}
 Množstvo poskytovaných štatistík závisí od použitého hypervízora. V prípade MetaCentra sa mi podarilo zberať len niektoré z týchto štatistík. Zároveň ich jednotky neboli kilobajty, ale bajty.
 
 \subsubsection{Pamäťový balón}
@@ -843,7 +848,9 @@ stroj využíva virtualizované zdroje.
 je možné zisťovať, ktoré virtuálne stroje sú spustené. V periodických intervaloch aktualizujem zoznam bežiacich strojov a odosielam
 metriky len o nich.
 \\Collectd už obsahoval plugin pre libvirt, no bolo potrebné doplniť niektoré popisné údaje metrík, ako názov hosťujúceho počítača,
-názov virtuálneho stroja a iné. Taktiež som rozšíril tento plugin o paralelný zber metrík z jednotlivých virtuálnych strojov.
+názov virtuálneho stroja a iné. Tento plugin zbieral informácie o tom, ako sú vyťažené virtuálne procesory v podobe prepočítaného procesorového času.
+Tento údaj pre monitorovania zdrojov z pohľadu vlastníka infraštruktúry nie je potrebný. Nahradil som ho preto údajom o tom, ako je vyťažený
+procesor hosťujúceho stroja prevádzkou virtuálneho stroja. Poskytujem údaje v podobe využitého procesorového času aj v podobe percentuálnej záťaže.
 
 \subsection{Hadoop}
 Na monitorovanie Hadoopu som si zvolil REST API YARN-u. YARN zabezpečuje správu zdrojov a plánovanie/monitorovanie vykonávania úloh do dvoch

@@ -6,7 +6,7 @@ sudo docker run -it ubuntu  /bin/bash
 
 OTAZKYYYYY
 analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
-jake verzie softov sa používajú? dať to do textu
+jake verzie softov sa používajú? dať to do textu -- libvirt centOS7, debian 7,8
 zberat z dockeru pre jednotlivé jadrá?
 hadoop kontajnery?
 hadoop node state zberať?
@@ -29,7 +29,7 @@ v analyze a navrhu spomenúť že zberám aj metadáta
 
 v implementácií napísať o zmene modulu pre libvirt - zber cpu 
 
-pamatove statistiky ktor0 presne sa mi podarilo zberat
+pamatove statistiky ktoré presne sa mi podarilo zberat
 
 
 POZNAMKYYYYYYYYYYYYYYYYYYYYYY
@@ -55,8 +55,9 @@ docker
 aktualizovat verziu  dockeru- rozdiel v networkoch a možno aj v pamäti - limit
 robit pravidelne refresh zoznamu kontajnerov
 config - host-majbe, refresh interval pre kontajnery
-cpu kernelmode, usermode treba - odosielat
+cpu load dorobit
 zbierat info o pamati hosta
+
 
 cJSON
 nacitavanie unsigned long long (napr. docker system cpu usage)
@@ -67,10 +68,8 @@ mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je men
 dorobiť cluster a node metriky
 
 
-virt - aky cpu usage? ten co tam je je vyuzitie virtualneho, nie realneho (v dockeri je aj realny zrejme)
-     - pridat cpu kernelmode a usermode - to tuším nejde
-     - dorobit cpu load celého procesu virtuálky
-     - dorobit pralaleizáciu dotazovania jednotlivých domén
+virt - pridat cpu kernelmode a usermode - to tuším nejde
+     - asi nie dorobit pralaleizáciu dotazovania jednotlivých domén
 
 
 

@@ -112,6 +112,18 @@ static int nr_interface_devices = 0;
 static void free_interface_devices (void);
 static int add_interface_device (virDomainPtr dom, const char *path, const char *address, unsigned int number);
 
+struct cpu_load {
+    virDomainPtr dom;           		/* domain */
+    float_t last_cpu_time;		/* sum of cpu time when last called*/
+    float_t last_process_time;	/* sum of process time of entity when last called*/
+};
+
+static struct cpu_load *cpu_loads = NULL;
+static int nr_cpu_loads = 0;
+
+static void free_cpu_loads (void);
+static int add_cpu_load (virDomainPtr dom, float_t last_cpu_time, float_t last_process_time);
+
 /* HostnameFormat. */
 #define HF_MAX_FIELDS 3
 
@@ -592,27 +604,77 @@ lv_read (void)
         cpu_submit (info.cpuTime, domains[i], "virt_cpu_total");
         memory_submit ((gauge_t) info.memory * 1024, domains[i]);
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		long int user = 0;
+		long int nice = 0;
+		long int system = 0;
+		long int idle = 0;
+		long int iowait = 0;
+		long int irq = 0;
+		long int softirq = 0;
+		long int steal = 0;
+		long int guest = 0;
+		long int guest_nice = 0;
+
+		FILE* stat_file = fopen ("/proc/stat", "r");
+		if(stat_file != NULL){
+			int items_scanned = fscanf(stat_file, "cpu  %ld %ld %ld %ld %ld %ld %ld %ld %ld %ld", &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal, &guest, &guest_nice);
+            if (items_scanned <10) {
+				ERROR (PLUGIN_NAME " plugin: error parsing /proc/stat file");
+			}
+            fclose(stat_file);
+        } else {
+			ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
+		}
+		
+		long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
+		float_t cpu_time_in_secs = (float_t) (cpu_time_sum/sysconf(_SC_CLK_TCK));
 
 		int nparams = virDomainGetCPUStats(domains[i], NULL, 0, -1, 1, 0); // nparams
 		virTypedParameterPtr params = calloc(nparams, sizeof(virTypedParameter));
 		virDomainGetCPUStats(domains[i], params, nparams, -1, 1, 0);
-		
 		int k;
-		for (k=0; k<nparams; k++) {
-			printf("%s %s %lld \n", virDomainGetName (domains[i]),params[k].field, params[k].value.l);
-		}
-		/*
-		int ncpus = virDomainGetCPUStats(domains[i], NULL, 0, 0, 0, 0); // ncpus
-		nparams = virDomainGetCPUStats(domains[i], NULL, 0, 0, 1, 0); // nparams
-		params = calloc(ncpus * nparams, sizeof(virTypedParameter));
-		virDomainGetCPUStats(domains[i], params, nparams, 0, ncpus, 0); 
 		
-		int l;
-		for (k=0; k<ncpus; k++) {
-			for (l=0; l<nparams; l++) {
-				printf("%s %lld \n",params[k*nparams+l].field, params[k*nparams+l].value.l);
-			}
-		}*/
+		float_t domain_time_in_secs = ((float_t) (params[0].value.l))/1000000000;
+		
+		if (cpu_loads[i].last_cpu_time == 0) {
+			cpu_loads[i].last_cpu_time = cpu_time_in_secs;
+		}
+		if (cpu_loads[i].last_process_time == 0) {
+			cpu_loads[i].last_process_time = domain_time_in_secs;
+		}
+		
+		float_t delta_process_time = domain_time_in_secs - cpu_loads[i].last_process_time;
+		float_t delta_cpu_time = cpu_time_in_secs - cpu_loads[i].last_cpu_time;
+		
+		cpu_loads[i].last_process_time = domain_time_in_secs;
+		cpu_loads[i].last_cpu_time = cpu_time_in_secs;
+
+		float_t process_load = delta_process_time/delta_cpu_time*100;
+		
+		for (k=0; k<nparams; k++) {
+			printf("%s %s %lld domain in secs %.2f cpu_time_in_secs %.3f   delta_cpu %.3f     delta_domain %.3f  load %.5f\n", virDomainGetName (domains[i]),params[k].field, params[k].value.l, domain_time_in_secs, cpu_time_in_secs, delta_cpu_time, delta_process_time,process_load);
+		}		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
         vinfo = malloc (info.nrVirtCpu * sizeof (vinfo[0]));
@@ -757,6 +819,7 @@ refresh_lists (void)
         free_block_devices ();
         free_interface_devices ();
         free_domains ();
+        free_cpu_loads ();
 
         /* Fetch each domain and add it to the list, unless ignore. */
         for (i = 0; i < n; ++i) {
@@ -774,6 +837,8 @@ refresh_lists (void)
                 /* Could be that the domain went away -- ignore it anyway. */
                 continue;
             }
+            
+            add_cpu_load(dom,0,0);
 
             name = virDomainGetName (dom);
             if (name == NULL) {
@@ -961,6 +1026,38 @@ add_block_device (virDomainPtr dom, const char *path)
 }
 
 static void
+free_cpu_loads ()
+{
+    if (cpu_loads) {
+        sfree (cpu_loads);
+    }
+    cpu_loads = NULL;
+    nr_cpu_loads = 0;
+}
+
+static int
+add_cpu_load (virDomainPtr dom, float_t last_cpu_time, float_t last_process_time)
+{
+    struct cpu_load *new_ptr;
+    int new_size = sizeof (cpu_loads[0]) * (nr_cpu_loads+1);
+
+    if (cpu_loads)
+        new_ptr = realloc (cpu_loads, new_size);
+    else
+        new_ptr = malloc (new_size);
+
+    if (new_ptr == NULL) {
+        return -1;
+    }
+    
+    cpu_loads = new_ptr;
+    cpu_loads[nr_cpu_loads].dom = dom;
+    cpu_loads[nr_cpu_loads].last_cpu_time = last_cpu_time;
+    cpu_loads[nr_cpu_loads].last_process_time = last_process_time;
+    return nr_cpu_loads++;
+}
+
+static void
 free_interface_devices ()
 {
     int i;
@@ -1037,6 +1134,7 @@ lv_shutdown (void)
     free_block_devices ();
     free_interface_devices ();
     free_domains ();
+    free_cpu_loads ();
 
     if (conn != NULL)
         virConnectClose (conn);
