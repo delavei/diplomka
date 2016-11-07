@@ -2,6 +2,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <float.h>
 
 #include "collectd.h"
 #include "common.h"
@@ -16,6 +17,9 @@
 typedef struct container_s {
 	char id[STRING_LEN];
 	char image_name[STRING_LEN];
+	double_t last_cpu_time;
+	double_t last_container_time;
+	int init;
 } container_t;
 
 enum disk_switch {
@@ -33,14 +37,14 @@ static void init_value_list (value_list_t *vl)
 	vl->meta = meta_data_create();
 }
 
-static void cpu_submit (unsigned long long cpu_time, container_t* container, const char *type)
+static void cpu_time_submit (unsigned long cpu_time, container_t* container, const char *type)
 {
     value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
 
     init_value_list (&vl);
 
-    values[0].derive = cpu_time;
+    values[0].gauge = cpu_time;
 
     vl.values = values;
     vl.values_len = 1;
@@ -54,13 +58,16 @@ static void cpu_submit (unsigned long long cpu_time, container_t* container, con
     plugin_dispatch_values (&vl);
 }
 
-static void cpus_submit (unsigned long long vcpu_time, int vcpu_nr, container_t* container, const char *type) {
-	value_t values[1];
+static void
+cpu_load_submit (double_t cpu_load_percent,
+            container_t* container, const char *type)
+{
+    value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
 
     init_value_list (&vl);
 
-    values[0].derive = vcpu_time;
+    values[0].gauge = cpu_load_percent;
 
     vl.values = values;
     vl.values_len = 1;
@@ -70,25 +77,67 @@ static void cpus_submit (unsigned long long vcpu_time, int vcpu_nr, container_t*
 	meta_data_add_string (vl.meta,"tsdb_tags",tags);
 	
     sstrncpy (vl.type, type, sizeof (vl.type));
-    ssnprintf (vl.type_instance, sizeof (vl.type_instance), "%d", vcpu_nr);
-    
+
     plugin_dispatch_values (&vl);
 }
 
-void submit_cpu_stats (cJSON* root, container_t* container){
-	int cpus_num,i;
-	
-	
-	//int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valueint;
-	int cpu = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"system_cpu_usage")->valueint;
-	cpu_submit (cpu, container, "cpu");
-	
-	cJSON* cpus_array = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"percpu_usage");
-	cpus_num = cJSON_GetArraySize(cpus_array);
-	
-	for (i=0;i<cpus_num;i++) {
-		cpus_submit (cJSON_GetArrayItem(cpus_array,i)->valueint,i,container,"cpu");
+double_t compute_container_load(double_t container_time_in_secs, container_t* container) {
+	long int user = 0;
+	long int nice = 0;
+	long int system = 0;
+	long int idle = 0;
+	long int iowait = 0;
+	long int irq = 0;
+	long int softirq = 0;
+	long int steal = 0;
+	long int guest = 0;
+	long int guest_nice = 0;
+
+	FILE* stat_file = fopen ("/proc/stat", "r");
+	if(stat_file != NULL){
+		int items_scanned = fscanf(stat_file, "cpu  %ld %ld %ld %ld %ld %ld %ld %ld %ld %ld", &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal, &guest, &guest_nice);
+		if (items_scanned <10) {
+			ERROR (PLUGIN_NAME " plugin: error parsing /proc/stat file");
+		}
+		fclose(stat_file);
+	} else {
+		ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
 	}
+	
+	long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
+	double_t cpu_time_in_secs = (double_t) (cpu_time_sum/sysconf(_SC_CLK_TCK));
+
+	if (container->init == 0) {
+		container->last_cpu_time = cpu_time_in_secs;
+		container->last_container_time = container_time_in_secs;
+		container->init = 1;
+	}
+	
+	double_t delta_container_time = container_time_in_secs - container->last_container_time;
+	double_t delta_cpu_time = cpu_time_in_secs - container->last_cpu_time;
+	
+	//printf("kontajner %.5f  kontajner_last %.5f   deltaaaaaaa %.5f \n",container_time_in_secs, container->last_container_time, delta_container_time);
+	container->last_container_time = container_time_in_secs;
+	container->last_cpu_time = cpu_time_in_secs;
+
+	double_t container_load = 0;
+	if (delta_cpu_time != 0) {
+		container_load = delta_container_time/delta_cpu_time*100;
+	}
+		
+	return container_load;
+}
+
+void submit_cpu_stats (cJSON* root, container_t* container){	
+	unsigned long container_cpu_time = (unsigned long) cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valuedouble;
+
+	cpu_time_submit (container_cpu_time, container, "cpu_time");
+	double_t container_time_in_secs = (double_t) (container_cpu_time/1000000000);
+
+	double_t container_load = compute_container_load(container_time_in_secs, container);
+	//printf("load   %.5f\n", container_load);
+
+	cpu_load_submit (container_load, container, "cpu_load");
 }
 
 static void get_disk_stats (cJSON* root, unsigned long* write_val, unsigned long* read_val, enum disk_switch data_type) {
@@ -171,7 +220,6 @@ void memory_submit (unsigned long value, container_t* container, const char* typ
 }
 
 void submit_memory_stats (cJSON* root, container_t* container) {
-	/*get current memory usage*/
 	unsigned long mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"usage")->valueint;
 	memory_submit(mem_value,container,"usage");
 	
@@ -193,23 +241,31 @@ void submit_memory_stats (cJSON* root, container_t* container) {
 }
 
 static void get_network_stats (cJSON* root, unsigned long* rx_val, unsigned long* tx_val, const char* rx_string, const char* tx_string) {
-	*rx_val = (unsigned long) cJSON_GetObjectItem(cJSON_GetObjectItem(root,"network"),rx_string)->valueint;
-	*tx_val = (unsigned long) cJSON_GetObjectItem(cJSON_GetObjectItem(root,"network"),tx_string)->valueint;
+	*rx_val = (unsigned long) cJSON_GetObjectItem(root,rx_string)->valueint;
+	*tx_val = (unsigned long) cJSON_GetObjectItem(root,tx_string)->valueint;
+	
 }
 
 void submit_network_stats (cJSON* root, container_t* container) {
 	unsigned long rx = 0, tx = 0;
-	get_network_stats (root, &rx, &tx, "rx_dropped","tx_dropped");
-	submit_derive2 ("if_dropped", (derive_t) rx, (derive_t) tx, container);
-	
-	get_network_stats (root, &rx, &tx, "rx_bytes","tx_bytes");
-	submit_derive2 ("if_octets", (derive_t) rx, (derive_t) tx, container);
-	
-	get_network_stats (root, &rx, &tx, "rx_packets","tx_packets");
-	submit_derive2 ("if_packets", (derive_t) rx, (derive_t) tx, container);
-	
-	get_network_stats (root, &rx, &tx, "rx_errors","tx_errors");
-	submit_derive2 ("if_errors", (derive_t) rx, (derive_t) tx, container);
+	cJSON* networks = cJSON_GetObjectItem(root,"networks");
+	if (networks!= NULL) {
+		cJSON* network = networks->child;
+		while (network != NULL) {
+			get_network_stats (network, &rx, &tx, "rx_dropped","tx_dropped");
+			submit_derive2 ("if_dropped", (derive_t) rx, (derive_t) tx, container);
+			
+			get_network_stats (network, &rx, &tx, "rx_bytes","tx_bytes");
+			submit_derive2 ("if_octets", (derive_t) rx, (derive_t) tx, container);
+			get_network_stats (network, &rx, &tx, "rx_packets","tx_packets");
+			submit_derive2 ("if_packets", (derive_t) rx, (derive_t) tx, container);
+			
+			get_network_stats (network, &rx, &tx, "rx_errors","tx_errors");
+			submit_derive2 ("if_errors", (derive_t) rx, (derive_t) tx, container);
+			
+			network = network->next;
+		}
+	}
 }
 
 void *read_container (void* cont) {
@@ -238,7 +294,7 @@ void *read_container (void* cont) {
 		return NULL;
 	}
 	
-	nbytes = snprintf(buffer, STRING_LEN + 255, "GET /containers/%s/stats?stream=false HTTP/1.1\n\r\n",container->id);
+	nbytes = snprintf(buffer, STRING_LEN + 255, "GET /containers/%s/stats?stream=false HTTP/1.1\r\nHost: localhost\r\n\r\n",container->id);
 	if (write(socket_fd, buffer, nbytes) == -1) {
 		ERROR (PLUGIN_NAME " plugin: socket write() failed for container %s\n",container->id);
 		goto exit;
@@ -313,7 +369,7 @@ static int refresh_containers () {
 		return 1;
 	 }
 	 
-	nbytes = snprintf(buffer, buffer_size, "GET /containers/json HTTP/1.1\n\r\n");
+	nbytes = snprintf(buffer, buffer_size, "GET /containers/json HTTP/1.1\r\nHost: localhost\r\n\r\n");
 	if (write(socket_fd, buffer, nbytes) == -1) {
 		ERROR (PLUGIN_NAME " plugin: write() failed\n");
 		goto exit;
@@ -333,10 +389,10 @@ static int refresh_containers () {
 			nbytes=0;
 		}
 	}	
-	
+
 	json_string = strchr(response,'[');
 	if (json_string == NULL) {
-		ERROR (PLUGIN_NAME " plugin: unexpected response format, when asked for container list\n");
+		ERROR (PLUGIN_NAME " plugin: unexpected response format, when asked for container list.");
 		goto exit;
 	}
 	cJSON* root = cJSON_Parse(json_string);
@@ -354,6 +410,7 @@ static int refresh_containers () {
 		if (strlen(cJSON_GetObjectItem(container,"Image")->valuestring) >= STRING_LEN) {
 			containers[i].image_name[STRING_LEN-1]=0;
 		}
+		containers[i].init = 0;
 	}
 	
 	exit:

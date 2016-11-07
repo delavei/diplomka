@@ -114,15 +114,16 @@ static int add_interface_device (virDomainPtr dom, const char *path, const char 
 
 struct cpu_load {
     virDomainPtr dom;           		/* domain */
-    float_t last_cpu_time;		/* sum of cpu time when last called*/
-    float_t last_process_time;	/* sum of process time of entity when last called*/
+    double_t last_cpu_time;		/* sum of cpu time when last called*/
+    double_t last_domain_time;	/* sum of process time of entity when last called*/
+    int init;
 };
 
 static struct cpu_load *cpu_loads = NULL;
 static int nr_cpu_loads = 0;
 
 static void free_cpu_loads (void);
-static int add_cpu_load (virDomainPtr dom, float_t last_cpu_time, float_t last_process_time);
+static int add_cpu_load (virDomainPtr dom);
 
 /* HostnameFormat. */
 #define HF_MAX_FIELDS 3
@@ -295,7 +296,7 @@ memory_stats_submit (gauge_t memory, virDomainPtr dom, int tag_index)
 }
 
 static void
-cpu_submit (unsigned long long cpu_time,
+cpu_time_submit (unsigned long long cpu_time,
             virDomainPtr dom, const char *type)
 {
     value_t values[1];
@@ -303,7 +304,7 @@ cpu_submit (unsigned long long cpu_time,
 
     init_value_list (&vl, dom);
 
-    values[0].derive = cpu_time;
+    values[0].gauge = cpu_time;
 
     vl.values = values;
     vl.values_len = 1;
@@ -317,6 +318,29 @@ cpu_submit (unsigned long long cpu_time,
     plugin_dispatch_values (&vl);
 }
 
+static void
+cpu_load_submit (double_t cpu_load_percent,
+            virDomainPtr dom, const char *type)
+{
+    value_t values[1];
+    value_list_t vl = VALUE_LIST_INIT;
+
+    init_value_list (&vl, dom);
+
+    values[0].gauge = cpu_load_percent;
+
+    vl.values = values;
+    vl.values_len = 1;
+
+	char tags[1024];
+    ssnprintf(tags,1024,"guest_name=%s",virDomainGetName(dom));
+	meta_data_add_string (vl.meta,"tsdb_tags",tags);
+	
+    sstrncpy (vl.type, type, sizeof (vl.type));
+
+    plugin_dispatch_values (&vl);
+}
+/*
 static void
 vcpu_submit (derive_t cpu_time,
              virDomainPtr dom, int vcpu_nr, const char *type)
@@ -337,7 +361,7 @@ vcpu_submit (derive_t cpu_time,
     ssnprintf (vl.type_instance, sizeof (vl.type_instance), "%d", vcpu_nr);
 
     plugin_dispatch_values (&vl);
-}
+}*/
 
 static void
 submit_derive2 (const char *type, derive_t v0, derive_t v1,
@@ -533,6 +557,54 @@ lv_config (const char *key, const char *value)
     return -1;
 }
 
+double_t compute_domain_load(double_t domain_time_in_secs, int dom_index) {
+	long int user = 0;
+	long int nice = 0;
+	long int system = 0;
+	long int idle = 0;
+	long int iowait = 0;
+	long int irq = 0;
+	long int softirq = 0;
+	long int steal = 0;
+	long int guest = 0;
+	long int guest_nice = 0;
+
+	FILE* stat_file = fopen ("/proc/stat", "r");
+	if(stat_file != NULL){
+		int items_scanned = fscanf(stat_file, "cpu  %ld %ld %ld %ld %ld %ld %ld %ld %ld %ld", &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal, &guest, &guest_nice);
+		if (items_scanned <10) {
+			ERROR (PLUGIN_NAME " plugin: error parsing /proc/stat file");
+		}
+		fclose(stat_file);
+	} else {
+		ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
+	}
+	
+	long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
+	double_t cpu_time_in_secs = (double_t) (cpu_time_sum/sysconf(_SC_CLK_TCK));
+
+	if (cpu_loads[dom_index].init == 0) {
+		cpu_loads[dom_index].last_cpu_time = cpu_time_in_secs;
+		cpu_loads[dom_index].last_domain_time = domain_time_in_secs;
+		cpu_loads[dom_index].init = 1;
+	}
+	
+	double_t delta_domain_time = domain_time_in_secs - cpu_loads[dom_index].last_domain_time;
+	double_t delta_cpu_time = cpu_time_in_secs - cpu_loads[dom_index].last_cpu_time;
+	
+	cpu_loads[dom_index].last_domain_time = domain_time_in_secs;
+	cpu_loads[dom_index].last_cpu_time = cpu_time_in_secs;
+
+	
+	double_t domain_load = 0;
+	if (delta_cpu_time != 0) {
+		domain_load = delta_domain_time/delta_cpu_time*100;
+	}
+		
+	return domain_load;
+}
+
+
 static int
 lv_read (void)
 {
@@ -582,7 +654,7 @@ lv_read (void)
     /* Get CPU usage, memory, VCPU usage for each domain. */
     for (i = 0; i < nr_domains; ++i) {
         virDomainInfo info;
-        virVcpuInfoPtr vinfo = NULL;
+        //virVcpuInfoPtr vinfo = NULL;
         virDomainMemoryStatPtr minfo = NULL;
         int status;
         int j;
@@ -601,82 +673,19 @@ lv_read (void)
             continue;
         }
 
-        cpu_submit (info.cpuTime, domains[i], "virt_cpu_total");
         memory_submit ((gauge_t) info.memory * 1024, domains[i]);
-
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		long int user = 0;
-		long int nice = 0;
-		long int system = 0;
-		long int idle = 0;
-		long int iowait = 0;
-		long int irq = 0;
-		long int softirq = 0;
-		long int steal = 0;
-		long int guest = 0;
-		long int guest_nice = 0;
-
-		FILE* stat_file = fopen ("/proc/stat", "r");
-		if(stat_file != NULL){
-			int items_scanned = fscanf(stat_file, "cpu  %ld %ld %ld %ld %ld %ld %ld %ld %ld %ld", &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal, &guest, &guest_nice);
-            if (items_scanned <10) {
-				ERROR (PLUGIN_NAME " plugin: error parsing /proc/stat file");
-			}
-            fclose(stat_file);
-        } else {
-			ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
-		}
-		
-		long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
-		float_t cpu_time_in_secs = (float_t) (cpu_time_sum/sysconf(_SC_CLK_TCK));
-
 		int nparams = virDomainGetCPUStats(domains[i], NULL, 0, -1, 1, 0); // nparams
 		virTypedParameterPtr params = calloc(nparams, sizeof(virTypedParameter));
 		virDomainGetCPUStats(domains[i], params, nparams, -1, 1, 0);
-		int k;
 		
-		float_t domain_time_in_secs = ((float_t) (params[0].value.l))/1000000000;
+		double_t domain_time_in_secs = ((double_t) (params[0].value.l))/1000000000;
+		double_t domain_load = compute_domain_load(domain_time_in_secs,i);
 		
-		if (cpu_loads[i].last_cpu_time == 0) {
-			cpu_loads[i].last_cpu_time = cpu_time_in_secs;
-		}
-		if (cpu_loads[i].last_process_time == 0) {
-			cpu_loads[i].last_process_time = domain_time_in_secs;
-		}
+		cpu_time_submit (params[0].value.l, domains[i], "cpu_time");
+		cpu_load_submit (domain_load, domains[i],"cpu_load");
 		
-		float_t delta_process_time = domain_time_in_secs - cpu_loads[i].last_process_time;
-		float_t delta_cpu_time = cpu_time_in_secs - cpu_loads[i].last_cpu_time;
-		
-		cpu_loads[i].last_process_time = domain_time_in_secs;
-		cpu_loads[i].last_cpu_time = cpu_time_in_secs;
-
-		float_t process_load = delta_process_time/delta_cpu_time*100;
-		
-		for (k=0; k<nparams; k++) {
-			printf("%s %s %lld domain in secs %.2f cpu_time_in_secs %.3f   delta_cpu %.3f     delta_domain %.3f  load %.5f\n", virDomainGetName (domains[i]),params[k].field, params[k].value.l, domain_time_in_secs, cpu_time_in_secs, delta_cpu_time, delta_process_time,process_load);
-		}		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+       /* 
         vinfo = malloc (info.nrVirtCpu * sizeof (vinfo[0]));
         if (vinfo == NULL) {
             ERROR (PLUGIN_NAME " plugin: malloc failed.");
@@ -684,7 +693,7 @@ lv_read (void)
         }
 
         status = virDomainGetVcpus (domains[i], vinfo, info.nrVirtCpu,
-                /* cpu map = */ NULL, /* cpu map length = */ 0);
+                NULL,  0);
         if (status < 0)
         {
             ERROR (PLUGIN_NAME " plugin: virDomainGetVcpus failed with status %i.",
@@ -697,6 +706,9 @@ lv_read (void)
             vcpu_submit (vinfo[j].cpuTime, domains[i], vinfo[j].number, "virt_vcpu");
 
         sfree (vinfo);
+        */
+        
+        
 
         minfo = malloc (VIR_DOMAIN_MEMORY_STAT_NR * sizeof (virDomainMemoryStatStruct));
         if (minfo == NULL) {
@@ -838,7 +850,7 @@ refresh_lists (void)
                 continue;
             }
             
-            add_cpu_load(dom,0,0);
+            add_cpu_load(dom);
 
             name = virDomainGetName (dom);
             if (name == NULL) {
@@ -1036,7 +1048,7 @@ free_cpu_loads ()
 }
 
 static int
-add_cpu_load (virDomainPtr dom, float_t last_cpu_time, float_t last_process_time)
+add_cpu_load (virDomainPtr dom)
 {
     struct cpu_load *new_ptr;
     int new_size = sizeof (cpu_loads[0]) * (nr_cpu_loads+1);
@@ -1052,8 +1064,9 @@ add_cpu_load (virDomainPtr dom, float_t last_cpu_time, float_t last_process_time
     
     cpu_loads = new_ptr;
     cpu_loads[nr_cpu_loads].dom = dom;
-    cpu_loads[nr_cpu_loads].last_cpu_time = last_cpu_time;
-    cpu_loads[nr_cpu_loads].last_process_time = last_process_time;
+    cpu_loads[nr_cpu_loads].last_cpu_time = 0.0;
+    cpu_loads[nr_cpu_loads].last_domain_time = 0.0;
+    cpu_loads[nr_cpu_loads].init = 0;
     return nr_cpu_loads++;
 }
 

@@ -512,10 +512,11 @@ a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu
 
 \subsection{Výpočet percentuálnej záťaže na procesor}
 Žiadna z monitorovaných technológií neposkytuje údaje o precentuálnej záťaži, ktorú vyvíja na procesor. libvirt a Docker poskytujú len údaje o čase, ktorý kontajner alebo virtuálny stroj strávil
-počítaním na procesre. Linuxové jadro cez systém súborov \textit{/proc} sprístupňuje svoje dátové štruktúry. V súbore \textit{/proc/stat} sa nachádzajú rôzne štatistiky o systéme, medzi ktoré patrí aj 
+počítaním na procesre. 
+\\Linuxové jadro cez systém súborov \textit{/proc} sprístupňuje svoje dátové štruktúry. V súbore \textit{/proc/stat} sa nachádzajú rôzne štatistiky o systéme, medzi ktoré patrí aj 
 využitie procesora. Obsahuje viacero čísel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).\cite{proc-stat}
-Presný význam jednotiek je určený jednou z konštánt jadra.
-\\Metriky sa zberajú v pravidelných intervaloch. V každom intervale zistím čas prepočítaný danou technológiou a celkový prepočítaný čas. Zistím rozdiely oproti posledným nameraným hodnotám a dám ich do pomeru.
+Presné množstvo času, ktoré predstavuje táto jednotka, je určené jednou z konštánt jadra.
+\\Metriky sa zberajú v pravidelných intervaloch. V každom intervale zistím čas prepočítaný danou technológiou a celkový prepočítaný čas prostredníctvom súboru \textit{/proc/stat}. Zistím rozdiely oproti posledným nameraným hodnotám a dám ich do pomeru.
 Táto hodnota predstavuje percentuálnu záťaž, ktorú vyvinul kontajner alebo virtuálny stroj na hosťujúci procesor.
 
 \section{Docker}

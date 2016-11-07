@@ -88,6 +88,6 @@
 \contentsline {section}{\numberline {7.3}\slshape libpthread}{44}
 \contentsline {section}{\numberline {7.4}\slshape cJSON}{44}
 \contentsline {section}{\numberline {7.5}\slshape Zapisovac\IeC {\'\i } plugin Write TSDB}{44}
-\contentsline {chapter}{\numberline {8}\bfseries Z\IeC {\'a}ver}{45}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{45}
-\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{46}
+\contentsline {chapter}{\numberline {8}\bfseries Z\IeC {\'a}ver}{46}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{46}
+\contentsline {chapter}{\numberline {A}\bfseries Kapitola priloha}{47}

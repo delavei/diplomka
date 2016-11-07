@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  3 NOV 2016 16:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.9.1)  7 NOV 2016 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -773,53 +773,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 
-LaTeX Warning: Citation `proc-stat' on page 27 undefined on input line 516.
+LaTeX Warning: Citation `proc-stat' on page 27 undefined on input line 517.
 
 [27]
-Overfull \hbox (2.21841pt too wide) in paragraph at lines 538--539
+Overfull \hbox (2.21841pt too wide) in paragraph at lines 539--540
 []\T1/ppl/m/n/10.95 - po£et prí-padov, kedy bolo potrebné na£í-ta´ chýba-júcu s
 tránku
  []
 
 [28] [29]
 
-LaTeX Warning: Citation `libvirt-cpu' on page 30 undefined on input line 593.
+LaTeX Warning: Citation `libvirt-cpu' on page 30 undefined on input line 594.
 
 [30]
-Overfull \hbox (6.57794pt too wide) in paragraph at lines 602--603
+Overfull \hbox (6.57794pt too wide) in paragraph at lines 603--604
 []\T1/ppl/m/n/10.95 - po£et prí-padov, kedy
  []
 
 
-Overfull \hbox (7.18027pt too wide) in paragraph at lines 603--604
+Overfull \hbox (7.18027pt too wide) in paragraph at lines 604--605
 []\T1/ppl/m/n/10.95 - po£et prí-padov, kedy
  []
 
 
-Overfull \hbox (16.54247pt too wide) in paragraph at lines 607--608
+Overfull \hbox (16.54247pt too wide) in paragraph at lines 608--609
 []\T1/ppl/m/n/10.95 - ak-tuálna ve©kos´
  []
 
 
-Overfull \hbox (1.81432pt too wide) in paragraph at lines 608--609
+Overfull \hbox (1.81432pt too wide) in paragraph at lines 609--610
 []\T1/ppl/m/n/10.95 - mnoºstvo pamäte v kB ob-sadené
  []
 
 
-Overfull \hbox (28.20404pt too wide) in paragraph at lines 609--610
+Overfull \hbox (28.20404pt too wide) in paragraph at lines 610--611
 []\T1/ppl/m/n/10.95 - max-imálna ve©kos´ pamä´ového
  []
 
 
-Overfull \hbox (20.86798pt too wide) in paragraph at lines 610--611
+Overfull \hbox (20.86798pt too wide) in paragraph at lines 611--612
 []\T1/ppl/m/n/10.95 - Unixová £asová známka
  []
 
 
-LaTeX Warning: Citation `libvirt-mem' on page 31 undefined on input line 612.
+LaTeX Warning: Citation `libvirt-mem' on page 31 undefined on input line 613.
 
 [31] [32] [33]
-Overfull \hbox (3.40112pt too wide) in paragraph at lines 687--688
+Overfull \hbox (3.40112pt too wide) in paragraph at lines 688--689
 []\T1/ppl/m/n/10.95 - po£et pro-ce-sorových jadier, ktoré ap-liká-cia aloko-val
 a, vyná-
  []
@@ -827,13 +827,13 @@ a, vyná-
 [34] [35]
 Chapter 6.
 
-Overfull \hbox (25.36684pt too wide) in paragraph at lines 719--724
+Overfull \hbox (25.36684pt too wide) in paragraph at lines 720--725
 \T1/ppl/m/n/10.95 hlavne o aka-demickú spoluprácu. Meta-Cen-trum spravuje výpo£
 etné prostriedky
  []
 
 
-Overfull \hbox (4.54079pt too wide) in paragraph at lines 719--724
+Overfull \hbox (4.54079pt too wide) in paragraph at lines 720--725
 \T1/ppl/m/n/10.95 disponuje (stav k 30.7. 2010) 1500 pro-ce-sorovými jadrami, 1
 00 TB vyuºite©nej
  []
@@ -842,11 +842,11 @@ Runaway argument?
 ! Paragraph ended before \@citex was complete.
 <to be read again> 
                    \par 
-l.728 
+l.729 
       
 ? 
 
-Overfull \hbox (12.36874pt too wide) in paragraph at lines 735--738
+Overfull \hbox (12.36874pt too wide) in paragraph at lines 736--739
 \T1/ppl/m/n/10.95 o vyuºití mnoºstva za-po-jených clus-terov a uzlov, na ktorýc
 h je tieº spustených
  []
@@ -857,19 +857,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [36
 
 ]
-Overfull \hbox (3.55411pt too wide) in paragraph at lines 748--750
+Overfull \hbox (3.55411pt too wide) in paragraph at lines 749--751
 \T1/ppl/m/n/10.95 Monitorovacia ap-liká-cia by mala posky-to-va´ zrov-nate©né v
 ýsledky v oblasti
  []
 
 [37]
-Overfull \hbox (11.4928pt too wide) in paragraph at lines 760--782
+Overfull \hbox (11.4928pt too wide) in paragraph at lines 761--783
 \T1/ppl/m/n/10.95 pouºíva vi-acero par-alelne beºiacich vlákien, ktoré si medzi
  se-bou rovnomerne
  []
 
 
-Overfull \hbox (8.13147pt too wide) in paragraph at lines 760--782
+Overfull \hbox (8.13147pt too wide) in paragraph at lines 761--783
 \T1/ppl/m/n/10.95 vyuºití zdro-jov jed-notlivými tech-noló-giami. Plug-iny budú
  kon-fig-urovate©né,
  []
@@ -877,7 +877,7 @@ Overfull \hbox (8.13147pt too wide) in paragraph at lines 760--782
 [38] [39] [40] [41]
 Chapter 7.
 
-Overfull \hbox (4.74774pt too wide) in paragraph at lines 844--852
+Overfull \hbox (4.74774pt too wide) in paragraph at lines 845--855
 \T1/ppl/m/n/10.95 Na získa-vanie met-rick-ých úda-jov o vir-tuál-nych stro-joch
  som pouºil kniºnicu
  []
@@ -886,23 +886,23 @@ Overfull \hbox (4.74774pt too wide) in paragraph at lines 844--852
 
 ]
 
-LaTeX Warning: Citation `23' on page 43 undefined on input line 855.
+LaTeX Warning: Citation `23' on page 43 undefined on input line 858.
 
 
-LaTeX Warning: Citation `24' on page 43 undefined on input line 868.
+LaTeX Warning: Citation `24' on page 43 undefined on input line 871.
 
 [43]
 
-LaTeX Warning: Citation `13' on page 44 undefined on input line 888.
+LaTeX Warning: Citation `13' on page 44 undefined on input line 891.
 
-[44]
+[44] [45]
 Chapter 8.
 No file dip-lezdik.bbl.
-[45
+[46
 
 ]
 Appendix A.
-[46
+[47
 
 ] (./dip-lezdik.aux)
 
@@ -923,10 +923,10 @@ texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
 alatino/uplri8a.pfb>
-Output written on dip-lezdik.pdf (54 pages, 474499 bytes).
+Output written on dip-lezdik.pdf (55 pages, 475214 bytes).
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
+ 264 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

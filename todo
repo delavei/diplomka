@@ -16,8 +16,7 @@ vyhodil som z hadoopu aj z inych zoznamov metrik to, co nema moc vyznam zberat, 
 TEEEEEEEEEEEEEEEEEEEXT
 Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
 by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
-Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - v implementácií asi rozdeliť metriky na konfiguračné
-a monitorovacie a mať možnosť nakonfigurovať pre tie konfiguračné interval - ale ten už sa bude čekovať len v rámci pluginu
+Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
 
 okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
@@ -27,9 +26,7 @@ tabulka - nazvy metrik tak ako ich ukladam do databazy vs nazvy ako ich dostavam
 
 v analyze a navrhu spomenúť že zberám aj metadáta
 
-v implementácií napísať o zmene modulu pre libvirt - zber cpu 
 
-pamatove statistiky ktoré presne sa mi podarilo zberat
 
 
 POZNAMKYYYYYYYYYYYYYYYYYYYYYY
@@ -51,27 +48,16 @@ analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, p
 
 
 IMPLEMENTACIA
+dorobit configure skript, aby sa kopiroval custom types
+
 docker
-aktualizovat verziu  dockeru- rozdiel v networkoch a možno aj v pamäti - limit
 robit pravidelne refresh zoznamu kontajnerov
-config - host-majbe, refresh interval pre kontajnery
-cpu load dorobit
-zbierat info o pamati hosta
-
-
-cJSON
-nacitavanie unsigned long long (napr. docker system cpu usage)
+config - refresh interval pre kontajnery
 
 hadoop
 adresa klastra do konfiguracie
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
 dorobiť cluster a node metriky
-
-
-virt - pridat cpu kernelmode a usermode - to tuším nejde
-     - asi nie dorobit pralaleizáciu dotazovania jednotlivých domén
-
-
 
 
 
