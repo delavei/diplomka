@@ -340,28 +340,6 @@ cpu_load_submit (double_t cpu_load_percent,
 
     plugin_dispatch_values (&vl);
 }
-/*
-static void
-vcpu_submit (derive_t cpu_time,
-             virDomainPtr dom, int vcpu_nr, const char *type)
-{
-    value_t values[1];
-    value_list_t vl = VALUE_LIST_INIT;
-
-    init_value_list (&vl, dom);
-
-    values[0].derive = cpu_time;
-    vl.values = values;
-    vl.values_len = 1;
-	char tags[1024];
-    ssnprintf(tags,1024,"guest_name=%s",virDomainGetName(dom));
-	meta_data_add_string (vl.meta,"tsdb_tags",tags);
-	
-    sstrncpy (vl.type, type, sizeof (vl.type));
-    ssnprintf (vl.type_instance, sizeof (vl.type_instance), "%d", vcpu_nr);
-
-    plugin_dispatch_values (&vl);
-}*/
 
 static void
 submit_derive2 (const char *type, derive_t v0, derive_t v1,
@@ -685,30 +663,6 @@ lv_read (void)
 		cpu_time_submit (params[0].value.l, domains[i], "cpu_time");
 		cpu_load_submit (domain_load, domains[i],"cpu_load");
 		
-       /* 
-        vinfo = malloc (info.nrVirtCpu * sizeof (vinfo[0]));
-        if (vinfo == NULL) {
-            ERROR (PLUGIN_NAME " plugin: malloc failed.");
-            continue;
-        }
-
-        status = virDomainGetVcpus (domains[i], vinfo, info.nrVirtCpu,
-                NULL,  0);
-        if (status < 0)
-        {
-            ERROR (PLUGIN_NAME " plugin: virDomainGetVcpus failed with status %i.",
-                    status);
-            sfree (vinfo);
-            continue;
-        }
-		
-        for (j = 0; j < info.nrVirtCpu; ++j)
-            vcpu_submit (vinfo[j].cpuTime, domains[i], vinfo[j].number, "virt_vcpu");
-
-        sfree (vinfo);
-        */
-        
-        
 
         minfo = malloc (VIR_DOMAIN_MEMORY_STAT_NR * sizeof (virDomainMemoryStatStruct));
         if (minfo == NULL) {
@@ -1166,9 +1120,7 @@ lv_shutdown (void)
 void
 module_register (void)
 {
-    plugin_register_config (PLUGIN_NAME,
-    lv_config,
-    config_keys, NR_CONFIG_KEYS);
+    plugin_register_config (PLUGIN_NAME, lv_config, config_keys, NR_CONFIG_KEYS);
     plugin_register_init (PLUGIN_NAME, lv_init);
     plugin_register_read (PLUGIN_NAME, lv_read);
     plugin_register_shutdown (PLUGIN_NAME, lv_shutdown);

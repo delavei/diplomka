@@ -779,8 +779,14 @@
 /* Define to 1 if the gmond plugin is enabled. */
 /* #undef HAVE_PLUGIN_GMOND */
 
-/* Define to 1 if the hadoop plugin is enabled. */
-#define HAVE_PLUGIN_HADOOP 1
+/* Define to 1 if the hadoop_apps plugin is enabled. */
+#define HAVE_PLUGIN_HADOOP_APPS 1
+
+/* Define to 1 if the hadoop_cluster plugin is enabled. */
+#define HAVE_PLUGIN_HADOOP_CLUSTER 1
+
+/* Define to 1 if the hadoop_node plugin is enabled. */
+#define HAVE_PLUGIN_HADOOP_NODE 1
 
 /* Define to 1 if the hddtemp plugin is enabled. */
 /* #undef HAVE_PLUGIN_HDDTEMP */

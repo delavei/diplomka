@@ -523,13 +523,30 @@ docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 docker_la_LIBADD = libcJSON.la -lpthread
 endif
 
-if BUILD_PLUGIN_HADOOP
-pkglib_LTLIBRARIES += hadoop.la
-hadoop_la_SOURCES = hadoop.c
-hadoop_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+if BUILD_PLUGIN_HADOOP_APPS
+pkglib_LTLIBRARIES += hadoop_apps.la
+hadoop_apps_la_SOURCES = hadoop_apps.c
+hadoop_apps_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_apps_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_apps_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
 endif
+
+if BUILD_PLUGIN_HADOOP_CLUSTER
+pkglib_LTLIBRARIES += hadoop_cluster.la
+hadoop_cluster_la_SOURCES = hadoop_cluster.c
+hadoop_cluster_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_cluster_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_cluster_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+endif
+
+if BUILD_PLUGIN_HADOOP_NODE
+pkglib_LTLIBRARIES += hadoop_node.la
+hadoop_node_la_SOURCES = hadoop_node.c
+hadoop_node_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_node_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_node_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+endif
+
 
 if BUILD_PLUGIN_MADWIFI
 pkglib_LTLIBRARIES += madwifi.la

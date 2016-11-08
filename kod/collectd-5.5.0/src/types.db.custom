@@ -1,4 +1,5 @@
-app			value:DERIVE:0:U
+apps		value:DERIVE:0:U
 cluster		value:DERIVE:0:U
+node		value:DERIVE:0:U
 cpu_time	value:GAUGE:0:U
 cpu_load 	value:GAUGE:0:U

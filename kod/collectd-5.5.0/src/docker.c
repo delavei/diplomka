@@ -14,6 +14,16 @@
 
 #define STRING_LEN 128
 
+static const char *config_keys[] = {
+    "RefreshInterval",
+    NULL
+};
+
+static int config_keys_num = STATIC_ARRAY_SIZE (config_keys);
+
+static time_t last_refresh = (time_t) 0;
+static int refresh_interval = 60;
+
 typedef struct container_s {
 	char id[STRING_LEN];
 	char image_name[STRING_LEN];
@@ -35,6 +45,20 @@ static void init_value_list (value_list_t *vl)
 
     sstrncpy (vl->host, hostname_g, sizeof (vl->host));
 	vl->meta = meta_data_create();
+}
+
+static int
+docker_config (const char *key, const char *value)
+{
+    if (strcasecmp (key, "RefreshInterval") == 0) {
+        char *eptr = NULL;
+        refresh_interval = strtol (value, &eptr, 10);
+        if (eptr == NULL || *eptr != '\0') return 1;
+        return 0;
+    }
+
+    /* Unrecognised option. */
+    return -1;
 }
 
 static void cpu_time_submit (unsigned long cpu_time, container_t* container, const char *type)
@@ -327,24 +351,6 @@ void *read_container (void* cont) {
 }
 
 
-
-static int docker_read (void)
-{
-	pthread_t read_containers_threads[containers_num];
-	
-	int i;
-	for (i=0;i<containers_num;i++) {
-		if(pthread_create(&read_containers_threads[i], NULL, read_container, &containers[i])) {
-			ERROR(PLUGIN_NAME " plugin: error creating threads for reading containers\n");
-			return -1;
-		}
-	}
-	
-	pthread_join (read_containers_threads[0], NULL);
-
-	return 0;
-}
-
 static int refresh_containers () {
 	struct sockaddr_un address;
 	int response_bytes = 0, nbytes, socket_fd, buffer_size = 255;
@@ -356,7 +362,7 @@ static int refresh_containers () {
 	socket_fd = socket(PF_UNIX, SOCK_STREAM, 0);
 	if(socket_fd < 0){
 		ERROR (PLUGIN_NAME " plugin: socket() failed\n");
-		return 1;
+		return -1;
 	}
 	
 	memset(&address, 0, sizeof(struct sockaddr_un));
@@ -366,13 +372,14 @@ static int refresh_containers () {
 
 	if(connect(socket_fd, (struct sockaddr *) &address, sizeof(struct sockaddr_un)) != 0){
 		ERROR (PLUGIN_NAME " plugin: connect() failed\n");
-		return 1;
+		return -1;
 	 }
 	 
 	nbytes = snprintf(buffer, buffer_size, "GET /containers/json HTTP/1.1\r\nHost: localhost\r\n\r\n");
 	if (write(socket_fd, buffer, nbytes) == -1) {
 		ERROR (PLUGIN_NAME " plugin: write() failed\n");
-		goto exit;
+		close(socket_fd);
+		return -1;
 	}
 		
 	nbytes = read(socket_fd, buffer, buffer_size);
@@ -393,12 +400,19 @@ static int refresh_containers () {
 	json_string = strchr(response,'[');
 	if (json_string == NULL) {
 		ERROR (PLUGIN_NAME " plugin: unexpected response format, when asked for container list.");
-		goto exit;
+		close(socket_fd);
+		return -1;
 	}
 	cJSON* root = cJSON_Parse(json_string);
 	containers_num = cJSON_GetArraySize(root);
 	containers = realloc (containers, sizeof(container_t)*containers_num);
 
+	if ((containers == NULL) && (containers_num != 0)) {
+		ERROR (PLUGIN_NAME " plugin: realloc failed when refreshing containers.");
+		close(socket_fd);
+		return -1;
+	}
+	
 	int i;
 	for (i=0;i<containers_num;i++) {
 		cJSON* container = cJSON_GetArrayItem(root,i);
@@ -413,8 +427,37 @@ static int refresh_containers () {
 		containers[i].init = 0;
 	}
 	
-	exit:
 	close(socket_fd);
+	return 0;
+}
+
+static int docker_read (void)
+{
+	time_t t;
+    time (&t);
+    
+    /* Need to refresh domain or device lists? */
+    if ((last_refresh == (time_t) 0) ||
+            ((refresh_interval > 0) && ((last_refresh + refresh_interval) <= t))) {
+        if (refresh_containers() != 0) {
+            return -1;
+        }
+        last_refresh = t;
+    }
+
+	if (containers_num != 0) { 
+		pthread_t read_containers_threads[containers_num];
+		
+		int i;
+		for (i=0;i<containers_num;i++) {
+			if(pthread_create(&read_containers_threads[i], NULL, read_container, &containers[i])) {
+				ERROR(PLUGIN_NAME " plugin: error creating threads for reading containers\n");
+				return -1;
+			}
+		}
+		
+		pthread_join (read_containers_threads[0], NULL);
+	}
 	return 0;
 }
 
@@ -429,13 +472,13 @@ static int docker_init (void)
 {
 	containers= malloc (sizeof(container_t));
 	containers_num = 1;
-	
-	refresh_containers();
 		
 	return 0;
 }
+
 void module_register (void)
 {
+	plugin_register_config (PLUGIN_NAME, docker_config, config_keys, config_keys_num);
 	plugin_register_read (PLUGIN_NAME, docker_read);
 	plugin_register_init (PLUGIN_NAME, docker_init);
 	plugin_register_shutdown (PLUGIN_NAME, docker_shutdown);

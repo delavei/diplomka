@@ -859,8 +859,12 @@ BUILD_PLUGIN_INTERFACE_FALSE
 BUILD_PLUGIN_INTERFACE_TRUE
 BUILD_PLUGIN_HDDTEMP_FALSE
 BUILD_PLUGIN_HDDTEMP_TRUE
-BUILD_PLUGIN_HADOOP_FALSE
-BUILD_PLUGIN_HADOOP_TRUE
+BUILD_PLUGIN_HADOOP_APPS_FALSE
+BUILD_PLUGIN_HADOOP_APPS_TRUE
+BUILD_PLUGIN_HADOOP_CLUSTER_FALSE
+BUILD_PLUGIN_HADOOP_CLUSTER_TRUE
+BUILD_PLUGIN_HADOOP_NODE_FALSE
+BUILD_PLUGIN_HADOOP_NODE_TRUE
 BUILD_PLUGIN_GMOND_FALSE
 BUILD_PLUGIN_GMOND_TRUE
 BUILD_PLUGIN_FSCACHE_FALSE
@@ -1398,7 +1402,9 @@ enable_fhcount
 enable_filecount
 enable_fscache
 enable_gmond
-enable_hadoop
+enable_hadoop_node
+enable_hadoop_cluster
+enable_hadoop_apps
 enable_hddtemp
 enable_interface
 enable_ipc
@@ -2197,7 +2203,9 @@ collectd plugins:
   --enable-filecount      Count files in directories
   --enable-fscache        fscache statistics
   --enable-gmond          Ganglia plugin
-  --enable-hadoop         Hadoop Cluster and App statistics
+  --enable-hadoop_node    Hadoop Node statistics
+  --enable-hadoop_cluster Hadoop Cluster statistics
+  --enable-hadoop_apps    Hadoop Apps statistics
   --enable-hddtemp        Query hddtempd
   --enable-interface      Interface traffic statistics
   --enable-ipc            IPC statistics
@@ -29568,9 +29576,9 @@ fi
 
     enable_plugin="no"
     force="no"
-    @%:@ Check whether --enable-hadoop was given.
-if test "${enable_hadoop+set}" = set; then :
-  enableval=$enable_hadoop; 
+    @%:@ Check whether --enable-hadoop_node was given.
+if test "${enable_hadoop_node+set}" = set; then :
+  enableval=$enable_hadoop_node; 
      if test "x$enableval" = "xyes"
      then
 	     enable_plugin="yes"
@@ -29603,7 +29611,7 @@ fi
 	    if test "x$with_libcurl" = "xyes" || test "x$force" = "xyes"
 	    then
 		    
-$as_echo "@%:@define HAVE_PLUGIN_HADOOP 1" >>confdefs.h
+$as_echo "@%:@define HAVE_PLUGIN_HADOOP_NODE 1" >>confdefs.h
 
 		    if test "x$with_libcurl" != "xyes"
 		    then
@@ -29615,14 +29623,134 @@ $as_echo "@%:@define HAVE_PLUGIN_HADOOP 1" >>confdefs.h
 	    fi
     fi
      if test "x$enable_plugin" = "xyes"; then
-  BUILD_PLUGIN_HADOOP_TRUE=
-  BUILD_PLUGIN_HADOOP_FALSE='#'
+  BUILD_PLUGIN_HADOOP_NODE_TRUE=
+  BUILD_PLUGIN_HADOOP_NODE_FALSE='#'
 else
-  BUILD_PLUGIN_HADOOP_TRUE='#'
-  BUILD_PLUGIN_HADOOP_FALSE=
+  BUILD_PLUGIN_HADOOP_NODE_TRUE='#'
+  BUILD_PLUGIN_HADOOP_NODE_FALSE=
 fi
 
-    enable_hadoop="$enable_plugin"
+    enable_hadoop_node="$enable_plugin"
+  
+
+
+    enable_plugin="no"
+    force="no"
+    @%:@ Check whether --enable-hadoop_cluster was given.
+if test "${enable_hadoop_cluster+set}" = set; then :
+  enableval=$enable_hadoop_cluster; 
+     if test "x$enableval" = "xyes"
+     then
+	     enable_plugin="yes"
+     else if test "x$enableval" = "xforce"
+     then
+	     enable_plugin="yes"
+	     force="yes"
+     else
+	     enable_plugin="no (disabled on command line)"
+     fi; fi
+    
+else
+  
+	 if test "x$enable_all_plugins" = "xauto"
+	 then
+	     if test "x$with_libcurl" = "xyes"
+	     then
+		     enable_plugin="yes"
+	     else
+		     enable_plugin="no"
+	     fi
+	 else
+	     enable_plugin="$enable_all_plugins"
+	 fi
+    
+fi
+
+    if test "x$enable_plugin" = "xyes"
+    then
+	    if test "x$with_libcurl" = "xyes" || test "x$force" = "xyes"
+	    then
+		    
+$as_echo "@%:@define HAVE_PLUGIN_HADOOP_CLUSTER 1" >>confdefs.h
+
+		    if test "x$with_libcurl" != "xyes"
+		    then
+			    dependency_warning="yes"
+		    fi
+	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
+		    dependency_error="yes"
+		    enable_plugin="no (dependency error)"
+	    fi
+    fi
+     if test "x$enable_plugin" = "xyes"; then
+  BUILD_PLUGIN_HADOOP_CLUSTER_TRUE=
+  BUILD_PLUGIN_HADOOP_CLUSTER_FALSE='#'
+else
+  BUILD_PLUGIN_HADOOP_CLUSTER_TRUE='#'
+  BUILD_PLUGIN_HADOOP_CLUSTER_FALSE=
+fi
+
+    enable_hadoop_cluster="$enable_plugin"
+  
+
+
+    enable_plugin="no"
+    force="no"
+    @%:@ Check whether --enable-hadoop_apps was given.
+if test "${enable_hadoop_apps+set}" = set; then :
+  enableval=$enable_hadoop_apps; 
+     if test "x$enableval" = "xyes"
+     then
+	     enable_plugin="yes"
+     else if test "x$enableval" = "xforce"
+     then
+	     enable_plugin="yes"
+	     force="yes"
+     else
+	     enable_plugin="no (disabled on command line)"
+     fi; fi
+    
+else
+  
+	 if test "x$enable_all_plugins" = "xauto"
+	 then
+	     if test "x$with_libcurl" = "xyes"
+	     then
+		     enable_plugin="yes"
+	     else
+		     enable_plugin="no"
+	     fi
+	 else
+	     enable_plugin="$enable_all_plugins"
+	 fi
+    
+fi
+
+    if test "x$enable_plugin" = "xyes"
+    then
+	    if test "x$with_libcurl" = "xyes" || test "x$force" = "xyes"
+	    then
+		    
+$as_echo "@%:@define HAVE_PLUGIN_HADOOP_APPS 1" >>confdefs.h
+
+		    if test "x$with_libcurl" != "xyes"
+		    then
+			    dependency_warning="yes"
+		    fi
+	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
+		    dependency_error="yes"
+		    enable_plugin="no (dependency error)"
+	    fi
+    fi
+     if test "x$enable_plugin" = "xyes"; then
+  BUILD_PLUGIN_HADOOP_APPS_TRUE=
+  BUILD_PLUGIN_HADOOP_APPS_FALSE='#'
+else
+  BUILD_PLUGIN_HADOOP_APPS_TRUE='#'
+  BUILD_PLUGIN_HADOOP_APPS_FALSE=
+fi
+
+    enable_hadoop_apps="$enable_plugin"
   
 
 
@@ -36434,8 +36562,16 @@ if test -z "${BUILD_PLUGIN_GMOND_TRUE}" && test -z "${BUILD_PLUGIN_GMOND_FALSE}"
   as_fn_error $? "conditional \"BUILD_PLUGIN_GMOND\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${BUILD_PLUGIN_HADOOP_TRUE}" && test -z "${BUILD_PLUGIN_HADOOP_FALSE}"; then
-  as_fn_error $? "conditional \"BUILD_PLUGIN_HADOOP\" was never defined.
+if test -z "${BUILD_PLUGIN_HADOOP_NODE_TRUE}" && test -z "${BUILD_PLUGIN_HADOOP_NODE_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_HADOOP_NODE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_PLUGIN_HADOOP_CLUSTER_TRUE}" && test -z "${BUILD_PLUGIN_HADOOP_CLUSTER_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_HADOOP_CLUSTER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_PLUGIN_HADOOP_APPS_TRUE}" && test -z "${BUILD_PLUGIN_HADOOP_APPS_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_HADOOP_APPS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_PLUGIN_HDDTEMP_TRUE}" && test -z "${BUILD_PLUGIN_HDDTEMP_FALSE}"; then

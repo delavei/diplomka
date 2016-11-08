@@ -1,4 +1,4 @@
-sudo ./configure --enable-docker --enable-virt --enable-hadoop --enable-write-tsdb --enable-logfile --disable-all-plugins
+sudo ./configure --enable-docker --enable-virt --enable-hadoop-node --enable-hadoop-apps --enable-hadoop-cluster --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
 python diplomka/kod/tsddrain.py 4242 opentsdb/
 sudo docker run -it debian  /bin/bash
@@ -26,6 +26,7 @@ tabulka - nazvy metrik tak ako ich ukladam do databazy vs nazvy ako ich dostavam
 
 v analyze a navrhu spomenúť že zberám aj metadáta
 
+napisat, ze hadoop som testoval na nebeziacich appkach, ktorych je mrte a proste spravalo sa to tak, ze kym sa neskoncil stream, neboli nove poziadavky
 
 
 
@@ -50,14 +51,9 @@ analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, p
 IMPLEMENTACIA
 dorobit configure skript, aby sa kopiroval custom types
 
-docker
-robit pravidelne refresh zoznamu kontajnerov
-config - refresh interval pre kontajnery
-
 hadoop
-adresa klastra do konfiguracie
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
-dorobiť cluster a node metriky
+dorobiť node metriky
 
 
 

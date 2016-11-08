@@ -185,10 +185,10 @@ TO_INST_PM = Collectd.pm \
 	Collectd/Plugins/OpenVZ.pm \
 	Collectd/Unixsock.pm
 
-PM_TO_BLIB = Collectd/Unixsock.pm \
-	$(INST_LIB)/Collectd/Unixsock.pm \
-	Collectd/Plugins/OpenVZ.pm \
+PM_TO_BLIB = Collectd/Plugins/OpenVZ.pm \
 	$(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
+	Collectd/Unixsock.pm \
+	$(INST_LIB)/Collectd/Unixsock.pm \
 	Collectd.pm \
 	$(INST_LIB)/Collectd.pm
 
@@ -442,22 +442,22 @@ clean_subdirs :
 
 clean :: clean_subdirs
 	- $(RM_F) \
-	  $(BOOTSTRAP) MYMETA.json \
-	  core perl.exe \
-	  core.[0-9][0-9][0-9][0-9][0-9] pm_to_blib \
-	  perl mon.out \
-	  $(BASEEXT).x perlmain.c \
+	  core.[0-9][0-9][0-9][0-9][0-9] core \
+	  $(BASEEXT).bso MYMETA.json \
+	  $(BOOTSTRAP) *perl.core \
+	  perlmain.c mon.out \
+	  core.*perl.*.? $(INST_ARCHAUTODIR)/extralibs.ld \
 	  blibdirs.ts so_locations \
-	  core.[0-9][0-9] core.*perl.*.? \
-	  *perl.core $(INST_ARCHAUTODIR)/extralibs.all \
-	  $(BASEEXT).bso $(BASEEXT).exp \
-	  tmon.out core.[0-9][0-9][0-9][0-9] \
-	  *$(OBJ_EXT) $(INST_ARCHAUTODIR)/extralibs.ld \
-	  MYMETA.yml *$(LIB_EXT) \
-	  lib$(BASEEXT).def core.[0-9][0-9][0-9] \
-	  $(MAKE_APERL_FILE) core.[0-9] \
-	  $(BASEEXT).def perl$(EXE_EXT) \
-	  pm_to_blib.ts 
+	  $(MAKE_APERL_FILE) $(BASEEXT).exp \
+	  pm_to_blib lib$(BASEEXT).def \
+	  *$(OBJ_EXT) perl$(EXE_EXT) \
+	  pm_to_blib.ts tmon.out \
+	  core.[0-9][0-9][0-9] core.[0-9] \
+	  $(BASEEXT).x MYMETA.yml \
+	  *$(LIB_EXT) core.[0-9][0-9][0-9][0-9] \
+	  core.[0-9][0-9] $(BASEEXT).def \
+	  perl perl.exe \
+	  $(INST_ARCHAUTODIR)/extralibs.all 
 	- $(RM_RF) \
 	  blib 
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
@@ -830,8 +830,8 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  Collectd/Unixsock.pm $(INST_LIB)/Collectd/Unixsock.pm \
 	  Collectd/Plugins/OpenVZ.pm $(INST_LIB)/Collectd/Plugins/OpenVZ.pm \
+	  Collectd/Unixsock.pm $(INST_LIB)/Collectd/Unixsock.pm \
 	  Collectd.pm $(INST_LIB)/Collectd.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
