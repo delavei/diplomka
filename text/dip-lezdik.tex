@@ -79,7 +79,7 @@ spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času.
 
 MetaCentrum primárne poskytuje svoj výpočtový výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
 Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
-infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočtovej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.%\cite[25]
+infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočtovej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.\cite{metacentrum}
 
 Cieľom MetaCentra je umožňiť využívať veľkú množinu výpočtových zdrojov mnohým subjektom. Infraštruktúra je rôznorodá, obsahuje rôzne typy uzlov, od jednotlivých pracovných staníc, ktoré poskytujú
 časť svojho výkonu až po dedikované clustre, ktoré slúžia na riešenie zložitých výpočtových úloh. V MetaCentre je výpočtový výkon sprístupnený viacerými technológiami.
@@ -103,19 +103,19 @@ všestranný prístup.
 \item[\emph{Virtualizácia:}] Cloud virtualizuje systémy zdieľaním zdrojov. Systémy a úložný priestor môže byť poskytovaný podľa potrieb z 
 centralizovanej infraštruktúry, ceny sú stanovené na základe meraní, je možný prenájom viacerým subjektom a zdroje sú škáľovateľné podľa aktivity.
 \end{description}
-%\cite[4]{cloud_bible:1}
+\cite{cloud_bible}
 
 Prevádzkovateľ cloudu môže zvoliť rôzne prístupy k tomu, akým spôsobom bude poskytovať svoje zdroje. Tie sa dajú rozdeliť do troch kategórií:
 
 \begin{description}
 \item[\emph{Infrastructure as a Service (IaaS):}] Užívateľ má možnosť využívať zdroje cloudu podľa svojich hardvérových požiadaviek.
 Môže si presne určiť koľko pamäte, procesorov alebo diskovej kapacity požaduje. Poskytovateľ služby spravuje hardvérovú infraštruktúru,
-kým klient je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. %\cite[10]{cloud_bible:1}
+kým klient je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. \cite{cloud_bible}
 \item[\emph{Platform as a Service (PaaS):}] Prevádzkovateľ služby poskyzuje hardvér, operačný systém, aplikácie, služby, vývojové prostredia
 a kontrolné štruktúry. Užívateľ môže nasadiť vlastné aplikácie na cloudovú infraštruktúru alebo využívať aplikácie, ktoré boli naprogramované
 jazykmi a nástrojmi, podporovanými prevádzkovateľom. %\cite[10]{cloud_bible:1}
 \item[\emph{Software as a Service (SaaS):}] Tento model sprístupňuje užívateľovi konkrétnu aplikáciu prostredníctvom tenkého klientskeho 
-rozhrania (zväčša cez webový prehliadač) a zodpovednosť zákazníka spočíva len v spravovaní svojich dát a v interakcií s užívateľským systémom.%\cite[10]{cloud_bible:1}
+rozhrania (zväčša cez webový prehliadač) a zodpovednosť zákazníka spočíva len v spravovaní svojich dát a v interakcií s užívateľským systémom.\cite{cloud_bible}
 \end{description}
 
 Cloud umožňuje jednoducho spravovať a meniť výpočtový výkon, ktorý má užívateľ k dispozícií. Má to význam, ak sa rozrastú požiadavky užívateľa na výkon, alebo naopak z dôvodu obmedzenej prevádzky či 
@@ -168,15 +168,15 @@ Koordináciu gridových výpočtov zabezpečuje \textit{Torque}. V nasledujúcic
 KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux na x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
 Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko, ktoré zabezpečujú virtuálizáciu procesora od daného výrobcu.
 Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo aj ďalšími. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
-KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.%\cite{kvm}
+KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
 \\libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
-Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C\#, Java, Ruby alebo Go.%\cite{libvirt}
+Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C\#, Java, Ruby alebo Go.\cite{libvirt}
 \\Predstavuje vrstvu abstrakcie, ktorá zjednocuje prácu s hypervízormi od viacerých výrobcov. Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
 
 \subsection{Docker}
 Docker predstavuje kontajnerový engine a sadu nástrojov, ktorá umožňuje zabaliť aplikáciu so všetkými jej závislosťami do kompaktnej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru 
 obaľujú softvér kompletným súborovým systémom, ktorý zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
-je spustený.%\cite{docker} 
+je spustený.\cite{docker} 
 Pri behu jednotlivé kontajnery zdieľajú jadro operačného systému.
 \\Docker rozlišuje kontajnery a obrazy. Obraz predstavuje softvérový balík so všetkými závislosťami, kontajner reprezentuje jeho beh. Preto môže existovať viacero kontajnerov, v ktorých je spustený ten istý
 softvér.
@@ -185,7 +185,7 @@ softvér.
 Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
 naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočtový výkon a úložný priestor.
 Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
-z ktorých každý je náchylný na chyby. %\cite{hadoop}
+z ktorých každý je náchylný na chyby. \cite{hadoop}
 \\Hadoop využíva MapReduce aplikačný model. Vývojárom poskytuje programovacie prostredie, ktoré uľahčuje výmenu dát medzi jednotlivými fragmetnami veľkej výpočtovej úlohy. Toto zjednodušuje
 prácu spojenú s komunikáciou medzi jednotlivými uzlami a umožňuje sa viac zamerať na samotný výpočetný problém.
 \\Projekt pozostáva z týchto modulov:
@@ -290,7 +290,7 @@ prejde jedným bodom diaľnice. Efektívnou metódou vizuálizácie dát časov�
 \subsection{Analýza časových rád}
 Analýza časových rád sa primárne zaoberá získavaniu štatistík o zozbieraných dátach, napr. priemerná teplota počas celého roka. Medzi ďaľšie úlohy patrí:
 \begin{description}
-\item[\emph{Exploračná analýza dát}] - cieľom je detekcia vzorov v dátach. Kľúčová je grafická reprezentácia dát, ktorá môže pomôcť odhaliť súvisloti, ktoré by neboli jasné z algebraickej analýzy.%\cite{eda:1}
+\item[\emph{Exploračná analýza dát}] - cieľom je detekcia vzorov v dátach. Kľúčová je grafická reprezentácia dát, ktorá môže pomôcť odhaliť súvisloti, ktoré by neboli jasné z algebraickej analýzy.\cite{eda}
 \item[\emph{Aproximácia na funkciu}] - cieľom je nájsť krivku alebo matematickú funkciu, ktorá pre daný bod v čase generuje hodnotu rovnakú alebo v určitej rozumnej odchýlke od skutočnej nameranej hodnoty.
 \item[\emph{Predpovedanie}] - v štatistike patrí do oblasti štatistického odvodzovania. Ide o snahu vytvoriť štatistický model, ktorý vie s určitou pravdepodobnosťou predpovedať vývoje metrík v buduúcnosti.
 \item[\emph{Klasifikácia}] - ide o identifikáciu určitých javov v dátach a ich priradenie k nejakej udalosti - napr. výpadok, spúšťanie virtuálneho stroja atď.                               
@@ -312,7 +312,7 @@ rozšíriť o zber ďalších dát a ako sa správajú v prípade, že metriky n
 
 \subsection{Nagios}
 Nagios je aplikácia, ktorá poskytuje komplexné riešenie na monitorovanie systémov. Poskytuje informácie o kľúčových komponentoch infraštruktúry vrátane aplikácií, služieb, operačného systému, sieťových protokolov, systémových metrík
-a sieťovej infraštruktúry. %\cite{19} 
+a sieťovej infraštruktúry. \cite{nagios} 
 Aplikácia pozostáva z jadra, ktoré riadi zber údajov, a z množstva pluginov tretích strán. Tie sa zaoberajú monitorovaním jednotlivých oblastí systému. Ďalej aplikácia
 poskytuje grafické užívateľské rozhranie v podobe webového rozhrania. K dispozícií sú rôzne vizualizácie nameraných dát, grafy a histogramy. Nagios disponuje aj systémom užívateľských účtov. Tie sa delia na dva typy: 
 administrátorov a bežných užívatešov. Bežní užívatelia majú prístup k nameraným hodnotám a zobrazovaniu grafov. Administrátori môžu konfigurovať aplikáciu, pridávať služby, ktoré je potrebné monitorovať,
@@ -344,7 +344,7 @@ používa svoju databázu, no podporuje aj odosielanie dát do databázy časov�
 
 \subsubsection{Rozšíriteľnosť aplikácie}
 Icinga poskytuje systém, akým je možné do nej pridať kontroly nových metrík, prostredníctvom tzv. check príkazov. Jedná sa o kofiguračné objekty, kde užívateľ definuje príkaz,
-ktorý sa má spustiť, spolu s hodnotami jeho argumentov. Icinga určí stav tejto kontroly podľa návratovej hodnoty príkazu.%\cite{08}
+ktorý sa má spustiť, spolu s hodnotami jeho argumentov. Icinga určí stav tejto kontroly podľa návratovej hodnoty príkazu.\cite{icinga-plugin}
 Hodnoty a názvy metrík sú vracané vo forme textového výstupu.
 
 \subsection{Zabbix}
@@ -364,27 +364,25 @@ rádoch rokov. Tiež je možné využiť na ukladanie dát SQL databázy - MySQL
 \\V súčasnosti Zabbix prostredníctvom stiahnuteľných modulov podporuje monitorovanie Docker kontajnerov a virtuálnych strojov.
 
 \subsubsection{Rozšírenia}
-Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôsobmi. %\cite{06}
+Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôsobmi. 
 \begin{description}
 \item[\emph{užívateľské parametre}] - v tomto prípade užívateľ definuje v agentovi názov metriky a príkaz, ktorý sa má vykonať na zber jej hodnoty
 \item[\emph{externé kontroly}] - jedná sa o kontrolu na strane servera, kedy je tiež definovaný skript zberajúci dáta a server ho spúšťa
 \item[\emph{system.run}] - jedná sa o kontrolu na strane agenta, ktorá podporuje väčší výstup spusteného príkazu ako len hodnota metriky
 \end{description}
+\cite{zabbix-modules}
 Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľaných knižníc, ktoré musia implementovať požadované funkcie.
 
 \subsubsection{Riadenie intervalov zberu metrík}
 Konrola zberu jednotlivých metrík z hľadiska doby trvania tohoto zberu sa v Zabbixe odohráva na úrovni agenta a serveru. Na úrovni agenta ide o čas, ktorý je možné stráviť spracovávaním a získavaním
-jednotlivých metrík. Pre server je potom definovaná doba, ktorú je ochotný čakať na odpoveď agenta. Tieto doby je možné konfigurovať v rozsahu od 1 do 30 sekúnd.
-%\cite{20}
-%\cite{05}
-Zabbix nespracuje jednoduchú kontrolu na hodnotu metriky, ktorá trvá dlhšie ako túto dobu.
-%\cite{04}
+jednotlivých metrík. Pre server je potom definovaná doba, ktorú je ochotný čakať na odpoveď agenta. Tieto doby je možné konfigurovať v rozsahu od 1 do 30 sekúnd.\cite{zabbix-server}
+Zabbix nespracuje jednoduchú kontrolu na hodnotu metriky, ktorá trvá dlhšie ako túto dobu.\cite{zabbix-limit}
 Dokumentácia však neuvádza, ako sa aplikácia riadi beh externých procesov, ktoré zberajú dáta.
 
 \subsection{Ganglia} 
 Ganglia je škáľovateľný distribuovaný systém na monitorovanie výkonných systémov ako sú clustre a gridy. Je založená na hierarchickom návrhu 
 som zameraním na federácie clusterov. Využíva bežné štandardy, ako napr. XML na reprezentáciu dát, XDR na prenos dát a RRDTool na
-ukladanie a vizualizáciu dát.%\cite{15} 
+ukladanie a vizualizáciu dát.\cite{ganglia} 
 Cieľom aplikácie je zabezpečiť čo najmenšiu nabytočnú záťaž na uzloch a vysokú
 mieru súbežnosti. Ganglia vznikla na University of California v rámci Berkeley Millennium Project. Je to open-source projekt
 pod licenciou BSD. V súčasnosti je nasadená na mnohých operačných systémoch a podporuje viacero procesorových architektúr.
@@ -396,8 +394,7 @@ K dispozícií sú aj nástroje na získanie aktuálnych údajov konkrétnej son
 \subsubsection{Rozšíriteľnosť aplikácie}
 K dispozícií je mnoho pzásuvných modulov v podobe skriptov operačného systému alebo programov napísaných v skriptovacích jazykoch ako Ruby,
 Perl či Python. Pluginy poskytujú monitorovanie prihlásených užívateľov v systéme, rôznych aplikácií a služieb, ako napr. DNS, HTTP, ďalej
-podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.
-%\cite{16}
+podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.\cite{ganglia-hadoop}
 
 \subsection{AppDynamics}
 AppDynamics predstavuje zaujímavé riešnie v oblasti monitorovania. Snaží sa do istej miery zjednotiť a prepojiť monitorovanie aplikácií 
@@ -406,7 +403,7 @@ ale aj mapy a plošné grafy pozostávajúce s uzlov prepojených čiarami, ktor
 napr. webový server, databáza a servery aplikačnej logiky. Monitoruje vyťaženie zdrojov ako sú procesor, pamäť, vstupno-výstupné operácie
 a sieť u jednotlivých uzlov infraštruktúry a dáva ich do súvisu s tým, aké role tieto uzly vykonávajú v danej business aplikácií.
 \\Okrem toho disponuje aj integráciami s IaaS a PaaS cloudovými službami od Amazonu, RedHatu či Microsoftu a integráciami s mnohými aplikáciami
-vrátane zberu metrík o zdrojoch v Hadoope a Dockeri.%\cite{17}
+vrátane zberu metrík o zdrojoch v Hadoope a Dockeri.\cite{appdyn}
 \\AppDynamics predstavuje komerčné riešenie. Verzia s obmedzeným monitorovacím záberom a s obmedzenou dĺžkou ukladania údajov je k 
 dispozícií aj zdarma, plná verzia je platená.
 
@@ -433,7 +430,7 @@ Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. s
 \item[\emph{net\_prio}] - tento subsystém poskytuje spôsob, ako dynamicky nastavovať prioritu sieťovej prevádzky pre sieťové rozhrania.
 \item[\emph{ns}] - toto je menný subsystém.
 \end{description}
-%\cite{cgroups}
+\cite{cgroups}
 
 Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
 V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov, ktoré by sa obtiažne priraďovali jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
@@ -446,7 +443,7 @@ zapisovanie metrík a sledovanie prahových hodnôt a upozorňovanie. Jadro pred
 analyzuje namerané hodnoty, generuje notifikácie v prípade, že hodnoty sú mimo požadovaný rozsah, alebo ak nedorazili 
 v požadovaných intervaloch. V súčasnosti je k dispozícií viac než 90 pluginov. Poskytujú monitorovanie základných výpočtových zdrojov ako sú procesor, pamäť, disky a sieťové rozhrania, ďalej monitorovanie
 mnohých aplikácií (napr. databázy, e-mail, webové servery) a protokolov. Zvolený programovací jazyk dáva dobré predpoklady na výkon a prenositeľnosť, čo umožňuje beh na systémoch bez 
-skriptovacích jazykoc alebo cron démona, ako napríklad zabudované systémy. Zároveň ale disponuje optimalizáciami a prvkami, aby zvládal stovky tisíc metrík. %\cite{22} 
+skriptovacích jazykoc alebo cron démona, ako napríklad zabudované systémy. Zároveň ale disponuje optimalizáciami a prvkami, aby zvládal stovky tisíc metrík.\cite{collectd} 
 \\Collectd nepodporuje vizualizáciu dát ani historickú analýzu. Nepredstavuje preto úplné monitorovacie riešenie. Samotný zápis dát je uskutočňovaný pomocou pluginov a 
 teda je možné zvoliť z viacerých spôsobov uchovávania dát. V súčasnosti podporuje zápis do viacerých databáz, napr. MongoDB, OpenTSDB, alebo metódou HTTP POST či do súborov RRD. 
 \\V súčasnosti obsahuje plugin pre monitorovanie libvirt/KVM.
@@ -470,12 +467,12 @@ OpenTSDB je open-source databáza na uchovávanie a sprístupňovanie veľkých 
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
 na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimalizovaná na rýchlu agregáciu podobných časových rád, aby minimalizovala požiadavky na úložný priestor. 
 Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
-sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).%\cite{openTSDB}
+sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
 \\Na obrázku je znázornená architektúra OpenTSDB. Viacero démonov môže zapisovať dáta do jednej databázy, ktorá je potom distribuovaná v rámci Hadoop architektúry.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/opentsdb-arch.jpg}
-       \caption{Architektúra OpenTSDB}%\cite{opentsdb-arch}
+       \caption{Architektúra OpenTSDB}\cite{opentsdb-arch}
 \end{center}
 \end{figure}
 \\OpenTSDB uchováva čas zozbierania metriky, jej hodnotu a súbor popisných dát, ktoré sa nazývajú tagy. Na ich základe je potom možné
@@ -486,13 +483,13 @@ metriky v tom čase.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/grafana.png}
-       \caption{Vizualizácia časových rád OpenTSDB nástrojom Grafana}%\cite{grafana}
+       \caption{Vizualizácia časových rád OpenTSDB nástrojom Grafana}\cite{grafana}
 \end{center}
 \end{figure}
 
 \subsection{InfluxDB}
 InfluxDB je platforma v jazyku Go na zbieranie, uchovávanie, vizualizáciu a správu časových dát. InfluxDB je určená na použitie ako úložisko dát v takých prípadoch, ktoré zahŕňajú veľké množstvo
-dát označených časovou známkou, vrátane DevOps monitorovania, aplikačných metrík, senzorových dát internetu vecí, a na analýzu dát v reálnom čase.%\cite{21}
+dát označených časovou známkou, vrátane DevOps monitorovania, aplikačných metrík, senzorových dát internetu vecí, a na analýzu dát v reálnom čase.\cite{influxdb}
  Užívateľ môže vytvoriť viacero nezávislých databáz. 
 Dáta sa zapisujú a čítajú pomocou rozhrania príkazového riadka, rôznych klientskych knižníc, alebo pomocou HTTP API. Na vizualizáciu dát používa modul \emph{chronograf}.
 
@@ -552,7 +549,7 @@ a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu
 Žiadna z monitorovaných technológií neposkytuje údaje o precentuálnej záťaži, ktorú vyvíja na procesor. libvirt a Docker poskytujú len údaje o čase, ktorý kontajner alebo virtuálny stroj strávil
 počítaním na procesre. 
 \\Linuxové jadro cez systém súborov \textit{/proc} sprístupňuje svoje dátové štruktúry. V súbore \textit{/proc/stat} sa nachádzajú rôzne štatistiky o systéme, medzi ktoré patrí aj 
-využitie procesora. Obsahuje viacero čísel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).%\cite{proc-stat}
+využitie procesora. Obsahuje viacero čísel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).\cite{proc-stat}
 Presné množstvo času, ktoré predstavuje táto jednotka, je určené jednou z konštánt jadra.
 \\Metriky sa zberajú v pravidelných intervaloch. V každom intervale zistím čas prepočítaný danou technológiou a celkový prepočítaný čas prostredníctvom súboru \textit{/proc/stat}. Zistím rozdiely oproti posledným nameraným hodnotám a dám ich do pomeru.
 Táto hodnota predstavuje percentuálnu záťaž, ktorú vyvinul kontajner alebo virtuálny stroj na hosťujúci procesor.
@@ -566,7 +563,7 @@ Z hľadiska využitia zdrojov je podstatný druhý údaj. Virtuálne procesory m
 na virtuálnom procesore, ale aj režijné náklady spojené s virtualizáciou.
 
 \begin{description}
-\item[cpu\_time] - suma času v nanosekundách, ktorý strávil virtuálny stroj na procesore hosťujúceho počítača %\cite{libvirt-cpu}
+\item[cpu\_time] - suma času v nanosekundách, ktorý strávil virtuálny stroj na procesore hosťujúceho počítača \cite{libvirt-cpu}
 \item[cpu\_load] - hodnota v percentách, ktorá predstavuje záťaž virtuálneho stroja na procesor hosťujúceho počítača
 \end{description}
 
@@ -585,7 +582,7 @@ ak sa používa technika pamäťového balónu.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_USABLE] - maximálna veľkosť pamäťového balónu, kedy ešte nedochádza k swapovaniu pamäte virtuálneho stroja na disk.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_LAST\_UPDATE] - Unixová časová známka poslednej aktualizácie štatistík o pamäti.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - počet štatistík, ktoré podporuje daný hypervízor.
-%\cite{libvirt-mem}
+\cite{libvirt-mem}
 \end{description}
 Množstvo poskytovaných štatistík závisí od použitého hypervízora. V prípade MetaCentra sa mi podarilo zberať len niektoré z týchto štatistík. Zároveň ich jednotky neboli kilobajty, ale bajty.
 
@@ -876,7 +873,7 @@ analýzu zozbieraných hodnôt a generovanie hlásení. Na zbieranie jednotlivý
 pomocou modulu WriteTSDB.
 
 \subsection{Zapisovací plugin Write TSDB}
-Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB databázy.%\cite{13} 
+Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB databázy.\cite{writetsdb} 
 Je napísaný v jazyku C. Bolo potrebné ho upraviť, aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy, zberajúce metriky. Plugin využíva mechanizmy
 dočasného zhlukovania správ a ich odosielania vo väčších dávkach. Je možné nakonfigurovať adresu a port, na ktorom je spustený
 démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol. Toto vo svojej implementácií nevyužívam, všetky tagy metrík sú generované pluginmi.
@@ -905,7 +902,7 @@ procesor hosťujúceho stroja prevádzkou virtuálneho stroja. Poskytujem údaje
 
 \subsection{Hadoop}
 Na monitorovanie Hadoopu som si zvolil REST API YARN-u. YARN zabezpečuje správu zdrojov a plánovanie/monitorovanie vykonávania úloh do dvoch
-oddelených démonov.%\cite{23} 
+oddelených démonov.\cite{hadoop-yarn} 
 ResourceManager je autoritou, ktorá rozhoduje o využívaní zdrojov aplikáciami v celom systéme. NodeManager
 je agent, nainštalovaný na jednotlivých uzloch, ktorý sa stará o beh kontajner a monitorovanie zdrojov, ktoré spotrebovávajú. Toto
 nahlasuje ResourceManagerovi. Preto som zvolil toto API.
@@ -924,7 +921,7 @@ Hadoop. Využívané REST API sú chránené autentifikačným mechanizmom Kerbe
 ktoré sú vygenerované pri autentifikácií pomocou Kerberosu. Posiela ich spolu s HTTP GET žiadosťou a týmto spôsobom
 sa autentifikuje voči Hadoopu.
 \\libcurl je ľahko prenositeľná medzi rôznymi platformami, ako sú Solaris, BSD platformy, Windows, Linux, OS X a iné. Je vláknovo
-bezpečná, rýchla, dobre zdokumentovaná a kompatibilná s protokolom IPv6. %\cite{24}
+bezpečná, rýchla, dobre zdokumentovaná a kompatibilná s protokolom IPv6. \cite{libcurl}
 
 \subsection{libpthread}
 libpthread je knižnica, ktorá umožňuje programovanie aplikácií s paralelne vykonávanými procedúrami. Tie sa nazývajú vlákna. Paralelizáciu

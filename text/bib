@@ -1,18 +1,4 @@
-@book{cloud_bible:
-	AUTHOR="Sosinsky, Barrie A.",
-	TITLE="{Cloud computing bible}",
-	PUBLISHER="Wiley",
-	YEAR=2011,
-	ADDRESS=Indianapolis
-}
-@book{eda:
-	AUTHOR="Sosinsky, Barrie A.",
-	TITLE="{Cloud computing bible}",
-	PUBLISHER="Wiley",
-	YEAR=2011,
-	ADDRESS=Indianapolis,
-	URL="http://cll.stanford.edu/~willb/course/behrens97pm.pdf"
-}
+
 
 @book{opentsdb-arch:
 	AUTHOR="Sosinsky, Barrie A.",
@@ -45,24 +31,8 @@
         lastchecked = "",
         url = "https://exchange.nagios.org/directory/Plugins/Others/check_hadoop_metrics/details"
 }
-@webpage{04,
-		author = "bla",
-        title = "bla",
-        year = "2015",
-        lastchecked = "",
-        url = "https://www.zabbix.com/documentation/1.8/manual/config/items"
-}
-@05{
-https://www.zabbix.com/documentation/1.8/manual/processes/zabbix_server
-}
-@06{
-https://www.zabbix.com/documentation/2.2/manual/config/items/loadablemodules
-}
 @07{
 http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/getting-started#running-icinga2
-}
-@08{
-http://docs.icinga.org/latest/en/pluginapi.html
 }
 @09{
 http://docs.icinga.org/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/monitoring-basics#event-commands
@@ -82,15 +52,7 @@ https://collectd.org/wiki/index.php/Plugin:Write_TSDB
 @14{
 https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
 }
-@15{
-http://ganglia.info/
-}
-@16{
-http://ganglia.info/?p=88
-}
-@17{
-https://www.appdynamics.com/community/exchange/
-}
+
 @18{
 https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/WebServicesIntro.html
 }
@@ -103,9 +65,7 @@ https://www.nagios.com/
 @21{
 https://docs.influxdata.com/influxdb/v1.0/
 }
-@22{
-https://collectd.org/
-}
+
 @23{
 https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html
 }
@@ -114,7 +74,7 @@ https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html
 https://curl.haxx.se/libcurl/
 }
 @25{
-http://www.metacentrum.cz/export/sites/metacentrum/downloads/PR/letak_NGI.pdf
+
 }
 
 @webpage{proc-stat,
@@ -125,21 +85,7 @@ http://www.metacentrum.cz/export/sites/metacentrum/downloads/PR/letak_NGI.pdf
         url = "http://man7.org/linux/man-pages/man5/proc.5.html"
 }
 
-@webpage{hadoop,
-		author = "bla",
-        title = "bla",
-        year = "",
-        lastchecked = "",
-        url = "http://hadoop.apache.org/"
-}
 
-@webpage{cgroups,
-		author = "bla",
-        title = "bla",
-        year = "",
-        lastchecked = "",
-        url = "https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/ch01.html"
-}
 
 @webpage{libvirt-cpu,
 		author = "bla",
@@ -193,37 +139,5 @@ http://www.metacentrum.cz/export/sites/metacentrum/downloads/PR/letak_NGI.pdf
         year = "2015",
         lastchecked = "",
         url = "http://www.adaptivecomputing.com/products/open-source/torque"
-}
-
-@webpage{libvirt,
-		author = "bla",
-        title = "bla",
-        year = "2015",
-        lastchecked = "",
-        url = "http://libvirt.org/"
-}
-
-@webpage{kvm,
-		author = "bla",
-        title = "bla",
-        year = "2015",
-        lastchecked = "",
-        url = "http://www.linux-kvm.org/page/Main_Page"
-}
-
-@webpage{docker,
-		author = "bla",
-        title = "bla",
-        year = "2015",
-        lastchecked = "",
-        url = "http://www.docker.com/what-docker"
-}
-
-@webpage{openTSDB,
-		author = "bla",
-        title = "bla",
-        year = "2015",
-        lastchecked = "",
-        url = "http://www.docker.com/what-docker"
 }
 
