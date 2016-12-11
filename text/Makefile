@@ -8,19 +8,16 @@ THESIS=dip-lezdik
 all: pdf
 
 clean:
-	-rm *.*~ *.toc *.lof *.aux  *.log *.pdf *.blg *.bbl *.idx *.ilg *.ind *.out
+	-rm *.toc *.lof *.aux  *.log *.pdf *.blg *.bbl *.out *.bcf *.lot *.xml
 
 pdf: $(THESIS).pdf
 
 $(THESIS).pdf: $(THESIS).tex
 	pdflatex -output-format=pdf $(THESIS).tex
+	biber $(THESIS)
 	pdflatex -output-format=pdf $(THESIS).tex
-	bibtex $(THESIS).bib
-	pdflatex -output-format=pdf $(THESIS).tex
-	@while grep -qs 'LaTeX Warning:.*references' $(THESIS).log; do echo; pdflatex -output-format=pdf $(THESIS); done
-	mv $(THESIS).pdf $(THESIS)-in.pdf
-	pdfopt $(THESIS)-in.pdf $(THESIS).pdf
-	rm $(THESIS)-in.pdf
-	mv $(THESIS).pdf ./output/$(THESIS).pdf
+	pdflatex -output-format=pdf $(THESIS).tex	
+
+
 	
  

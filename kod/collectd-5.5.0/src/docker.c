@@ -47,8 +47,7 @@ static void init_value_list (value_list_t *vl)
 	vl->meta = meta_data_create();
 }
 
-static int
-docker_config (const char *key, const char *value)
+static int docker_config (const char *key, const char *value)
 {
     if (strcasecmp (key, "RefreshInterval") == 0) {
         char *eptr = NULL;
@@ -82,9 +81,7 @@ static void cpu_time_submit (unsigned long cpu_time, container_t* container, con
     plugin_dispatch_values (&vl);
 }
 
-static void
-cpu_load_submit (double_t cpu_load_percent,
-            container_t* container, const char *type)
+static void cpu_load_submit(double_t cpu_load_percent, container_t* container, const char *type)
 {
     value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
@@ -126,6 +123,7 @@ double_t compute_container_load(double_t container_time_in_secs, container_t* co
 		fclose(stat_file);
 	} else {
 		ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
+		return -1.0;
 	}
 	
 	long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
@@ -140,7 +138,6 @@ double_t compute_container_load(double_t container_time_in_secs, container_t* co
 	double_t delta_container_time = container_time_in_secs - container->last_container_time;
 	double_t delta_cpu_time = cpu_time_in_secs - container->last_cpu_time;
 	
-	//printf("kontajner %.5f  kontajner_last %.5f   deltaaaaaaa %.5f \n",container_time_in_secs, container->last_container_time, delta_container_time);
 	container->last_container_time = container_time_in_secs;
 	container->last_cpu_time = cpu_time_in_secs;
 
@@ -152,42 +149,88 @@ double_t compute_container_load(double_t container_time_in_secs, container_t* co
 	return container_load;
 }
 
-void submit_cpu_stats (cJSON* root, container_t* container){	
-	unsigned long container_cpu_time = (unsigned long) cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"cpu_stats"),"cpu_usage"),"total_usage")->valuedouble;
+void submit_cpu_stats (cJSON* root, container_t* container){
+	cJSON* cpu_stats = cJSON_GetObjectItem(root,"cpu_stats");
+	if (cpu_stats == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"cpu_stats\" node from container json.");
+		return;
+	}
+	cJSON* cpu_usage = cJSON_GetObjectItem(cpu_stats,"cpu_usage");
+	if (cpu_usage == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"cpu_usage\" node from container json.");
+		return;
+	}
+	cJSON* total_usage = cJSON_GetObjectItem(cpu_usage,"total_usage");
+	if (cpu_usage == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"total_usage\" node from container json.");
+		return;
+	}
+		
+	unsigned long container_cpu_time = (unsigned long) total_usage->valuedouble;
 
 	cpu_time_submit (container_cpu_time, container, "cpu_time");
 	double_t container_time_in_secs = (double_t) (container_cpu_time/1000000000);
 
 	double_t container_load = compute_container_load(container_time_in_secs, container);
-	//printf("load   %.5f\n", container_load);
-
+	
+	if (container_load < 0) {
+		return;
+	}
+	
 	cpu_load_submit (container_load, container, "cpu_load");
 }
 
 static void get_disk_stats (cJSON* root, unsigned long* write_val, unsigned long* read_val, enum disk_switch data_type) {
 	cJSON* disk_stats_array = NULL;
+	cJSON* blkio_stats = cJSON_GetObjectItem(root,"blkio_stats");
+	if (blkio_stats == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"blkio_stats\" node from container json.");
+		return;
+	}
 	switch (data_type) {
 		case OPS:
-			disk_stats_array = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"blkio_stats"),"io_serviced_recursive");
+			disk_stats_array = cJSON_GetObjectItem(blkio_stats,"io_serviced_recursive");
+			if (disk_stats_array == NULL) {
+				ERROR (PLUGIN_NAME " plugin: error getting \"io_serviced_recursive\" node from container json.");
+				return;
+			}
 			break;
 		case BYTES:
-			disk_stats_array = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"blkio_stats"),"io_service_bytes_recursive");
+			disk_stats_array = cJSON_GetObjectItem(blkio_stats,"io_service_bytes_recursive");
+			if (disk_stats_array == NULL) {
+				ERROR (PLUGIN_NAME " plugin: error getting \"io_service_bytes_recursive\" node from container json.");
+				return;
+			}
 			break;
 	}
 	
-	int i, disk_stats_num = cJSON_GetArraySize(disk_stats_array);
+	 
+	int i;
+	int disk_stats_num = cJSON_GetArraySize(disk_stats_array);
 	
 	cJSON* tmp;
-	char* op;
 	for (i=0;i<disk_stats_num;i++) {
-		 tmp = cJSON_GetArrayItem(disk_stats_array,i);
-		 op = cJSON_GetObjectItem(tmp,"op")->valuestring;
-		 if (!strcmp(op,"Read")) {
-			 *read_val = cJSON_GetObjectItem(tmp,"value")->valueint;
-		 }
-		 if (!strcmp(op,"Write")) {
-			 *write_val = cJSON_GetObjectItem(tmp,"value")->valueint;
-		 }
+		tmp = cJSON_GetArrayItem(disk_stats_array,i);
+		if (tmp == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting io read-write stats node from container json for disk number.");
+			return;
+		}
+		cJSON* op = cJSON_GetObjectItem(tmp,"op");
+		if (op == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting \"op\" node from container json.");
+			return;
+		}
+		cJSON* value = cJSON_GetObjectItem(tmp,"value");
+		if (value == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting \"value\" node from container json (disk info).");
+			return;
+		}
+		if (!strcmp(op->valuestring,"Read")) {
+			*read_val = value->valueint;
+		}
+		if (!strcmp(op->valuestring,"Write")) {
+			*write_val = value->valueint;
+		}
 	}
 }
 
@@ -244,51 +287,106 @@ void memory_submit (unsigned long value, container_t* container, const char* typ
 }
 
 void submit_memory_stats (cJSON* root, container_t* container) {
-	unsigned long mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"usage")->valueint;
+	cJSON* memory_stats = cJSON_GetObjectItem(root,"memory_stats");
+	if (memory_stats == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"memory_stats\" node from container json.");
+		return;
+	}
+	
+	cJSON* usage = cJSON_GetObjectItem(memory_stats,"usage");
+	if (usage == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"usage\" node from container json.");
+		return;
+	}
+	unsigned long mem_value = (unsigned long) usage->valuedouble;
 	memory_submit(mem_value,container,"usage");
 	
-	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"failcnt")->valueint;
+	cJSON* failcnt = cJSON_GetObjectItem(memory_stats,"failcnt");
+	if (failcnt == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"failcnt\" node from container json.");
+		return;
+	}
+	mem_value = (unsigned long) failcnt->valuedouble;
 	memory_submit(mem_value,container,"fail_count");
-	
-	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"limit")->valueint;
+		
+	cJSON* limit = cJSON_GetObjectItem(memory_stats,"limit");
+	if (limit == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"limit\" node from container json.");
+		return;
+	}
+	mem_value = (unsigned long) limit->valuedouble;
 	memory_submit(mem_value,container,"limit");
-
-	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"stats"),"rss")->valueint;
+	
+	cJSON* stats = cJSON_GetObjectItem(memory_stats,"stats");
+	if (stats == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"stats\" node from container json.");
+		return;
+	}
+	
+	cJSON* rss = cJSON_GetObjectItem(stats,"rss");
+	if (rss == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"rss\" node from container json.");
+		return;
+	}
+	mem_value = (unsigned long) rss->valuedouble;
 	memory_submit(mem_value,container,"rss");
 	
-	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"stats"),"pgmajfault")->valueint;
+	cJSON* pgfault_major = cJSON_GetObjectItem(stats,"pgmajfault");
+	if (pgfault_major == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"pgmajfault\" node from container json.");
+		return;
+	}
+	mem_value = pgfault_major->valueint;
 	memory_submit(mem_value,container,"pgfault_major");
 	
-	mem_value = cJSON_GetObjectItem(cJSON_GetObjectItem(cJSON_GetObjectItem(root,"memory_stats"),"stats"),"pgfault")->valueint;
-	memory_submit(mem_value,container,"pgfault_minor");
-	
+	cJSON* pgfault = cJSON_GetObjectItem(stats,"pgfault");
+	if (pgfault == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"pgfault\" node from container json.");
+		return;
+	}
+	mem_value = pgfault->valueint;
+	memory_submit(mem_value,container,"pgfault_minor");	
 }
 
-static void get_network_stats (cJSON* root, unsigned long* rx_val, unsigned long* tx_val, const char* rx_string, const char* tx_string) {
-	*rx_val = (unsigned long) cJSON_GetObjectItem(root,rx_string)->valueint;
-	*tx_val = (unsigned long) cJSON_GetObjectItem(root,tx_string)->valueint;
+static int get_network_stats (cJSON* network, unsigned long* rx_val, unsigned long* tx_val, const char* rx_string, const char* tx_string) {
+	cJSON* rx = cJSON_GetObjectItem(network,rx_string);
+	if (rx == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"rx\" node from container json.");
+		return -1;
+	}
+	*rx_val = (unsigned long) rx->valuedouble;
+	cJSON* tx = cJSON_GetObjectItem(network,tx_string);
+	if (tx == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"tx\" node from container json.");
+		return -1;
+	}
+	*tx_val = (unsigned long) tx->valuedouble;
 	
+	return 0;
 }
 
 void submit_network_stats (cJSON* root, container_t* container) {
 	unsigned long rx = 0, tx = 0;
 	cJSON* networks = cJSON_GetObjectItem(root,"networks");
-	if (networks!= NULL) {
-		cJSON* network = networks->child;
-		while (network != NULL) {
-			get_network_stats (network, &rx, &tx, "rx_dropped","tx_dropped");
+	if (networks == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"networks\" node from container json.");
+		return;
+	}
+	cJSON* network = networks->child;
+	while (network != NULL) {
+		if (get_network_stats (network, &rx, &tx, "rx_dropped","tx_dropped") == 0) {
 			submit_derive2 ("if_dropped", (derive_t) rx, (derive_t) tx, container);
-			
-			get_network_stats (network, &rx, &tx, "rx_bytes","tx_bytes");
+		}		
+		if (get_network_stats (network, &rx, &tx, "rx_bytes","tx_bytes") == 0) {
 			submit_derive2 ("if_octets", (derive_t) rx, (derive_t) tx, container);
-			get_network_stats (network, &rx, &tx, "rx_packets","tx_packets");
-			submit_derive2 ("if_packets", (derive_t) rx, (derive_t) tx, container);
-			
-			get_network_stats (network, &rx, &tx, "rx_errors","tx_errors");
-			submit_derive2 ("if_errors", (derive_t) rx, (derive_t) tx, container);
-			
-			network = network->next;
 		}
+		if (get_network_stats (network, &rx, &tx, "rx_packets","tx_packets") == 0) {
+			submit_derive2 ("if_packets", (derive_t) rx, (derive_t) tx, container);
+		}
+		if (get_network_stats (network, &rx, &tx, "rx_errors","tx_errors") == 0) {
+			submit_derive2 ("if_errors", (derive_t) rx, (derive_t) tx, container);
+		}		
+		network = network->next;
 	}
 }
 
@@ -326,13 +424,18 @@ void *read_container (void* cont) {
 
 	nbytes = recv(socket_fd, response, 4999,0);
 	response[nbytes] = 0;
-	
+	close(socket_fd);
+
 	json_string = strchr(response,'{');
 	if (json_string == NULL) {
 		ERROR (PLUGIN_NAME " plugin: unexpected response format, when asked for container %s stats\n",container->id);
 		goto exit;
 	}
 	cJSON* root = cJSON_Parse(json_string);
+	if (root == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error parsing container json.");
+		goto exit;
+	}
 	
 	submit_cpu_stats(root, container);
 	
@@ -345,7 +448,6 @@ void *read_container (void* cont) {
 	cJSON_Delete(root);
 	
 	exit:
-	close(socket_fd);
 	pthread_exit(NULL);
 	return NULL;
 }
@@ -396,38 +498,57 @@ static int refresh_containers () {
 			nbytes=0;
 		}
 	}	
-
+	close(socket_fd);
+	
 	json_string = strchr(response,'[');
 	if (json_string == NULL) {
 		ERROR (PLUGIN_NAME " plugin: unexpected response format, when asked for container list.");
-		close(socket_fd);
 		return -1;
 	}
 	cJSON* root = cJSON_Parse(json_string);
+	if (root == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error parsing containers json.");
+		return -1;
+	}
 	containers_num = cJSON_GetArraySize(root);
 	containers = realloc (containers, sizeof(container_t)*containers_num);
 
 	if ((containers == NULL) && (containers_num != 0)) {
 		ERROR (PLUGIN_NAME " plugin: realloc failed when refreshing containers.");
-		close(socket_fd);
 		return -1;
 	}
 	
 	int i;
 	for (i=0;i<containers_num;i++) {
 		cJSON* container = cJSON_GetArrayItem(root,i);
-		strncpy(containers[i].id,cJSON_GetObjectItem(container,"Id")->valuestring,STRING_LEN);
-		if (strlen(cJSON_GetObjectItem(container,"Id")->valuestring) >= STRING_LEN) {
+		if (container == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting \"container\" node from json.");
+			return -1;
+		}
+		cJSON* id = cJSON_GetObjectItem(container,"Id");
+		if (container == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting \"Id\" node from container json.");
+			return -1;
+		}
+		
+		strncpy(containers[i].id,id->valuestring,STRING_LEN);
+		if (strlen(id->valuestring) >= STRING_LEN) {
 			containers[i].id[STRING_LEN-1]=0;
 		}
-		strncpy(containers[i].image_name,cJSON_GetObjectItem(container,"Image")->valuestring,STRING_LEN);
-		if (strlen(cJSON_GetObjectItem(container,"Image")->valuestring) >= STRING_LEN) {
+		
+		cJSON* image = cJSON_GetObjectItem(container,"Image");
+		if (container == NULL) {
+			ERROR (PLUGIN_NAME " plugin: error getting \"Image\" node from container json.");
+			return -1;
+		}
+		
+		strncpy(containers[i].image_name,image->valuestring,STRING_LEN);
+		if (strlen(image->valuestring) >= STRING_LEN) {
 			containers[i].image_name[STRING_LEN-1]=0;
 		}
 		containers[i].init = 0;
 	}
 	
-	close(socket_fd);
 	return 0;
 }
 
@@ -464,13 +585,14 @@ static int docker_read (void)
 static int docker_shutdown (void)
 {
 	free(containers);
+	containers_num = 0;
 
     return 0;
 }
 
 static int docker_init (void)
 {
-	containers= malloc (sizeof(container_t));
+	containers = malloc (sizeof(container_t));
 	containers_num = 1;
 		
 	return 0;

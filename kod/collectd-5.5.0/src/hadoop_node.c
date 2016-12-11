@@ -26,20 +26,20 @@ int nodes_json_length = 0;
 CURL* easy_handle;
 int new_server_read = 1;
 int read_success = -1;
+int read_finished = 1;
 int read_info_success = -1;
 long int cluster_id;
 
-/*
+
 static void init_value_list (value_list_t *vl)
 {
     sstrncpy (vl->plugin, PLUGIN_NAME, sizeof (vl->plugin));
 
-    sstrncpy (vl->host, hostname_g, sizeof (vl->host));
 	vl->meta = meta_data_create();
 	
 }
 
-void submit_cluster_value (unsigned long value, const char* type_instance, const char* tags) {
+void submit_node_value (unsigned long value, const char* type_instance, const char* tags, const char* node_id, const char* node_hostname) {
 	value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
 
@@ -52,85 +52,125 @@ void submit_cluster_value (unsigned long value, const char* type_instance, const
 
 	meta_data_add_string (vl.meta,"tsdb_tags",tags);
 	
-    sstrncpy (vl.type, "cluster", sizeof (vl.type));
+	sstrncpy (vl.host, node_hostname, sizeof (vl.host));
+    sstrncpy (vl.type, "node", sizeof (vl.type));
+    /*if too much nodes, this distinguishes different nodes and helps avoid value too old warnings */
+    sstrncpy (vl.plugin_instance, node_id, sizeof (vl.type));
     sstrncpy (vl.type_instance, type_instance, sizeof (vl.type_instance));
     
     plugin_dispatch_values (&vl);
 }
 
-static int submit_cluster_stats (char* cluster_json) {
-	cJSON* root = cJSON_Parse(cluster_json);
-	
+static int submit_node_stats (char* nodes_json) {
+	cJSON* root = cJSON_Parse(nodes_json);
+	read_finished = 1;
+
 	if (root == NULL) {
+		ERROR(PLUGIN_NAME " plugin: error parsing nodes json.");
 		return -1;
 	}
-	cJSON* cluster_metrics_node = cJSON_GetObjectItem(root,"clusterMetrics");
-	int apps_submitted = cJSON_GetObjectItem(cluster_metrics_node,"appsSubmitted")->valueint;
-	int apps_completed = cJSON_GetObjectItem(cluster_metrics_node,"appsCompleted")->valueint;
-	int apps_pending = cJSON_GetObjectItem(cluster_metrics_node,"appsPending")->valueint;
-	int apps_running = cJSON_GetObjectItem(cluster_metrics_node,"appsRunning")->valueint;
-	int apps_failed = cJSON_GetObjectItem(cluster_metrics_node,"appsFailed")->valueint;
-	int apps_killed = cJSON_GetObjectItem(cluster_metrics_node,"appsKilled")->valueint;
-	int reserved_mb = cJSON_GetObjectItem(cluster_metrics_node,"reservedMB")->valueint;
-	int available_mb = cJSON_GetObjectItem(cluster_metrics_node,"availableMB")->valueint;
-	int allocated_mb = cJSON_GetObjectItem(cluster_metrics_node,"allocatedMB")->valueint;
-	int total_mb = cJSON_GetObjectItem(cluster_metrics_node,"totalMB")->valueint;
-	int reserved_virtual_cores = cJSON_GetObjectItem(cluster_metrics_node,"reservedVirtualCores")->valueint;
-	int available_virtual_cores = cJSON_GetObjectItem(cluster_metrics_node,"availableVirtualCores")->valueint;
-	int allocated_virtual_cores = cJSON_GetObjectItem(cluster_metrics_node,"allocatedVirtualCores")->valueint;
-	int total_virtual_cores = cJSON_GetObjectItem(cluster_metrics_node,"totalVirtualCores")->valueint;
-	int total_nodes = cJSON_GetObjectItem(cluster_metrics_node,"totalNodes")->valueint;
-	int active_nodes = cJSON_GetObjectItem(cluster_metrics_node,"activeNodes")->valueint;
-	int lost_nodes = cJSON_GetObjectItem(cluster_metrics_node,"lostNodes")->valueint;
-	int unhealthy_nodes = cJSON_GetObjectItem(cluster_metrics_node,"unhealthyNodes")->valueint;
-	int decommissioned_nodes = cJSON_GetObjectItem(cluster_metrics_node,"decommissionedNodes")->valueint;
-	int rebooted_nodes = cJSON_GetObjectItem(cluster_metrics_node,"rebootedNodes")->valueint;
-		
-	char tags[TAGS_SIZE];
-	ssnprintf(tags,TAGS_SIZE,"cluster_id=%ld", cluster_id);
+	cJSON* nodes = NULL;
+	nodes = cJSON_GetObjectItem(root,"nodes");
+	if (nodes == NULL) {
+		ERROR(PLUGIN_NAME " plugin: \"nodes\" node not found when parsing response.");
+		return -1;
+	}
+	cJSON* node = NULL;
+	node = cJSON_GetObjectItem(nodes,"node");
+	if (node == NULL) {
+		ERROR(PLUGIN_NAME " plugin: \"node\" node not found when parsing response.");
+		return -1;
+	}
 	
-	submit_cluster_value (apps_submitted, "apps_submitted", tags);
-	submit_cluster_value (apps_completed, "apps_completed", tags);
-	submit_cluster_value (apps_pending, "apps_pending", tags);
-	submit_cluster_value (apps_running, "apps_running", tags);
-	submit_cluster_value (apps_failed, "apps_failed", tags);
-	submit_cluster_value (apps_killed, "apps_killed", tags);
-	submit_cluster_value (reserved_mb, "reserved_mb", tags);
-	submit_cluster_value (available_mb, "available_mb", tags);
-	submit_cluster_value (allocated_mb, "allocated_mb", tags);
-	submit_cluster_value (total_mb, "total_mb", tags);
-	submit_cluster_value (reserved_virtual_cores, "reserved_virtual_cores", tags);
-	submit_cluster_value (available_virtual_cores, "available_virtual_cores", tags);
-	submit_cluster_value (allocated_virtual_cores, "allocated_virtual_cores", tags);
-	submit_cluster_value (total_virtual_cores, "total_virtual_cores", tags);
-	submit_cluster_value (total_nodes, "total_nodes", tags);
-	submit_cluster_value (active_nodes, "active_nodes", tags);
-	submit_cluster_value (lost_nodes, "lost_nodes", tags);
-	submit_cluster_value (unhealthy_nodes, "unhealthy_nodes", tags);
-	submit_cluster_value (decommissioned_nodes, "decommissioned_nodes", tags);
-	submit_cluster_value (rebooted_nodes, "rebooted_nodes", tags);
+	int nodes_num = cJSON_GetArraySize(node);
+	int i;
+	for (i=0;i<nodes_num;i++) {
+		cJSON* node_stats = cJSON_GetArrayItem(node,i);
+		if (node_stats == NULL) {
+			ERROR(PLUGIN_NAME " plugin: unable to get node statistics json for node %d, when parsing node stats.",i);
+			return -1;
+		}
+		cJSON* usedMemoryMB = cJSON_GetObjectItem(node_stats,"usedMemoryMB");
+		if (usedMemoryMB == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"usedMemoryMB\" node not found when parsing node stats.");
+			return -1;
+		}
+		long int used_memory_mb = (long int) usedMemoryMB->valuedouble;
+
+		cJSON* availMemoryMB = cJSON_GetObjectItem(node_stats,"availMemoryMB");
+		if (availMemoryMB == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"availMemoryMB\" node not found when parsing node stats.");
+			return -1;
+		}
+		long int available_memory_mb = (long int) availMemoryMB->valuedouble;
+		
+		cJSON* usedVirtualCores = cJSON_GetObjectItem(node_stats,"usedVirtualCores");
+		if (usedVirtualCores == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"usedVirtualCores\" node not found when parsing node stats.");
+			return -1;
+		}
+		int used_virtual_cores = usedVirtualCores->valueint;
+		
+		cJSON* availableVirtualCores = cJSON_GetObjectItem(node_stats,"availableVirtualCores");
+		if (availableVirtualCores == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"availableVirtualCores\" node not found when parsing node stats.");
+			return -1;
+		}
+		int available_virtual_cores = availableVirtualCores->valueint;
+		
+		cJSON* numContainers = cJSON_GetObjectItem(node_stats,"numContainers");
+		if (numContainers == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"numContainers\" node not found when parsing node stats.");
+			return -1;
+		}
+		int containers_running = numContainers->valueint;
+
+		cJSON* rack_node = cJSON_GetObjectItem(node_stats,"rack");
+		if (rack_node == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"rack\" node not found when parsing node stats.");
+			return -1;
+		}
+		char* rack = rack_node->valuestring;
+		
+		cJSON* nodeHostName = cJSON_GetObjectItem(node_stats,"nodeHostName");
+		if (nodeHostName == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"nodeHostName\" node not found when parsing node stats.");
+			return -1;
+		}
+		char* node_hostname = nodeHostName->valuestring;
+		
+		cJSON* id = cJSON_GetObjectItem(node_stats,"id");
+		if (id == NULL) {
+			ERROR(PLUGIN_NAME " plugin: \"id\" node not found when parsing node stats.");
+			return -1;
+		}
+		char* node_id = id->valuestring;
+		
+		char tags[TAGS_SIZE];
+		ssnprintf(tags,TAGS_SIZE,"cluster_id=%ld node_id=%s rack=%s", cluster_id, node_id, rack);
+		
+		submit_node_value (used_memory_mb, "used_memory_mb", tags, node_id, node_hostname);
+		submit_node_value (available_memory_mb, "available_memory_mb", tags, node_id, node_hostname);
+		submit_node_value (used_virtual_cores, "used_virtual_cores", tags, node_id, node_hostname);
+		submit_node_value (available_virtual_cores, "available_virtual_cores", tags, node_id, node_hostname);
+		submit_node_value (containers_running, "containers_running", tags, node_id, node_hostname);
+	}
 	
 	cJSON_Delete(root);
-	
 	return 0;
-}*/
+}
 
 size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 	size_t retval = nmemb*size;
-	
 	if (new_server_read == 1) {
 		new_server_read = 0;
 		
 		char* node_substr = strstr(data, NODE_SEARCH_SUBSTR);
-		if (node_substr) {
-			read_success = 0;
-		} else {
+		if (!node_substr) {
+			ERROR(PLUGIN_NAME " plugin: \"nodes\" not found in response.");
 			return retval;
 		}
-		if (data[retval]==0) {
-			printf("je to nula\n");
-		}
-		
+				
 		nodes_json = malloc(sizeof(char)*(retval+1));
 		if (!nodes_json) {
 			ERROR(PLUGIN_NAME " plugin: malloc failed for nodes json string.");
@@ -142,7 +182,6 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 		strncat (nodes_json, data, nodes_json_length);
 		nodes_json[nodes_json_length]=0;
 	} else {
-		printf("tu sooom\n");
 		int new_size = nodes_json_length+retval;
 		char* tmp = realloc(nodes_json, sizeof(char)*new_size);
 		if (!tmp) {
@@ -155,6 +194,14 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 			nodes_json[nodes_json_length] = 0;
 		}
 	}
+	
+	if ((nodes_json[nodes_json_length-4] == '}') &&
+		(nodes_json[nodes_json_length-3] == ']') &&
+		(nodes_json[nodes_json_length-2] == '}') &&
+		(nodes_json[nodes_json_length-1] == '}')) {
+			read_success = submit_node_stats(nodes_json); 
+	} 
+	
 	return retval;
 }
 
@@ -178,19 +225,20 @@ size_t read_response_cluster_info(char *data, size_t size, size_t nmemb, void *u
 
 static int hadoop_node_read (void)
 {
-	CURLcode curl_ret = curl_easy_perform(easy_handle);
-	if (curl_ret == CURLE_OK) {
+	if (read_finished) {
+		read_success = -1;
 		new_server_read = 1;
-		if (read_success >= 0) {
-			return 0;
-		} else {
-			ERROR(PLUGIN_NAME " plugin: node metrics not found in response.");
+
+		CURLcode curl_ret = curl_easy_perform(easy_handle);
+		if (curl_ret != CURLE_OK) {
+			ERROR(PLUGIN_NAME " plugin: error reading node metrics, curl errno %d.",curl_ret);
+			return -1;
 		}
 	} else {
-		ERROR(PLUGIN_NAME " plugin: error reading node metrics, curl errno %d.",curl_ret);
+		return 0;
 	}
 	
-	return 0;
+	return read_success;
 }
 
 static int hadoop_node_shutdown (void)
@@ -220,9 +268,11 @@ static int hadoop_node_init (void)
 	if (curl_ret == CURLE_OK) {
 		if (read_info_success != 0) {
 			ERROR(PLUGIN_NAME " plugin: cluster info not found in response.");
+			return -1;
 		}
 	} else {
 		ERROR(PLUGIN_NAME " plugin: error reading cluster info, curl errno %d.",curl_ret);
+		return -1;
 	}
 	
 	snprintf(cluster_url, 256, "%s:%s/ws/v1/cluster/nodes", yarn_url, yarn_port);

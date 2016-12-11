@@ -1,0 +1,51 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{none/global/}
+    \entry{hypervisorTypes}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74b834c9364855a81a51f7b222d9b0b3}{%
+           family={{Gerald J. Popek, Robert P. Goldberg}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{fullhash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{authornamehash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{authorfullhash}{74b834c9364855a81a51f7b222d9b0b3}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{Communications of the ACM}}
+      \field{title}{{Formal requirements for virtualizable third generation architectures}}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2016}
+      \field{volume}{17}
+      \field{year}{1974}
+      \field{urldateera}{ce}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?doid=361011.361073
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

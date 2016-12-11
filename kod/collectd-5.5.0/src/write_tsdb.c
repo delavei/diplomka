@@ -364,6 +364,14 @@ static int wt_format_name(char *ret, int ret_len,
 	return 0;
 }
 
+void replace_illegal_chars(char* tags) {
+	char* illegal_char=strchr(tags,':');
+	while (illegal_char!=NULL)
+	{
+		*illegal_char='-';
+		illegal_char=strchr(illegal_char+1,':');
+	}
+}
 static int wt_send_message (const char* key, const char* value,
                             cdtime_t time, struct wt_callback *cb,
                             const char* host, meta_data_t *md)
@@ -393,7 +401,9 @@ static int wt_send_message (const char* key, const char* value,
             tags = temp;
         }
     }
-
+	
+	replace_illegal_chars(tags);
+		
     message_len = ssnprintf (message,
                              sizeof(message),
                              "put %s %.0f %s host=%s %s %s\r\n",

@@ -556,6 +556,7 @@ double_t compute_domain_load(double_t domain_time_in_secs, int dom_index) {
 		fclose(stat_file);
 	} else {
 		ERROR (PLUGIN_NAME " plugin: error opening /proc/stat file");
+		return -1.0;
 	}
 	
 	long int cpu_time_sum = user+nice+system+idle+iowait+irq+softirq+steal+guest+guest_nice;
@@ -660,6 +661,9 @@ lv_read (void)
 		double_t domain_time_in_secs = ((double_t) (params[0].value.l))/1000000000;
 		double_t domain_load = compute_domain_load(domain_time_in_secs,i);
 		
+		if (domain_load < 0) {
+			continue;
+		}
 		cpu_time_submit (params[0].value.l, domains[i], "cpu_time");
 		cpu_load_submit (domain_load, domains[i],"cpu_load");
 		

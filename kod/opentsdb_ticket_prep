@@ -1,0 +1,6 @@
+#!/bin/bash
+# My first script
+
+cd /tmp
+cp krb5cc_1000 krb5cc_opentsdb
+chown opentsdb:opentsdb krb5cc_opentsdb 

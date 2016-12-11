@@ -13,6 +13,7 @@
 #define APP_SEARCH_SUBSTR "app\":["
 #define APPS_SEARCH_SUBSTR "apps\":"
 #define END_STR "]}}"
+#define CLUSTER_INFO_SEARCH_SUBSTR "clusterInfo\":"
 
 enum states {
 	JSON_BEGIN_NOT_FOUND, JSON_END_NOT_FOUND
@@ -33,6 +34,7 @@ char app_json[BUFFER_SIZE] = "";
 enum states last_state;
 int read_success = -1;
 int read_finished = 1;
+int read_info_success = -1;
 
 static void init_value_list (value_list_t *vl)
 {
@@ -71,29 +73,86 @@ static int submit_app_stats (char* app_json) {
 		ERROR(PLUGIN_NAME " plugin: error when parsing app json.");
 		return -1;
 	}
-	char* app_id = cJSON_GetObjectItem(root,"id")->valuestring;
-	char* user = cJSON_GetObjectItem(root,"user")->valuestring;
-	char* app_name = cJSON_GetObjectItem(root,"name")->valuestring;
-	char* app_type = cJSON_GetObjectItem(root,"applicationType")->valuestring;
-	long int cluster_id = (long int)cJSON_GetObjectItem(root,"clusterId")->valuedouble;
 	
-	long elapsed_time = (long)cJSON_GetObjectItem(root,"elapsedTime")->valuedouble;
-	int allocated_mb = cJSON_GetObjectItem(root,"allocatedMB")->valueint;
-	int allocated_vcores = cJSON_GetObjectItem(root,"allocatedVCores")->valueint;
-	int running_containers = cJSON_GetObjectItem(root,"runningContainers")->valueint;
-	long memory_seconds = (long)cJSON_GetObjectItem(root,"memorySeconds")->valuedouble;
-	long vcore_seconds = (long)cJSON_GetObjectItem(root,"vcoreSeconds")->valuedouble;
+	cJSON* app_id = cJSON_GetObjectItem(root,"id");
+	if (app_id == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"id\" node from app json.");
+		return -1;
+	}
+	cJSON* user = cJSON_GetObjectItem(root,"user");
+	if (user == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"user\" node from app json.");
+		return -1;
+	}
+	cJSON* app_name = cJSON_GetObjectItem(root,"name");
+	if (app_name == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"name\" node from app json.");
+		return -1;
+	}
+	cJSON* app_type = cJSON_GetObjectItem(root,"applicationType");
+	if (app_type == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"applicationType\" node from app json.");
+		return -1;
+	}
+	cJSON* cluster_id = cJSON_GetObjectItem(root,"clusterId");
+	if (cluster_id == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"clusterId\" node from app json.");
+		return -1;
+	}
+	
+	cJSON* elapsedTime = cJSON_GetObjectItem(root,"elapsedTime");
+	if (elapsedTime == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"elapsedTime\" node from app json.");
+		return -1;
+	}
+	long elapsed_time = (long) elapsedTime->valuedouble;
+	
+	cJSON* allocatedMB = cJSON_GetObjectItem(root,"allocatedMB");
+	if (allocatedMB == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"allocatedMB\" node from app json.");
+		return -1;
+	}
+	int allocated_mb = allocatedMB->valueint;
+	
+	cJSON* allocatedVCores = cJSON_GetObjectItem(root,"allocatedVCores");
+	if (allocatedVCores == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"allocatedVCores\" node from app json.");
+		return -1;
+	}
+	int allocated_vcores = allocatedVCores->valueint;
+	
+	cJSON* runningContainers = cJSON_GetObjectItem(root,"runningContainers");
+	if (runningContainers == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"runningContainers\" node from app json.");
+		return -1;
+	}
+	int running_containers = runningContainers->valueint;
+	
+	cJSON* memorySeconds = cJSON_GetObjectItem(root,"memorySeconds");
+	if (memorySeconds == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"memorySeconds\" node from app json.");
+		return -1;
+	}
+	long memory_seconds = (long) memorySeconds->valuedouble;
+	
+	cJSON* vcoreSeconds = cJSON_GetObjectItem(root,"vcoreSeconds");
+	if (vcoreSeconds == NULL) {
+		ERROR (PLUGIN_NAME " plugin: error getting \"vcoreSeconds\" node from app json.");
+		return -1;
+	}
+	long vcore_seconds = (long) vcoreSeconds->valuedouble;
 	
 	char tags[TAGS_SIZE];
-	int written_chars = ssnprintf(tags,TAGS_SIZE,"app_id=%s user=%s app_type=%s cluster_id=%ld app_name=%s",app_id, user, app_type, cluster_id,app_name);
-	strncat(tags,app_name,TAGS_SIZE-written_chars);
+	int written_chars = ssnprintf(tags,TAGS_SIZE,"app_id=%s user=%s app_type=%s cluster_id=%ld app_name=%s",
+	app_id->valuestring, user->valuestring, app_type->valuestring, (long int) cluster_id->valuedouble, app_name->valuestring);
+	strncat(tags,app_name->valuestring,TAGS_SIZE-written_chars);
 		
-	submit_app_value (elapsed_time, "elapsed_time", tags, app_id);
-	submit_app_value (allocated_mb, "allocated_mb", tags, app_id);
-	submit_app_value (allocated_vcores, "allocated_vcores", tags, app_id);
-	submit_app_value (running_containers, "running_containers", tags, app_id);
-	submit_app_value (memory_seconds, "memory_seconds", tags, app_id);
-	submit_app_value (vcore_seconds, "vcore_seconds", tags, app_id);
+	submit_app_value (elapsed_time, "elapsed_time", tags, app_id->valuestring);
+	submit_app_value (allocated_mb, "allocated_mb", tags, app_id->valuestring);
+	submit_app_value (allocated_vcores, "allocated_vcores", tags, app_id->valuestring);
+	submit_app_value (running_containers, "running_containers", tags, app_id->valuestring);
+	submit_app_value (memory_seconds, "memory_seconds", tags, app_id->valuestring);
+	submit_app_value (vcore_seconds, "vcore_seconds", tags, app_id->valuestring);
 	
 	cJSON_Delete(root);
 	
@@ -148,9 +207,9 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 				
 	if (new_server_read) {
 		new_server_read = 0;
-		
+				
 		char* apps_substr = strstr(data, APPS_SEARCH_SUBSTR);
-		if (apps_substr) {
+		if (apps_substr != NULL) {
 			read_success = 0;
 		} else {
 			return retval;
@@ -165,17 +224,14 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 		app_json_begin += strlen(APP_SEARCH_SUBSTR);
 		
 		last_state = parse_response(app_json_begin, data+retval);
-		
 	} else {
 		app_json_begin = data;
 		
 		switch (last_state) {
 			case JSON_END_NOT_FOUND:
-				//printf ("\n vstup end nenasiel   \n");
 				last_state = parse_response(app_json_begin, data+retval);
 				break;
 			case JSON_BEGIN_NOT_FOUND:
-				//printf ("\n vstup beggiiiiiiiiiiiiin not found    \n");
 				last_state = parse_response(app_json_begin, data+retval);
 				break;
 		}
@@ -202,6 +258,7 @@ static int hadoop_apps_read (void)
 	} else {
 		return 0;
 	}
+	
 	return -1;	
 }
 
@@ -211,12 +268,34 @@ static int hadoop_apps_shutdown (void)
     return 0;
 }
 
+size_t read_response_cluster_info(char *data, size_t size, size_t nmemb, void *userdata) {
+	size_t retval = nmemb*size;
+	char* cluster_info_substr = strstr(data, CLUSTER_INFO_SEARCH_SUBSTR);
+	
+	if (cluster_info_substr) {
+		cJSON* root = cJSON_Parse(data);
+
+		if (root == NULL) {
+			return retval;
+		} else {
+			cJSON* clusterInfo = cJSON_GetObjectItem(root,"clusterInfo");
+			if (clusterInfo == NULL) {
+				ERROR (PLUGIN_NAME " plugin: error getting \"clusterInfo\" node cluster json.");
+				return retval;
+			}
+			read_info_success = 0;
+		}
+	}
+	
+	return retval;
+}
+
 static int hadoop_apps_init (void)
 {		
 	easy_handle = curl_easy_init();
 	
 	char apps_url[256];	
-	snprintf(apps_url, 256, "%s:%s/ws/v1/cluster/apps", yarn_url, yarn_port);
+	snprintf(apps_url, 256, "%s:%s/ws/v1/cluster/info", yarn_url, yarn_port);
 	
 	curl_easy_setopt(easy_handle, CURLOPT_URL, apps_url);
 	curl_easy_setopt(easy_handle, CURLOPT_HTTPAUTH, (long)CURLAUTH_GSSNEGOTIATE);
@@ -227,11 +306,29 @@ static int hadoop_apps_init (void)
     curl_easy_setopt(easy_handle, CURLOPT_NOPROGRESS, 1L);
     curl_easy_setopt(easy_handle, CURLOPT_FOLLOWLOCATION, "true");
     curl_easy_setopt(easy_handle, CURLOPT_MAXREDIRS, 50L);
+
+	curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, read_response_cluster_info);
 	
+	CURLcode curl_ret = curl_easy_perform(easy_handle);
+	if (curl_ret == CURLE_OK) {
+		if (read_info_success != 0) {
+			ERROR(PLUGIN_NAME " plugin: cluster info not found in response.");
+			return -1;
+		}
+	} else {
+		ERROR(PLUGIN_NAME " plugin: error reading cluster info, curl errno %d.",curl_ret);
+		return -1;
+	}
+	
+	snprintf(apps_url, 256, "%s:%s/ws/v1/cluster/apps?states=running", yarn_url, yarn_port);
+	curl_easy_setopt(easy_handle, CURLOPT_URL, apps_url);
+	curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, read_response);
+
+
 	return 0;
 }
 
-static int hadoop_cluster_config (const char *key, const char *value)
+static int hadoop_apss_config (const char *key, const char *value)
 {
     if (strcasecmp (key, "YARNUrl") == 0) {
         yarn_url = strdup (value);
@@ -257,7 +354,7 @@ static int hadoop_cluster_config (const char *key, const char *value)
 void module_register (void)
 {
 	plugin_register_read (PLUGIN_NAME, hadoop_apps_read);
-	plugin_register_config(PLUGIN_NAME, hadoop_cluster_config, config_keys, config_keys_num);
+	plugin_register_config(PLUGIN_NAME, hadoop_apss_config, config_keys, config_keys_num);
 	plugin_register_init (PLUGIN_NAME, hadoop_apps_init);
 	plugin_register_shutdown (PLUGIN_NAME, hadoop_apps_shutdown);
     return;

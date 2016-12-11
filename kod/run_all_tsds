@@ -1,0 +1,6 @@
+#!/bin/bash
+
+service opentsdb start
+start-stop-daemon --start -b --user "opentsdb" -c "opentsdb" --make-pidfile --pidfile "/var/run/opentsdb1.pid" --exec /usr/bin/env JVMARGS="-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas" /bin/bash -- -c "/usr/share/opentsdb/bin/tsdb tsd --config=/etc/opentsdb/opentsdb1.conf"
+start-stop-daemon --start -b --user "opentsdb" -c "opentsdb" --make-pidfile --pidfile "/var/run/opentsdb2.pid" --exec /usr/bin/env JVMARGS="-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas" /bin/bash -- -c "/usr/share/opentsdb/bin/tsdb tsd --config=/etc/opentsdb/opentsdb2.conf"
+start-stop-daemon --start -b --user "opentsdb" -c "opentsdb" --make-pidfile --pidfile "/var/run/opentsdb3.pid" --exec /usr/bin/env JVMARGS="-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas" /bin/bash -- -c "/usr/share/opentsdb/bin/tsdb tsd --config=/etc/opentsdb/opentsdb3.conf"

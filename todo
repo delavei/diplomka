@@ -1,24 +1,27 @@
 sudo ./configure --enable-docker --enable-virt --enable-hadoop-node --enable-hadoop-apps --enable-hadoop-cluster --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
-python diplomka/kod/tsddrain.py 4242 opentsdb/
+python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
+
+
+kinit delavei
+cp /tmp/krb5cc_1000 /tmp/krb5cc_opentsdb
+sudo chown opentsdb /tmp/krb5cc_opentsdb
+
+put hadoopnode.node.usedmemorymb 1480589489 0 host=hador2
+put sys.cpu.user 1356998405 42.5 host=webserver01 cpu=0
+
 
 OTAZKYYYYY
 analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
 jake verzie softov sa používajú? dať to do textu -- libvirt centOS7, debian 7,8
-zberat z dockeru pre jednotlivé jadrá?
-hadoop kontajnery?
-hadoop node state zberať?
-pamatove statsitiky libvirt, iba niektore ide zberat, ostatne mam vyhodit?
-vyhodil som z hadoopu aj z inych zoznamov metrik to, co nema moc vyznam zberat, nie su tam komplet podrobne vypisy, co to poskytuje - to asi skor len do prilohy
+hadoop kontajnery? ano
 
 TEEEEEEEEEEEEEEEEEEEXT
 Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
 by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
 Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
-
-okomentovať, že nie všetky poskytované metriky má význam aj zberať
 
 napisat o tom, ako sa vypocitava cpu load - podporit citaciou, ako sa to vlastne vyratava - napriklad aj ze zo zdrojaku
 
@@ -28,7 +31,7 @@ v analyze a navrhu spomenúť že zberám aj metadáta
 
 napisat, ze hadoop som testoval na nebeziacich appkach, ktorych je mrte a proste spravalo sa to tak, ze kym sa neskoncil stream, neboli nove poziadavky
 
-
+k metrikam o hadoope, ze by sa hodilo testovat
 
 POZNAMKYYYYYYYYYYYYYYYYYYYYYY
 obrazky - hadoop, metacentrum
@@ -53,12 +56,6 @@ dorobit configure skript, aby sa kopiroval custom types
 
 hadoop
 mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
-dorobiť node metriky
-
-
-
-
-
 
 
 
