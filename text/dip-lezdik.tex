@@ -60,14 +60,14 @@ databázy časových rád. Prípadné účtovanie sa tiež deje v určitých pra
 obdobie. Nie je príliš potrebné vedieť ako bola infraštruktúra využitá jednou úlohou pred piatimi rokmi s presnosťou na niekoľkosekundové intervaly. Okrem toho by to predstavovalo veľké požiadavky na úložné kapacity, 
 ktoré rastú vzhľadom na počet uzlov, počet úloh a čas, po ktorý sú metrické údaje zberané. Je preto žiaduce po nejakej dobe dáta agregovať do väčších celkov a tiež mazať už nazbierané podrobné časové rady.
 
-Aby boli metrické údaje spoľahlivé, je potrebné zabezpečiť periodický zber metrických údajov. Zber metrík sa uskutočňuje pravidelným pýtaním sa na vyťaženie daného zdroja danou technológiou. 
+Aby boli metrické údaje spoľahlivé, je potrebné zabezpečiť ich periodický zber. Zber metrík sa uskutočňuje pravidelným zisťovaním, ako je daný zdroj vyťažený danou technológiou. 
 Aplikácia, ktorá zdroj využíva, vytvorí odpoveď a pošle ju späť zbernej aplikácií. Úlohou zbernej aplikácie je správne označiť pôvod nameraných dát určitými popisnými údajmi a odoslať tieto dáta
-do centrálneho (nie však nevyhnutne centralizovaného) úložiska. Úložisko sa stará o prijímanie a uchovávanie dát z uzlov infraštruktúry a ich spravovanie, archiváciu a prípadne vypočítavanie štatistík.
+do centrálneho (nie však nevyhnutne centralizovaného) úložiska. Úložisko sa stará o prijímanie a uchovávanie dát z uzlov infraštruktúry a ich spravovanie, archiváciu a prípadne agregáciu historických dát.
 
 Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa použivajú rôzne technológie a aplikácie. Rôzne aplikácie pristupujú k výpočtovým problémom odlišnými postupmi,
-no zároveň používajú spoločné výpočtové zdroje. Metrické dáta, ktoré budem zberať, by takisto mali vypovedať o vyťažení tých istých druhov 
-zdrojov. Je preto potrebné identifikovať, ktoré metrické dáta z jednej aplikácie je možné porovnať s údajmi z inej aplikácie. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú
-jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie zrovnávať. 
+no zároveň používajú spoločné výpočtové zdroje. Metrické dáta, ktoré budem zberať, by mali vypovedať o vyťažení tých istých druhov zdrojov. Je preto potrebné identifikovať, ktoré metrické dáta z 
+jednej aplikácie je možné porovnať s údajmi z inej aplikácie. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie 
+porovnávať. 
 
 
 \chapter{Heterogénna infraštruktúra MetaCentra}
@@ -298,8 +298,8 @@ Analýza časových rád sa primárne zaoberá získavaniu štatistík o zozbier
 
 \subsection{Zaobchádzanie s historickými dátami}
 \label{sec:example}
-Pri zbere časových dát je jedným z dôležitých parametrov kapacita, ktorá je potrebná na ukladanie dát. Uvažujme nasledovný príklad. Infraštruktúra má 10000 uzlov, o každom zberáme 20 metrík každých 5 sekúnd,
-označených metadátami o dĺžke 100 bajtov. Hodnota časovej zámky je reprezentovaná 4 bajtami a hodnota metriky tiež 4 bajtami. Po roku budú mať zberané dáta v nekomprimovanej podobe približe 136 TB. Túto kapacitu
+Pri zbere časových dát je jedným z dôležitých parametrov kapacita, ktorá je potrebná na ukladanie dát. Uvažujme nasledovný príklad. Infraštruktúra má 5 000 uzlov, o každom zberáme 15 metrík každých 5 sekúnd,
+označených metadátami o dĺžke 100 bajtov. Hodnota časovej zámky je reprezentovaná 4 bajtami a hodnota metriky tiež 4 bajtami. Po roku budú mať zberané dáta v nekomprimovanej podobe približe 51,1 TB. Túto kapacitu
 je možné zmenšovať rôznymi kompresnými metódami a taktiež agregáciou historických dát. Tým sa myslí združovanie nameraných dát do väčších intervalov a ukladanie príslušných hodnôt za tieto dlhšie intervaly.
 
 \chapter{Aktuálne monitorovacie riešenia}
@@ -760,20 +760,19 @@ nízku nadbytočnú záťaž a škáľovateľnosť vzhľadom na to, že veľkos�
 
 \section{Požiadavky na aplikáciu}
 \subsection{Vysoký monitorovací výkon}
-Cloudová infraštruktúra MetaCentra pozostáva z mnohých výpočtových uzlov. Sú prepojené vysokorýchlostnými sieťami. Je potrebné zbierať dáta o využití množstva zapojených
-clusterov a uzlov, na ktorých je tiež spustených mnoho výpočtových úloh či virtuálnych strojov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. 
-Databáza, do ktorej sú pravidelne odosielané metrické dáta. Ak vezmeme do úvahy príklad z ~\ref{sec:example}
+Infraštruktúra MetaCentra pozostáva z mnohých výpočtových uzlov. Je potrebné zbierať dáta o využití zapojených
+clusterov, na ktorých sú spustené deiatky až stovky výpočtových úloh, a uzlov s deaitkami virtuálnych strojov ak kontajnerov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. 
+Ak vezmeme do úvahy príklad z ~\ref{sec:example}, do databázy bude ukladaných 75 000 zázamov v priebehu 5 sekúnd, čo predstavuje 15 000 záznamov za sekundu. 
 
 \subsection{Nízka nadbytočná záťaž}
-Primárnou úlohou cloudu je poskytovanie svojho výpočtového výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
+Primárnou úlohou infraštruktúry je poskytovanie svojho výpočtového výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
 samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť, nakoľko by samotná kapacita infraštruktúry bola obmedzená už len behom
-monitorovacej aplikácie. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++, prípadne rýchle skriptovacie 
-jazyky ako Python, Ruby či Go. Tie ale predsalen predstavujú istú nadmernú záťaž súvisiacu so spúšťaním interpretera. 
-Nie je príliš vhodné používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
+monitorovacej aplikácie. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++. V prípadne použitia interpretovaného skriptovacieho jazyka, ako napríklad Python či Ruby, pribúda 
+nadbytočná záťaž. Podobne nie je vhodným rišením používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
 
 \subsection{Škálovateľnosť}
 Monitorovacia aplikácia by mala poskytovať zrovnateľné výsledky v oblasti rýchlosti odozvy v prípade, že bude spustená na jednom uzle, ale aj v prípade, že jej úlohou bude monitorovať stovky 
-výpočtových uzlov s množstvom spustených inštancií, ktoré treba sledovať. To je možné docieliť paralelizovaním dotazov na metriky.
+výpočtových uzlov s množstvom spustených inštancií, ktoré treba sledovať. To je možné docieliť paralelizovaním dotazov na metriky a z hľadiska ukladania využitím distribuovanej databázy.
 
 \section{Miesto nasadenia zbernej aplikácie}
 Zber metrík je možné realizovať v prípade virtuálnych strojov alebo aplikačných kontajnerov aj z ich vnútra. Bolo by možné v každej
@@ -784,26 +783,25 @@ priestoru. Je lepšie realizovať zber metrík na základe komunikácie s aplik�
 \section{Návrh monitorovacieho riešenia}
 Monitorovacie riešenie bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
 Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. 
-\\Samotný proces zberu metrických dát bude zabezpečený aplikáciou collectd. Oproti ostatným dostupným aplikáciám disponuje
-veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsobom, ako a kam sa budú dané dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
+\\Samotný proces zberu metrických dát bude zabezpečený aplikáciou \emph{collectd}. Oproti ostatným dostupným aplikáciám disponuje
+veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsob, ako a kam sa budú dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
 aj v systéme upozornení. Collectd bude zabezpečovať prípadné odosielanie notifikácií prostredníctvom emailu. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
 paralelne bežiacich vlákien, ktoré si medzi sebou rovnomerne delia záťaž. Ich počet je možné definovať pri konfigurácií. 
-\\Jednou z ďalších výhod collectd oproti iným softvérom je spôsob, akým pristupuje k spúšťaniu kontrol. Podľa konfigurácie pri štarte zistí, ktoré moduly sa budú používať. Takisto dôjde ku konfigurácií 
-jednotlivých modulov, napr. nastavenie potrebných ciest k požadovaným súborom. Následne dôjde k inicializácií jednotlivých modulov. V tejto fáze moduly inicializujú prostriedky, ktoré potrebujú v priebehu 
-zberu metrík. Napr. pripojenie na správcu kontajnerov alebo hypervízora. Nie je efektívne, aby boli tieto prostriedky incializované pri
-každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zberu dát. Takýto spôsob bol jedinou možnosťou pri niektorých iných aplikáciách.
+\\Jednou z ďalších výhod collectd oproti iným softvérom je spôsob, akým pristupuje k spúšťaniu kontrol. Podľa konfigurácie pri štarte zistí, ktoré moduly sa budú používať. Potom sú nakonfigurovaé 
+jednotlivé moduly a následne inicializované. V tomto kroku sa vytvoria spojenia, ktoré sú udržované počas celého behu aplikácie a zdieľané medzi jednotlivými kontrolami metrík. Nie je efektívne, aby boli 
+tieto prostriedky incializované pri
+každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zberu dát. Takýto spôsob zberu dát bol jedinou možnosťou v niektorých iných dostupných aplikáciách.
 \\Potom nasleduje fáza behu. Collectd beží v režime démona na pozadí a periodicky spúšťa jednotlivé moduly, ktoré zisťujú metrické dáta. 
-V rámci modulov sa periodicky zisťuje, ktoré virtuálne stroje alebo kontajnery sú spustené a ktorých sa tým pádom budú zberať metriky. 
-\\Po nameraní hodnoty collectd inicializuje zápis prostredníctvom modulu Write TSDB. Modul má optimalizovanú činnosť v podobe cachovania
-hodnôt a ich odosielania nie po jednom ale vo väčších dávkach.
+V rámci modulov sa periodicky zisťuje, ktoré virtuálne stroje alebo kontajnery sú spustené a z ktorých sa tým pádom budú zberať metriky. 
+\\Po nameraní hodnoty collectd inicializuje zápis do databázy časových rád. Modul má optimalizovanú činnosť v podobe cachovania
+hodnôt a metriky sa nedoosielajú po jednom, ale vo väčších dávkach.
 \\Démon takisto riadi ukončovanie činnosti modulov. Až v tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
 \\Samotný collectd bez pluginov predstavuje riadiaciu aplikáciu v podobe démona, ktorá na svoju inštaláciu vyžaduje minimum závislostí. To je ďalšou z výhod, keďže 
 démon na zber metrík bude nainštalovaný na každom monitorovanom uzle.
-\\Na zápis monitorovacích dát bude využitá databáza časových rád. Budem sa jej venovať v nasledujúcej časti.
+\\Na zápis monitorovacích dát bude využitá databáza časových rád OpenTSDB. Budem sa jej venovať v nasledujúcej časti.
 \\Takýto návrh zabezpečuje decentralizované a škálovateľné riešenie, kedy je distribuovaný nielen zber metrických údajov, ale aj ich zápis a uchovávanie.
-\\Collectd rozšírim o jednotlivé pluginy, ktoré budú zberať metrické údaje o využití zdrojov jednotlivými technológiami. Pluginy budú 
-konfigurovateľné, vyvinuté s dôrazom na paralelizáciu. Budú mať schopnosť automatickej detekcie nových inštancií kontajnerov a virtuálnych
-strojov.
+\\Collectd rozšírim o jednotlivé pluginy, ktoré budú zberať metrické údaje o využití zdrojov jednotlivými technológiami MetaCentra. Pluginy budú 
+mať schopnosť automatickej detekcie novo spustených inštancií kontajnerov a virtuálnych strojov.
 
 \subsection{Paralelizácia v rámci pluginov}
 Collectd poskytuje mechanizmus pracovných vlákien, v ktorých vykonávajú pluginy zber dát. To umožňuje paralelne spúšťať jednotlivé pluginy.
@@ -814,56 +812,84 @@ paralelizáciu pri zisťovaní monitorovacích dát o jednotlivých inštanciác
 Ako databázu na uchovávanie časových dát som si zvolil OpenTSDB. Dôvodom je používanie databázy HBase. Je to distribuovaná databáza určená pre veľké objemy dát v rádoch stoviek miliónov a milárd záznamov. 
 Je typom NoSQL databázy. Oproti SQL databázam je linárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočtových zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých
 uzlov, ktoré sa v infraštruktúre MetaCentra nachádzajú. Ďalším dôvodom je, že v MetaCentre je aktuálne databáza HBase využívaná, čo predstavuje zjednodušenie nasadenia. 
-\\Monitorovacie dáta môžu byť uchovávané po dobu rokov až desiatky rokov. Súčasťou môjhom riešenia bude aj sada nástrojov, ktoré budú
+
+\subsubsection{Zmen granularity dát na úrovni výstupu z databázy}
+Monitorovacie dáta môžu byť uchovávané po dobu rokov až desiatky rokov. Súčasťou môjho riešenia bude aj sada nástrojov, ktoré budú
 umožňovať zmenu granularity už zapísaných metrických dát. Tým je možné prispieť k úspore úložnej kapacity a zároveň kontinuálne reagovať na
 zastarávanie údajov. 
 \\Pre potreby monitorovania záťaže a reakcie na danú hodnotu je vo svojej podstate významná len aktuálna záťaž prostriedkov, prípadne záťaž v okne niekoľkých hodín 
-dozadu. Potreba uchovávania dát je tu z dôvodu účtovania a pre možnosť sledovať vývoj využívania zdrojov v čase.
-Podľa toho, ako dlho zberáme metriku, sa mení aj požiadavka na interval, v akom je potrebné hodnoty uchovávať. Čím staršie hodnoty sú,
-tým menšia granularita nám postačuje.
-\\OpenTSDB podporuje podobnú funkciu pri vyhodnocovaní požiadaviek - tj. ak by vo vyhodnotení požiadavky mali byť státisíce dátových bodov,
-hodnoty za určité obdobie sú upravené matematickou funkciou do jednej hodnoty. Táto funkcia môže predstavovať súčet, priemer alebo inú operáciu. Nie je ale podporovaná 
-zmena na úrovni záznamov v databáze.
+dozadu. Potreba uchovávania dát je tu z dôvodu účtovania a pre možnosť sledovať vývoj využívania zdrojov za dlhšie obdobie a analyzovať ho.
+Podľa toho, ako dlho zberáme metriku, sa mení aj požiadavka na interval, v akom je potrebné hodnoty uchovávať. Čím staršie hodnoty sú, tým menšia granularita nám postačuje.
+\\OpenTSDB podporuje zmenu granularity vrátených metrických dát pri vyhodnocovaní požidaviek. Ak by v odpovedi z datábazy mali byť státisíce dátových bodov, je možné matematickou funkciou upraviť viacero hodnôt
+za určité obdobie  do jednej hodnoty. Táto agregačná funkcia môže predstavovať súčet, priemer alebo inú operáciu. V súčasnosti databáza nepodporuje zmenu na úrovni premazávania záznamov.
   
-\subsubsection{Zmena granularity dát}
+\section{Zmena granularity dát}
+\label{sec:policy}
 Zmena granularity už zapísaných dát je daná dvojicami parametrov, ktoré pre účely tejto práce nazývam
-\textit{historický interval} a \textit{požadovaná granularita}. \textit{Historický interval} definuje, s akými dátami pracovať a 
-\textit{požadovaná granularita} určuje
+\textit{historický interval} a \textit{požadovaná granularita}. \textit{Historický interval} definuje, s akými dátami pracovať a \textit{požadovaná granularita} určuje
 interval, v ktorom sa za danú dobu majú uchovávať dáta. Napr. dáta staršie ako rok je potrebné uchovávať v intervale jedného dňa a 
-dáta staršie ako mesiac v intervale jednej hodiny. 
-\\Jednou súčasťou monitorovacieho riešenia bude nástroj, ktorý upraví dáta v časovej databáze do požadovanej podoby.
-Taktiež bude možné vybrať,
-na ktorých metrikách prebehne táto transformácia. Nástroj bude spúšťaný jednorázovo v dobe, keď bude infraštruktúra pomerne slabšie vyťažená.
-Nebude sa teda jednať o kontinuálny dohľad nad starnutím hodnôt a ich úpravy. Takýto prístup by vyťažoval zdroje neustálym prepočtom hodnôt,
-ktoré sa plynutím času presúvajú medzi intervalmi s rôznymi granularitami. Vzhľadom na to, aké ciele plní táto funkcionalita,
-je vhodnejšie spúšťať transformáciu databázy ručne - aj keď prakticky v určitých časových intervaloch, napr. každý týždeň alebo mesiac.
-\\Vo svojej podstate kontinuálny dohľad tiež predstavuje len periodické prepočítavanie, kde je interval prepočtov daný najmenším intervalom zo 
-spomínaných dvojíc. Intervaly \textit{požadovanej granularity} sú spravidla jeden násobkom druhého (napr. hodina a deň), takže
-by sa periodicky opakovala náročnosť prepočtov a teda aj dĺžka ich trvania. Periodicita však môže byť udaná aj ručným spúšťaním aplikácie, 
-kde množstvo prepočtov závisí od toho, koľko intervalov \textit{požadovanej granularity} bolo prekročených od poslednej agregácie.
-Avšak prepočty je možné naplánovať na vhodnú dobu, kedy je infraštruktúra menej vyťažená. 
-\\Nástroj bude ako svoj vstup využívať historické politiky, ktoré definujú spomínané dvojice intervalov a zároveň aj zoznam metrík
-a ich príslušnosť k jednotlivým politikám.
+dáta staršie ako mesiac v intervale jednej hodiny. Dvojicu týchto intervalov nazývam \textit{pravidlá uchovávania}. Súbor týchto pravidiel potom definuje celú \textit{prolitiku uchovávania}.
+Jednou súčasťou monitorovacieho riešenia bude nástroj, ktorý zmení granularitu dát v databáze OpenTSDB do požadovanej podoby.
+
+\subsection{Kontinuálne a periodické zmeny granularity}
+Zmena granularity dát môže prebiehať kontinuálne v čase alebo peridicky po uplynutí určitého intervalu. 
+\\Pri kontinuálnej zmene je rozhodujúci najkratší historický interval a k nemu prislúchajúci interval požadovanej granularity. Po uplynutí najkratšieho historického intervalu od začiatku zberu sa pre 
+najstaršie namerané dáta začne uplatňovať príslušné pravidlo uchovávania. Následne po uplynutí príslušného intervalu požadovanej granularity je možné vykonať agregáciu. 
+Ak uvážime politiku uchovávania z ~\ref{sec:policy}, tak dáta namerané po mesiaci od začiatku zberu by mali byť uchované v intervale jednej hodiny. Po uplynutí mesiaca a jednej hodiny od začiatku zberu,
+sa vykoná agregácia dát za prvú hodinu zberu a hodnota sa uloží do databázy.
+\\Po uplynutí druhého najkratšieho historického intervalu a príslušného intervalu požadovanej granularity dôjde zmene dát podobným spôsobom. Čiže v prípade politiky uchovávania z ~\ref{sec:policy} po uplynutí
+roku a jedného dňa budú agregované dáta za prvý deň zberania.
+\\Pri periodickej zmene sa agregácia vykoná raz za určitú dobu, ale nie skôr ako po uplynutí najkratšieho intervalu požadovanej granularity
+(inak by bol vstupný interval kratší ako interval požadovanej granularity). Vstupom sú hodnoty namerané po poslednej úspešnej zmene granularity a výstupom sú agregované hodnoty. Pre účely tejto práce
+uvažujem pod periodickou zmenou takú zmenu, ktorá sa vykonáva v intervale výrazne dlhšom (napr. stonásobok) ako je najkratší interval požadovanej granularity. V prípade uvažovaného príkladu z ~\ref{sec:policy}, kde je 
+tento interval 1 hodina, by sa periodickú zmena bola uskutočňovaná napr. raz za mesiac.
+
+
+\subsection{Zmena granularity a počet databáz}
+Po vykonaní agregácie či už v kontinuálnom alebo periodickom režime je potrebné uložiť získané agregované dáta. Je potrebné vymazať dáta s nadbytočnou hustotou a namiesto nich uložiť nové dáta.
+Druhou možnosťou je uchovávanie metrík s rôznou granularitou v rôznych časových databázach. V tomto prípade sa jedná o získavanie dát z jednej databázy, ich úpravu, uloženie do ďalšej databázy a vymazanie 
+z pôvodnej databázy.
+
+\subsection{Návrh nástroja na  zmenu granularity dát}
+Pri využívaní len jednej databázy pre všetky pravidlá uchovávania nastáva problém so skresľovaním výsledkov. V období medzi prvým a druhým najkratším historickým intervalom sú uchované zaokrúhľované dáta,
+z ktorých by boli následne vyrátavané agregované metriky po uplynutí druhého najkratšieho historického intervalu. Tým sa znižuje presnosť uložených dát. Ďalšou nevýhodou je potreba uchovať všetky agregované 
+dáta v pamäti a zapísať ich až po vymazaní pôvodých dát. V prípade, že vymazanie neprebehne úspešne, je možné ho opakovať, no po viacerých zlyhaniach môže dôjsť k nekonzistencií uchovávaných dát pri pokuse uložiť 
+nové agregované dáta.
+\\Kontinuálne aj periodické zmeny granularity majú spoločný princíp. Dochádza k agregácií dát, ktoré boli namerané od poslednej úspešnej agregácie a zároveň sa premiestnili (vzhľadom na časovú známku) z jedného
+historického intervalu do druhého. Nevýhodou periodickej zmeny je však vysoký objem dát, ktorý by bol spracovávaný. Ak by napríklad bola spúšťaná periodická zmena každý mesiac, tak pre príklad veľkosti 
+infraštruktúry uvažovanej v ~\ref{sec:example}, by bolo potrebné spracovať približne 39 miliárd záznamov. OpenTSDB je optimalizovaná pre prácu s veľkým množstvom záznamov, no takáto záťaž by mohla spôsobovať 
+veľké oneskorenia pri výpočte agregovaných metrík a ich prenášaní.
+\\Ako vhodné riešenie sa preto ponúka nástroj, ktorý využije kontinuálnu zmenu metrík a samostatnú databázu pre každé pravidlo z politiky uchovávania. Pri kontinuálnej zmene podľa uvažovaného príkladu 
+infraštruktúry a pravidiel uchovávania, sa každú hodinu vypočítajú agregované metriky z 54 miliónov záznamov v pôvodnej databázy a do databázy pre prvé pravidlo sa uloží 75 000 nových záznamov. 
+Zároveň si nástroj bude pre každé pravidlo pamätať čas poslednej úspešnej zmeny granularity. Táto hodnota bude ukladaná na disk. Ak zlyhá zmena granularity a bude potrebné nástroj reštartovať, 
+tak bude mať informáciu o tom, ktoré dáta treba zahrnúť v ďalšom výpočte agregovaných metrík. Nepriamym dôsledkom takéhoto návrhu je aj to, že nástroj bude tým pádom možné využiť aj pre periodickú
+zmenu granularity.
+\\Z databázy s pôvodnými dátami sa budú mazať dáta až vtedy, ak vek prvých nameraných metrík bude väčší ako najdlhší historický interval a príslušný interval požadovanej granularity (v uvažovanom príklade 
+teda jeden rok a jeden deň). Je to z toho dôvodu, aby bola zachovaná čo najväčšia presnosť pri výpočte agregovaných štatistík aj pre najdlhšie historické intervaly. Mazanie z ostatných databáz sa bude 
+uskutočňovať kaskádovito, tj. pre uvažovaný príklad sa z databázy pre mesačný historický interval budú mazať dáta staršie ako rok.
+\\Nástroj bude konfigurovateľný. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz.
 
 \chapter{Implementácia}
+\section{Aplikácia na zber metrických dát}
 Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. Tá poskytuje mechanizmy na periodické spúšťanie merania metrík,
 analýzu zozbieraných hodnôt a generovanie hlásení. Na zbieranie jednotlivých metrík som vytvoril moduly pre tento program. Tieto údaje následne bude odosielať do databázy OpenTSDB
 pomocou modulu WriteTSDB.
+
+\subsection{Zapisovací plugin Write TSDB}
+Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB databázy.%\cite{13} 
+Je napísaný v jazyku C. Bolo potrebné ho upraviť, aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy, zberajúce metriky. Plugin využíva mechanizmy
+dočasného zhlukovania správ a ich odosielania vo väčších dávkach. Je možné nakonfigurovať adresu a port, na ktorom je spustený
+démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol. Toto vo svojej implementácií nevyužívam, všetky tagy metrík sú generované pluginmi.
 
 \section{Techniky zbierania metrík}
 Rôzne technológie MetaCentra poskytujú svoje metrické údaje cez rôzne programové rozhrania alebo prostredníctvom textového výstupu zvyčajne
 dostupného prostredníctvom HTTP servera.
 
 \subsection{Docker}
-Na komunikáciu s Dockerom je možné využiť:
-\begin{description}
-\item[príkazy aplikácie v príkazovom riadku]
-\item[Remote API]
-\end{description}
-
+Na komunikáciu s Dockerom je možné využiť \textit{príkazy aplikácie v príkazovom riadku} alebo \textit{Remote API}.
 Používanie príkazov aplikácie môže byť o čosi rýchlejšie, ale následne by bolo potrebné analyzovať textový výstup programu.
-Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST a odpovede vracia vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Démon Dockeru "počúva" na 
-lokálnom sockete, čo by nemalo spôsobovať výrazné oneskorenie odpovede. Každému kontajneru zodpovedá adresa, ktorá zahŕňa identifikačný reťazec kontajnera.
+Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST. Zberná aplikácia sa bude pripájať demóna Dockeru, ktorý využíva lokálny Unixový socket, čo minimalizuje časovú odozvu.
+Odpovede sú generované vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Každému kontajneru zodpovedá URL adresa, ktorá zahŕňa identifikačný reťazec kontajnera.
 
 \subsection{libvirt/KVM}
 Na získavanie metrických údajov o virtuálnych strojoch som použil knižnicu libvirt. Je to knižnica napísaná v jazyku C. Poskytuje množstvo
@@ -885,7 +911,12 @@ je agent, nainštalovaný na jednotlivých uzloch, ktorý sa stará o beh kontaj
 nahlasuje ResourceManagerovi. Preto som zvolil toto API.
 \\REST API poskytuje odpovede vo formáte JSON a XML. Vo svojej implementácií využívam odpovede vo formáte JSON.
 
-\section{libcurl}
+\subsection{PBS Professional}
+
+\section{Knižnice využité pri zbere metrík}
+Pluginy pre collectd na zber metrických dát využívajú nasledovné knižnice. 
+
+\subsection{libcurl}
 libcurl je voľne šíriteľná klientska knižnica v jazyku C určená na manipuláciu so zdrojmi identifikovanými pomocou URL. Podporuje
 množstvo protokolov ako FTP, FILE, HTTPS, IMAPS, LDAP, POP3, SMTP, SCP atď. Podpourje taktiež SSL certifikáty,
 HTTP POST a PUT metódy a rôzne formy autentifikácie. V mojej implementácií túto knižnicu využívam na získavanie metrík zo systému
@@ -895,7 +926,7 @@ sa autentifikuje voči Hadoopu.
 \\libcurl je ľahko prenositeľná medzi rôznymi platformami, ako sú Solaris, BSD platformy, Windows, Linux, OS X a iné. Je vláknovo
 bezpečná, rýchla, dobre zdokumentovaná a kompatibilná s protokolom IPv6. %\cite{24}
 
-\section{libpthread}
+\subsection{libpthread}
 libpthread je knižnica, ktorá umožňuje programovanie aplikácií s paralelne vykonávanými procedúrami. Tie sa nazývajú vlákna. Paralelizáciu
 v systéme na vyššej úrovni prináša koncept procesov. Pri
 vytváraní procesu ale dochádza k režijnej záťaži v operačnom systéme. Procesy si v systéme udržujú viacero parametrov, ako identifikačné
@@ -904,21 +935,10 @@ tieto atribúty a zavádzajú menšiu množinu parametrov a kontrolných signál
 \\Túto knižnicu využívam v plugine pre Docker. V pravidelných intervaloch dochádza k zisťovaniu, ktoré kontajnery sú spustené a na REST API
 zodpovedajúcich kontajnerov sú potom paralelne vytvorené a zaslané požiadavky na metrické údaje.
 
-\section{cJSON}
+\subsection{cJSON}
 cJSON je miniatúrna knižnica v jazyku C, ktorej úlohou je prevod reťazca vo formáte JSON do hierarchickej štruktúry objektov. Zjednodušuje
-to analýzu obdržaných informácií vo formáte JSON. Keďže jazyk C nepozná
-objekty, namiesto toho sú používané štruktúry jazyka C. Knižnica neobsahuje žiadne závislosti, na jej činnosť sú potrebné dva súbory - 
-jeden so zdrojovými kódmi a jeden hlavičkový súbor.
-\\Knižnicu bolo potrebné mierne upraviť, pretože nesprávne narábala s dátovým typom long, ktorý sa vyskytuje ako hodnota niektorých parametrov
-vo vracaných JSON reťazcoch. Aj keď knižnica obsahovala tento nedsotatok, zvolil som si ju pre jej minimalistickú formu.
-
-\section{Zapisovací plugin Write TSDB}
-Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB.%\cite{13} 
-Je napísaný v jazyku C. Bolo potrebné ho upraviť,
-aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy zberajúce metriky. Plugin využíva mechanizmy
-dočasného zhlukovania správ a ich odosielania vo väčších dávkach. Je možné nakonfigurovať adresu a port, na ktorom je spustený
-démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol. Toto vo svojej implementácií nevyužívam,
-všetky tagy metrík sú generované pluginmi.
+to analýzu obdržaných informácií vo formáte JSON. Keďže jazyk C nepozná objekty, namiesto toho sú používané štruktúry jazyka C. 
+Knižnica neobsahuje žiadne závislosti, na jej činnosť sú potrebné iba dva súbory - jeden so zdrojovými kódmi a jeden hlavičkový súbor.
 
 \chapter{Záver}
 
@@ -927,7 +947,5 @@ všetky tagy metrík sú generované pluginmi.
 \begin{appendices}
 \chapter{Prevodná tabuľka názvov metrík}
 \end{appendices}
-
-
 
 \end{document}

@@ -8,6 +8,9 @@ THESIS=dip-lezdik
 all: pdf
 
 clean:
+	-rm *.toc *.lof *.aux  *.log *.blg *.bbl *.out *.bcf *.lot *.xml
+	
+clean-pdf:
 	-rm *.toc *.lof *.aux  *.log *.pdf *.blg *.bbl *.out *.bcf *.lot *.xml
 
 pdf: $(THESIS).pdf
