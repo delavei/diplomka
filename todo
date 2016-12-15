@@ -4,13 +4,20 @@ python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
+pre pbspro importovat pbs_ifl.h
 
 kinit delavei
-cp /tmp/krb5cc_1000 /tmp/krb5cc_opentsdb
+sudo cp /tmp/krb5cc_1000 /tmp/krb5cc_opentsdb
 sudo chown opentsdb /tmp/krb5cc_opentsdb
 
 put hadoopnode.node.usedmemorymb 1480589489 0 host=hador2
 put sys.cpu.user 1356998405 42.5 host=webserver01 cpu=0
+
+sudo -u opentsdb JVMARGS='-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas' /usr/share/opentsdb/bin/tsdb query 2w-ago sum virt.if_dropped.rx guest_name=* if_name=* bla=* 
+
+
+
+
 
 
 OTAZKYYYYY
