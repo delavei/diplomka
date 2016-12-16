@@ -771,6 +771,8 @@ BUILD_PLUGIN_PF_FALSE
 BUILD_PLUGIN_PF_TRUE
 BUILD_PLUGIN_PERL_FALSE
 BUILD_PLUGIN_PERL_TRUE
+BUILD_PLUGIN_PBS_PRO_FALSE
+BUILD_PLUGIN_PBS_PRO_TRUE
 BUILD_PLUGIN_ORACLE_FALSE
 BUILD_PLUGIN_ORACLE_TRUE
 BUILD_PLUGIN_OPENVPN_FALSE
@@ -801,8 +803,6 @@ BUILD_PLUGIN_NETLINK_FALSE
 BUILD_PLUGIN_NETLINK_TRUE
 BUILD_PLUGIN_NETAPP_FALSE
 BUILD_PLUGIN_NETAPP_TRUE
-BUILD_PLUGIN_DOCKER_FALSE
-BUILD_PLUGIN_DOCKER_TRUE
 BUILD_PLUGIN_MYSQL_FALSE
 BUILD_PLUGIN_MYSQL_TRUE
 BUILD_PLUGIN_MULTIMETER_FALSE
@@ -885,6 +885,8 @@ BUILD_PLUGIN_DNS_FALSE
 BUILD_PLUGIN_DNS_TRUE
 BUILD_PLUGIN_DRBD_FALSE
 BUILD_PLUGIN_DRBD_TRUE
+BUILD_PLUGIN_DOCKER_FALSE
+BUILD_PLUGIN_DOCKER_TRUE
 BUILD_PLUGIN_DISK_FALSE
 BUILD_PLUGIN_DISK_TRUE
 BUILD_PLUGIN_DF_FALSE
@@ -1392,6 +1394,7 @@ enable_cgroups
 enable_dbi
 enable_df
 enable_disk
+enable_docker
 enable_drbd
 enable_dns
 enable_email
@@ -1433,7 +1436,6 @@ enable_mic
 enable_modbus
 enable_multimeter
 enable_mysql
-enable_docker
 enable_netapp
 enable_netlink
 enable_network
@@ -1449,6 +1451,7 @@ enable_onewire
 enable_openldap
 enable_openvpn
 enable_oracle
+enable_pbs_pro
 enable_perl
 enable_pf
 enable_pinba
@@ -2193,6 +2196,7 @@ collectd plugins:
   --enable-dbi            General database statistics
   --enable-df             Filesystem usage statistics
   --enable-disk           Disk usage statistics
+  --enable-docker         docker plugin
   --enable-drbd           DRBD statistics
   --enable-dns            DNS traffic analysis
   --enable-email          EMail statistics
@@ -2235,7 +2239,6 @@ collectd plugins:
   --enable-modbus         Modbus plugin
   --enable-multimeter     Read multimeter values
   --enable-mysql          MySQL statistics
-  --enable-docker         docker plugin
   --enable-netapp         NetApp plugin
   --enable-netlink        Enhanced Linux network statistics
   --enable-network        Network communication plugin
@@ -2251,6 +2254,7 @@ collectd plugins:
   --enable-openldap       OpenLDAP statistics
   --enable-openvpn        OpenVPN client statistics
   --enable-oracle         Oracle plugin
+  --enable-pbs_pro        PBS Professional plugin
   --enable-perl           Embed a Perl interpreter
   --enable-pf             BSD packet filter (PF) statistics
   --enable-pinba          Pinba statistics
@@ -28976,6 +28980,66 @@ fi
 
     enable_plugin="no"
     force="no"
+    @%:@ Check whether --enable-docker was given.
+if test "${enable_docker+set}" = set; then :
+  enableval=$enable_docker; 
+     if test "x$enableval" = "xyes"
+     then
+	     enable_plugin="yes"
+     else if test "x$enableval" = "xforce"
+     then
+	     enable_plugin="yes"
+	     force="yes"
+     else
+	     enable_plugin="no (disabled on command line)"
+     fi; fi
+    
+else
+  
+	 if test "x$enable_all_plugins" = "xauto"
+	 then
+	     if test "x$with_libpthread" = "xyes"
+	     then
+		     enable_plugin="yes"
+	     else
+		     enable_plugin="no"
+	     fi
+	 else
+	     enable_plugin="$enable_all_plugins"
+	 fi
+    
+fi
+
+    if test "x$enable_plugin" = "xyes"
+    then
+	    if test "x$with_libpthread" = "xyes" || test "x$force" = "xyes"
+	    then
+		    
+$as_echo "@%:@define HAVE_PLUGIN_DOCKER 1" >>confdefs.h
+
+		    if test "x$with_libpthread" != "xyes"
+		    then
+			    dependency_warning="yes"
+		    fi
+	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
+		    dependency_error="yes"
+		    enable_plugin="no (dependency error)"
+	    fi
+    fi
+     if test "x$enable_plugin" = "xyes"; then
+  BUILD_PLUGIN_DOCKER_TRUE=
+  BUILD_PLUGIN_DOCKER_FALSE='#'
+else
+  BUILD_PLUGIN_DOCKER_TRUE='#'
+  BUILD_PLUGIN_DOCKER_FALSE=
+fi
+
+    enable_docker="$enable_plugin"
+  
+
+
+    enable_plugin="no"
+    force="no"
     @%:@ Check whether --enable-drbd was given.
 if test "${enable_drbd+set}" = set; then :
   enableval=$enable_drbd; 
@@ -31436,66 +31500,6 @@ fi
 
     enable_plugin="no"
     force="no"
-    @%:@ Check whether --enable-docker was given.
-if test "${enable_docker+set}" = set; then :
-  enableval=$enable_docker; 
-     if test "x$enableval" = "xyes"
-     then
-	     enable_plugin="yes"
-     else if test "x$enableval" = "xforce"
-     then
-	     enable_plugin="yes"
-	     force="yes"
-     else
-	     enable_plugin="no (disabled on command line)"
-     fi; fi
-    
-else
-  
-	 if test "x$enable_all_plugins" = "xauto"
-	 then
-	     if test "x$with_libpthread" = "xyes"
-	     then
-		     enable_plugin="yes"
-	     else
-		     enable_plugin="no"
-	     fi
-	 else
-	     enable_plugin="$enable_all_plugins"
-	 fi
-    
-fi
-
-    if test "x$enable_plugin" = "xyes"
-    then
-	    if test "x$with_libpthread" = "xyes" || test "x$force" = "xyes"
-	    then
-		    
-$as_echo "@%:@define HAVE_PLUGIN_DOCKER 1" >>confdefs.h
-
-		    if test "x$with_libpthread" != "xyes"
-		    then
-			    dependency_warning="yes"
-		    fi
-	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
-		    dependency_error="yes"
-		    enable_plugin="no (dependency error)"
-	    fi
-    fi
-     if test "x$enable_plugin" = "xyes"; then
-  BUILD_PLUGIN_DOCKER_TRUE=
-  BUILD_PLUGIN_DOCKER_FALSE='#'
-else
-  BUILD_PLUGIN_DOCKER_TRUE='#'
-  BUILD_PLUGIN_DOCKER_FALSE=
-fi
-
-    enable_docker="$enable_plugin"
-  
-
-
-    enable_plugin="no"
-    force="no"
     @%:@ Check whether --enable-netapp was given.
 if test "${enable_netapp+set}" = set; then :
   enableval=$enable_netapp; 
@@ -32391,6 +32395,66 @@ else
 fi
 
     enable_oracle="$enable_plugin"
+  
+
+
+    enable_plugin="no"
+    force="no"
+    @%:@ Check whether --enable-pbs_pro was given.
+if test "${enable_pbs_pro+set}" = set; then :
+  enableval=$enable_pbs_pro; 
+     if test "x$enableval" = "xyes"
+     then
+	     enable_plugin="yes"
+     else if test "x$enableval" = "xforce"
+     then
+	     enable_plugin="yes"
+	     force="yes"
+     else
+	     enable_plugin="no (disabled on command line)"
+     fi; fi
+    
+else
+  
+	 if test "x$enable_all_plugins" = "xauto"
+	 then
+	     if test "xyes" = "xyes"
+	     then
+		     enable_plugin="yes"
+	     else
+		     enable_plugin="no"
+	     fi
+	 else
+	     enable_plugin="$enable_all_plugins"
+	 fi
+    
+fi
+
+    if test "x$enable_plugin" = "xyes"
+    then
+	    if test "xyes" = "xyes" || test "x$force" = "xyes"
+	    then
+		    
+$as_echo "@%:@define HAVE_PLUGIN_PBS_PRO 1" >>confdefs.h
+
+		    if test "xyes" != "xyes"
+		    then
+			    dependency_warning="yes"
+		    fi
+	    else # User passed "yes" but dependency checking yielded "no" => Dependency problem.
+		    dependency_error="yes"
+		    enable_plugin="no (dependency error)"
+	    fi
+    fi
+     if test "x$enable_plugin" = "xyes"; then
+  BUILD_PLUGIN_PBS_PRO_TRUE=
+  BUILD_PLUGIN_PBS_PRO_FALSE='#'
+else
+  BUILD_PLUGIN_PBS_PRO_TRUE='#'
+  BUILD_PLUGIN_PBS_PRO_FALSE=
+fi
+
+    enable_pbs_pro="$enable_plugin"
   
 
 
@@ -36522,6 +36586,10 @@ if test -z "${BUILD_PLUGIN_DISK_TRUE}" && test -z "${BUILD_PLUGIN_DISK_FALSE}"; 
   as_fn_error $? "conditional \"BUILD_PLUGIN_DISK\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
+if test -z "${BUILD_PLUGIN_DOCKER_TRUE}" && test -z "${BUILD_PLUGIN_DOCKER_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_DOCKER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${BUILD_PLUGIN_DRBD_TRUE}" && test -z "${BUILD_PLUGIN_DRBD_FALSE}"; then
   as_fn_error $? "conditional \"BUILD_PLUGIN_DRBD\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -36686,10 +36754,6 @@ if test -z "${BUILD_PLUGIN_MYSQL_TRUE}" && test -z "${BUILD_PLUGIN_MYSQL_FALSE}"
   as_fn_error $? "conditional \"BUILD_PLUGIN_MYSQL\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${BUILD_PLUGIN_DOCKER_TRUE}" && test -z "${BUILD_PLUGIN_DOCKER_FALSE}"; then
-  as_fn_error $? "conditional \"BUILD_PLUGIN_DOCKER\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
 if test -z "${BUILD_PLUGIN_NETAPP_TRUE}" && test -z "${BUILD_PLUGIN_NETAPP_FALSE}"; then
   as_fn_error $? "conditional \"BUILD_PLUGIN_NETAPP\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -36748,6 +36812,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_PLUGIN_ORACLE_TRUE}" && test -z "${BUILD_PLUGIN_ORACLE_FALSE}"; then
   as_fn_error $? "conditional \"BUILD_PLUGIN_ORACLE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_PLUGIN_PBS_PRO_TRUE}" && test -z "${BUILD_PLUGIN_PBS_PRO_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_PLUGIN_PBS_PRO\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_PLUGIN_PERL_TRUE}" && test -z "${BUILD_PLUGIN_PERL_FALSE}"; then
@@ -39480,6 +39548,7 @@ Configuration:
     df  . . . . . . . . . $enable_df
     disk  . . . . . . . . $enable_disk
     dns . . . . . . . . . $enable_dns
+    docker . . . . . . .  $enable_docker
     drbd  . . . . . . . . $enable_drbd
     email . . . . . . . . $enable_email
     entropy . . . . . . . $enable_entropy
@@ -39490,6 +39559,9 @@ Configuration:
     fscache . . . . . . . $enable_fscache
     gmond . . . . . . . . $enable_gmond
     hddtemp . . . . . . . $enable_hddtemp
+    hadoop_apps . . . . . $enable_hadoop_apps
+    hadoop_node . . . . . $enable_hadoop_node
+    hadoop_cluster . . .  $enable_hadoop_cluster
     interface . . . . . . $enable_interface
     ipc . . . . . . . . . $enable_ipc
     ipmi  . . . . . . . . $enable_ipmi
@@ -39532,6 +39604,8 @@ Configuration:
     openldap  . . . . . . $enable_openldap
     openvpn . . . . . . . $enable_openvpn
     oracle  . . . . . . . $enable_oracle
+    pbs_pro  . . . . . $enable_pbs_pro
+    postgresql  . . . . . $enable_postgresql
     perl  . . . . . . . . $enable_perl
     pf  . . . . . . . . . $enable_pf
     pinba . . . . . . . . $enable_pinba

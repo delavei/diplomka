@@ -270,7 +270,7 @@
 /* #undef HAVE_IP_VS_H */
 
 /* Define to 1 if you have the <jni.h> header file. */
-/* #undef HAVE_JNI_H */
+#define HAVE_JNI_H 1
 
 /* Define to 1 if you have the <kstat.h> header file. */
 /* #undef HAVE_KSTAT_H */
@@ -916,6 +916,9 @@
 
 /* Define to 1 if the oracle plugin is enabled. */
 /* #undef HAVE_PLUGIN_ORACLE */
+
+/* Define to 1 if the pbs_pro plugin is enabled. */
+#define HAVE_PLUGIN_PBS_PRO 1
 
 /* Define to 1 if the perl plugin is enabled. */
 /* #undef HAVE_PLUGIN_PERL */
