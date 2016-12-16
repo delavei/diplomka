@@ -5985,7 +5985,8 @@ Configuration:
     openldap  . . . . . . $enable_openldap
     openvpn . . . . . . . $enable_openvpn
     oracle  . . . . . . . $enable_oracle
-    postgresql  . . . . . $enable_pbs_pro
+    pbs_pro  . . . . . $enable_pbs_pro
+    postgresql  . . . . . $enable_postgresql
     perl  . . . . . . . . $enable_perl
     pf  . . . . . . . . . $enable_pf
     pinba . . . . . . . . $enable_pinba
