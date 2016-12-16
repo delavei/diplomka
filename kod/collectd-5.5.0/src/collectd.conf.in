@@ -113,6 +113,7 @@
 #@BUILD_PLUGIN_DISK_TRUE@LoadPlugin disk
 #@BUILD_PLUGIN_DNS_TRUE@LoadPlugin dns
 #@BUILD_PLUGIN_DRBD_TRUE@LoadPlugin drbd
+#@BUILD_PLUGIN_DOCKER_TRUE@LoadPlugin docker
 #@BUILD_PLUGIN_EMAIL_TRUE@LoadPlugin email
 #@BUILD_PLUGIN_ENTROPY_TRUE@LoadPlugin entropy
 #@BUILD_PLUGIN_ETHSTAT_TRUE@LoadPlugin ethstat
@@ -121,6 +122,9 @@
 #@BUILD_PLUGIN_FILECOUNT_TRUE@LoadPlugin filecount
 #@BUILD_PLUGIN_FSCACHE_TRUE@LoadPlugin fscache
 #@BUILD_PLUGIN_GMOND_TRUE@LoadPlugin gmond
+#@BUILD_PLUGIN_HADOOP_NODE_TRUE@LoadPlugin hadoop_node
+#@BUILD_PLUGIN_HADOOP_APPS_TRUE@LoadPlugin hadoop_apps
+#@BUILD_PLUGIN_HADOOP_CLUSTER_TRUE@LoadPlugin hadoop_cluster
 #@BUILD_PLUGIN_HDDTEMP_TRUE@LoadPlugin hddtemp
 @BUILD_PLUGIN_INTERFACE_TRUE@@BUILD_PLUGIN_INTERFACE_TRUE@LoadPlugin interface
 #@BUILD_PLUGIN_IPC_TRUE@@BUILD_PLUGIN_IPC_TRUE@LoadPlugin ipc
@@ -156,6 +160,7 @@
 #@BUILD_PLUGIN_OPENLDAP_TRUE@LoadPlugin openldap
 #@BUILD_PLUGIN_OPENVPN_TRUE@LoadPlugin openvpn
 #@BUILD_PLUGIN_ORACLE_TRUE@LoadPlugin oracle
+#@BUILD_PLUGIN_PBS_PRO_TRUE@LoadPlugin pbs_pro
 #@BUILD_PLUGIN_PERL_TRUE@LoadPlugin perl
 #@BUILD_PLUGIN_PINBA_TRUE@LoadPlugin pinba
 #@BUILD_PLUGIN_PING_TRUE@LoadPlugin ping
@@ -552,7 +557,22 @@
 #  </Metric>
 #</Plugin>
 
-#<Plugin hddtemp>
+#<Plugin hadoop_cluster>
+#	YARNUrl "https://hador-c2.ics.muni.cz"
+#	Port "8090"
+#</Plugin>
+
+#<Plugin hadoop_apps>
+#	YARNUrl "https://hador-c2.ics.muni.cz"
+#	Port "8090"
+#</Plugin>
+
+#<Plugin hadoop_node>
+#	YARNUrl "https://hador-c2.ics.muni.cz"
+#	Port "8090"
+#</Plugin>
+
+##<Plugin hddtemp>
 #  Host "127.0.0.1"
 #  Port "7634"
 #</Plugin>

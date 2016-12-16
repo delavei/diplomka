@@ -30,28 +30,12 @@ Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chyb
 by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
 Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
 
-napisat o tom, ako sa vypocitava cpu load - podporit citaciou, ako sa to vlastne vyratava - napriklad aj ze zo zdrojaku
 
 tabulka - nazvy metrik tak ako ich ukladam do databazy vs nazvy ako ich dostavam z vystupov 
 
-v analyze a navrhu spomenúť že zberám aj metadáta
-
 napisat, ze hadoop som testoval na nebeziacich appkach, ktorych je mrte a proste spravalo sa to tak, ze kym sa neskoncil stream, neboli nove poziadavky
 
-k metrikam o hadoope, ze by sa hodilo testovat
-
-POZNAMKYYYYYYYYYYYYYYYYYYYYYY
 obrazky - hadoop, metacentrum
-cgroup - v gride server distribuuje ulohy, obali ich do  cgroup na konkretnom stroji a obcas sa tam pozrie, kolko zozerie
-
-citacie - co je cloud, zen, iaas, paas, co je vytazenie zdrojov - ganglia bola akademická, najlepsie nieco tlacene. casova rada, tie metody nejake nejasne o tom.
-
-oddelit monitorovanie a uctovanie - napr. detekcia zdrojov a uzivatelov - ak su vhodne zbierane metriky a metedata, da sa to vyuzit na accounting. mozem uvadzat misovu diplomku
-
-brendan gregg linuxperf
-
-analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, porovnat to s niecim a presne na com som to testoval
-				a vsetko o merani - napr. tcollector
 
 
 
@@ -60,10 +44,7 @@ analyza a navrh - vysoky monitorovaci vykon, skalovatelnost - mozno mat cisla, p
 
 IMPLEMENTACIA
 dorobit configure skript, aby sa kopiroval custom types
-
-hadoop
-mena appiek, kde su konrolne vyrazy \n\t a tak sposobuju chaos v tsd. ked je meno appky nakonci, je to pohode
-
+v configure aby vyppisovalo, ci sa moduly nainstalovali
 
 
 

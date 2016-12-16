@@ -341,6 +341,13 @@ drbd_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 drbd_la_LIBADD = -lpthread
 endif
 
+if BUILD_PLUGIN_DOCKER
+pkglib_LTLIBRARIES += docker.la
+docker_la_SOURCES = docker.c
+docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+docker_la_LIBADD = libcJSON.la -lpthread
+endif
+
 if BUILD_PLUGIN_EMAIL
 pkglib_LTLIBRARIES += email.la
 email_la_SOURCES = email.c
@@ -388,6 +395,30 @@ gmond_la_SOURCES = gmond.c
 gmond_la_CPPFLAGS = $(AM_CPPFLAGS) $(GANGLIA_CPPFLAGS)
 gmond_la_LDFLAGS = $(PLUGIN_LDFLAGS) $(GANGLIA_LDFLAGS)
 gmond_la_LIBADD = $(GANGLIA_LIBS)
+endif
+
+if BUILD_PLUGIN_HADOOP_APPS
+pkglib_LTLIBRARIES += hadoop_apps.la
+hadoop_apps_la_SOURCES = hadoop_apps.c
+hadoop_apps_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_apps_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_apps_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+endif
+
+if BUILD_PLUGIN_HADOOP_CLUSTER
+pkglib_LTLIBRARIES += hadoop_cluster.la
+hadoop_cluster_la_SOURCES = hadoop_cluster.c
+hadoop_cluster_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_cluster_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_cluster_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+endif
+
+if BUILD_PLUGIN_HADOOP_NODE
+pkglib_LTLIBRARIES += hadoop_node.la
+hadoop_node_la_SOURCES = hadoop_node.c
+hadoop_node_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+hadoop_node_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+hadoop_node_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
 endif
 
 if BUILD_PLUGIN_HDDTEMP
@@ -515,38 +546,6 @@ lvm_la_SOURCES = lvm.c
 lvm_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 lvm_la_LIBADD = $(BUILD_WITH_LIBLVM2APP_LIBS)
 endif
-
-if BUILD_PLUGIN_DOCKER
-pkglib_LTLIBRARIES += docker.la
-docker_la_SOURCES = docker.c
-docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-docker_la_LIBADD = libcJSON.la -lpthread
-endif
-
-if BUILD_PLUGIN_HADOOP_APPS
-pkglib_LTLIBRARIES += hadoop_apps.la
-hadoop_apps_la_SOURCES = hadoop_apps.c
-hadoop_apps_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_apps_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_apps_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
-endif
-
-if BUILD_PLUGIN_HADOOP_CLUSTER
-pkglib_LTLIBRARIES += hadoop_cluster.la
-hadoop_cluster_la_SOURCES = hadoop_cluster.c
-hadoop_cluster_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_cluster_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_cluster_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
-endif
-
-if BUILD_PLUGIN_HADOOP_NODE
-pkglib_LTLIBRARIES += hadoop_node.la
-hadoop_node_la_SOURCES = hadoop_node.c
-hadoop_node_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_node_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_node_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
-endif
-
 
 if BUILD_PLUGIN_MADWIFI
 pkglib_LTLIBRARIES += madwifi.la
@@ -816,6 +815,16 @@ oracle_la_CFLAGS = $(AM_CFLAGS)
 oracle_la_CPPFLAGS = $(AM_CPPFLAGS) $(BUILD_WITH_ORACLE_CFLAGS)
 oracle_la_LIBADD = $(BUILD_WITH_ORACLE_LIBS)
 oracle_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+endif
+
+if BUILD_PLUGIN_PBS_PRO
+pkglib_LTLIBRARIES += pbs_pro.la
+pbs_pro_la_SOURCES = pbs_pro.c
+pbs_pro_la_CFLAGS = $(AM_CFLAGS) -I/usr/include 
+		#$(BUILD_WITH_LIBVIRT_CFLAGS) $(BUILD_WITH_LIBXML2_CFLAGS)
+#pbs_pro_LIBADD = $(BUILD_WITH_LIBVIRT_LIBS) $(BUILD_WITH_LIBXML2_LIBS)
+pbs_pro_la_LDFLAGS = $(PLUGIN_LDFLAGS) -L/usr/lib
+pbs_pro_la_LIBADD = -lpbs
 endif
 
 if BUILD_PLUGIN_PERL

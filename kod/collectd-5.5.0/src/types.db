@@ -4,6 +4,7 @@ apache_connections	value:GAUGE:0:65535
 apache_idle_workers	value:GAUGE:0:65535
 apache_requests		value:DERIVE:0:U
 apache_scoreboard	value:GAUGE:0:65535
+apps		value:DERIVE:0:U
 ath_nodes		value:GAUGE:0:65535
 ath_stat		value:DERIVE:0:U
 backends		value:GAUGE:0:65535
@@ -20,6 +21,7 @@ ceph_latency	value:GAUGE:U:U
 ceph_rate			value:DERIVE:0:U
 changes_since_last_save   value:GAUGE:0:U
 charge			value:GAUGE:0:U
+cluster		value:DERIVE:0:U
 compression_ratio	value:GAUGE:0:2
 compression		uncompressed:DERIVE:0:U, compressed:DERIVE:0:U
 connections		value:DERIVE:0:U
@@ -29,6 +31,8 @@ count			value:GAUGE:0:U
 counter			value:COUNTER:U:U
 cpufreq			value:GAUGE:0:U
 cpu			value:DERIVE:0:U
+cpu_time	value:GAUGE:0:U
+cpu_load 	value:GAUGE:0:U
 current_connections	value:GAUGE:0:U
 current_sessions	value:GAUGE:0:U
 current			value:GAUGE:U:U
@@ -130,6 +134,7 @@ mysql_sort		value:DERIVE:0:U
 nfs_procedure		value:DERIVE:0:U
 nginx_connections	value:GAUGE:0:U
 nginx_requests		value:DERIVE:0:U
+node		value:DERIVE:0:U
 node_octets		rx:DERIVE:0:U, tx:DERIVE:0:U
 node_rssi		value:GAUGE:0:255
 node_stat		value:DERIVE:0:U
