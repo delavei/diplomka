@@ -1,13 +1,13 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <float.h>
 
 #include "collectd.h"
 #include "common.h"
 #include "plugin.h"
+
 #include "cJSON.h"
+#include <pbs_ifl.h>
 
 /* Plugin name */
 #define PLUGIN_NAME "pbs_pro"
@@ -39,6 +39,7 @@ static int pbs_pro_shutdown (void)
 
 static int pbs_pro_init (void)
 {		
+	pbs_connect();
 	return 0;
 }
 
