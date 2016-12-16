@@ -5929,6 +5929,7 @@ Configuration:
     df  . . . . . . . . . $enable_df
     disk  . . . . . . . . $enable_disk
     dns . . . . . . . . . $enable_dns
+    docker . . . . . . .  $enable_docker
     drbd  . . . . . . . . $enable_drbd
     email . . . . . . . . $enable_email
     entropy . . . . . . . $enable_entropy
@@ -5939,6 +5940,9 @@ Configuration:
     fscache . . . . . . . $enable_fscache
     gmond . . . . . . . . $enable_gmond
     hddtemp . . . . . . . $enable_hddtemp
+    hadoop_apps . . . . . $enable_hadoop_apps
+    hadoop_node . . . . . $enable_hadoop_node
+    hadoop_cluster . . .  $enable_hadoop_cluster
     interface . . . . . . $enable_interface
     ipc . . . . . . . . . $enable_ipc
     ipmi  . . . . . . . . $enable_ipmi
@@ -5981,6 +5985,7 @@ Configuration:
     openldap  . . . . . . $enable_openldap
     openvpn . . . . . . . $enable_openvpn
     oracle  . . . . . . . $enable_oracle
+    postgresql  . . . . . $enable_pbs_pro
     perl  . . . . . . . . $enable_perl
     pf  . . . . . . . . . $enable_pf
     pinba . . . . . . . . $enable_pinba
