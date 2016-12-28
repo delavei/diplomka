@@ -12,57 +12,49 @@
 // see <http://www.gnu.org/licenses/>.
 package net.opentsdb.tools;
 
-import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URL;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gwt.dev.util.collect.HashSet;
 
-import net.opentsdb.core.Aggregator;
 import net.opentsdb.core.Aggregators;
 import net.opentsdb.core.Query;
-import net.opentsdb.core.DataPoint;
 import net.opentsdb.core.DataPoints;
-import net.opentsdb.core.RateOptions;
-import net.opentsdb.core.Tags;
 import net.opentsdb.core.TSDB;
-import net.opentsdb.graph.Plot;
-import net.opentsdb.meta.TSMeta;
 import net.opentsdb.utils.Config;
-import net.opentsdb.utils.DateTime;
 import net.opentsdb.utils.DownsampleConfig;
-import net.opentsdb.utils.JSON;
 
 final class CliDownsample {
 
   private static final Logger LOG = LoggerFactory.getLogger(CliDownsample.class);
-  private static boolean isEnabled = false;
+  private static int origTSDBIndex = 0;
+  private static TSDB tsdb;
+  private static DownsampleConfig downsampleConfig;
+  private static List<DownsampleServer> downsampleServers;
+  private static Properties lastDownsampleTime;
   
   /** Prints usage and exits with the given retval.  */
   private static void usage(final ArgP argp, final String errmsg,
                             final int retval) {
     System.err.println(errmsg);
-    System.err.println("Usage: query"
-        + " [Gnuplot opts] START-DATE [END-DATE] <query> [queries...]\n"
-        + "A query has the form:\n"
-        + "  FUNC [rate] [counter,max,reset] [downsample N FUNC] SERIES [TAGS]\n"
-        + "For example:\n"
-        + " 2010/03/11-20:57 sum my.awsum.metric host=blah"
-        + " sum some.other.metric host=blah state=foo\n"
-        + "Dates must follow this format: YYYY/MM/DD-HH:MM[:SS] or Unix Epoch\n"
-        + " or relative time such as 1y-ago, 2d-ago, etc.\n"
-        + "Supported values for FUNC: " + Aggregators.set()
-        + "\nGnuplot options are of the form: +option=value");
+    System.err.println("Usage: downsample [OPTION]"
+    	+ " OPTIONS\n"	
+        + " --downsample-config=FILE\n"
+       );
     if (argp != null) {
       System.err.print(argp.usage());
     }
@@ -70,176 +62,328 @@ final class CliDownsample {
   }
 
   public static void main(String[] args) throws Exception {
-    ArgP argp = new ArgP();
+	ArgP argp = new ArgP();
     CliOptions.addCommon(argp);
     CliOptions.addVerbose(argp);
-    argp.addOption("--graph", "BASEPATH",
-                   "Output data points to a set of files for gnuplot."
-                   + "  The path of the output files will start with"
-                   + " BASEPATH.");
     args = CliOptions.parse(argp, args);
     if (args == null) {
       usage(argp, "Invalid usage.", 1);
-    } else if (args.length < 3) {
-      usage(argp, "Not enough arguments.", 2);
     }
 
     // get a config object
     Config config = CliOptions.getConfig(argp);
     
-    DownsampleConfig downsampleConfig = CliOptions.getDownsampleConfig(argp);
+    downsampleConfig = CliOptions.getDownsampleConfig(argp);
     try {
-    	checkDownsampleConfig(downsampleConfig);
+    	checkDownsampleConfig();
       } catch (Exception e) {
         LOG.error("Downsample configuration error: ",e);
         System.exit(1);
       }
     
-    /*
-    final ArrayList<TSDB> tsdbs = new ArrayList<TSDB>();    
-    for (int i = 0;i<downsampleConfig.getInt("tsd.count");i++){
-    	//Config config = getTSDConfig(downsampleConfig,i+1);
-    	//tsdbs.add(i,new TSDB(config));
-    }*/
-    
-    
-    
-    
-    final TSDB tsdb = new TSDB(config);
+    tsdb = new TSDB(config);
     tsdb.checkNecessaryTablesExist().joinUninterruptibly();
-    final String basepath = argp.get("--graph");
     argp = null;
-
     
-    for (int i=0;i<downsampleConfig.getInt("tsd.downsapmle.metric.count");i++) {
-    	String metric = downsampleConfig.getString("tsd.downsapmle.metric."+(i+1)+".name");
-    	String commonTag = downsampleConfig.getString("tsd.downsapmle.metric."+(i+1)+".tag");
-    	String downsampleMethod = downsampleConfig.getString("tsd.downsapmle.metric."+(i+1)+".downsample_method");
+    sortDownsamplingServers();
+    initLastDownsamplingTime();
+    
+    try {
+    	doDownsamplingLoop1();
+    } finally {
+    	try {
+            tsdb.shutdown().joinUninterruptibly();
+          } catch (Exception e) {
+            LOG.error("Unexpected exception", e);
+            System.exit(1);
+          }
+    }
+    return;
+  }
+    
+private static void initLastDownsamplingTime() throws IOException {
+	String configLocation = downsampleConfig.configLocation();
+	int cutAt = configLocation.lastIndexOf("/");
+	String path = configLocation.substring(0, cutAt+1);
+	path = path.concat("opentdsb-downsample_times");
+
+	FileInputStream file_stream = null;
+	try {
+		file_stream = new FileInputStream(path);
+	} catch (FileNotFoundException e) {
+		loadDefaultTimes(path);
+		return;
+	}
+	
+	try {
+		lastDownsampleTime.load(file_stream);
+	} catch (IOException e) {
+		LOG.error("Error reading downsampling times file.",e);
+		throw e;
+	}
+}
+
+private static void loadDefaultTimes(String path) {
+	lastDownsampleTime = new Properties();
+	LOG.info("Loading deafult last downsampling times.");
+	Date now = new Date();      
+	Long nowTime = new Long(now.getTime()/1000);
+	long last_time;
+	for (int i =0; i<downsampleServers.size();i++) {
+		if (i == downsampleServers.size()-1) {
+			last_time = 0;
+		} else {
+			last_time = nowTime - downsampleServers.get(i+1).downsamplePeriod;
+		}
+		lastDownsampleTime.put("tsd.downsample.server."+downsampleServers.get(i).indexInConfig+".last_time", last_time);
+	}
+}
+
+private static void sortDownsamplingServers() {
+	HashMap<Integer,Integer> downsamplingIntervals = new HashMap<Integer,Integer>();
+	boolean firstIndexFound = false;
+	Integer minIndex=0;
+	for (int i = 1; i<=downsampleConfig.getInt("tsd.downsample.server.count");i++) {
+		if (i!=origTSDBIndex) {
+			if (!firstIndexFound) {
+				minIndex = i;
+				firstIndexFound = true;
+			}
+			downsamplingIntervals.put(i,downsampleConfig.getInt("tsd.downsample.server."+i+".downsample_interval"));
+		}		
+	}
+	
+	Integer min=downsamplingIntervals.get(minIndex);
+	
+	downsampleServers = new ArrayList<DownsampleServer>();
+	int k=0;
+	while (!downsamplingIntervals.isEmpty()) {
+		Iterator<Integer> it = downsamplingIntervals.keySet().iterator();
+		minIndex = it.next();
+		min = downsamplingIntervals.get(minIndex);
+		
+		for(Integer i : downsamplingIntervals.keySet()) {
+			Integer val = downsamplingIntervals.get(i);
+			if (val<min) {
+				min = val;
+				minIndex = i;
+			}
+		}
+		DownsampleServer ds = new DownsampleServer(
+				downsampleConfig.getString("tsd.downsample.server."+minIndex+".address"),
+				downsampleConfig.getInt("tsd.downsample.server."+minIndex+".port"),
+				downsampleConfig.getInt("tsd.downsample.server."+minIndex+".downsample_period"),
+				downsampleConfig.getInt("tsd.downsample.server."+minIndex+".downsample_interval"),
+				minIndex
+				);
+		downsampleServers.add(k, ds);
+		k++;
+		downsamplingIntervals.remove(minIndex);
+	}
+}
+
+private static void doDownsamplingLoop() {
+	for (DownsampleServer ds : downsampleServers) {
+		(new DownsamplingServerThread(ds)).start();
+	}
+}
+
+private static void doDownsamplingLoop1() {
+	(new DownsamplingServerThread(downsampleServers.get(0))).start();
+}
+
+private static void downsampleAllMetrics(String host, int port, int downsampleInterval, long start, long end) {
+	for (int i=1;i<=downsampleConfig.getInt("tsd.downsample.metric.count");i++) {
+    	String metric = downsampleConfig.getString("tsd.downsample.metric."+i+".name");
     	
-    	final Aggregator agg = Aggregators.get("sum");
-        final Aggregator downsample = Aggregators.get("downsampleMethod");
-        DataPoints[]  dataPoints = doQuery(tsdb, getStartTime(), getEndTime(), agg, downsample, metric);
+    	if (metric == null) {
+    		LOG.warn("Unable to find metric name for metric number "+i+". Check config file, whether it is defined.");
+        	continue;
+    	} else {
+    		LOG.info("Getting tags for metric \""+metric+"\".");
+    	}
+    	
+    	Set<String> tags = getTagsForMetric(metric,start,end);
+    	
+    	if (tags == null) continue;
+    	    	
+       	System.out.println("Downsampling for metric " + metric);
+	    
+       	String downsampleMethod = downsampleConfig.getString("tsd.downsample.metric."+i+".downsample_method");
+		DataPoints[] dataPoints = getDownsampledMetric(metric, downsampleInterval, downsampleMethod,tags,start,end);
+       	
+		writeDownsampledMetrics(dataPoints,host,port);       	
+    }		
+}
+
+private static void writeDownsampledMetrics(DataPoints[] dataPoints,
+		String host, int port) {
+	PrintWriter tsdbPut;
+	try {
+		Socket echoSocket = new Socket(host, port);
+		tsdbPut = new PrintWriter(echoSocket.getOutputStream(), true);
+	} catch (Exception e) {
+		LOG.error("Error opening socket for downsampling server " + host,e);
+		return;
+	}
+		
+	for (int i =0; i< dataPoints.length;i++) {
+		Map<String, String> tags = dataPoints[i].getTags();
+		int k = 1;
+		int tagsSize = tags.size();
+		String tagString = "";
+		for(String key : tags.keySet()) {
+			if (k<tagsSize) {
+				tagString = tagString.concat(key + "=" + tags.get(key) + " ");
+			} else {
+				tagString = tagString.concat(key + "=" + tags.get(key));
+			}
+			k++;
+		}
+		String putQuery = "";
+		for (int j = 0; j< dataPoints[i].size(); j++) {
+			if (dataPoints[i].isInteger(j)) {
+				putQuery = "put " + dataPoints[i].metricName() + " " + dataPoints[i].timestamp(j) + " " 
+							+ dataPoints[i].longValue(j) + " " + tagString;
+			} else {
+				putQuery = "put " + dataPoints[i].metricName() + " " + dataPoints[i].timestamp(j) + " " 
+						+ dataPoints[i].doubleValue(j) + " " + tagString;
+			}
+		}
+		
+		if (dataPoints[i].metricName().equals("iostat.disk.write_merged")) {
+			System.out.println("writiiiiiing " + putQuery);
+			tsdbPut.println(putQuery);
+		}
+	}	
+}
+
+private static DataPoints[] getDownsampledMetric(String metric,
+		int downsampleInterval, String downsampleMethod, Set<String> tags, long start, long end) {
+   	final Query query = tsdb.newQuery();
+    final DataPoints[] datapoints;   
+
+    query.setStartTime(start);
+    if (end > 0) {
+      query.setEndTime(end);
     }
     
-   
-    /*
-
-    if (plot != null) {
-      try {
-        final int npoints = plot.dumpToFiles(basepath);
-        LOG.info("Wrote " + npoints + " for Gnuplot");
-      } catch (IOException e) {
-        LOG.error("Failed to write the Gnuplot file under " + basepath, e);
-        System.exit(1);
-      }
-    }*/
-  }
-  
-
-private static long getEndTime() {
-	// TODO Auto-generated method stub
-	return 0;
+    Map<String, String> tagValues = new HashMap<String, String>();
+    for (String tag :tags) {
+    	tagValues.put(tag, "*");
+    }
+    query.setTimeSeries(metric, tagValues, Aggregators.get("sum"), false);
+    
+    query.downsample(downsampleInterval, Aggregators.get(downsampleMethod));
+    datapoints = query.run();
+    
+    return datapoints;
 }
 
-private static long getStartTime() {
-	// TODO Auto-generated method stub
-	return 0;
+private static Set<String> getTagsForMetric(String metric, long start, long end) {
+	DataPoints[] dataPoints = null;
+    try {
+		dataPoints = doMetricTagsQuery(start, end, metric, new HashMap<String, String>());
+    } catch (RuntimeException re) {
+    	LOG.warn("Unable to find tags for metric \""+metric+"\".",re);
+    	return null;
+    }
+    
+    Set<String> tags;
+    if (dataPoints != null && dataPoints.length!=0) {
+    	tags = getTagsFromDatapoints(dataPoints);
+    } else {
+    	LOG.warn("Unable to find tags for metric \""+metric+"\".");
+    	return null;
+    }
+    
+	return tags;
 }
 
-/*
+private static long getEndTime(DownsampleServer ds) {
+	Date now = new Date();      
+	Long nowTime = new Long(now.getTime()/1000);
+	long endTime = nowTime - ds.downsamplePeriod;
+	/*long res = endTime/3600;
+	res = res*3600;*/
 
-  private static Config getTSDConfig(DownsampleConfig downsampleConfig, int place) throws Exception {
-	  int port = downsampleConfig.getInt("tsd."+place+".port");
-	  String address = downsampleConfig.getString("tsd."+place+".address");
-	  URL configUrl = new URL("http://"+address+":"+port+"/api/config");
-	  LOG.info("Reading config for tsd server number " +place+" from URL: " + configUrl.toExternalForm());
-	  
-	  BufferedReader in;
-	  try {
-		  in = new BufferedReader(new InputStreamReader(configUrl.openStream()));
-	  } catch (Exception e) {
-		  LOG.error("Failed reading config for tsd server number " +place+" from URL: " + configUrl.toExternalForm());
-		  throw e;
-	  }
+	return endTime;
+}
 
-	  String tmpConfigFile = "/tmp/opentsdb-downsample-tmp" + place;
-	  PrintWriter writer;
-	  try{
-		    writer = new PrintWriter(tmpConfigFile, "UTF-8");
-		} catch (IOException e) {
-			LOG.error("Erorr creating temporary config file for downsample TSD number " +place);
-			throw e;
-		}
-      String inputLine = in.readLine();
-      ObjectMapper jsonMapper = new ObjectMapper();
-      JsonNode jsonTree = jsonMapper.readTree(inputLine);
-      Iterator<String> values = jsonTree.fieldNames();
-      while (values.hasNext()) {
-    	  String key = values.next();
-    	  String value = jsonTree.findValue(key).asText();
-    	  writer.println(key + " = " + value);
-      }
-      
-      writer.close();
-      in.close();
-      return null;
-}*/
+private static long getStartTime(DownsampleServer ds) {
+	return (long) lastDownsampleTime.get("tsd.downsample.server."+
+		ds.indexInConfig+".last_time");
+}
 
-private static void checkCorrectServer(DownsampleConfig downsampleConfig, int place, boolean isDownsample) 
+private static Set<String> getTagsFromDatapoints(DataPoints[] dataPoints) {
+	Set<String> tags = new HashSet<String>();
+
+	for (DataPoints datapoint : dataPoints) {
+		Map<String, String> dpTags =  new HashMap<String, String>();
+		dpTags = datapoint.getTags();
+		tags.addAll(datapoint.getAggregatedTags());
+		tags.addAll(dpTags.keySet());		
+	}
+	
+	return tags;
+}
+
+
+private static void checkCorrectServer(int place, boolean isDownsample) 
 		throws Exception {
 	try {
-		  downsampleConfig.getInt("tsd.downsapmle.server."+place+".port");
+		  downsampleConfig.getInt("tsd.downsample.server."+place+".port");
 	  } catch (Exception e) {
 		  throw new Exception("port not found for tsd number " + place + ".");
 	  }
 	try {
-		  downsampleConfig.getString("tsd.downsapmle.server."+place+".address");
+		  downsampleConfig.getString("tsd.downsample.server."+place+".address");
 	  } catch (Exception e) {
 		  throw new Exception("address not found for tsd number " + place + ".");
 	  }
 	
 	if (isDownsample) {
 		  try {
-			  downsampleConfig.getInt("tsd.downsapmle.server."+place+".downsample_period");
+			  downsampleConfig.getInt("tsd.downsample.server."+place+".downsample_period");
 		  } catch (Exception e) {
 			  throw new Exception("downsample_period not found for tsd number " + place + ".");
 		  }
 		  try {
-			  downsampleConfig.getInt("tsd.downsapmle.server."+place+".downsample_interval");
+			  downsampleConfig.getInt("tsd.downsample.server."+place+".downsample_interval");
 		  } catch (Exception e) {
 			  throw new Exception("downsample_interval not found for tsd number " + place + ".");
 		  }
 	}
   }
   
-  private static void checkDownsampleConfig(DownsampleConfig downsampleConfig) throws Exception {
-	  int tsdCount = downsampleConfig.getInt("tsd.downsapmle.server.count");
+  private static void checkDownsampleConfig() throws Exception {
+	  int tsdCount = downsampleConfig.getInt("tsd.downsample.server.count");
 	  
 	  if (tsdCount<2) throw new Exception("Invalid count of available TSDs.");
 
 	  int origTrueCount = 0;
-	  int j;
-	  for (int i=0;i<tsdCount;i++) {
-		  j=i+1;
+	  int origIndex = 0;
+	  for (int i=1;i<=tsdCount;i++) {
 		  try {
-			  
-			  if (downsampleConfig.getBoolean("tsd."+j+".original")){
+			  if (downsampleConfig.getBoolean("tsd.downsample.server."+i+".original")){
 				  origTrueCount++;
-				  checkCorrectServer(downsampleConfig,j,false);
+				  origIndex = i;
+				  checkCorrectServer(i,false);
 			  }	else {
-				  checkCorrectServer(downsampleConfig,j,true);
+				  checkCorrectServer(i,true);
 			  }
 		  } catch (Exception e) {
-			  checkCorrectServer(downsampleConfig,j,true);
+			  checkCorrectServer(i,true);
 		  }	  
 	  }
 
 	  if (origTrueCount == 0) throw new Exception("No original TSD defined.");
 	  if (origTrueCount > 1) throw new Exception("Multiple original TSD defined.");
+	  origTSDBIndex = origIndex;
   }
 
-  private static DataPoints[] doMetricTagsQuery(TSDB tsdb, long startTime, long endTime, String metric, 
-		  Map<String, String> tags, Aggregator downsample, long downsampleInterval) {
+  private static DataPoints[] doMetricTagsQuery(long startTime, long endTime, String metric, 
+		  Map<String, String> tag) {
     final Query query = tsdb.newQuery();;
     final DataPoints[] datapoints;
     
@@ -247,124 +391,75 @@ private static void checkCorrectServer(DownsampleConfig downsampleConfig, int pl
     if (endTime > 0) {
       query.setEndTime(endTime);
     }
-    query.setTimeSeries(metric, tags, Aggregators.get("sum"), false);
-    query.downsample(downsampleInterval, downsample);
+    query.setTimeSeries(metric, tag, Aggregators.get("sum"), false);
     datapoints = query.run();
     
     return datapoints;
   }
   
-  private static DataPoints[] doDownsampleQuery(TSDB tsdb, long startTime, long endTime, String metric, 
-		  Map<String, String> tags, Aggregator downsample, long downsampleInterval) {
-    final Query query = tsdb.newQuery();;
-    final DataPoints[] datapoints;
-    
-    query.setStartTime(startTime);
-    if (endTime > 0) {
-      query.setEndTime(endTime);
-    }
-    query.setTimeSeries(metric, tags, Aggregators.get("sum"), false);
-    query.downsample(downsampleInterval, downsample);
-    datapoints = query.run();
-    
-    return datapoints;
-  }
-
   /**
-   * Parses the query from the command lines.
-   * @param args The command line arguments.
-   * @param tsdb The TSDB to use.
-   * @param queries The list in which {@link Query}s will be appended.
-   * @param plotparams The list in which global plot parameters will be
-   * appended.  Ignored if {@code null}.
-   * @param plotoptions The list in which per-line plot options will be
-   * appended.  Ignored if {@code null}.
-   */
-  static void parseCommandLineQuery(final String[] args,
-                                    final TSDB tsdb,
-                                    final ArrayList<Query> queries,
-                                    final ArrayList<String> plotparams,
-                                    final ArrayList<String> plotoptions) {
-    long start_ts = DateTime.parseDateTimeString(args[0], null);
-    if (start_ts >= 0)
-      start_ts /= 1000;
-    long end_ts = -1;
-    if (args.length > 3){
-      // see if we can detect an end time
-      try{
-      if (args[1].charAt(0) != '+'
-           && (args[1].indexOf(':') >= 0
-               || args[1].indexOf('/') >= 0
-               || args[1].indexOf('-') >= 0
-               || Long.parseLong(args[1]) > 0)){
-          end_ts = DateTime.parseDateTimeString(args[1], null);
-        }
-      }catch (NumberFormatException nfe) {
-        // ignore it as it means the third parameter is likely the aggregator
-      }
-    }
-    // temp fixup to seconds from ms until the rest of TSDB supports ms
-    // Note you can't append this to the DateTime.parseDateTimeString() call as
-    // it clobbers -1 results
-    if (end_ts >= 0)
-      end_ts /= 1000;
-
-    int i = end_ts < 0 ? 1 : 2;
-    while (i < args.length && args[i].charAt(0) == '+') {
-      if (plotparams != null) {
-        plotparams.add(args[i]);
-      }
-      i++;
+   * Returns the given string trimed or null if is null 
+   * @param string The string be trimmed of 
+   * @return The string trimed or null
+  */  
+  private final String sanitize(final String string) {
+    if (string == null) {
+      return null;
     }
 
-    while (i < args.length) {
-      final Aggregator agg = Aggregators.get(args[i++]);
-      final boolean rate = args[i].equals("rate");
-      RateOptions rate_options = new RateOptions(false, Long.MAX_VALUE,
-          RateOptions.DEFAULT_RESET_VALUE);
-      if (rate) {
-        i++;
-        
-        long counterMax = Long.MAX_VALUE;
-        long resetValue = RateOptions.DEFAULT_RESET_VALUE;
-        if (args[i].startsWith("counter")) {
-          String[] parts = Tags.splitString(args[i], ',');
-          if (parts.length >= 2 && parts[1].length() > 0) {
-            counterMax = Long.parseLong(parts[1]);
-          }
-          if (parts.length >= 3 && parts[2].length() > 0) {
-            resetValue = Long.parseLong(parts[2]);
-          }
-          rate_options = new RateOptions(true, counterMax, resetValue);
-          i++;
-        }
-      }
-      final boolean downsample = args[i].equals("downsample");
-      if (downsample) {
-        i++;
-      }
-      final long interval = downsample ? Long.parseLong(args[i++]) : 0;
-      final Aggregator sampler = downsample ? Aggregators.get(args[i++]) : null;
-      final String metric = args[i++];
-      final HashMap<String, String> tags = new HashMap<String, String>();
-      while (i < args.length && args[i].indexOf(' ', 1) < 0
-             && args[i].indexOf('=', 1) > 0) {
-        Tags.parse(tags, args[i++]);
-      }
-      if (i < args.length && args[i].indexOf(' ', 1) > 0) {
-        plotoptions.add(args[i++]);
-      }
-      
-      final Query query = tsdb.newQuery();
-      query.setStartTime(start_ts);
-      if (end_ts > 0) {
-        query.setEndTime(end_ts);
-      }
-      query.setTimeSeries(metric, tags, agg, rate, rate_options);
-      if (downsample) {
-        query.downsample(interval, sampler);
-      }
-      queries.add(query);
-    }
+    return string.trim();
+  }
+  
+  private static class DownsamplingServerThread extends Thread {
+	  private DownsampleServer server;
+	  
+	   public DownsamplingServerThread(DownsampleServer server){
+		   this.server = server;
+	   }
+
+	   public void run() {
+		   while (true) {			   
+				long start = getStartTime(server);
+			    long end = getEndTime(server);
+			    	
+			    Date now = new Date();      
+				Long longTime = new Long(now.getTime()/1000);
+							    
+			    if (end>=start+server.downsampleInterval) {
+			    	System.out.println("downsampling server " + server.indexInConfig + "  start " + start + "  end " +end + " current " + longTime + " ");
+					downsampleAllMetrics(server.address, server.port, server.downsampleInterval, start, end);		
+				    lastDownsampleTime.put("tsd.downsample.server."+
+				    		server.indexInConfig+".last_time",end);
+			    } else {
+				    try {
+						Thread.sleep(server.downsampleInterval*1000);
+					} catch (InterruptedException e) {
+						LOG.error("Error suspending downsampling loop for server " + server.address,e);
+					}
+			    	System.out.println("waiting server " + server.indexInConfig + "   " + server.downsampleInterval + "  start " + start + "  end " +end + " current " + longTime + " ");
+			    }			    
+		}
+	}
+  }
+  
+  
+  
+  private static class DownsampleServer{
+	  private String address;
+	  private int port;
+	  private int downsampleInterval;
+	  private int downsamplePeriod;
+	  private int indexInConfig;
+	
+	  public DownsampleServer(String a, int p, int dp, int di,int index) {
+		  address = a;
+		  port = p;
+		  downsampleInterval = di;
+		  downsamplePeriod = dp;
+		  indexInConfig = index;
+	  }
+	  
   }
 }
+
+

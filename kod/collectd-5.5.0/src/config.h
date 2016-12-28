@@ -918,7 +918,7 @@
 /* #undef HAVE_PLUGIN_ORACLE */
 
 /* Define to 1 if the pbs_pro plugin is enabled. */
-#define HAVE_PLUGIN_PBS_PRO 1
+/* #undef HAVE_PLUGIN_PBS_PRO */
 
 /* Define to 1 if the perl plugin is enabled. */
 /* #undef HAVE_PLUGIN_PERL */

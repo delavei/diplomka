@@ -219,7 +219,7 @@ am__append_86 = logfile.la
 #am__append_135 = openldap.la
 #am__append_136 = openvpn.la
 #am__append_137 = oracle.la
-am__append_138 = pbs_pro.la
+#am__append_138 = pbs_pro.la
 #am__append_139 = perl.la
 # Work-around for issues #41 and #42 - Perl 5.10 incorrectly introduced
 # __attribute__nonnull__(3) for Perl_load_module().
@@ -1172,13 +1172,13 @@ oracle_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 #am_oracle_la_rpath = -rpath $(pkglibdir)
 pbs_pro_la_DEPENDENCIES =
 am__pbs_pro_la_SOURCES_DIST = pbs_pro.c
-am_pbs_pro_la_OBJECTS =  \
-	pbs_pro_la-pbs_pro.lo
+#am_pbs_pro_la_OBJECTS =  \
+#	pbs_pro_la-pbs_pro.lo
 pbs_pro_la_OBJECTS = $(am_pbs_pro_la_OBJECTS)
 pbs_pro_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pbs_pro_la_CFLAGS) \
 	$(CFLAGS) $(pbs_pro_la_LDFLAGS) $(LDFLAGS) -o $@
-am_pbs_pro_la_rpath = -rpath $(pkglibdir)
+#am_pbs_pro_la_rpath = -rpath $(pkglibdir)
 #perl_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__perl_la_SOURCES_DIST = perl.c
 #am_perl_la_OBJECTS = perl_la-perl.lo
@@ -2918,12 +2918,12 @@ logfile_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #oracle_la_CPPFLAGS = $(AM_CPPFLAGS) $(BUILD_WITH_ORACLE_CFLAGS)
 #oracle_la_LIBADD = $(BUILD_WITH_ORACLE_LIBS)
 #oracle_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-pbs_pro_la_SOURCES = pbs_pro.c
-pbs_pro_la_CFLAGS = $(AM_CFLAGS) -I/usr/include 
+#pbs_pro_la_SOURCES = pbs_pro.c
+#pbs_pro_la_CFLAGS = $(AM_CFLAGS) -I/usr/include 
 #$(BUILD_WITH_LIBVIRT_CFLAGS) $(BUILD_WITH_LIBXML2_CFLAGS)
 #pbs_pro_LIBADD = $(BUILD_WITH_LIBVIRT_LIBS) $(BUILD_WITH_LIBXML2_LIBS)
-pbs_pro_la_LDFLAGS = $(PLUGIN_LDFLAGS) -L/usr/lib
-pbs_pro_la_LIBADD = -lpbs
+#pbs_pro_la_LDFLAGS = $(PLUGIN_LDFLAGS) -L/usr/lib
+#pbs_pro_la_LIBADD = -lpbs
 #perl_la_SOURCES = perl.c
 # Despite C99 providing the "bool" type thru stdbool.h, Perl defines its own
 # version of that type if HAS_BOOL is not defined... *sigh*

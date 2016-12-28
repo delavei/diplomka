@@ -22,23 +22,8 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=14
-FILE_NAME_0=383;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftodo;0;4
-FILE_NAME_1=123;LaTeX;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.tex;0;4
-FILE_NAME_2=137;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Ftext%2Fdip-lezdik.bib;0;4
-FILE_NAME_3=10106;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fwrite_tsdb.c;0;4
-FILE_NAME_4=18732;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fvirt.c;0;4
-FILE_NAME_5=15061;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fdocker.c;0;4
-FILE_NAME_6=9414;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop_apps.c;0;4
-FILE_NAME_7=1031;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop_cluster.c;0;4
-FILE_NAME_8=3703;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fhadoop_node.c;0;4
-FILE_NAME_9=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Ftypes.db.custom;0;4
-FILE_NAME_10=4160;None;0;EUTF-8;1;1;0;%2Fvar%2Flog%2Fopentsdb%2Fopentsdb.log;0;4
-FILE_NAME_11=2147;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb-dev.conf;0;4
-FILE_NAME_12=1895;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb-downsample.conf;0;4
-FILE_NAME_13=2616;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb.conf;0;4
-FILE_NAME_14=4356;Conf;0;EUTF-8;1;1;0;%2Fopt%2Fcollectd%2Fetc%2Fcollectd.conf;0;4
-FILE_NAME_15=0;None;0;EUTF-8;1;1;0;%2Fopt%2Fcollectd%2Fetc%2Fcollectd.conf.pkg-orig;0;4
+current_page=0
+FILE_NAME_0=2143;Conf;0;EUTF-8;1;1;0;%2Fopt%2Fcollectd%2Fetc%2Fcollectd.conf;0;4
 
 [VTE]
 last_dir=/home/juraj

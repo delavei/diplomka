@@ -1,6 +1,6 @@
 sudo ./configure --enable-docker --enable-virt --enable-hadoop-node --enable-hadoop-apps --enable-hadoop-cluster --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
-python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb/
+python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb-tsddrain/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
