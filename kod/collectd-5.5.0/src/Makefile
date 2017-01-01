@@ -95,8 +95,8 @@ am__append_10 = -lpthread
 #am__append_11 = aggregation.la
 #am__append_12 = amqp.la
 #am__append_13 = apache.la
-#am__append_14 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_15 = $(BUILD_WITH_LIBCURL_LIBS)
+##am__append_14 = $(BUILD_WITH_LIBCURL_CFLAGS)
+##am__append_15 = $(BUILD_WITH_LIBCURL_LIBS)
 #am__append_16 = apcups.la
 ##am__append_17 = -lsocket
 #am__append_18 = apple_sensors.la
@@ -120,11 +120,11 @@ am__append_10 = -lpthread
 #am__append_36 = cpufreq.la
 #am__append_37 = csv.la
 #am__append_38 = curl.la
-#am__append_39 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_40 = $(BUILD_WITH_LIBCURL_LIBS)
+##am__append_39 = $(BUILD_WITH_LIBCURL_CFLAGS)
+##am__append_40 = $(BUILD_WITH_LIBCURL_LIBS)
 #am__append_41 = curl_json.la
-#am__append_42 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_43 = $(BUILD_WITH_LIBCURL_LIBS)
+##am__append_42 = $(BUILD_WITH_LIBCURL_CFLAGS)
+##am__append_43 = $(BUILD_WITH_LIBCURL_LIBS)
 #am__append_44 = curl_xml.la
 #am__append_45 = dbi.la
 #am__append_46 = df.la
@@ -138,7 +138,7 @@ am__append_10 = -lpthread
 ##am__append_54 = -lperfstat
 #am__append_55 = dns.la
 #am__append_56 = drbd.la
-am__append_57 = docker.la
+#am__append_57 = docker.la
 #am__append_58 = email.la
 #am__append_59 = entropy.la
 #am__append_60 = exec.la
@@ -146,9 +146,9 @@ am__append_57 = docker.la
 #am__append_62 = fhcount.la
 #am__append_63 = filecount.la
 #am__append_64 = gmond.la
-am__append_65 = hadoop_apps.la
-am__append_66 = hadoop_cluster.la
-am__append_67 = hadoop_node.la
+#am__append_65 = hadoop_apps.la
+#am__append_66 = hadoop_cluster.la
+#am__append_67 = hadoop_node.la
 #am__append_68 = hddtemp.la
 ##am__append_69 = -lsocket
 #am__append_70 = interface.la
@@ -199,14 +199,14 @@ am__append_86 = logfile.la
 #am__append_115 = netlink.la
 #am__append_116 = network.la
 ##am__append_117 = -lsocket
-#am__append_118 = $(GCRYPT_CPPFLAGS)
-#am__append_119 = $(GCRYPT_LDFLAGS)
-#am__append_120 = $(GCRYPT_LIBS)
+##am__append_118 = $(GCRYPT_CPPFLAGS)
+##am__append_119 = $(GCRYPT_LDFLAGS)
+##am__append_120 = $(GCRYPT_LIBS)
 #am__append_121 = nfs.la
 #am__append_122 = fscache.la
 #am__append_123 = nginx.la
-#am__append_124 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_125 = $(BUILD_WITH_LIBCURL_LIBS)
+##am__append_124 = $(BUILD_WITH_LIBCURL_CFLAGS)
+##am__append_125 = $(BUILD_WITH_LIBCURL_LIBS)
 #am__append_126 = notify_desktop.la
 #am__append_127 = notify_email.la
 #am__append_128 = ntpd.la
@@ -219,7 +219,7 @@ am__append_86 = logfile.la
 #am__append_135 = openldap.la
 #am__append_136 = openvpn.la
 #am__append_137 = oracle.la
-#am__append_138 = pbs_pro.la
+am__append_138 = pbs_pro.la
 #am__append_139 = perl.la
 # Work-around for issues #41 and #42 - Perl 5.10 incorrectly introduced
 # __attribute__nonnull__(3) for Perl_load_module().
@@ -282,14 +282,14 @@ am__append_86 = logfile.la
 ##am__append_196 = $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
 #am__append_197 = uuid.la
 #am__append_198 = varnish.la
-am__append_199 = virt.la
+#am__append_199 = virt.la
 #am__append_200 = vmem.la
 #am__append_201 = vserver.la
 #am__append_202 = wireless.la
 #am__append_203 = write_graphite.la
 #am__append_204 = write_http.la
-#am__append_205 = $(BUILD_WITH_LIBCURL_CFLAGS)
-#am__append_206 = $(BUILD_WITH_LIBCURL_LIBS)
+##am__append_205 = $(BUILD_WITH_LIBCURL_CFLAGS)
+##am__append_206 = $(BUILD_WITH_LIBCURL_LIBS)
 #am__append_207 = write_kafka.la
 #am__append_208 = write_log.la
 #am__append_209 = write_mongodb.la
@@ -391,7 +391,7 @@ amqp_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(amqp_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_amqp_la_rpath = -rpath $(pkglibdir)
-#am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 #apache_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_2)
 am__apache_la_SOURCES_DIST = apache.c
@@ -534,7 +534,7 @@ csv_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(csv_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_csv_la_rpath = -rpath $(pkglibdir)
-#am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
 #curl_la_DEPENDENCIES = $(am__DEPENDENCIES_4)
 am__curl_la_SOURCES_DIST = curl.c
 #am_curl_la_OBJECTS = curl_la-curl.lo
@@ -543,7 +543,7 @@ curl_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(curl_la_CFLAGS) \
 	$(CFLAGS) $(curl_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_curl_la_rpath = -rpath $(pkglibdir)
-#am__DEPENDENCIES_5 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_5 = $(am__DEPENDENCIES_1)
 #curl_json_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_1) \
 #	$(am__DEPENDENCIES_5)
@@ -607,14 +607,14 @@ dns_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(dns_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_dns_la_rpath = -rpath $(pkglibdir)
-docker_la_DEPENDENCIES = libcJSON.la
+#docker_la_DEPENDENCIES = libcJSON.la
 am__docker_la_SOURCES_DIST = docker.c
-am_docker_la_OBJECTS = docker.lo
+#am_docker_la_OBJECTS = docker.lo
 docker_la_OBJECTS = $(am_docker_la_OBJECTS)
 docker_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(docker_la_LDFLAGS) $(LDFLAGS) -o $@
-am_docker_la_rpath = -rpath $(pkglibdir)
+#am_docker_la_rpath = -rpath $(pkglibdir)
 drbd_la_DEPENDENCIES =
 am__drbd_la_SOURCES_DIST = drbd.c
 #am_drbd_la_OBJECTS = drbd.lo
@@ -694,44 +694,44 @@ gmond_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(gmond_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_gmond_la_rpath = -rpath $(pkglibdir)
-hadoop_apps_la_DEPENDENCIES =  \
-	libcJSON.la \
-	$(am__DEPENDENCIES_1)
+#hadoop_apps_la_DEPENDENCIES =  \
+#	libcJSON.la \
+#	$(am__DEPENDENCIES_1)
 am__hadoop_apps_la_SOURCES_DIST = hadoop_apps.c
-am_hadoop_apps_la_OBJECTS =  \
-	hadoop_apps_la-hadoop_apps.lo
+#am_hadoop_apps_la_OBJECTS =  \
+#	hadoop_apps_la-hadoop_apps.lo
 hadoop_apps_la_OBJECTS = $(am_hadoop_apps_la_OBJECTS)
 hadoop_apps_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(hadoop_apps_la_CFLAGS) $(CFLAGS) $(hadoop_apps_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am_hadoop_apps_la_rpath = -rpath \
-	$(pkglibdir)
-hadoop_cluster_la_DEPENDENCIES =  \
-	libcJSON.la \
-	$(am__DEPENDENCIES_1)
+#am_hadoop_apps_la_rpath = -rpath \
+#	$(pkglibdir)
+#hadoop_cluster_la_DEPENDENCIES =  \
+#	libcJSON.la \
+#	$(am__DEPENDENCIES_1)
 am__hadoop_cluster_la_SOURCES_DIST = hadoop_cluster.c
-am_hadoop_cluster_la_OBJECTS = hadoop_cluster_la-hadoop_cluster.lo
+#am_hadoop_cluster_la_OBJECTS = hadoop_cluster_la-hadoop_cluster.lo
 hadoop_cluster_la_OBJECTS = $(am_hadoop_cluster_la_OBJECTS)
 hadoop_cluster_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(hadoop_cluster_la_CFLAGS) $(CFLAGS) \
 	$(hadoop_cluster_la_LDFLAGS) $(LDFLAGS) -o $@
-am_hadoop_cluster_la_rpath = -rpath \
-	$(pkglibdir)
-hadoop_node_la_DEPENDENCIES =  \
-	libcJSON.la \
-	$(am__DEPENDENCIES_1)
+#am_hadoop_cluster_la_rpath = -rpath \
+#	$(pkglibdir)
+#hadoop_node_la_DEPENDENCIES =  \
+#	libcJSON.la \
+#	$(am__DEPENDENCIES_1)
 am__hadoop_node_la_SOURCES_DIST = hadoop_node.c
-am_hadoop_node_la_OBJECTS =  \
-	hadoop_node_la-hadoop_node.lo
+#am_hadoop_node_la_OBJECTS =  \
+#	hadoop_node_la-hadoop_node.lo
 hadoop_node_la_OBJECTS = $(am_hadoop_node_la_OBJECTS)
 hadoop_node_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(hadoop_node_la_CFLAGS) $(CFLAGS) $(hadoop_node_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am_hadoop_node_la_rpath = -rpath \
-	$(pkglibdir)
+#am_hadoop_node_la_rpath = -rpath \
+#	$(pkglibdir)
 #hddtemp_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_1)
 am__hddtemp_la_SOURCES_DIST = hddtemp.c
@@ -1042,7 +1042,7 @@ netlink_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(netlink_la_CFLAGS) \
 	$(CFLAGS) $(netlink_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_netlink_la_rpath = -rpath $(pkglibdir)
-#am__DEPENDENCIES_11 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_11 = $(am__DEPENDENCIES_1)
 #network_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_1) \
 #	$(am__DEPENDENCIES_11)
@@ -1064,7 +1064,7 @@ nfs_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(nfs_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_nfs_la_rpath = -rpath $(pkglibdir)
-#am__DEPENDENCIES_12 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_12 = $(am__DEPENDENCIES_1)
 #nginx_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_12)
 am__nginx_la_SOURCES_DIST = nginx.c
@@ -1172,13 +1172,13 @@ oracle_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 #am_oracle_la_rpath = -rpath $(pkglibdir)
 pbs_pro_la_DEPENDENCIES =
 am__pbs_pro_la_SOURCES_DIST = pbs_pro.c
-#am_pbs_pro_la_OBJECTS =  \
-#	pbs_pro_la-pbs_pro.lo
+am_pbs_pro_la_OBJECTS =  \
+	pbs_pro_la-pbs_pro.lo
 pbs_pro_la_OBJECTS = $(am_pbs_pro_la_OBJECTS)
 pbs_pro_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pbs_pro_la_CFLAGS) \
 	$(CFLAGS) $(pbs_pro_la_LDFLAGS) $(LDFLAGS) -o $@
-#am_pbs_pro_la_rpath = -rpath $(pkglibdir)
+am_pbs_pro_la_rpath = -rpath $(pkglibdir)
 #perl_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__perl_la_SOURCES_DIST = perl.c
 #am_perl_la_OBJECTS = perl_la-perl.lo
@@ -1597,17 +1597,17 @@ varnish_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(varnish_la_CFLAGS) \
 	$(CFLAGS) $(varnish_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_varnish_la_rpath = -rpath $(pkglibdir)
-virt_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+#virt_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1)
 am__virt_la_SOURCES_DIST = virt.c utils_ignorelist.c \
 	utils_ignorelist.h
-am_virt_la_OBJECTS = virt_la-virt.lo \
-	virt_la-utils_ignorelist.lo
+#am_virt_la_OBJECTS = virt_la-virt.lo \
+#	virt_la-utils_ignorelist.lo
 virt_la_OBJECTS = $(am_virt_la_OBJECTS)
 virt_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(virt_la_CFLAGS) \
 	$(CFLAGS) $(virt_la_LDFLAGS) $(LDFLAGS) -o $@
-am_virt_la_rpath = -rpath $(pkglibdir)
+#am_virt_la_rpath = -rpath $(pkglibdir)
 vmem_la_LIBADD =
 am__vmem_la_SOURCES_DIST = vmem.c
 #am_vmem_la_OBJECTS = vmem.lo
@@ -1647,7 +1647,7 @@ write_graphite_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	-o $@
 #am_write_graphite_la_rpath = -rpath \
 #	$(pkglibdir)
-#am__DEPENDENCIES_16 = $(am__DEPENDENCIES_1)
+##am__DEPENDENCIES_16 = $(am__DEPENDENCIES_1)
 #write_http_la_DEPENDENCIES =  \
 #	$(am__DEPENDENCIES_16)
 am__write_http_la_SOURCES_DIST = write_http.c utils_format_json.c \
@@ -2239,22 +2239,22 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing aclocal-1.14
+ACLOCAL = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
 ARGZ_H = 
-AUTOCONF = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoconf
-AUTOHEADER = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoheader
-AUTOMAKE = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing automake-1.14
-AWK = gawk
+AUTOCONF = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoconf
+AUTOHEADER = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoheader
+AUTOMAKE = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing automake-1.14
+AWK = mawk
 BUILD_WITH_LIBAQUAERO5_CFLAGS = 
 BUILD_WITH_LIBAQUAERO5_LDFLAGS = 
 BUILD_WITH_LIBATASMART_CPPFLAGS = 
 BUILD_WITH_LIBATASMART_LDFLAGS = 
 BUILD_WITH_LIBATASMART_LIBS = 
-BUILD_WITH_LIBCURL_CFLAGS = -I/usr/local/include
-BUILD_WITH_LIBCURL_LIBS = -L/usr/local/lib -lcurl
+BUILD_WITH_LIBCURL_CFLAGS = 
+BUILD_WITH_LIBCURL_LIBS = 
 BUILD_WITH_LIBDBI_CPPFLAGS = 
 BUILD_WITH_LIBDBI_LDFLAGS = 
 BUILD_WITH_LIBDBI_LIBS = 
@@ -2284,8 +2284,8 @@ BUILD_WITH_LIBOPING_CPPFLAGS =
 BUILD_WITH_LIBOPING_LDFLAGS = 
 BUILD_WITH_LIBOWCAPI_CPPFLAGS = 
 BUILD_WITH_LIBOWCAPI_LIBS = 
-BUILD_WITH_LIBPQ_CPPFLAGS = 
-BUILD_WITH_LIBPQ_LDFLAGS = 
+BUILD_WITH_LIBPQ_CPPFLAGS =  -I/usr/include/postgresql
+BUILD_WITH_LIBPQ_LDFLAGS =  -L/usr/lib/x86_64-linux-gnu
 BUILD_WITH_LIBRABBITMQ_CPPFLAGS = 
 BUILD_WITH_LIBRABBITMQ_LDFLAGS = 
 BUILD_WITH_LIBRABBITMQ_LIBS = 
@@ -2313,10 +2313,10 @@ BUILD_WITH_LIBUPSCLIENT_CFLAGS =
 BUILD_WITH_LIBUPSCLIENT_LIBS = 
 BUILD_WITH_LIBVARNISH_CFLAGS = 
 BUILD_WITH_LIBVARNISH_LIBS = 
-BUILD_WITH_LIBVIRT_CFLAGS =  
-BUILD_WITH_LIBVIRT_LIBS = -lvirt -ldl  
-BUILD_WITH_LIBXML2_CFLAGS = -I/usr/include/libxml2  
-BUILD_WITH_LIBXML2_LIBS = -lxml2  
+BUILD_WITH_LIBVIRT_CFLAGS = 
+BUILD_WITH_LIBVIRT_LIBS = 
+BUILD_WITH_LIBXML2_CFLAGS = 
+BUILD_WITH_LIBXML2_LIBS = 
 BUILD_WITH_LIBXMMS_CFLAGS = 
 BUILD_WITH_LIBXMMS_LIBS = 
 BUILD_WITH_LIBYAJL_CPPFLAGS = 
@@ -2329,9 +2329,9 @@ BUILD_WITH_OPENIPMI_CFLAGS =
 BUILD_WITH_OPENIPMI_LIBS = 
 BUILD_WITH_ORACLE_CFLAGS = 
 BUILD_WITH_ORACLE_LIBS = 
-BUILD_WITH_PYTHON_CPPFLAGS = 
-BUILD_WITH_PYTHON_LDFLAGS = 
-BUILD_WITH_PYTHON_LIBS = 
+BUILD_WITH_PYTHON_CPPFLAGS = -I/usr/include/python2.7
+BUILD_WITH_PYTHON_LDFLAGS = -L/usr/lib
+BUILD_WITH_PYTHON_LIBS = -L. -lpython2.7
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -2353,24 +2353,24 @@ FGREP = /bin/grep -F
 GANGLIA_CPPFLAGS = 
 GANGLIA_LDFLAGS = 
 GANGLIA_LIBS = 
-GCRYPT_CPPFLAGS =  
-GCRYPT_LDFLAGS = -L/usr/lib
-GCRYPT_LIBS = -L/lib/x86_64-linux-gnu -lgcrypt
+GCRYPT_CPPFLAGS = 
+GCRYPT_LDFLAGS = -L/lib
+GCRYPT_LIBS = 
 GREP = /bin/grep
-INCLTDL = -I${top_srcdir}/libltdl
+INCLTDL = 
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-JAR = /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/jar
-JAVAC = /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/javac
+JAR = 
+JAVAC = 
 JAVA_CFLAGS = 
-JAVA_CPPFLAGS =  -I/usr/lib/jvm/java-1.7.0-openjdk-amd64/include -I/usr/lib/jvm/java-1.7.0-openjdk-amd64/include/linux
-JAVA_LDFLAGS =  -L/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre/lib/amd64/server -Wl,-rpath -Wl,/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre/lib/amd64/server
-JAVA_LIBS =  -ljvm
-KERNEL_CFLAGS = -I/lib/modules/3.19.0-32-generic/source/include
-KERNEL_DIR = /lib/modules/3.19.0-32-generic/source
+JAVA_CPPFLAGS = 
+JAVA_LDFLAGS = 
+JAVA_LIBS = 
+KERNEL_CFLAGS = -I/lib/modules/3.16.0-4-amd64/source/include
+KERNEL_DIR = /lib/modules/3.16.0-4-amd64/source
 LCC_VERSION_EXTRA = git
 LCC_VERSION_MAJOR = 5
 LCC_VERSION_MINOR = 5
@@ -2378,17 +2378,14 @@ LCC_VERSION_PATCH = 0
 LCC_VERSION_STRING = 5.5.0
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
-LEX = flex
-LEXLIB = -lfl
-LEX_OUTPUT_ROOT = lex.yy
+LEX = :
+LEXLIB = 
+LEX_OUTPUT_ROOT = 
 LIBADD_DL = -ldl 
 LIBADD_DLD_LINK = 
 LIBADD_DLOPEN = -ldl
 LIBADD_SHL_LOAD = 
-LIBGCRYPT_CFLAGS = 
-LIBGCRYPT_CONFIG = /usr/bin/libgcrypt-config
-LIBGCRYPT_LIBS = -L/lib/x86_64-linux-gnu -lgcrypt
-LIBLTDL = ${top_build_prefix}libltdl/libltdlc.la
+LIBLTDL = -lltdl
 LIBNETAPP_CPPFLAGS = 
 LIBNETAPP_LDFLAGS = 
 LIBNETAPP_LIBS = 
@@ -2405,14 +2402,14 @@ LOAD_PLUGIN_LOG_LOGSTASH = ##
 LOAD_PLUGIN_NETWORK = ##
 LOAD_PLUGIN_RRDTOOL = ##
 LOAD_PLUGIN_SYSLOG = ##
-LTDLDEPS = ${top_build_prefix}libltdl/libltdlc.la
-LTDLINCL = -I${top_srcdir}/libltdl
+LTDLDEPS = 
+LTDLINCL = 
 LTDLOPEN = libltdl
 LTLIBOBJS = 
 LT_CONFIG_H = src/config.h
 LT_DLLOADERS =  libltdl/dlopen.la
 LT_DLPREOPEN = -dlpreopen libltdl/dlopen.la 
-MAKEINFO = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing makeinfo
+MAKEINFO = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -2432,8 +2429,8 @@ PATH_SEPARATOR = :
 PERL = /usr/bin/perl
 PERL_BINDINGS = perl
 PERL_BINDINGS_OPTIONS = PREFIX=NONE
-PERL_CFLAGS =  -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fstack-protector -fno-strict-aliasing -pipe -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/lib/perl/5.18/CORE 
-PERL_LIBS = -Wl,-E  -fstack-protector -L/usr/local/lib  -L/usr/lib/perl/5.18/CORE -lperl -ldl -lm -lpthread -lc -lcrypt
+PERL_CFLAGS =  -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fwrapv -fno-strict-aliasing -pipe -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/lib/x86_64-linux-gnu/perl/5.20/CORE 
+PERL_LIBS = -Wl,-E  -fstack-protector -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.20/CORE -lperl -ldl -lm -lpthread -lc -lcrypt
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
 PKG_CONFIG_PATH = 
@@ -2443,12 +2440,12 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 5.5.0.git
-YACC = bison -y
+YACC = yacc
 YFLAGS = 
-abs_builddir = /home/juraj/diplomka/kod/collectd-5.5.0/src
-abs_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0/src
-abs_top_builddir = /home/juraj/diplomka/kod/collectd-5.5.0
-abs_top_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0
+abs_builddir = /root/diplomka/kod/collectd-5.5.0/src
+abs_srcdir = /root/diplomka/kod/collectd-5.5.0/src
+abs_top_builddir = /root/diplomka/kod/collectd-5.5.0
+abs_top_srcdir = /root/diplomka/kod/collectd-5.5.0
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -2478,7 +2475,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/install-sh
+install_sh = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -2706,9 +2703,9 @@ CLEANFILES = $(am__append_217)
 #drbd_la_SOURCES = drbd.c
 #drbd_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #drbd_la_LIBADD = -lpthread
-docker_la_SOURCES = docker.c
-docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-docker_la_LIBADD = libcJSON.la -lpthread
+#docker_la_SOURCES = docker.c
+#docker_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+#docker_la_LIBADD = libcJSON.la -lpthread
 #email_la_SOURCES = email.c
 #email_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #email_la_LIBADD = -lpthread
@@ -2731,18 +2728,18 @@ docker_la_LIBADD = libcJSON.la -lpthread
 #gmond_la_CPPFLAGS = $(AM_CPPFLAGS) $(GANGLIA_CPPFLAGS)
 #gmond_la_LDFLAGS = $(PLUGIN_LDFLAGS) $(GANGLIA_LDFLAGS)
 #gmond_la_LIBADD = $(GANGLIA_LIBS)
-hadoop_apps_la_SOURCES = hadoop_apps.c
-hadoop_apps_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_apps_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_apps_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
-hadoop_cluster_la_SOURCES = hadoop_cluster.c
-hadoop_cluster_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_cluster_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_cluster_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
-hadoop_node_la_SOURCES = hadoop_node.c
-hadoop_node_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-hadoop_node_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
-hadoop_node_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+#hadoop_apps_la_SOURCES = hadoop_apps.c
+#hadoop_apps_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+#hadoop_apps_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+#hadoop_apps_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+#hadoop_cluster_la_SOURCES = hadoop_cluster.c
+#hadoop_cluster_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+#hadoop_cluster_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+#hadoop_cluster_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
+#hadoop_node_la_SOURCES = hadoop_node.c
+#hadoop_node_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+#hadoop_node_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBCURL_CFLAGS)
+#hadoop_node_la_LIBADD = libcJSON.la $(BUILD_WITH_LIBCURL_LIBS)
 #hddtemp_la_SOURCES = hddtemp.c
 #hddtemp_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #hddtemp_la_LIBADD = $(am__append_69)
@@ -2918,12 +2915,12 @@ logfile_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #oracle_la_CPPFLAGS = $(AM_CPPFLAGS) $(BUILD_WITH_ORACLE_CFLAGS)
 #oracle_la_LIBADD = $(BUILD_WITH_ORACLE_LIBS)
 #oracle_la_LDFLAGS = $(PLUGIN_LDFLAGS)
-#pbs_pro_la_SOURCES = pbs_pro.c
-#pbs_pro_la_CFLAGS = $(AM_CFLAGS) -I/usr/include 
+pbs_pro_la_SOURCES = pbs_pro.c
+pbs_pro_la_CFLAGS = $(AM_CFLAGS) -I/usr/include 
 #$(BUILD_WITH_LIBVIRT_CFLAGS) $(BUILD_WITH_LIBXML2_CFLAGS)
 #pbs_pro_LIBADD = $(BUILD_WITH_LIBVIRT_LIBS) $(BUILD_WITH_LIBXML2_LIBS)
-#pbs_pro_la_LDFLAGS = $(PLUGIN_LDFLAGS) -L/usr/lib
-#pbs_pro_la_LIBADD = -lpbs
+pbs_pro_la_LDFLAGS = $(PLUGIN_LDFLAGS) -L/usr/lib
+pbs_pro_la_LIBADD = -lpbs
 #perl_la_SOURCES = perl.c
 # Despite C99 providing the "bool" type thru stdbool.h, Perl defines its own
 # version of that type if HAS_BOOL is not defined... *sigh*
@@ -3091,14 +3088,14 @@ logfile_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #varnish_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #varnish_la_CFLAGS = $(AM_CFLAGS) $(BUILD_WITH_LIBVARNISH_CFLAGS)
 #varnish_la_LIBADD = $(BUILD_WITH_LIBVARNISH_LIBS)
-virt_la_SOURCES = virt.c \
-		  utils_ignorelist.c utils_ignorelist.h
+#virt_la_SOURCES = virt.c \
+#		  utils_ignorelist.c utils_ignorelist.h
 
-virt_la_CFLAGS = $(AM_CFLAGS) \
-		$(BUILD_WITH_LIBVIRT_CFLAGS) $(BUILD_WITH_LIBXML2_CFLAGS)
+#virt_la_CFLAGS = $(AM_CFLAGS) \
+#		$(BUILD_WITH_LIBVIRT_CFLAGS) $(BUILD_WITH_LIBXML2_CFLAGS)
 
-virt_la_LIBADD = $(BUILD_WITH_LIBVIRT_LIBS) $(BUILD_WITH_LIBXML2_LIBS)
-virt_la_LDFLAGS = $(PLUGIN_LDFLAGS)
+#virt_la_LIBADD = $(BUILD_WITH_LIBVIRT_LIBS) $(BUILD_WITH_LIBXML2_LIBS)
+#virt_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #vmem_la_SOURCES = vmem.c
 #vmem_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 #vserver_la_SOURCES = vserver.c
