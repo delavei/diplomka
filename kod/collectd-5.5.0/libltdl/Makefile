@@ -87,7 +87,7 @@ am__append_3 = libltdlc.la
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/config-h.in lt__strl.c lt__dirent.c argz.c \
+	$(srcdir)/config-h.in argz.c lt__dirent.c lt__strl.c \
 	$(top_srcdir)/config/depcomp $(am__include_HEADERS_DIST) \
 	$(am__ltdlinclude_HEADERS_DIST) COPYING.LIB README \
 	config/compile config/config.guess config/config.sub \
@@ -291,16 +291,16 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing aclocal-1.14
+ACLOCAL = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
 ARGZ_H = 
 AS = as
-AUTOCONF = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoconf
-AUTOHEADER = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoheader
-AUTOMAKE = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing automake-1.14
-AWK = gawk
+AUTOCONF = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoconf
+AUTOHEADER = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing autoheader
+AUTOMAKE = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing automake-1.14
+AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -340,7 +340,7 @@ LTLIBOBJS =  ${LIBOBJDIR}lt__strl$U.lo
 LT_CONFIG_H = config.h
 LT_DLLOADERS =  dlopen.la
 LT_DLPREOPEN = -dlpreopen dlopen.la 
-MAKEINFO = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/missing makeinfo
+MAKEINFO = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -363,10 +363,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 2.4.2
-abs_builddir = /home/juraj/diplomka/kod/collectd-5.5.0/libltdl
-abs_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0/libltdl
-abs_top_builddir = /home/juraj/diplomka/kod/collectd-5.5.0/libltdl
-abs_top_srcdir = /home/juraj/diplomka/kod/collectd-5.5.0/libltdl
+abs_builddir = /root/diplomka/kod/collectd-5.5.0/libltdl
+abs_srcdir = /root/diplomka/kod/collectd-5.5.0/libltdl
+abs_top_builddir = /root/diplomka/kod/collectd-5.5.0/libltdl
+abs_top_srcdir = /root/diplomka/kod/collectd-5.5.0/libltdl
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -395,7 +395,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/config/install-sh
+install_sh = ${SHELL} /root/diplomka/kod/collectd-5.5.0/libltdl/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
