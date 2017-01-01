@@ -320,7 +320,7 @@ static int hadoop_apps_init (void)
 		return -1;
 	}
 	
-	snprintf(apps_url, 256, "%s:%s/ws/v1/cluster/apps?states=running", yarn_url, yarn_port);
+	snprintf(apps_url, 256, "%s:%s/ws/v1/cluster/apps?states=finished", yarn_url, yarn_port);
 	curl_easy_setopt(easy_handle, CURLOPT_URL, apps_url);
 	curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, read_response);
 

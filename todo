@@ -1,4 +1,5 @@
 sudo ./configure --enable-docker --enable-virt --enable-hadoop-node --enable-hadoop-apps --enable-hadoop-cluster --enable-write-tsdb --enable-logfile --disable-all-plugins
+sudo ./configure --enable-pbs-pro --enable-write-tsdb --enable-logfile --disable-all-plugins
 sudo /opt/collectd/sbin/collectd -f
 python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb-tsddrain/
 sudo docker run -it debian  /bin/bash
@@ -16,9 +17,10 @@ put sys.cpu.user 1356998405 42.5 host=webserver01 cpu=0
 sudo -u opentsdb JVMARGS='-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas' /usr/share/opentsdb/bin/tsdb query 2w-ago sum virt.if_dropped.rx guest_name=* if_name=* bla=* 
 
 
+sudo -u opentsdb JVMARGS='-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas' /usr/share/opentsdb/bin/tsdb import /home/juraj/opentsdb_import
 
 
-
+2592000 sekund je jeden mesiac
 
 OTAZKYYYYY
 analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
@@ -26,16 +28,28 @@ jake verzie softov sa používajú? dať to do textu -- libvirt centOS7, debian 
 hadoop kontajnery? ano
 
 TEEEEEEEEEEEEEEEEEEEXT
-Niektoré metriky sa v čase menia menej ako iné, napr. počet odoslaných chybných bajtov sa na sieťovom rozhraní nemení tak rýchlo ako počet odoslaných bajtov. V prípade, že
-by teda bol prírastok nulový, bolo by možné metriku neodoslať   a uštriť záťaž? toto iba napísať, rieiši to opentsdb
+
 Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
 
 
-tabulka - nazvy metrik tak ako ich ukladam do databazy vs nazvy ako ich dostavam z vystupov 
+pripomienky veduceho
+pripomienky boris
+uvod
+zaver
+testovanie
+o hadoope z knihy
+o dockeri z knihy
+preco pouzivam pbs pro a nie torque
+obrazok - hadoop, metacentrum, pbs
 
-napisat, ze hadoop som testoval na nebeziacich appkach, ktorych je mrte a proste spravalo sa to tak, ze kym sa neskoncil stream, neboli nove poziadavky
+Warenof12- heslo k uml stranke (mozno bez minus)
 
-obrazky - hadoop, metacentrum
+SOM ZMENIL!
+Úprava historických dát vzhľadom na kapacitu
+
+
+
+
 
 
 
@@ -43,55 +57,97 @@ obrazky - hadoop, metacentrum
 
 
 IMPLEMENTACIA
-dorobit configure skript, aby sa kopiroval custom types
-v configure aby vyppisovalo, ci sa moduly nainstalovali
 
 
+tsd.downsample.server.count = 2
 
+tsd.downsample.server.1.address = localhost
+tsd.downsample.server.1.port = 4242
+tsd.downsample.server.1.original = true
 
+tsd.downsample.server.2.address = localhost
+tsd.downsample.server.2.port = 4243
+tsd.downsample.server.2.downsample_period = 12
+tsd.downsample.server.2.downsample_interval = 5
 
+#tsd.downsample.server.3.address = localhost
+#tsd.downsample.server.3.port = 4244
+#tsd.downsample.server.3.downsample_period = 18
+#tsd.downsample.server.3.downsample_interval = 10
 
+tsd.downsample.metric.count = 26
 
+tsd.downsample.metric.1.name = cpustat.count
+tsd.downsample.metric.1.downsample_method = max
 
+tsd.downsample.metric.2.name = cpustat.cpu.cores
+tsd.downsample.metric.2.downsample_method = max
 
+tsd.downsample.metric.3.name = cpustat.cpu.mhz
+tsd.downsample.metric.3.downsample_method = max
 
-	
-	monitorovacie softy
-	\section{Cacti}
-Cacti is a complete network graphing solution designed to harness the power of RRDTool's data storage and graphing functionality. Cacti provides a fast poller, advanced graph templating, multiple data acquisition methods, and user management features out of the box.
-\cite{11}
+tsd.downsample.metric.4.name = df.bytes.free
+tsd.downsample.metric.4.downsample_method = max
 
-\subsection{Ostatne} 
-\begin{description}
-\item[\emph{Zenoss}]
-\item[\emph{Munin}]
-\end{description}
+tsd.downsample.metric.5.name = df.bytes.percentused
+tsd.downsample.metric.5.downsample_method = max
 
-\section{Scout}
-Scout runs within Docker containers without any special configuration. \cite{scout}
+tsd.downsample.metric.7.name = df.bytes.total
+tsd.downsample.metric.7.downsample_method = max
 
-\section{New Relic}
-http://newrelic.com/docker
+tsd.downsample.metric.8.name = df.bytes.used
+tsd.downsample.metric.8.downsample_method = max
 
+tsd.downsample.metric.9.name = df.inodes.free
+tsd.downsample.metric.9.downsample_method = max
 
+tsd.downsample.metric.10.name = df.inodes.percentused
+tsd.downsample.metric.10.downsample_method = max
 
-\section{Reakcia na dlhú odozvu modulu}
-Ak je hodnota nejakej metriky mimo určitý rozsah, je generované hlásenie. Na to je možné reagovať.
-Na situáciu, keď časť zodpovedná za zbieranie dát neodpovedá, je ale možné reagovať len reštartovaním celej monitorovacej aplikácie. Nie je možné jednotlivé pluginy ovládať nezávisle. 
+tsd.downsample.metric.11.name = df.inodes.total
+tsd.downsample.metric.11.downsample_method = max
 
-V princípe nejde nijako odlíšiť, či daný modul čaká na údaje alebo došlo k chybe a modul neodpovedá. Preto bude potrebné vytvoriť niektoré pluginy tak, aby jedna časť bola neustále dostupná 
-a reagovala na výzvy od riadiacej aplikácie. Bude definovaný časový interval na vrátenie hodnoty. V prípade ak plugin úspešne v časovom intervale zistil dané metrické dáta, vráti ich riadiacej aplikácií. V prípade, že v danom intervale plugin neobdržal metrické dáta,
-vráti poslednú hodnotu. Zároveň sa nebudú vytvárať nové požiadavky na tento údaj. Tento časový interval si bude môcť užívateľ nastaviť pre každú sondu. Predmetom testovania bude zistiť, 
-aký interval by bol vhodný pre tú ktorú sondu.
+tsd.downsample.metric.12.name = df.inodes.used
+tsd.downsample.metric.12.downsample_method = max
 
-Ďalšou prahovou hodnotou bude počet opakovaní, pri ktorých plugin vracia poslednú hodnotu danej metriky. Ak dôjde k prekročeniu tejto hodnoty, bude reštartovaná celá monitorovacia aplikácia.
+tsd.downsample.metric.13.name = iostat.disk.await
+tsd.downsample.metric.13.downsample_method = max
 
+tsd.downsample.metric.14.name = iostat.disk.ios_in_progress
+tsd.downsample.metric.14.downsample_method = max
 
-\subsection{Centrálny systém notifikácií a manažmentu zberných modulov}
-Vyššie popísané riešenie predstavuje decentralizovanú architektúru. Každá zo sond funguje nezávisle, čo sťažuje prípadné mechanizmy konfigurácie
-a riešenie krízových situácií ako napr. zastavenie činnosti démona. Toto je jeden z aspektov kde má navrch napr. systém Zabbix. Súčasťou
-môjho riešenia bude zároveň aplikácia, ktorá bude spravovať konfigurácie jednotlivých inštancií collectd, umožní ich meniť a podľa toho ich reštartovať.
-Umožní prehliadať notifikácie z jednotlivých sond a manuálne ovládať inštancie a ich moduly. To bude zároveň vyžadovať modifikáciu démona
-collectd, ktorý v súčasnosti neumožňuje reštartovanie jednotlivých modulov.
-\\Takýto systém konfigurácie môže mať význam pre lepšiu distribúciu monitorovacej záťaže, kedy skupina démonov môže odosielať dáta jednému 
-démonovi časovej rady a iná skupina bude využívať iného časového démona.
+tsd.downsample.metric.15.name = iostat.disk.msec_read
+tsd.downsample.metric.15.downsample_method = max
+
+tsd.downsample.metric.16.name = iostat.disk.msec_total
+tsd.downsample.metric.16.downsample_method = max
+
+tsd.downsample.metric.17.name = iostat.disk.msec_weighted_total
+tsd.downsample.metric.17.downsample_method = max
+
+tsd.downsample.metric.18.name = iostat.disk.msec_write
+tsd.downsample.metric.18.downsample_method = max
+
+tsd.downsample.metric.19.name = iostat.disk.r_await
+tsd.downsample.metric.19.downsample_method = max
+
+tsd.downsample.metric.20.name = iostat.disk.read_merged
+tsd.downsample.metric.20.downsample_method = max
+
+tsd.downsample.metric.21.name = iostat.disk.read_requests
+tsd.downsample.metric.21.downsample_method = max
+
+tsd.downsample.metric.22.name = iostat.disk.read_sectors
+tsd.downsample.metric.22.downsample_method = max
+
+tsd.downsample.metric.23.name = iostat.disk.svctm
+tsd.downsample.metric.23.downsample_method = max
+
+tsd.downsample.metric.24.name = iostat.disk.util
+tsd.downsample.metric.24.downsample_method = max
+
+tsd.downsample.metric.25.name = iostat.disk.w_await
+tsd.downsample.metric.25.downsample_method = max
+
+tsd.downsample.metric.26.name = iostat.disk.write_merged
+tsd.downsample.metric.26.downsample_method = max

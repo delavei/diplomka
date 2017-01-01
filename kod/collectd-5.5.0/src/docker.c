@@ -21,7 +21,7 @@ static const char *config_keys[] = {
 
 static int config_keys_num = STATIC_ARRAY_SIZE (config_keys);
 
-//static time_t last_refresh = (time_t) 0;
+static time_t last_refresh = (time_t) 0;
 static int refresh_interval = 60;
 
 typedef struct container_s {
@@ -452,7 +452,7 @@ void *read_container (void* cont) {
 	return NULL;
 }
 
-/*
+
 static int refresh_containers () {
 	struct sockaddr_un address;
 	int response_bytes = 0, nbytes, socket_fd, buffer_size = 255;
@@ -550,58 +550,15 @@ static int refresh_containers () {
 	}
 	
 	return 0;
-} */
-
-static void cpu_load_submit1(int  cpu_load_percent, int id, int image, cdtime_t time)
-{
-    value_t values[1];
-    value_list_t vl = VALUE_LIST_INIT;
-
-    init_value_list (&vl);
-
-    values[0].gauge = cpu_load_percent;
-
-    vl.values = values;
-    vl.values_len = 1;
-    vl.time = time;
-
-	char tags[1024];
-    ssnprintf(tags,1024,"container_id=%d image_name=%d",id,image);
-	meta_data_add_string (vl.meta,"tsdb_tags",tags);
-	
-    sstrncpy (vl.type, "cpu_load", sizeof (vl.type));
-
-    plugin_dispatch_values (&vl);
 }
 
-static int docker_read (void) {
-	long i;
-		
-		
-	int j,k;
-	for (j=0;j<100;j++) {
-		for (k=0;k<100;k++) {
-			//for (i= 1480278181574; i<1482865638250; i=i+5) {
-			//for (i= 1482865538250; i<1482865638250; i=i+5) {
-			for (i= 0; i<1; i=i+5) {
-				//printf("%ld  %d\n",i,);
-				cpu_load_submit1(rand() % 100, j+100, k+100, (cdtime_t) i);	
-			}
-		}
-	}
-	
-	
-	return 0;
-}
-
-/*
-static int docker_read1 (void)
+static int docker_read (void)
 {
 	time_t t;
     time (&t);
-    */
+    
     /* Need to refresh domain or device lists? */
-   /* if ((last_refresh == (time_t) 0) ||
+    if ((last_refresh == (time_t) 0) ||
             ((refresh_interval > 0) && ((last_refresh + refresh_interval) <= t))) {
         if (refresh_containers() != 0) {
             return -1;
@@ -624,7 +581,7 @@ static int docker_read1 (void)
 	}
 	return 0;
 }
-*/
+
 static int docker_shutdown (void)
 {
 	free(containers);

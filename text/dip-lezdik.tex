@@ -74,8 +74,13 @@ Projekt MetaCentrum vznikol v roku 1996 a od roku 1999 je jeho činnosť zastre�
 Českej republiky. Projekt je oficiálnou súčasťou Európskej gridovej iniciatívy (EGI). Úlohou MetaCentra je predovšetkým koordinácia a rozširovanie infraštruktúry či už o vlastné zdroje alebo prostredníctvom
 partnerov, ktorý poskytujú výpočtový výkon svojich clusterov. Jedná sa hlavne o akademickú spoluprácu. MetaCentrum spravuje výpočtové prostriedky a dátové úložiská AV, JČU, MU, MZLU, UK, VUT, ZČU.
 V súčasnosti disponuje (stav k 30.7. 2010) 1500 procesorovými jadrami, 100 TB využiteľnej diskovej kapacity v podobe poľa a 400 TB kapacity v podobe pások. Služby využíva 385 registrovaných aktívnych užívateľov, ktorí 
-spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času.
-
+spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času. Nasledujúci obrázok ilustruje infraštruktúru MetaCentra:
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[width=0.8\textwidth]{images/metacentrum.png}
+       \caption{Infraštruktúra MetaCentra v ČR}
+\end{center}
+\end{figure}
 MetaCentrum primárne poskytuje svoj výpočtový výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
 Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
 infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočtovej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.\cite{metacentrum}
@@ -295,11 +300,15 @@ Analýza časových rád sa primárne zaoberá získavaniu štatistík o zozbier
 \item[\emph{Klasifikácia}] - ide o identifikáciu určitých javov v dátach a ich priradenie k nejakej udalosti - napr. výpadok, spúšťanie virtuálneho stroja atď.                               
 \end{description}
 
-\subsection{Zaobchádzanie s historickými dátami}
+\subsection{Úprava historických dát vzhľadom na kapacitu}
 \label{sec:example}
 Pri zbere časových dát je jedným z dôležitých parametrov kapacita, ktorá je potrebná na ukladanie dát. Uvažujme nasledovný príklad. Infraštruktúra má 5 000 uzlov, o každom zberáme 15 metrík každých 5 sekúnd,
-označených metadátami o dĺžke 100 bajtov. Hodnota časovej zámky je reprezentovaná 4 bajtami a hodnota metriky tiež 4 bajtami. Po roku budú mať zberané dáta v nekomprimovanej podobe približe 51,1 TB. Túto kapacitu
-je možné zmenšovať rôznymi kompresnými metódami a taktiež agregáciou historických dát. Tým sa myslí združovanie nameraných dát do väčších intervalov a ukladanie príslušných hodnôt za tieto dlhšie intervaly.
+označených metadátami o dĺžke 100 bajtov. Hodnota časovej zámky je reprezentovaná 4 bajtami a hodnota metriky tiež 4 bajtami. Po roku budú mať zberané dáta v nekomprimovanej podobe približe 51,1 TB. 
+Vzhľadom na MetaCentrum to predstavuje nezanedbateľnú kapacitu.
+\\Špecializované databázy na ukladanie časových rád výrazne zmenšujú požiadavky na kapacitu. Ďalej je túto kapacitu možné zmenšiť 
+rôznymi kompresnými metódami a taktiež agregáciou historických dát. Tým sa myslí združovanie nameraných dát do väčších intervalov,
+ukladanie príslušných hodnôt za tieto dlhšie intervaly a mazanie nepotrebných hodnôt. Jedným z cieľom práce je navrhnúť riešenie na znižovanie kapacity, ktorú zaberajú časové rady,
+práve spôsobom agregácie historických dát.
 
 \chapter{Aktuálne monitorovacie riešenia}
 Problematike monitorovania softvéru a infraštruktúry sa venuje viacero komerčných alebo open-source aplikácií, prípadne aplikácií zadarmo. Rôznymi technológiami riešia zber dát, ich uchovávanie, vizualizáciu a operácie nad
@@ -373,7 +382,7 @@ Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôs
 Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľaných knižníc, ktoré musia implementovať požadované funkcie.
 
 \subsubsection{Riadenie intervalov zberu metrík}
-Konrola zberu jednotlivých metrík z hľadiska doby trvania tohoto zberu sa v Zabbixe odohráva na úrovni agenta a serveru. Na úrovni agenta ide o čas, ktorý je možné stráviť spracovávaním a získavaním
+Kontrola zberu jednotlivých metrík z hľadiska maximálnej dĺžky trvania zberu sa v Zabbixe odohráva na úrovni agenta a servera. Na úrovni agenta ide o čas, ktorý je možné stráviť spracovávaním a získavaním
 jednotlivých metrík. Pre server je potom definovaná doba, ktorú je ochotný čakať na odpoveď agenta. Tieto doby je možné konfigurovať v rozsahu od 1 do 30 sekúnd.\cite{zabbix-server}
 Zabbix nespracuje jednoduchú kontrolu na hodnotu metriky, ktorá trvá dlhšie ako túto dobu.\cite{zabbix-limit}
 Dokumentácia však neuvádza, ako sa aplikácia riadi beh externých procesov, ktoré zberajú dáta.
@@ -391,7 +400,7 @@ K dispozícií sú aj nástroje na získanie aktuálnych údajov konkrétnej son
 \\Hadoop je možné nakonfigurovať tak, aby odosielal metriky zbernému démonovi Ganglie. Ostatné integrácie v súčasnosti neobsahuje.
 
 \subsubsection{Rozšíriteľnosť aplikácie}
-K dispozícií je mnoho pzásuvných modulov v podobe skriptov operačného systému alebo programov napísaných v skriptovacích jazykoch ako Ruby,
+K dispozícií je mnoho zásuvných modulov v podobe skriptov operačného systému alebo programov napísaných v skriptovacích jazykoch ako Ruby,
 Perl či Python. Pluginy poskytujú monitorovanie prihlásených užívateľov v systéme, rôznych aplikácií a služieb, ako napr. DNS, HTTP, ďalej
 podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.\cite{ganglia-hadoop}
 
@@ -567,8 +576,9 @@ na virtuálnom procesore, ale aj režijné náklady spojené s virtualizáciou.
 \end{description}
 
 \subsection{Pamäť}
-O pamäti poskytuje \textit{libivrt} nasledovné štatistiky:
+O pamäti zberám \textit{libivrt} nasledovné metriky:
 \begin{description}
+\item[memory] - množstvo pamäte v kB, ktoré použité virtuálnym strojom (zo štruktúry virDomainInfo \cite{libvirt-domain-info}).
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN] - množstvo pamäte v kB, ktoré bolo načítané zo swapovacieho priestoru.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_OUT] - množstvo pamäte v kB, ktoré bolo odložené do swapovacieho priestoru.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäte z disku.
@@ -578,9 +588,6 @@ O pamäti poskytuje \textit{libivrt} nasledovné štatistiky:
 ak sa používa technika pamäťového balónu.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON] - aktuálna veľkosť pamäťového balónu v kB.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_RSS] - množstvo pamäte v kB obsadené procesom, v ktorom beží virtuálny stroj.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_USABLE] - maximálna veľkosť pamäťového balónu, kedy ešte nedochádza k swapovaniu pamäte virtuálneho stroja na disk.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_LAST\_UPDATE] - Unixová časová známka poslednej aktualizácie štatistík o pamäti.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_NR] - počet štatistík, ktoré podporuje daný hypervízor.
 \cite{libvirt-mem}
 \end{description}
 Množstvo poskytovaných štatistík závisí od použitého hypervízora. V prípade MetaCentra sa mi podarilo zberať len niektoré z týchto štatistík. Zároveň ich jednotky neboli kilobajty, ale bajty.
@@ -710,6 +717,12 @@ informácie poskytnuté týmto API.
 \item[rebootedNodes] - počet reštartovaných uzlov.
 \end{description}
 
+Ako popisné dáta k metrikám pripájam tento údaj:
+\begin{description}
+\item[cluster\_id] - identifikátor clustera
+\end{description}
+
+
 \subsection{Metriky aplikácií}
 Cluster Application API YARN-u poskytuje informácie o jednotlivých aplikáciách, ktoré sú spustené na clusteri. Niektoré údaje využívam ako zdroj metrických dát, iné ako metadáta. Niektoré nemá význam zberať.
 Zbieram nasledovné metrické dáta o spustených aplikáciách:
@@ -750,6 +763,25 @@ Ako popisné dáta k metrikám pripájam tieto údaje:
 \item[clusterId] - identifikátor clustera.
 \end{description}
 
+\section{PBS Professional}
+\subsection{Metriky úloh}
+PBS Profesional poskytuje údaje o tom, ako jednotlivé úlohy spotrebovávali zdroje. O jednotlivých úlohách zberám nasledovné metriky:
+
+\begin{description}
+\item[resources\_used.cpupercent] - hodnota v percentách, ktorá predstavuje záťaž úlohy na procesory
+\item[resources\_used.cput] - čas, ktorý úloha strávila počítaním na procesoroch
+\item[resources\_used.mem] - veľkosť pamäte alokovanej pre úlohu
+\item[resources\_used.ncpus] - počet procesorov využívaných úlohou
+\item[resources\_used.vmem] - veľkosť alokovanej virtuálnej pamäte pre úlohu
+\item[resources\_used.walltime] - celkový čas, po ktorý je úloha spustená
+\end{description}
+
+Ako popisné dáta k metrikám pripájam tieto údaje:
+\begin{description}
+\item[Job Id] - identifikátor úlohy
+\item[Job\_Owner] - užívateľ, ktorý spustil úlohu
+\end{description}
+
 \chapter{Analýza a návrh}
 Prostredia MetaCentra predstavuje heterogénnu infraštruktúru s rôznymi technológiami sprostredkovávajúcimi výpočetný výkon. Hľadal som riešenie s dôrazom na rozšíriteľnosť, 
 nízku nadbytočnú záťaž a škáľovateľnosť vzhľadom na to, že veľkosť infraštruktúry sa v čase mení.
@@ -778,7 +810,13 @@ priestoru. Je lepšie realizovať zber metrík na základe komunikácie s aplik�
 
 \section{Návrh monitorovacieho riešenia}
 Monitorovacie riešenie bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
-Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. 
+Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. Na nasledujúcom obrázku je architektúra celého riešenia spolu s informáciami, ako a kde sú nasadené jednotlivé komponenty.
+\begin{figure}
+\begin{center}
+       \includegraphics[width=1.0\textwidth]{images/architektura.png}
+       \caption{Architektúra monitorovacieho riešenia}
+\end{center}
+\end{figure}
 \\Samotný proces zberu metrických dát bude zabezpečený aplikáciou \emph{collectd}. Oproti ostatným dostupným aplikáciám disponuje
 veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsob, ako a kam sa budú dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
 aj v systéme upozornení. Collectd bude zabezpečovať prípadné odosielanie notifikácií prostredníctvom emailu. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
@@ -840,7 +878,6 @@ roku a jedného dňa budú agregované dáta za prvý deň zberania.
 uvažujem pod periodickou zmenou takú zmenu, ktorá sa vykonáva v intervale výrazne dlhšom (napr. stonásobok) ako je najkratší interval požadovanej granularity. V prípade uvažovaného príkladu z ~\ref{sec:policy}, kde je 
 tento interval 1 hodina, by sa periodickú zmena bola uskutočňovaná napr. raz za mesiac.
 
-
 \subsection{Zmena granularity a počet databáz}
 Po vykonaní agregácie či už v kontinuálnom alebo periodickom režime je potrebné uložiť získané agregované dáta. Je potrebné vymazať dáta s nadbytočnou hustotou a namiesto nich uložiť nové dáta.
 Druhou možnosťou je uchovávanie metrík s rôznou granularitou v rôznych časových databázach. V tomto prípade sa jedná o získavanie dát z jednej databázy, ich úpravu, uloženie do ďalšej databázy a vymazanie 
@@ -863,7 +900,8 @@ zmenu granularity.
 \\Z databázy s pôvodnými dátami sa budú mazať dáta až vtedy, ak vek prvých nameraných metrík bude väčší ako najdlhší historický interval a príslušný interval požadovanej granularity (v uvažovanom príklade 
 teda jeden rok a jeden deň). Je to z toho dôvodu, aby bola zachovaná čo najväčšia presnosť pri výpočte agregovaných štatistík aj pre najdlhšie historické intervaly. Mazanie z ostatných databáz sa bude 
 uskutočňovať kaskádovito, tj. pre uvažovaný príklad sa z databázy pre mesačný historický interval budú mazať dáta staršie ako rok.
-\\Nástroj bude konfigurovateľný. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz.
+\\Nástroj bude konfigurovateľný. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz. Okrem toho je potrebné nástroj konfigurovať
+metrikami, ktoré majú byť prevzorkovávané a spolu s metódou agregácie viacerých hodnôt do jednej.
 
 \chapter{Implementácia}
 \section{Aplikácia na zber metrických dát}
@@ -941,7 +979,189 @@ Knižnica neobsahuje žiadne závislosti, na jej činnosť sú potrebné iba dva
 \printbibliography[heading=bibintoc]
 
 \begin{appendices}
-\chapter{Prevodná tabuľka názvov metrík}
+\chapter{Prevodné tabuľky názvov metrík}
+\section{libvirt}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB \\
+    cpu\_time & virt.cpu\_time \\ \hline
+    cpu\_load & virt.cpu\_load \\ \hline
+    memory & virt.memory.total \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN & virt.memory.swap\_in \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_OUT & virt.memory.swap\_out \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT & virt.memory.major\_fault \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_MINOR\_FAULT & virt.memory.minor\_fault \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_UNUSED & virt.memory.unused \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE & virt.memory.available \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON & virt.memory.actual\_balloon \\ \hline
+    VIR\_DOMAIN\_MEMORY\_STAT\_RSS & virt.memory.usage\\ \hline
+    rd\_req & virt.disk\_ops.read\\ \hline
+    rd\_bytes & virt.disk\_octets.read\\ \hline
+    wr\_req & virt.disk\_ops.write\\ \hline
+    wr\_bytes & virt.disk\_octets.write\\ \hline
+    rx\_bytes & virt.if\_octets.rx\\ \hline
+    rx\_dropped & virt.if\_dropped.rx\\ \hline
+    rx\_error & virt.if\_errors.rx\\ \hline
+    rx\_packets & virt.if\_packets.rx\\ \hline
+    tx\_bytes & virt.if\_octets.tx\\ \hline
+    tx\_dropped & virt.if\_dropped.tx\\ \hline
+    tx\_packets & virt.if\_packets.tx\\ \hline
+    tx\_error & virt.if\_errors.tx\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    host & host\\ \hline
+    guest\_name & guest\_name\\ \hline
+    \end{tabular}
+\end{center}
+
+\section{Docker}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB \\
+	total\_usage & docker.cpu\_time \\ \hline
+    cpu\_load & docker.cpu\_load \\ \hline
+    usage & docker.memory.usage \\ \hline
+    failcnt & docker.memory.fail\_count \\ \hline
+    rss & docker.memory.rss \\ \hline
+    pgfault & docker.memory.pgfault\_minor \\ \hline
+    pgmajfault & docker.memory.pgfault\_major \\ \hline
+    limit & docker.memory.limit \\ \hline
+    io\_service\_recursive-Read & docker.disk\_ops.read\\ \hline
+    io\_service\_bytes\_recursive-Read & docker.disk\_octets.read\\ \hline
+    io\_serviced\_recursive-Write & docker.disk\_ops.write\\ \hline
+    io\_service\_bytes\_recursive-Write & docker.disk\_octets.write\\ \hline
+    rx\_bytes & docker.if\_octets.rx\\ \hline
+    rx\_dropped & docker.if\_dropped.rx\\ \hline
+    rx\_error & docker.if\_errors.rx\\ \hline
+    rx\_packets & docker.if\_packets.rx\\ \hline
+    tx\_bytes & docker.if\_octets.tx\\ \hline
+    tx\_dropped & docker.if\_dropped.tx\\ \hline
+    tx\_packets & docker.if\_packets.tx\\ \hline
+    tx\_error & docker.if\_errors.tx\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+\begin{center}
+     \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    container\_id & container\_id\\ \hline
+    host & host\\ \hline
+    image\_name & image\_name\\ \hline
+    \end{tabular}
+\end{center}
+
+\section{Hadoop Cluster}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB \\
+	appsSubmitted & hadoop\_cluster.cluster.apps\_submitted \\ \hline
+    appsCompleted & hadoop\_cluster.cluster.apps\_completed \\ \hline
+    appsPending & hadoop\_cluster.cluster.apps\_pending \\ \hline
+    appsRunning & hadoop\_cluster.cluster.apps\_running \\ \hline 
+    appsFailed & hadoop\_cluster.cluster.apps\_failed\\ \hline
+    appsKilled & hadoop\_cluster.cluster.apps\_killed\\ \hline
+    reservedMB & hadoop\_cluster.cluster.reserved\_mb\\ \hline
+    availableMB & hadoop\_cluster.cluster.available\_mb\\ \hline
+    allocatedMB & hadoop\_cluster.cluster.allocated\_mb\\ \hline
+    totalMB & hadoop\_cluster.cluster.total\_mb \\ \hline
+    reservedVirtualCores & hadoop\_cluster.cluster.reserved\_virtual\_cores \\ \hline
+    availableVirtualCores & hadoop\_cluster.cluster.available\_virtual\_cores \\ \hline
+    allocatedVirtualCores & hadoop\_cluster.cluster.allocated\_virtual\_cores \\ \hline
+    totalVirtualCores & hadoop\_cluster.cluster.total\_virtual\_cores \\ \hline
+    containersAllocated & hadoop\_cluster.cluster.containers\_allocated \\ \hline
+    containersReserved & hadoop\_cluster.cluster.containers\_reserved \\ \hline
+    containersPending & hadoop\_cluster.cluster.containers\_pending \\ \hline
+    totalNodes & hadoop\_cluster.cluster.total\_nodes \\ \hline
+    activeNodes & hadoop\_cluster.cluster.active\_nodes \\ \hline
+    lostNodes & hadoop\_cluster.cluster.lost\_nodes \\ \hline
+    unhealthyNodes & hadoop\_cluster.cluster.unhealthy\_nodes \\ \hline
+    decommissionedNodes & hadoop\_cluster.cluster.decommissioned\_nodes \\ \hline
+    rebootedNodes & hadoop\_cluster.cluster.rebooted\_nodes \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    clusterId & cluster\_id\\ \hline
+    \end{tabular}
+\end{center}
+
+
+\section{Hadoop Applications}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB\\
+	allocatedMB & hadoop\_apps.apps.allocated\_mb\\ \hline
+    allocatedVCores & hadoop\_apps.apps.allocated\_vcores\\ \hline
+    elapsedTime & hadoop\_apps.apps.elapsed\_time\\ \hline
+    runningContainers & hadoop\_apps.apps.running\_containers\\ \hline 
+    memorySeconds & hadoop\_apps.apps.memory\_seconds\\ \hline
+    vcoreSeconds & hadoop\_apps.apps.vcore\_seconds\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    id & id\\ \hline
+    clusterId & cluster\_id\\ \hline
+    name & name\\ \hline
+    user & user\\ \hline
+    \end{tabular}
+\end{center}
+
+
+\section{Hadoop Node}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB\\
+	usedMemoryMB & hadoop\_node.node.used\_memory\_mb\\ \hline
+    availMemoryMB & hadoop\_node.node.available\_memory\_mb\\ \hline
+    usedVirtualCores & hadoop\_node.node.used\_virtual\_cores\\ \hline
+    availableVirtualCores & hadoop\_node.node.available\_virtual\_cores\\ \hline 
+    numContainers & hadoop\_node.node.containers\_running\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    id & node\_id\\ \hline
+    clusterId & cluster\_id\\ \hline
+    rack & rack\\ \hline
+    nodeHostName & host\\ \hline
+    \end{tabular}
+\end{center}
+
+\section{PBS Professional}
+
+
 \end{appendices}
 
 \end{document}

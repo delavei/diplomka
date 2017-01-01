@@ -1,0 +1,255 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {slovak}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}\bfseries \IeC {\'U}vod}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}\bfseries Heterog\IeC {\'e}nna infra\IeC {\v s}trukt\IeC {\'u}ra MetaCentra}{3}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}\slshape Kontrola zdrojov infra\IeC {\v s}trukt\IeC {\'u}ry}{4}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}\slshape Cloud}{4}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}\slshape Realiz\IeC {\'a}cia konceptov cloudu}{6}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}\rmfamily Virtu\IeC {\'a}lne stroje}{6}{subsection.2.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Hyperv\IeC {\'\i }zor}{6}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.2}\rmfamily Aplika\IeC {\v c}n\IeC {\'e} kontajnery}{6}{subsection.2.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}\slshape MapReduce aplika\IeC {\v c}n\IeC {\'e} prostredia}{7}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}\slshape Gridov\IeC {\'e} po\IeC {\v c}\IeC {\'\i }tanie}{7}{section.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}\slshape Technol\IeC {\'o}gie vyu\IeC {\v z}\IeC {\'\i }van\IeC {\'e} v MetaCentre}{7}{section.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.1}\rmfamily libvirt/KVM}{8}{subsection.2.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.2}\rmfamily Docker}{8}{subsection.2.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.3}\rmfamily Hadoop}{9}{subsection.2.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.4}\rmfamily PBS Professional}{9}{subsection.2.6.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}\bfseries Zber a uchov\IeC {\'a}vanie monitorovac\IeC {\'\i }ch d\IeC {\'a}t}{11}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}\slshape V\IeC {\v s}eobecn\IeC {\'e} probl\IeC {\'e}my monitorovania}{12}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}\rmfamily Identifik\IeC {\'a}cia relevantn\IeC {\'y}ch metr\IeC {\'\i }k}{12}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}\rmfamily Anal\IeC {\'y}za v re\IeC {\'a}lnom \IeC {\v c}ase a varovania}{12}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}\rmfamily Meracie intervaly}{12}{subsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}\rmfamily Po\IeC {\v c}et zdrojov a ich identifik\IeC {\'a}cia}{13}{subsection.3.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.5}\rmfamily Ukladanie d\IeC {\'a}t}{13}{subsection.3.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.6}\rmfamily Vizualiz\IeC {\'a}cia a anal\IeC {\'y}za d\IeC {\'a}t}{14}{subsection.3.1.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.7}\rmfamily Monitorovanie v heterog\IeC {\'e}nnom v\IeC {\'y}po\IeC {\v c}tovom prostred\IeC {\'\i }}{14}{subsection.3.1.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Problematika intervalov}{14}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Detekcia nov\IeC {\'y}ch zdrojov a u\IeC {\v z}\IeC {\'\i }vate\IeC {\v l}ov}{15}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}\slshape \IeC {\v C}asov\IeC {\'e} rady}{15}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}\rmfamily Anal\IeC {\'y}za \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{15}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}\rmfamily \IeC {\'U}prava historick\IeC {\'y}ch d\IeC {\'a}t vzh\IeC {\v l}adom na kapacitu}{16}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}\bfseries Aktu\IeC {\'a}lne monitorovacie rie\IeC {\v s}enia}{17}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}\slshape Monitorovacie rie\IeC {\v s}enia}{17}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}\rmfamily Nagios}{17}{subsection.4.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }renia}{18}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Riadenie intervalov zberu metr\IeC {\'\i }k}{18}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}\rmfamily Icinga}{18}{subsection.4.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }rite\IeC {\v l}nos\IeC {\v t} aplik\IeC {\'a}cie}{19}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.3}\rmfamily Zabbix}{19}{subsection.4.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }renia}{20}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Riadenie intervalov zberu metr\IeC {\'\i }k}{20}{section*.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.4}\rmfamily Ganglia}{20}{subsection.4.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }rite\IeC {\v l}nos\IeC {\v t} aplik\IeC {\'a}cie}{21}{section*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.5}\rmfamily AppDynamics}{21}{subsection.4.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }rite\IeC {\v l}nos\IeC {\v t} aplik\IeC {\'a}cie}{22}{section*.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}\slshape \IeC {\v D}al\IeC {\v s}ie n\IeC {\'a}stroje}{22}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}\rmfamily Linux cgroups}{22}{subsection.4.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}\rmfamily collectd}{23}{subsection.4.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Roz\IeC {\v s}\IeC {\'\i }rite\IeC {\v l}nos\IeC {\v t} aplik\IeC {\'a}cie}{24}{section*.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Riadenie intervalov zberu metr\IeC {\'\i }k}{24}{section*.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}\slshape Datab\IeC {\'a}zy \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{24}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}\rmfamily OpenTSDB}{24}{subsection.4.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}\rmfamily InfluxDB}{26}{subsection.4.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Politiky udr\IeC {\v z}iavania}{26}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Kontinu\IeC {\'a}lne dotazovanie a agreg\IeC {\'a}cia}{27}{section*.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.3}\rmfamily RRDTool}{27}{subsection.4.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}\slshape Vhodnos\IeC {\v t} dostupn\IeC {\'e}ho softv\IeC {\'e}ru}{27}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}\bfseries Metriky}{29}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.0.1}\rmfamily V\IeC {\'y}znam popisn\IeC {\'y}ch \IeC {\'u}dajov metr\IeC {\'\i }k}{29}{subsection.5.0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.0.2}\rmfamily Periodicita zberania metr\IeC {\'\i }k}{30}{subsection.5.0.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.0.3}\rmfamily Form\IeC {\'a}t hodnoty metriky}{30}{subsection.5.0.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.0.4}\rmfamily V\IeC {\'y}po\IeC {\v c}et percentu\IeC {\'a}lnej z\IeC {\'a}\IeC {\v t}a\IeC {\v z}e na procesor}{30}{subsection.5.0.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}\slshape libvirt/KVM}{31}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.1}\rmfamily Procesor}{31}{subsection.5.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.2}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{31}{subsection.5.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Pam\IeC {\"a}\IeC {\v t}ov\IeC {\'y} bal\IeC {\'o}n}{32}{section*.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.3}\rmfamily Z\IeC {\'a}pis a \IeC {\v c}\IeC {\'\i }tanie z disku}{32}{subsection.5.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.4}\rmfamily Sie\IeC {\v t}}{32}{subsection.5.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.5}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{33}{subsection.5.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}\slshape Docker}{33}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.1}\rmfamily Procesor}{33}{subsection.5.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.2}\rmfamily Pam\IeC {\"a}\IeC {\v t}}{33}{subsection.5.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.3}\rmfamily Sie\IeC {\v t}}{34}{subsection.5.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Metriky siete}{34}{section*.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.4}\rmfamily Z\IeC {\'a}pis a \IeC {\v c}\IeC {\'\i }tanie z disku}{35}{subsection.5.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.5}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{35}{subsection.5.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}\slshape Hadoop}{35}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.1}\rmfamily Metriky clustera}{35}{subsection.5.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.2}\rmfamily Metriky aplik\IeC {\'a}ci\IeC {\'\i }}{37}{subsection.5.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.3}\rmfamily Metriky uzlov}{37}{subsection.5.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}\slshape PBS Professional}{38}{section.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.1}\rmfamily Metriky \IeC {\'u}loh}{38}{subsection.5.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}\bfseries Anal\IeC {\'y}za a n\IeC {\'a}vrh}{39}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}\slshape Po\IeC {\v z}iadavky na aplik\IeC {\'a}ciu}{39}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.1}\rmfamily Vysok\IeC {\'y} monitorovac\IeC {\'\i } v\IeC {\'y}kon}{39}{subsection.6.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.2}\rmfamily N\IeC {\'\i }zka nadbyto\IeC {\v c}n\IeC {\'a} z\IeC {\'a}\IeC {\v t}a\IeC {\v z}}{39}{subsection.6.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.3}\rmfamily \IeC {\v S}k\IeC {\'a}lovate\IeC {\v l}nos\IeC {\v t}}{39}{subsection.6.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}\slshape Miesto nasadenia zbernej aplik\IeC {\'a}cie}{40}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}\slshape N\IeC {\'a}vrh monitorovacieho rie\IeC {\v s}enia}{40}{section.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.1}\rmfamily Paraleliz\IeC {\'a}cia v r\IeC {\'a}mci pluginov}{42}{subsection.6.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.2}\rmfamily Datab\IeC {\'a}za \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d}{42}{subsection.6.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\rmfamily Zmen granularity d\IeC {\'a}t na \IeC {\'u}rovni v\IeC {\'y}stupu z datab\IeC {\'a}zy}{43}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.4}\slshape Zmena granularity d\IeC {\'a}t}{43}{section.6.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.4.1}\rmfamily Kontinu\IeC {\'a}lne a periodick\IeC {\'e} zmeny granularity}{44}{subsection.6.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.4.2}\rmfamily Zmena granularity a po\IeC {\v c}et datab\IeC {\'a}z}{44}{subsection.6.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.4.3}\rmfamily N\IeC {\'a}vrh n\IeC {\'a}stroja na zmenu granularity d\IeC {\'a}t}{44}{subsection.6.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}\bfseries Implement\IeC {\'a}cia}{47}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}\slshape Aplik\IeC {\'a}cia na zber metrick\IeC {\'y}ch d\IeC {\'a}t}{47}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.1}\rmfamily Zapisovac\IeC {\'\i } plugin Write TSDB}{47}{subsection.7.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}\slshape Techniky zbierania metr\IeC {\'\i }k}{47}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.1}\rmfamily Docker}{47}{subsection.7.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.2}\rmfamily libvirt/KVM}{48}{subsection.7.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.3}\rmfamily Hadoop}{48}{subsection.7.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.4}\rmfamily PBS Professional}{48}{subsection.7.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}\slshape Kni\IeC {\v z}nice vyu\IeC {\v z}it\IeC {\'e} pri zbere metr\IeC {\'\i }k}{48}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.1}\rmfamily libcurl}{49}{subsection.7.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.2}\rmfamily libpthread}{49}{subsection.7.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.3}\rmfamily cJSON}{49}{subsection.7.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}\bfseries Z\IeC {\'a}ver}{51}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{53}{chapter*.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Appendices}{55}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}\bfseries Prevodn\IeC {\'e} tabu\IeC {\v l}ky n\IeC {\'a}zvov metr\IeC {\'\i }k}{57}{Dodatok.a.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}\slshape libvirt}{57}{section.a.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1.1}\rmfamily Metriky}{57}{subsection.a.A.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1.2}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{58}{subsection.a.A.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}\slshape Docker}{58}{section.a.A.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2.1}\rmfamily Metriky}{58}{subsection.a.A.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2.2}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{59}{subsection.a.A.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.3}\slshape Hadoop Cluster}{60}{section.a.A.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.3.1}\rmfamily Metriky}{60}{subsection.a.A.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.3.2}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{60}{subsection.a.A.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.4}\slshape Hadoop Applications}{61}{section.a.A.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.4.1}\rmfamily Metriky}{61}{subsection.a.A.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.4.2}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{61}{subsection.a.A.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.5}\slshape Hadoop Node}{61}{section.a.A.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.5.1}\rmfamily Metriky}{61}{subsection.a.A.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.5.2}\rmfamily Popisn\IeC {\'e} \IeC {\'u}daje}{62}{subsection.a.A.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.6}\slshape PBS Professional}{62}{section.a.A.6}

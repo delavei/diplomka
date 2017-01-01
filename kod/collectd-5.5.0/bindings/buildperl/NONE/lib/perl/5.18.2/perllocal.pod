@@ -64,3 +64,25 @@ C<EXE_FILES: >
 
 =back
 
+=head2 Sat Dec 31 21:26:51 2016: C<Module> L<Collectd|Collectd>
+
+=over 4
+
+=item *
+
+C<installed into: NONE/share/perl/5.18.2>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: >
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

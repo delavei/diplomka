@@ -1,0 +1,591 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{none/global/}
+    \entry{metacentrum}{online}{}
+      \name{author}{1}{}{%
+        {{hash=4adead644157d39686125fbb1313e833}{%
+           family={MetaCentrum},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4adead644157d39686125fbb1313e833}
+      \strng{fullhash}{4adead644157d39686125fbb1313e833}
+      \strng{authornamehash}{4adead644157d39686125fbb1313e833}
+      \strng{authorfullhash}{4adead644157d39686125fbb1313e833}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Informační leták k činnosti MetaCentra}
+      \field{year}{2010}
+      \verb{url}
+      \verb http://www.metacentrum.cz/export/sites/metacentrum/downloads/PR/letak_NGI.pdf
+      \endverb
+    \endentry
+    \entry{cloud_bible}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fc62830f29726a914ea9a75ce44a32f5}{%
+           family={Sosinsky},
+           familyi={S\bibinitperiod},
+           given={Barrie\bibnamedelima A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{fc62830f29726a914ea9a75ce44a32f5}
+      \strng{fullhash}{fc62830f29726a914ea9a75ce44a32f5}
+      \strng{authornamehash}{fc62830f29726a914ea9a75ce44a32f5}
+      \strng{authorfullhash}{fc62830f29726a914ea9a75ce44a32f5}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Cloud computing bible}}
+      \field{year}{2011}
+    \endentry
+    \entry{hypervisorTypes}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74b834c9364855a81a51f7b222d9b0b3}{%
+           family={{Gerald J. Popek, Robert P. Goldberg}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{fullhash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{authornamehash}{74b834c9364855a81a51f7b222d9b0b3}
+      \strng{authorfullhash}{74b834c9364855a81a51f7b222d9b0b3}
+      \field{sortinit}{6}
+      \field{sortinithash}{98327ee6f7ac458993dfb781f9fb8713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{Communications of the ACM}}
+      \field{title}{{Formal requirements for virtualizable third generation architectures}}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2016}
+      \field{volume}{17}
+      \field{year}{1974}
+      \field{urldateera}{ce}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?doid=361011.361073
+      \endverb
+    \endentry
+    \entry{kvm}{book}{}
+      \name{author}{1}{}{%
+        {{hash=145c54002d675be26fdaac099d8b02b5}{%
+           family={Warnke},
+           familyi={W\bibinitperiod},
+           given={Ritzau},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Books on Demand GmbH}%
+      }
+      \strng{namehash}{145c54002d675be26fdaac099d8b02b5}
+      \strng{fullhash}{145c54002d675be26fdaac099d8b02b5}
+      \strng{authornamehash}{145c54002d675be26fdaac099d8b02b5}
+      \strng{authorfullhash}{145c54002d675be26fdaac099d8b02b5}
+      \field{sortinit}{7}
+      \field{sortinithash}{63c57bf2a02e588d7b993c05d52e84f6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4.}
+      \field{isbn}{978-3-8370-0876-0}
+      \field{title}{{qemu-kvm and libvirt}}
+      \field{year}{2010}
+    \endentry
+    \entry{libvirt}{online}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{ff392057b609ad7b4de0b8e2cc30b687}
+      \field{labeltitlesource}{title}
+      \field{title}{libvirt: The virtualization API}
+      \field{year}{2014}
+      \verb{url}
+      \verb http://libvirt.org/
+      \endverb
+    \endentry
+    \entry{docker}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f13d07e424dfd959dbca10a0a1e7081e}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Docker},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{f13d07e424dfd959dbca10a0a1e7081e}
+      \strng{fullhash}{f13d07e424dfd959dbca10a0a1e7081e}
+      \strng{authornamehash}{f13d07e424dfd959dbca10a0a1e7081e}
+      \strng{authorfullhash}{f13d07e424dfd959dbca10a0a1e7081e}
+      \field{sortinit}{9}
+      \field{sortinithash}{5a7694b2c36c7534b22948c31e4b7920}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What is Docker?}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://www.docker.com/what-docker
+      \endverb
+    \endentry
+    \entry{hadoop}{online}{}
+      \name{author}{1}{}{%
+        {{hash=ffe4cf17ca8c1f982178700c0396c583}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={The\bibnamedelimb Apache\bibnamedelima Software},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ffe4cf17ca8c1f982178700c0396c583}
+      \strng{fullhash}{ffe4cf17ca8c1f982178700c0396c583}
+      \strng{authornamehash}{ffe4cf17ca8c1f982178700c0396c583}
+      \strng{authorfullhash}{ffe4cf17ca8c1f982178700c0396c583}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Welcome to Apache Hadoop!}
+      \field{year}{2014}
+      \verb{url}
+      \verb http://hadoop.apache.org/
+      \endverb
+    \endentry
+    \entry{eda}{book}{}
+      \name{author}{1}{}{%
+        {{hash=92a055373f4aae5433060313b65d4763}{%
+           family={Tukey},
+           familyi={T\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Reading, Mass}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Pub. Co}%
+      }
+      \strng{namehash}{92a055373f4aae5433060313b65d4763}
+      \strng{fullhash}{92a055373f4aae5433060313b65d4763}
+      \strng{authornamehash}{92a055373f4aae5433060313b65d4763}
+      \strng{authorfullhash}{92a055373f4aae5433060313b65d4763}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780201076165}
+      \field{title}{Exploratory data analysis}
+      \field{year}{1977}
+    \endentry
+    \entry{nagios}{online}{}
+      \name{author}{1}{}{%
+        {{hash=e7d54d35b48843948cffebab6acafe09}{%
+           family={Nagios\bibnamedelima Enterprises},
+           familyi={N\bibinitperiod\bibinitdelim E\bibinitperiod},
+           given={LLC},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{e7d54d35b48843948cffebab6acafe09}
+      \strng{fullhash}{e7d54d35b48843948cffebab6acafe09}
+      \strng{authornamehash}{e7d54d35b48843948cffebab6acafe09}
+      \strng{authorfullhash}{e7d54d35b48843948cffebab6acafe09}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nagios - Network, Server and Log Monitoring Software}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.nagios.com/
+      \endverb
+    \endentry
+    \entry{icinga-plugin}{online}{}
+      \name{author}{1}{}{%
+        {{hash=4b2cef5aca57354f82f92261599652c0}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={Icinga\bibnamedelima Development},
+           giveni={I\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b2cef5aca57354f82f92261599652c0}
+      \strng{fullhash}{4b2cef5aca57354f82f92261599652c0}
+      \strng{authornamehash}{4b2cef5aca57354f82f92261599652c0}
+      \strng{authorfullhash}{4b2cef5aca57354f82f92261599652c0}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{11.1. Icinga Plugin API}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://docs.icinga.org/latest/en/pluginapi.html
+      \endverb
+    \endentry
+    \entry{zabbix-modules}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6dc494a0ed530c28608cd412b3b07091}{%
+           family={SIA},
+           familyi={S\bibinitperiod},
+           given={Zabbix},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{fullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authornamehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authorfullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{5 Loadable modules [Zabbix Documentation 2.2]}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.zabbix.com/documentation/2.2/manual/config/items/loadablemodules
+      \endverb
+    \endentry
+    \entry{zabbix-server}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6dc494a0ed530c28608cd412b3b07091}{%
+           family={SIA},
+           familyi={S\bibinitperiod},
+           given={Zabbix},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{fullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authornamehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authorfullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{1 Zabbix Server [Zabbix Documentation 1.8]}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.zabbix.com/documentation/1.8/manual/processes/zabbix_server
+      \endverb
+    \endentry
+    \entry{zabbix-limit}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6dc494a0ed530c28608cd412b3b07091}{%
+           family={SIA},
+           familyi={S\bibinitperiod},
+           given={Zabbix},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{fullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authornamehash}{6dc494a0ed530c28608cd412b3b07091}
+      \strng{authorfullhash}{6dc494a0ed530c28608cd412b3b07091}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{19 Items [Zabbix Documentation 1.8]}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.zabbix.com/documentation/1.8/manual/config/items
+      \endverb
+    \endentry
+    \entry{ganglia}{online}{}
+      \name{author}{1}{}{%
+        {{hash=45efbf42609b5b76348db44359aa328c}{%
+           family={Ganglia},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{45efbf42609b5b76348db44359aa328c}
+      \strng{fullhash}{45efbf42609b5b76348db44359aa328c}
+      \strng{authornamehash}{45efbf42609b5b76348db44359aa328c}
+      \strng{authorfullhash}{45efbf42609b5b76348db44359aa328c}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ganglia Monitoring System}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://ganglia.info/
+      \endverb
+    \endentry
+    \entry{ganglia-hadoop}{online}{}
+      \name{author}{1}{}{%
+        {{hash=45efbf42609b5b76348db44359aa328c}{%
+           family={Ganglia},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{45efbf42609b5b76348db44359aa328c}
+      \strng{fullhash}{45efbf42609b5b76348db44359aa328c}
+      \strng{authornamehash}{45efbf42609b5b76348db44359aa328c}
+      \strng{authorfullhash}{45efbf42609b5b76348db44359aa328c}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{GangliaMetrics - Hadoop Wiki}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://wiki.apache.org/hadoop/GangliaMetrics
+      \endverb
+    \endentry
+    \entry{appdyn}{online}{}
+      \name{author}{1}{}{%
+        {{hash=458163abda42eca4f08e366db21a2eb7}{%
+           family={AppDynamics},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{458163abda42eca4f08e366db21a2eb7}
+      \strng{fullhash}{458163abda42eca4f08e366db21a2eb7}
+      \strng{authornamehash}{458163abda42eca4f08e366db21a2eb7}
+      \strng{authorfullhash}{458163abda42eca4f08e366db21a2eb7}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{AppDynamics Exchange}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.appdynamics.com/community/exchange/
+      \endverb
+    \endentry
+    \entry{cgroups}{online}{}
+      \name{author}{1}{}{%
+        {{hash=18e4d53c2351f8755aaf9582e7861594}{%
+           family={Red\bibnamedelima Hat},
+           familyi={R\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{18e4d53c2351f8755aaf9582e7861594}
+      \strng{fullhash}{18e4d53c2351f8755aaf9582e7861594}
+      \strng{authornamehash}{18e4d53c2351f8755aaf9582e7861594}
+      \strng{authorfullhash}{18e4d53c2351f8755aaf9582e7861594}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Chapter 1. Introduction to Control Groups (Cgroups)}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/ch01.html
+      \endverb
+    \endentry
+    \entry{collectd}{online}{}
+      \name{author}{1}{}{%
+        {{hash=cb8e74837114dfc0b226911c4efb6a27}{%
+           family={Forster},
+           familyi={F\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{cb8e74837114dfc0b226911c4efb6a27}
+      \strng{fullhash}{cb8e74837114dfc0b226911c4efb6a27}
+      \strng{authornamehash}{cb8e74837114dfc0b226911c4efb6a27}
+      \strng{authorfullhash}{cb8e74837114dfc0b226911c4efb6a27}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Start page - collectd - The system statistics collection daemon}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://collectd.org/
+      \endverb
+    \endentry
+    \entry{openTSDB}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6d6263aeb47dcbba1b28de52e5c27c81}{%
+           family={Authors},
+           familyi={A\bibinitperiod},
+           given={The\bibnamedelima OpenTSDB},
+           giveni={T\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \strng{namehash}{6d6263aeb47dcbba1b28de52e5c27c81}
+      \strng{fullhash}{6d6263aeb47dcbba1b28de52e5c27c81}
+      \strng{authornamehash}{6d6263aeb47dcbba1b28de52e5c27c81}
+      \strng{authorfullhash}{6d6263aeb47dcbba1b28de52e5c27c81}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{OpenTSDB - A Distributed, Scalable Monitoring System}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://opentsdb.net/overview.html
+      \endverb
+    \endentry
+    \entry{opentsdb-arch}{online}{}
+      \name{author}{1}{}{%
+        {{hash=99eaf663d638834b08bbbd005af4a369}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{99eaf663d638834b08bbbd005af4a369}
+      \strng{fullhash}{99eaf663d638834b08bbbd005af4a369}
+      \strng{authornamehash}{99eaf663d638834b08bbbd005af4a369}
+      \strng{authorfullhash}{99eaf663d638834b08bbbd005af4a369}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Opentsdb}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://www.slideshare.net/thecupoflife/opentsdb-in-a-real-enviroment
+      \endverb
+    \endentry
+    \entry{grafana}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2c3b8c7de1bb85e311b11875d7038aa0}{%
+           family={frl1nuX},
+           familyi={f\bibinitperiod}}}%
+      }
+      \strng{namehash}{2c3b8c7de1bb85e311b11875d7038aa0}
+      \strng{fullhash}{2c3b8c7de1bb85e311b11875d7038aa0}
+      \strng{authornamehash}{2c3b8c7de1bb85e311b11875d7038aa0}
+      \strng{authorfullhash}{2c3b8c7de1bb85e311b11875d7038aa0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Grafana 2 and Nginx}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://www.frlinux.eu/?p=424
+      \endverb
+    \endentry
+    \entry{influxdb}{online}{}
+      \name{author}{1}{}{%
+        {{hash=1f041b9a5fa76ad1f5a3643d4e349149}{%
+           family={InfluxData},
+           familyi={I\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f041b9a5fa76ad1f5a3643d4e349149}
+      \strng{fullhash}{1f041b9a5fa76ad1f5a3643d4e349149}
+      \strng{authornamehash}{1f041b9a5fa76ad1f5a3643d4e349149}
+      \strng{authorfullhash}{1f041b9a5fa76ad1f5a3643d4e349149}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{InfluxDB Version 1.0 Documentation}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://docs.influxdata.com/influxdb/v1.0/
+      \endverb
+    \endentry
+    \entry{proc-stat}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f463bcc6aba9ce3d4b1dac90899fcc47}{%
+           family={Daniel\bibnamedelima Quinlan},
+           familyi={D\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           given={Michael\bibnamedelima Kerrisk},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{f463bcc6aba9ce3d4b1dac90899fcc47}
+      \strng{fullhash}{f463bcc6aba9ce3d4b1dac90899fcc47}
+      \strng{authornamehash}{f463bcc6aba9ce3d4b1dac90899fcc47}
+      \strng{authorfullhash}{f463bcc6aba9ce3d4b1dac90899fcc47}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{proc(5) - Linux manual page}
+      \field{year}{2008}
+      \verb{url}
+      \verb http://man7.org/linux/man-pages/man5/proc.5.html
+      \endverb
+    \endentry
+    \entry{libvirt-cpu}{online}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labeltitlesource}{title}
+      \field{title}{libvirt: Module libvirt-domain from libvirt}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://libvirt.org/html/libvirt-libvirt-domain.html#virDomainGetCPUStats
+      \endverb
+    \endentry
+    \entry{libvirt-domain-info}{online}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labeltitlesource}{title}
+      \field{title}{libvirt: Module libvirt-domain from libvirt}
+      \field{year}{2014}
+      \verb{url}
+      \verb https://libvirt.org/html/libvirt-libvirt-domain.html#virDomainInfo
+      \endverb
+    \endentry
+    \entry{libvirt-mem}{online}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labeltitlesource}{title}
+      \field{title}{libvirt: Module libvirt-domain from libvirt}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://libvirt.org/html/libvirt-libvirt-domain.html#virDomainMemoryStatStruct
+      \endverb
+    \endentry
+    \entry{writetsdb}{online}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{labeltitlesource}{title}
+      \field{title}{Plugin:Write TSDB - collectd Wiki}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://collectd.org/wiki/index.php/Plugin:Write_TSDB
+      \endverb
+    \endentry
+    \entry{hadoop-yarn}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8514f80a2c717fcca8ef0674f335b126}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Apache\bibnamedelima Software},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8514f80a2c717fcca8ef0674f335b126}
+      \strng{fullhash}{8514f80a2c717fcca8ef0674f335b126}
+      \strng{authornamehash}{8514f80a2c717fcca8ef0674f335b126}
+      \strng{authorfullhash}{8514f80a2c717fcca8ef0674f335b126}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Apache Hadoop 2.7.2 - Apache Hadoop YARN}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html
+      \endverb
+    \endentry
+    \entry{libcurl}{online}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{labeltitlesource}{title}
+      \field{title}{libcurl - the multiprotocol file transfer library}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://curl.haxx.se/libcurl/
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
