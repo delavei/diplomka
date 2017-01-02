@@ -18,36 +18,33 @@ sudo -u opentsdb JVMARGS='-Djava.security.auth.login.config=/etc/opentsdb/hbase-
 
 
 sudo -u opentsdb JVMARGS='-Djava.security.auth.login.config=/etc/opentsdb/hbase-client.jaas' /usr/share/opentsdb/bin/tsdb import /home/juraj/opentsdb_import
-
+ssh root@147.251.255.105
 
 2592000 sekund je jeden mesiac
 
 OTAZKYYYYY
 analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
 jake verzie softov sa používajú? dať to do textu -- libvirt centOS7, debian 7,8
-hadoop kontajnery? ano
 
 TEEEEEEEEEEEEEEEEEEEXT
-
 Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
 
 
 pripomienky veduceho
 pripomienky boris
-uvod
-zaver
-testovanie
 o hadoope z knihy
 o dockeri z knihy
+metriky hadoopu - ako ich zberať lepšie.
 preco pouzivam pbs pro a nie torque
-obrazok - hadoop, metacentrum, pbs
 
 Warenof12- heslo k uml stranke (mozno bez minus)
 
 SOM ZMENIL!
 Úprava historických dát vzhľadom na kapacitu
-
-
+obrazky
+metriky torque
+tabulky ako su ulozene metriky v databaze
+testovanie
 
 
 

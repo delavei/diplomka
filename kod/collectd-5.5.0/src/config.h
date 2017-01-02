@@ -105,13 +105,13 @@
 #define HAVE_CTYPE_H 1
 
 /* Define if libcurl supports CURLOPT_TIMEOUT_MS option. */
-/* #undef HAVE_CURLOPT_TIMEOUT_MS */
+#define HAVE_CURLOPT_TIMEOUT_MS 1
 
 /* Define if libcurl supports CURLOPT_USERNAME option. */
-/* #undef HAVE_CURLOPT_USERNAME */
+#define HAVE_CURLOPT_USERNAME 1
 
 /* Define to 1 if you have the <curl/curl.h> header file. */
-/* #undef HAVE_CURL_CURL_H */
+#define HAVE_CURL_CURL_H 1
 
 /* Define to 1 if you have the <dbi/dbi.h> header file. */
 /* #undef HAVE_DBI_DBI_H */
@@ -172,7 +172,7 @@
 /* #undef HAVE_FS_INFO_H */
 
 /* Define to 1 if you have the <gcrypt.h> header file. */
-/* #undef HAVE_GCRYPT_H */
+#define HAVE_GCRYPT_H 1
 
 /* Define if the function getmntent exists. It's the version from libgen. */
 /* #undef HAVE_GEN_GETMNTENT */
@@ -270,7 +270,7 @@
 /* #undef HAVE_IP_VS_H */
 
 /* Define to 1 if you have the <jni.h> header file. */
-/* #undef HAVE_JNI_H */
+#define HAVE_JNI_H 1
 
 /* Define to 1 if you have the <kstat.h> header file. */
 /* #undef HAVE_KSTAT_H */
@@ -291,7 +291,7 @@
 /* #undef HAVE_KVM_H */
 
 /* Define to 1 if you have the <ldap.h> header file. */
-/* #undef HAVE_LDAP_H */
+#define HAVE_LDAP_H 1
 
 /* Define to 1 if you have the <libaquaero5.h> header file. */
 /* #undef HAVE_LIBAQUAERO5_H */
@@ -315,7 +315,7 @@
 /* #undef HAVE_LIBGANGLIA */
 
 /* Define to 1 if you have the gcrypt library (-lgcrypt). */
-/* #undef HAVE_LIBGCRYPT */
+#define HAVE_LIBGCRYPT 1
 
 /* Define to 1 if you have the <libgen.h> header file. */
 #define HAVE_LIBGEN_H 1
@@ -372,7 +372,7 @@
 /* #undef HAVE_LIBPERL */
 
 /* Define to 1 if you have the <libpq-fe.h> header file. */
-#define HAVE_LIBPQ_FE_H 1
+/* #undef HAVE_LIBPQ_FE_H */
 
 /* Wether or not to use pthread (POSIX threads) library */
 #define HAVE_LIBPTHREAD 1
@@ -420,10 +420,10 @@
 /* #undef HAVE_LIBUDEV_H */
 
 /* Define to 1 if you have the <libvirt/libvirt.h> header file. */
-/* #undef HAVE_LIBVIRT_LIBVIRT_H */
+#define HAVE_LIBVIRT_LIBVIRT_H 1
 
 /* Define to 1 if you have the <libxml/parser.h> header file. */
-/* #undef HAVE_LIBXML_PARSER_H */
+#define HAVE_LIBXML_PARSER_H 1
 
 /* Define to 1 if you have the 'xmms' library (-lxmms). */
 #define HAVE_LIBXMMS 0
@@ -480,7 +480,7 @@
 #define HAVE_LOCALE_H 1
 
 /* Define this if a modern libltdl is already installed */
-#define HAVE_LTDL 1
+/* #undef HAVE_LTDL */
 
 /* Define to 1 if you have the <lvm2app.h> header file. */
 /* #undef HAVE_LVM2APP_H */
@@ -750,7 +750,7 @@
 /* #undef HAVE_PLUGIN_DNS */
 
 /* Define to 1 if the docker plugin is enabled. */
-/* #undef HAVE_PLUGIN_DOCKER */
+#define HAVE_PLUGIN_DOCKER 1
 
 /* Define to 1 if the drbd plugin is enabled. */
 /* #undef HAVE_PLUGIN_DRBD */
@@ -780,13 +780,13 @@
 /* #undef HAVE_PLUGIN_GMOND */
 
 /* Define to 1 if the hadoop_apps plugin is enabled. */
-/* #undef HAVE_PLUGIN_HADOOP_APPS */
+#define HAVE_PLUGIN_HADOOP_APPS 1
 
 /* Define to 1 if the hadoop_cluster plugin is enabled. */
-/* #undef HAVE_PLUGIN_HADOOP_CLUSTER */
+#define HAVE_PLUGIN_HADOOP_CLUSTER 1
 
 /* Define to 1 if the hadoop_node plugin is enabled. */
-/* #undef HAVE_PLUGIN_HADOOP_NODE */
+#define HAVE_PLUGIN_HADOOP_NODE 1
 
 /* Define to 1 if the hddtemp plugin is enabled. */
 /* #undef HAVE_PLUGIN_HDDTEMP */
@@ -918,7 +918,7 @@
 /* #undef HAVE_PLUGIN_ORACLE */
 
 /* Define to 1 if the pbs_pro plugin is enabled. */
-#define HAVE_PLUGIN_PBS_PRO 1
+/* #undef HAVE_PLUGIN_PBS_PRO */
 
 /* Define to 1 if the perl plugin is enabled. */
 /* #undef HAVE_PLUGIN_PERL */
@@ -1047,7 +1047,7 @@
 /* #undef HAVE_PLUGIN_VARNISH */
 
 /* Define to 1 if the virt plugin is enabled. */
-/* #undef HAVE_PLUGIN_VIRT */
+#define HAVE_PLUGIN_VIRT 1
 
 /* Define to 1 if the vmem plugin is enabled. */
 /* #undef HAVE_PLUGIN_VMEM */
@@ -1113,7 +1113,7 @@
 #define HAVE_PWD_H 1
 
 /* Define to 1 if you have the <Python.h> header file. */
-#define HAVE_PYTHON_H 1
+/* #undef HAVE_PYTHON_H */
 
 /* Define to 1 if you have the `readdir' function. */
 #define HAVE_READDIR 1
@@ -1536,7 +1536,7 @@
 /* #undef LTDL_DLOPEN_DEPLIBS */
 
 /* Define to the system default library search path. */
-#define LT_DLSEARCH_PATH "/lib:/usr/lib:/usr/lib/x86_64-linux-gnu/libfakeroot:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/lib/i586-linux-gnu:/usr/lib/i586-linux-gnu:/usr/local/lib:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu"
+#define LT_DLSEARCH_PATH "/lib:/usr/lib:/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib/i386-linux-gnu/mesa:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/lib/i686-linux-gnu:/usr/lib/i686-linux-gnu:/usr/local/lib:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu/mesa-egl:/usr/lib/x86_64-linux-gnu/mesa"
 
 /* The archive extension */
 #define LT_LIBEXT "a"
@@ -1612,7 +1612,7 @@
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */
-/* #undef YYTEXT_POINTER */
+#define YYTEXT_POINTER 1
 
 /* Enable large inode numbers on Mac OS X 10.5.  */
 #ifndef _DARWIN_USE_64_BIT_INODE

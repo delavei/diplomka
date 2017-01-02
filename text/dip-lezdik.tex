@@ -47,27 +47,38 @@ declaration = {Prehlasujem, že táto diplomová práca je mojím pôvodným aut
 Heterogénna infraštruktúra MetaCentra poskytuje výpočtové prostriedky pre mnohé vedecké a výskumné organizácie. Spracovávajú sa v nej veľké objemy dát. Je tvorená viac než tisíckou uzlov, ktoré sú
 rozmiestnené naprieč celou
 Českou republikou. Podstatou fungovania heterogénnej infraštruktúry je zdieľanie veľkého výpočtového výkonu viacerými subjektami, pre ktoré by zadováženie a prevádzkovanie vlastnej infraštruktúry predstavovalo neúmernú 
-ekonomickú, personálnu a prevádzkovú záťaž. Princípom zdieľania je, že prostriedky by mali byť ideálne využívané všetkými rovnako. Nemalo by dochádzať k tomu, že jeden klient vyťaží zdroje natoľko, že 
+ekonomickú, personálnu a prevádzkovú záťaž. Princípom zdieľania je, že prostriedky by mali byť využívané férovo a miera využívania by
+mala byť kontrolovateľná. Nemalo by dochádzať k tomu, že jeden klient vyťaží zdroje natoľko, že 
 výpočtové úlohy ostatných dostanú nepomerne malý priestor. To je možné docieliť monitorovaním využitia výpočtového výkonu a vstupno-výstupných zariadení. Ak máme informácie o tom, kto koľko využíval zdroje, 
-je možné toto využitie účtovať a zároveň do budúcnosti primerane regulovať. 
-
-Aby bolo možné správne vyvodzovať závery o zaťažení infraštruktúry, je potrebné o tom zberať údaje periodicky a kontinuálne v čase. Je potrebné sledovať parametre v pravidelných intervaloch. Každému intervalu 
-prináleží hodnota, ktorá vypovedá o využití prostriedkov v danom momente. Takéto dáta sa nazývajú časové rady. Na každom z množstva uzlov môžu byť spustené desiatky úloh. O každej je
-potrebné zberať viacero parametrov - vyťaženie procesora, pamäte, diskov a sieťových zariadení. To predstavuje veľké množstvo metrických údajov, ktoré je potrebné ukladať a nejakým spôsobom vyhodnocovať. 
-Slúžia na to 
-databázy časových rád. Prípadné účtovanie sa tiež deje v určitých pravidelných intervaloch. Je preto potrebné mať možnosť spätne dohľadať údaje o využívaní zdrojov. Uchovávať podrobné metrické dáta má výnzam na určité
-obdobie. Nie je príliš potrebné vedieť ako bola infraštruktúra využitá jednou úlohou pred piatimi rokmi s presnosťou na niekoľkosekundové intervaly. Okrem toho by to predstavovalo veľké požiadavky na úložné kapacity, 
-ktoré rastú vzhľadom na počet uzlov, počet úloh a čas, po ktorý sú metrické údaje zberané. Je preto žiaduce po nejakej dobe dáta agregovať do väčších celkov a tiež mazať už nazbierané podrobné časové rady.
-
-Aby boli metrické údaje spoľahlivé, je potrebné zabezpečiť ich periodický zber. Zber metrík sa uskutočňuje pravidelným zisťovaním, ako je daný zdroj vyťažený danou technológiou. 
-Aplikácia, ktorá zdroj využíva, vytvorí odpoveď a pošle ju späť zbernej aplikácií. Úlohou zbernej aplikácie je správne označiť pôvod nameraných dát určitými popisnými údajmi a odoslať tieto dáta
-do centrálneho (nie však nevyhnutne centralizovaného) úložiska. Úložisko sa stará o prijímanie a uchovávanie dát z uzlov infraštruktúry a ich spravovanie, archiváciu a prípadne agregáciu historických dát.
-
-Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa použivajú rôzne technológie a aplikácie. Rôzne aplikácie pristupujú k výpočtovým problémom odlišnými postupmi,
-no zároveň používajú spoločné výpočtové zdroje. Metrické dáta, ktoré budem zberať, by mali vypovedať o vyťažení tých istých druhov zdrojov. Je preto potrebné identifikovať, ktoré metrické dáta z 
-jednej aplikácie je možné porovnať s údajmi z inej aplikácie. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie 
-porovnávať. 
-
+je možné toto využitie účtovať a zároveň do budúcnosti primerane regulovať. Monitorovanie má využitie aj pri plánovaní
+odstávok, vylepšovania infraštruktúry, kedy sa na základe historických dát dá odhadnúť miera vyťaženia v budúcnosti.
+\\Aby bolo možné správne vyvodzovať závery o zaťažení infraštruktúry, je potrebné o tom zberať údaje v pravidelných intervaloch. Každému intervalu 
+prináleží hodnota, ktorá vypovedá o využití prostriedkov za uplynutý čas. Takéto dáta sa nazývajú časové rady.
+Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa používajú rôzne technológie a aplikácie. 
+Rôzne aplikácie pristupujú k výpočtovým problémom odlišnými postupmi,
+no zároveň používajú spoločné výpočtové zdroje. Každá z technológií prevádzkovaných MetaCentrom poskytuje všetky alebo aspoň časť údajov 
+o vyťažení zdrojov ako sú procesor, pamäť, disk a sieťové zariadenia. Mojou úlohou je identifikácia metrík podstatných pre monitorovanie 
+zdrojov a vybratie takých metrík, ktoré je možné porovnať s metrikami ostatných technológií. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie 
+porovnávať.
+\\Vzhľadom na veľkosť infraštruktúry zber týchto metrík vytvára nezanedbateľné požiadavky na úložný priestor. 
+V súčasnosti existujú špecializované databázy na ukladanie časových rád. Tie sa snažia rôznymi technikami zmenšovať kapacitu
+potrebnú na ukladanie časových dát. Jedným spôsobom je agregácia viacerých historických hodnôt do jednej. Tým dochádza k spomaleniu rastu
+databázy v čase. Zároveň dochádza k zrýchleniu vyhodnocovania požiadaviek, ktoré zahŕňajú staré dáta. Tým že sú hodnoty agregované,
+je odpoveď vygenerovaná rýchlejšie.
+\\Cieľom práce je poskytnúť mechanizmus na dlhodobý zber metrík, ktorý je škáľovateľný a predstavuje čo najmenšie dodatočnú záťaž
+pre infraštruktúru. Metrické údaje sú základom pre nasledovné účtovanie využitia zdrojov, ktoré pre potreby MetaCentra spracoval
+Michal Kimle vo svojej diplomovej práci Flexibilné účtovanie výpočtových zdrojov pre heterogénne výpočtové prostredie.
+Zároveň sa v práci zaoberám problematikou agregácie historických dát v databáze časových rád a jedným z cieľov je navrhnúť a 
+implementovať nástroj na vykonávanie týchto agregácií. Pri riešení daných problémov zohľadňujem už používané nástroje v MetaCentre,
+kde napr. v prípade agregácie historických dát sa jedná o rozšírenie už nasadenej databázy o túto funkcionalitu.
+\\Práca je rozdelená do deviatich kapitol vrátane úvodu a záveru. V úvode je stručne popísaná problematika monitorovania a ukladania
+monitorovacích dát a nadväznosť práce na už existujúce riešenia. V druhej kapitole sa venujem popisu infraštruktúry MetaCentra a 
+jednotlivým výpočtovým technológiám, ktoré prevádzkuje. V tretej kapitole popisujem všeobecné princípy zberu monitorovacích dát
+a ich ukladania. Štvrtá kapitola predstavuje prehľad aktuálne dostupných monitorovacích riešení. V piatej kapitole sa venujem
+metrikám, ktoré budem zberať. Šiesta kapitola predstavuje analýzu požiadaviek a návrh celkového monitorovacieho riešenia.
+V siedmej kapitole popisujem nástroje a knižnice použité pri implementácií navrhnutého riešenia. Ǒsma kapitola sa venuje
+testovaniu naimplementovaného riešenia z hľadiska zberu metrík a agregácie historických dát. Poslednou kapitolou
+je záver, v ktorom hodnotím dosiahnuté výsledky a načrtávam smer ďalšieho vývoja.
 
 \chapter{Heterogénna infraštruktúra MetaCentra}
 Projekt MetaCentrum vznikol v roku 1996 a od roku 1999 je jeho činnosť zastrešovaná organizáciou CESNET. Zaoberá sa budovaním národnej gridovej infraštruktúry a prepojením s podobnými projektami za hranicami
@@ -200,7 +211,22 @@ prácu spojenú s komunikáciou medzi jednotlivými uzlami a umožňuje sa viac 
 \item[\emph{Hadoop MapReduce:}] systém založený na YARN pre paralelné spracovávanie veľkých množstiev dát, prostredie pre plánovanie úloh a správu zdrojov clustera
 \end{description}
 
+Nasledujúci obrázok ukazuje výpočetnú architektúru YARN-u. Komponent ResourceManager má prehľad o všetkých zdrojoch clustera a prideľuje ich. Na jednotlivých uzloch NodeManager alokuje kontajnery, v ktorých sa vykonáva
+aplikácia. Jej beh riadi komponent ApplicationMaster, ktorý tiež vyjednáva o zdrojoch s ResourceManagerom.
+\begin{figure}
+\begin{center}
+       \includegraphics[width=0.8\textwidth]{images/yarn_architecture.png}
+       \caption{Architektúra Hadoop YARN}\cite{pbs_pro_arch}
+\end{center}
+\end{figure}
+
 \subsection{PBS Professional}
+\begin{figure}
+\begin{center}
+       \includegraphics[width=0.8\textwidth]{images/pbspro-arch.jpg}
+       \caption{Architektúra PBS Professional}\cite{pbs_pro_arch}
+\end{center}
+\end{figure}
 
 \chapter{Zber a uchovávanie monitorovacích dát}
 Monitorovanie akejkoľvek (nielen počítačovej) prevádzky je dôležitá oblasť, ktorá má význam pre jej správne fungovanie, správu, zdokonaľovanie a servis. Monitorovanie nám poskytuje dáta, ktoré majú viacero 
@@ -844,10 +870,10 @@ paralelizáciu pri zisťovaní monitorovacích dát o jednotlivých inštanciác
 
 \subsection{Databáza časových rád}
 Ako databázu na uchovávanie časových dát som si zvolil OpenTSDB. Dôvodom je používanie databázy HBase. Je to distribuovaná databáza určená pre veľké objemy dát v rádoch stoviek miliónov a milárd záznamov. 
-Je typom NoSQL databázy. Oproti SQL databázam je linárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočtových zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých
+Je typom NoSQL databázy. Oproti SQL databázam je lineárne škálovateľná. Ak dôdje k zdvojnásobeniu výpočtových zdrojov, dôjde aj k zdvojnásobeniu výkonu databázy. To je dôležité pri zbere časových dát z mnohých
 uzlov, ktoré sa v infraštruktúre MetaCentra nachádzajú. Ďalším dôvodom je, že v MetaCentre je aktuálne databáza HBase využívaná, čo predstavuje zjednodušenie nasadenia. 
 
-\subsubsection{Zmen granularity dát na úrovni výstupu z databázy}
+\subsubsection{Zmena granularity dát na úrovni výstupu z databázy}
 Monitorovacie dáta môžu byť uchovávané po dobu rokov až desiatky rokov. Súčasťou môjho riešenia bude aj sada nástrojov, ktoré budú
 umožňovať zmenu granularity už zapísaných metrických dát. Tým je možné prispieť k úspore úložnej kapacity a zároveň kontinuálne reagovať na
 zastarávanie údajov. 
@@ -883,7 +909,7 @@ Po vykonaní agregácie či už v kontinuálnom alebo periodickom režime je pot
 Druhou možnosťou je uchovávanie metrík s rôznou granularitou v rôznych časových databázach. V tomto prípade sa jedná o získavanie dát z jednej databázy, ich úpravu, uloženie do ďalšej databázy a vymazanie 
 z pôvodnej databázy.
 
-\subsection{Návrh nástroja na  zmenu granularity dát}
+\subsection{Návrh nástroja na zmenu granularity dát}
 Pri využívaní len jednej databázy pre všetky pravidlá uchovávania nastáva problém so skresľovaním výsledkov. V období medzi prvým a druhým najkratším historickým intervalom sú uchované zaokrúhľované dáta,
 z ktorých by boli následne vyrátavané agregované metriky po uplynutí druhého najkratšieho historického intervalu. Tým sa znižuje presnosť uložených dát. Ďalšou nevýhodou je potreba uchovať všetky agregované 
 dáta v pamäti a zapísať ich až po vymazaní pôvodých dát. V prípade, že vymazanie neprebehne úspešne, je možné ho opakovať, no po viacerých zlyhaniach môže dôjsť k nekonzistencií uchovávaných dát pri pokuse uložiť 
@@ -900,8 +926,10 @@ zmenu granularity.
 \\Z databázy s pôvodnými dátami sa budú mazať dáta až vtedy, ak vek prvých nameraných metrík bude väčší ako najdlhší historický interval a príslušný interval požadovanej granularity (v uvažovanom príklade 
 teda jeden rok a jeden deň). Je to z toho dôvodu, aby bola zachovaná čo najväčšia presnosť pri výpočte agregovaných štatistík aj pre najdlhšie historické intervaly. Mazanie z ostatných databáz sa bude 
 uskutočňovať kaskádovito, tj. pre uvažovaný príklad sa z databázy pre mesačný historický interval budú mazať dáta staršie ako rok.
-\\Nástroj bude konfigurovateľný. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz. Okrem toho je potrebné nástroj konfigurovať
-metrikami, ktoré majú byť prevzorkovávané a spolu s metódou agregácie viacerých hodnôt do jednej.
+\\Nástroj bude predstavovať konfigurovateľné rozšírenie databázy OpenTSDB. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz. Okrem toho je potrebné nástroj konfigurovať
+metrikami, ktoré majú byť prevzorkovávané a spolu s metódou agregácie viacerých hodnôt do jednej. Nástroj bude bežať ako démon na mieste,
+kde je nasadená primárna OpenTSDB, v ktorej sú dáta s najvyššou podrobnosťou. S plynutím času bude uskutočňovať agregáciu a mazanie hodnôt,
+po uplynutí príslušných intervalov tak, ako som popisoval vyššie.
 
 \chapter{Implementácia}
 \section{Aplikácia na zber metrických dát}
@@ -946,6 +974,9 @@ nahlasuje ResourceManagerovi. Preto som zvolil toto API.
 \\REST API poskytuje odpovede vo formáte JSON a XML. Vo svojej implementácií využívam odpovede vo formáte JSON.
 
 \subsection{PBS Professional}
+PBS Professional poskytuje rozhranie v jazyku C prostredníctvom knižnice libpbs a hlavičkového súboru pbs\_ifl.h. Pri inicializácií
+pluginu dôjde k vytvoreniu spojenia na PBS server, ktorý poskytuje metriky o ním spravovaných úlohách. Toto spojenie je využívané
+počas celej doby trvania zberu metrík.
 
 \section{Knižnice využité pri zbere metrík}
 Pluginy pre collectd na zber metrických dát využívajú nasledovné knižnice. 
@@ -974,7 +1005,80 @@ cJSON je miniatúrna knižnica v jazyku C, ktorej úlohou je prevod reťazca vo 
 to analýzu obdržaných informácií vo formáte JSON. Keďže jazyk C nepozná objekty, namiesto toho sú používané štruktúry jazyka C. 
 Knižnica neobsahuje žiadne závislosti, na jej činnosť sú potrebné iba dva súbory - jeden so zdrojovými kódmi a jeden hlavičkový súbor.
 
+\section{Agregácia historických dát v OpenTSDB}
+Iplementácia nástroja na agregáciu časových rád je v jazyku Java. Databáza OpenTSDB poskytuje rozhranie v podobe REST API, ktoré
+generuje odpovede vo formáte JSON, a taktiež
+nástroje príkazového riadka. Na získavanie dát z databázy s najpodrobnejšími záznamami som ale použil
+funkcie samotnej OpenTSDB. To odstraňuje problémy s prácou s veľkými textovými výstupmi, ako napr. uloženie celého výstupu do pamäte,
+jeho spracovanie a vytvorenie hierarchie objektov. Obdržané dáta potom odosielam do príslušných databáz podľa politík udržiavania
+prostredníctvom REST API. 
+
+\chapter{Testovanie}
+\section{Zber metrík}
+Test zberu metrík sa odohrával v intervale 5 sekúnd, v prípade technológie PBS Professional bol interval nastavený na 20 sekúnd.
+Dôvodom je, že aktualizácia dát na riadiacom serveri prebieha v dlhších intervaloch. Miesto, kde bola nasadená zberná aplikácia počas testovania,
+je popísané pri každej technológií. Zber metrík prebiehal po dobu jedného dňa.
+
+\subsection{libvirt}
+Zber metrík o virtuálnych strojoch bol testovaný v infraštruktúre MetaCentra na jednom z hosťujúcich strojov, kde boli spustené
+virtuálne stroje. Zber metrík prebiehal podľa očakávaní a úspešne boli ukladané do testovacej inštancie OpenTSDB. Podrobnejšie o tejto
+databáze píšem v nasledujúcej sekcií ~\ref{sec:database}.
+
+\subsection{Docker}
+V súčasnosti Docker nie je nasadený v produkčnej prevádzke MetaCentra. Zber a odosielanie metrík som preto testoval na vlastnom počítači,
+s desiatimi spustenými kontajnermi. Zber a odosielanie metrík bolo úspešne otestované.
+
+\subsection{Hadoop}
+MetaCentrum prevádzkuje dedikovaný Hadoop cluster s 24 uzlami. Prostredníctvom Hadoop YARN REST API som úspešne zberal metriky o
+clusteri a jeho uzloch. Počas testovania neboli spustené žiadne aplikácie, tak som testoval zber metrík pre už ukončené aplikácie.
+Tých bolo v čase testovania 9427. Zber metrík prebiehal úspešne. Odosielanie metrík a zápis do databázy neprebiehal pri takomto počte aplikácií správne,
+nakoľko limitom bola rýchlosť môjho internetového pripojenia. Pri znížení počtu aplikácií na 1000 prebiehalo odosielanie a zápis
+úspešne. Keďže o každej aplikácií je zberaných 6 metrík, za jeden interval bolo po sieti do databázy odosielaných 6000 metrík.
+
+\subsection{PBS Professional}
+Pre účely testovania boli v prostredí MetaCentra vytvorené dva virtuálne stroje. Na jednom bol spustený PBS Server aj komponent MoM,
+ktorý riadi vykonávanie úlohy na jednom uzle. Na druhom virtuálnom stroji bol spustený len komponent MoM. Prostredníctvom servera
+som spúšťal interaktívne úlohy, v ktorých som vyťažoval predovšetkým procesor. Po určitom čase bola spotreba nahlásená serveru a 
+collectd správne zmeral a odoslal metriky do databázy.
+
+\section{Databáza časových rád}
+\label{sec:database}
+Na testovacie účely som používal databázu OpenTSDB. Jej démon bol spustený na mojom počítači. Využíval databázu HBase prevádzkovanú 
+v Hadoop clusteri MetaCentra.
+
+\subsection{Úprava historických dát}
+Testovanie úpravy historických dát prebehlo na kópií aktuálnej databázy monitorovacích dát. Zníženie granularity metrík prebehlo úspešne.
+Nasledujúci obrázok z vizualizačného nástroja Grafana ilustruje, ako vyzerajú dáta so zníženou granularitou. Na hornej časti obrázka je 
+granularita zberanej metriky 2 sekundy, na spodnej časti je granularita zmenená na jeden údaj za hodinu, ktorý predstavuje priemer hodnôt.
+Graf zobrazuje dáta v rozpätí jedného týždňa.
+\begin{figure}[p]
+\begin{center} 
+       \includegraphics[width=1.0\textwidth]{images/downsampled.png}
+       \caption{Pôvodné a downsamplované dáta - vizualizácia pomocou Grafany}
+\end{center}
+\end{figure}
+\\Pri testovaní bolo zistené, že niektoré agregované hodnoty sa líšili od hodnôt, ktoré boli očakávanými výsledkami agregačnej funkcie.
+Dôvodom je, že databáza OpenTSDB ukladá dáta na hodinovom základe. Tj. dôjde k vytvoreniu identifikátora, ktorý predstavuje čas
+zaokrúhlený na hodiny a pod týmto identifikátorom sú ukladané hodnoty metrík spadajúcich do tohoto časového rozpätia. Po
+uplynutí hodiny sa vytvorí ďalší identifikátor a dáta sú ukladané tam. Ak v priebehu tejto hodiny nejaké hodnoty chýbajú,
+agregačný mechanizmus OpenTSDB ich dopočíta metódou interpolácie. Preto napríklad hodnoty maxima nemusia byť vždy reálne.
+To predstavuje skreslenie hodnôt v databázach s agregovanými údajmi. 
+\\Tento problém by bolo možné vyriešiť agregáciou záznamov priamo na úrovni HBase, uložených podľa hodinových známok.
+
 \chapter{Záver}
+Cieľom tejto práce bolo navrhnúť a implementovať monitorovacie riešenie pre zber a uchovávanie metrík v heterogénnej infraštruktúre MetaCentra. 
+Navrhnuté riešenie malo byť rozšíriteľné, škálovateľné  s dôrazom na nízku nadbytočnú záťaž.
+\\V úvodných častiach je popisovaná infraštruktúra MetaCentra, jednotlivé využívané technológie spolu s výpočtovými modelmi, ktoré
+jednotlivé technológie reprezentujú. Ďalej nasleduje rozbor jednotlivých aspektov zberu metrík a ich ukladania.
+V ďalšej kapitole rozoberám aktuálne monitorovacie riešenia s pohľadom na rozšíritenosť a riadenie zberných intervalov. V piatej kapitole
+sú popisované metriky, ktoré som identifikoval ako podstatné pre prehľad o využití zdrojov jednotlivými technológiami MetaCentra.
+Ďalšia kapitola sa venuje analýze požiadaviek a návrhu monitorovacieho riešenia. Čitateľovi je predstavená architektúra celého 
+riešenia spolu s tým, ako budú jednotlivé komponenty nasadené v rámci infraštruktúry MetaCentra. Je popísaná funkcionalita
+jednotlivých komponentov a spôsob toku dát v rámci systému. Posledné časti práce sa venujú implementácií navrhnutého riešenia a popisu,
+akým bolo riešenie otestované.
+\\Ďalším krokom by mohlo byť prepracovnaie agregačného 
+nástroja tak, že by upravoval časové rady priamo na úrovni záznamov v HBase. Výsledkom by tak bola len jedna databáza s hodnotami upravenými
+do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednodušilo s vizualizačnými nástrojmi a systémom pre účtovanie.
 
 \printbibliography[heading=bibintoc]
 

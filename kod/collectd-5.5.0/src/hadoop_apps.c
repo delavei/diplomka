@@ -36,6 +36,8 @@ int read_success = -1;
 int read_finished = 1;
 int read_info_success = -1;
 
+int app_count;
+
 static void init_value_list (value_list_t *vl)
 {
     sstrncpy (vl->plugin, PLUGIN_NAME, sizeof (vl->plugin));
@@ -68,7 +70,9 @@ void submit_app_value (unsigned long value, const char* type_instance, const cha
 
 static int submit_app_stats (char* app_json) {
 	cJSON* root = cJSON_Parse(app_json);
-
+	app_count++;
+	if (app_count>3000) return 0;
+	
 	if (root == NULL) {
 		ERROR(PLUGIN_NAME " plugin: error when parsing app json.");
 		return -1;
@@ -242,12 +246,16 @@ size_t read_response(char *data, size_t size, size_t nmemb, void *userdata) {
 
 static int hadoop_apps_read (void)
 {
+	app_count = 0;
+	printf("app count before    %d\n",app_count);
 	if (read_finished) {
 		read_finished = 0;
 		CURLcode curl_ret = curl_easy_perform(easy_handle);
 		if (curl_ret == CURLE_OK) {
 			new_server_read = 1;
 			if (read_success >= 0) {
+				printf("app count    %d\n",app_count);
+	app_count = 0;
 				return 0;
 			} else {
 				ERROR(PLUGIN_NAME " plugin: apps not found in response.");
@@ -258,6 +266,8 @@ static int hadoop_apps_read (void)
 	} else {
 		return 0;
 	}
+	
+	
 	
 	return -1;	
 }
