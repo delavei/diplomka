@@ -44,22 +44,22 @@ declaration = {Prehlasujem, že táto diplomová práca je mojím pôvodným aut
 
 \begin{document}
 \chapter{Úvod}
-Heterogénna infraštruktúra MetaCentra poskytuje výpočtové prostriedky pre mnohé vedecké a výskumné organizácie. Spracovávajú sa v nej veľké objemy dát. Je tvorená viac než tisíckou uzlov, ktoré sú
-rozmiestnené naprieč celou
+Heterogénna infraštruktúra MetaCentra poskytuje výpočtové prostriedky pre mnohé vedecké a výskumné organizácie. Ukladajú a spracovávajú sa v nej veľké objemy dát. V súčasnosti infraštruktúru
+tovrí približne 700 uzlov \cite{metacentrum_size}, ktoré sú rozmiestnené naprieč celou
 Českou republikou. Podstatou fungovania heterogénnej infraštruktúry je zdieľanie veľkého výpočtového výkonu viacerými subjektami, pre ktoré by zadováženie a prevádzkovanie vlastnej infraštruktúry predstavovalo neúmernú 
 ekonomickú, personálnu a prevádzkovú záťaž. Princípom zdieľania je, že prostriedky by mali byť využívané férovo a miera využívania by
-mala byť kontrolovateľná. Nemalo by dochádzať k tomu, že jeden klient vyťaží zdroje natoľko, že 
+mala byť kontrolovateľná. Nemalo by dochádzať k tomu, že jeden užívateľ vyťaží zdroje natoľko, že 
 výpočtové úlohy ostatných dostanú nepomerne malý priestor. To je možné docieliť monitorovaním využitia výpočtového výkonu a vstupno-výstupných zariadení. Ak máme informácie o tom, kto koľko využíval zdroje, 
 je možné toto využitie účtovať a zároveň do budúcnosti primerane regulovať. Monitorovanie má využitie aj pri plánovaní
 odstávok, vylepšovania infraštruktúry, kedy sa na základe historických dát dá odhadnúť miera vyťaženia v budúcnosti.
-\\Aby bolo možné správne vyvodzovať závery o zaťažení infraštruktúry, je potrebné o tom zberať údaje v pravidelných intervaloch. Každému intervalu 
-prináleží hodnota, ktorá vypovedá o využití prostriedkov za uplynutý čas. Takéto dáta sa nazývajú časové rady.
-Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa používajú rôzne technológie a aplikácie. 
+\\Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa používajú rôzne technológie a aplikácie. 
 Rôzne aplikácie pristupujú k výpočtovým problémom odlišnými postupmi,
 no zároveň používajú spoločné výpočtové zdroje. Každá z technológií prevádzkovaných MetaCentrom poskytuje všetky alebo aspoň časť údajov 
 o vyťažení zdrojov ako sú procesor, pamäť, disk a sieťové zariadenia. Mojou úlohou je identifikácia metrík podstatných pre monitorovanie 
 zdrojov a vybratie takých metrík, ktoré je možné porovnať s metrikami ostatných technológií. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie 
 porovnávať.
+\\Aby bolo možné správne vyvodzovať závery o zaťažení infraštruktúry, je potrebné o tom zberať údaje v pravidelných intervaloch. Každému intervalu 
+prináleží hodnota, ktorá vypovedá o využití prostriedkov za uplynutý čas. Takéto dáta sa nazývajú časové rady.
 \\Vzhľadom na veľkosť infraštruktúry zber týchto metrík vytvára nezanedbateľné požiadavky na úložný priestor. 
 V súčasnosti existujú špecializované databázy na ukladanie časových rád. Tie sa snažia rôznymi technikami zmenšovať kapacitu
 potrebnú na ukladanie časových dát. Jedným spôsobom je agregácia viacerých historických hodnôt do jednej. Tým dochádza k spomaleniu rastu
@@ -67,7 +67,7 @@ databázy v čase. Zároveň dochádza k zrýchleniu vyhodnocovania požiadaviek
 je odpoveď vygenerovaná rýchlejšie.
 \\Cieľom práce je poskytnúť mechanizmus na dlhodobý zber metrík, ktorý je škáľovateľný a predstavuje čo najmenšie dodatočnú záťaž
 pre infraštruktúru. Metrické údaje sú základom pre nasledovné účtovanie využitia zdrojov, ktoré pre potreby MetaCentra spracoval
-Michal Kimle vo svojej diplomovej práci Flexibilné účtovanie výpočtových zdrojov pre heterogénne výpočtové prostredie.
+Michal Kimle vo svojej diplomovej práci Flexibilné účtovanie výpočtových zdrojov pre heterogénne výpočtové prostredie\cite{uctovanie}.
 Zároveň sa v práci zaoberám problematikou agregácie historických dát v databáze časových rád a jedným z cieľov je navrhnúť a 
 implementovať nástroj na vykonávanie týchto agregácií. Pri riešení daných problémov zohľadňujem už používané nástroje v MetaCentre,
 kde napr. v prípade agregácie historických dát sa jedná o rozšírenie už nasadenej databázy o túto funkcionalitu.
@@ -95,14 +95,11 @@ spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času. 
 MetaCentrum primárne poskytuje svoj výpočtový výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
 Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
 infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočtovej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.\cite{metacentrum}
-
-Cieľom MetaCentra je umožňiť využívať veľkú množinu výpočtových zdrojov mnohým subjektom. Infraštruktúra je rôznorodá, obsahuje rôzne typy uzlov, od jednotlivých pracovných staníc, ktoré poskytujú
+\\Cieľom MetaCentra je umožňiť využívať veľkú množinu výpočtových zdrojov mnohým subjektom. Infraštruktúra je rôznorodá, obsahuje rôzne typy uzlov, od jednotlivých pracovných staníc, ktoré poskytujú
 časť svojho výkonu až po dedikované clustre, ktoré slúžia na riešenie zložitých výpočtových úloh. V MetaCentre je výpočtový výkon sprístupnený viacerými technológiami.
 \\Prvým typom je \textit{cloud}. Jedná sa o virtualizované prostredie, kde na jednom fyzickom stroji môže byť súbežne spustených viacero nezávislých strojov.
 \\Druhým typom je \textit{grid}. Grid spája mnoho uzlov aj s rôznym geografickým umiestnením do jedného výpočtového uzla, ktorý rieši náročné výpočtové úlohy. Uzly môžu poskytovať celý svoj výpočtový výkon
 alebo len jeho časť.
-\\MetaCentrum taktiež poskytuje užívateľom využívanie rôzneho aplikačného softvéru, prípadne softvérových nástrojov, ktoré slúžia ako medzivrstva pri riešení zložitých výpočtov. Tento druh nástrojov
-sprostredkováva výkon jednotlivých uzlov podobným spôsobom ako grid a vytvára akoby jeden výkonný stroj.
 
 \section{Kontrola zdrojov infraštruktúry}
 Bez ohľadu na to, aký prístup si užívateľ zvolí k využívaniu zdieľaných výpočtových prostriedkov, jeho výpočty sa v konečnom dôsledku budú musieť realizovať na fyzickom hardvéri poskytovateľa. 
@@ -110,7 +107,7 @@ Aj keď sa daná úloha vypočítava na viacerých uzloch a rozličnými postupm
 
 \section{Cloud}
 Cloud predstavuje abstraktnú výpočetnú infraštruktúru, ktorej fyzické výpočtové prostriedky sú zdieľané viacerými užívateľmi. 
-Pre cloud sú typické dva koncepty:
+Pre cloud sú typické dva koncepty \cite{cloud_bible}:
 \begin{description}
 \item[\emph{Abstrakcia:}] Podrobnosti o implementácií systému sú abstrahované užívateľom a vývojárom. Aplikácie bežia na fyzických systémoch,
 ktoré nie sú špecifikované, dáta sú uložené na neznámych miestach, administrácia systémov je odovzdaná iným a užívatelia majú
@@ -118,14 +115,13 @@ všestranný prístup.
 \item[\emph{Virtualizácia:}] Cloud virtualizuje systémy zdieľaním zdrojov. Systémy a úložný priestor môže byť poskytovaný podľa potrieb z 
 centralizovanej infraštruktúry, ceny sú stanovené na základe meraní, je možný prenájom viacerým subjektom a zdroje sú škáľovateľné podľa aktivity.
 \end{description}
-\cite{cloud_bible}
 
 Prevádzkovateľ cloudu môže zvoliť rôzne prístupy k tomu, akým spôsobom bude poskytovať svoje zdroje. Tie sa dajú rozdeliť do troch kategórií:
 
 \begin{description}
 \item[\emph{Infrastructure as a Service (IaaS):}] Užívateľ má možnosť využívať zdroje cloudu podľa svojich hardvérových požiadaviek.
 Môže si presne určiť koľko pamäte, procesorov alebo diskovej kapacity požaduje. Poskytovateľ služby spravuje hardvérovú infraštruktúru,
-kým klient je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. \cite{cloud_bible}
+kým užívateľ je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. \cite{cloud_bible}
 \item[\emph{Platform as a Service (PaaS):}] Prevádzkovateľ služby poskyzuje hardvér, operačný systém, aplikácie, služby, vývojové prostredia
 a kontrolné štruktúry. Užívateľ môže nasadiť vlastné aplikácie na cloudovú infraštruktúru alebo využívať aplikácie, ktoré boli naprogramované
 jazykmi a nástrojmi, podporovanými prevádzkovateľom. %\cite[10]{cloud_bible:1}
@@ -136,39 +132,44 @@ rozhrania (zväčša cez webový prehliadač) a zodpovednosť zákazníka spoč�
 Cloud umožňuje jednoducho spravovať a meniť výpočtový výkon, ktorý má užívateľ k dispozícií. Má to význam, ak sa rozrastú požiadavky užívateľa na výkon, alebo naopak z dôvodu obmedzenej prevádzky či 
 nedostatku výpočtových úloh sa nároky môžu zmenšiť. Užívateľ môže dané prostriedky využívať hneď, bez veľkých počiatočných investicií, ktoré by si buď nemohol dovoliť, alebo ak sú výpočtové úlohy krátkodobejšieho rázu, nákup
 stroja s požadovaným výkonom by bol nevhodnou investíciou. Užívateľ sa nemusí starať o nákup hardvéru, jeho zostavovanie do funkčných serverov a ich následné rozširovanie a správu. Tieto služby zabezpečuje prevádzkovateľ cloudovej infraštruktúry.
-Pre neho je zase dôležité mať prehľad o tom, ako sú jeho inštalované kapacity využívané. Či už z pohľadu skvalitňovania vlastných poskytovaných služieb alebo vo vzťahu ku klientovi a k tomu, v akej miere spotrebováva poskytovaný výkon.
+Pre neho je zase dôležité mať prehľad o tom, ako sú jeho inštalované kapacity využívané. Či už z pohľadu skvalitňovania vlastných poskytovaných služieb alebo vo vzťahu k užívateľovi a k tomu, v akej miere spotrebováva poskytovaný výkon.
 Výpočtové prostriedky sú poskytované viacerými spôsobmi:
 
 \section{Realizácia konceptov cloudu}
 Prostredie cloudu má za cieľ poskytovať užívateľom prostriedky variabilne vzhľadom na ich aktuálne požiadavky. Druhým dôležitým aspektom je
-izolovanosť jednotlivých užívateľov v rámci celej infraštrukúry, aby prípadné probléímtak
+izolovanosť jednotlivých užívateľov v rámci celej infraštrukúry, aby prípadné problémy so systémom jedného úžívateľa neohrozili prevádzku
+systémov ostatných užívateľov.
+
 \subsection{Virtuálne stroje}
 Virtuálne stroje poskytujú úplnú virtualizáciu fyzickej hardvérovej štruktúry. Na jednom hosťujúcom počítači môže byť spustených viacero virtuálnych strojov. Každý má svoj vlastný virtuálny procesor, pamäť, grafický procesor, pevný disk 
 a periférie. Operačný systém spustený vo virtuálnom stroji je izolovaný od hosťovského opračného systému (ak ho hosťovský počítač má). Takéto riešenie má jednu bezpečnostnú výhodu oproti aplikačným 
 kontajnerom. Nežiadúce fungovanie jedného virtuálneho stroja neovplyvňuje beh ostatných.
 
 \subsubsection{Hypervízor}
-Hypervízor je softvér, ktorý poskytuje virtualizačné nástroje potrebné na ich izolovaný beh v rámci jedného fyzického stroja. Rozlišujeme 2 typy:
+Hypervízor je softvér, ktorý poskytuje virtualizačné nástroje potrebné na ich izolovaný beh v rámci jedného fyzického stroja. Rozlišujeme 2 typy \cite{hypervisorTypes}:
 \begin{description}
 \item[natívny] - na hosťujúcom počítači nie je nainštalovaný žiadny operačný systém. Hypervízor spravuje hardvér hosťujúceho počítača a kontroluje beh operačných systémov, ktoré sa javia ako procesy.
-Príkladom je VMware ESX/ESXi, Oracle VM Server for x86 alebo Citrix XenServer.
+Príkladom je VMware ESX/ESXi\footnotemark\footnotetext{http://www.vmware.com/}, Oracle VM Server for x86\footnotemark\footnotetext{https://www.oracle.com/virtualization/vm-server-for-x86/index.html},
+Citrix XenServer\footnotemark\footnotetext{https://www.citrix.com/products/xenserver/} alebo KVM\footnotemark\footnotetext{Kernel-based Virtual Machine}.
 \item[hosťovaný] - hypervízor je spustený ako program v operačnom systéme hosťujúceho počítača. Príkladom je QEMU, VMware Workstation alebo VirtualBox.
 \end{description}
-\cite{hypervisorTypes}
+V prostredí MetaCentra sa používa na virtualizáciu hypervízor KVM. Bližšie ho popisujem v sekcii ~\ref{sec:kvm}.
 
 \subsection{Aplikačné kontajnery}
 Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
-nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje nasledovný obrázok: 
-\begin{figure}[h]
+nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje obrázok \ref{fig:containers}. 
+\begin{figure}
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/kontajnery-virtualky.png}
        \caption{Porovnanie architektúry kontajnerov a virtuálnych strojov s natívnym hypervízorom}
+       \label{fig:containers}
 \end{center}
 \end{figure}
 Kontajnery zdieľajú jadro operačného systému hosťovského počítača a jeho množinu prostriedkov. Jednotlivé kontajnery dostávajú kontrolovaný prístup k výpočtovému výkonu, pamäti, úložnej kapacite, 
 sieti a prípadne ďalším prostriedkom. Takýto spôsob virtualizácie predstavuje zníženú záťaž na hosťujúci počítač, pretože nie je virtualizovaný celý operačný systém a ani hardvér.
 \\Kontajnery môžu byť spustené aj v rámci virtuálnych strojov. Cieľom tejto práce ale nie je monitorovanie takto vnorených kontajnerov.
-
+\\V prostredí MetaCentra je ako kontajnerový engine testovaný softvér Docker\footnotemark\footnotetext{https://www.docker.com/}.
+ 
 \section{MapReduce aplikačné prostredia}
 
 \section{Gridové počítanie}
@@ -180,13 +181,14 @@ Na virtualizáciu v podobe kontajnerov je nasadený softvér \textit{Docker}. Te
 Koordináciu gridových výpočtov zabezpečuje \textit{Torque}. V nasledujúcich sekciách sa podrobnejšie venujem popisu jednotlivých softvérov.
  
 \subsection{libvirt/KVM}
-KVM\footnotemark\footnotetext{Kernel-based Virtual Machine} je plné virtualizačné riešenie pre Linux na x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
+\label{sec:kvm}
+KVM je plné virtualizačné riešenie pre Linux na x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
 Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko, ktoré zabezpečujú virtuálizáciu procesora od daného výrobcu.
 Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo aj ďalšími. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
 KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
 \\libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
 Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C\#, Java, Ruby alebo Go.\cite{libvirt}
-\\Predstavuje vrstvu abstrakcie, ktorá zjednocuje prácu s hypervízormi od viacerých výrobcov. Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
+\\Knižnica libvirt predstavuje vrstvu abstrakcie, ktorá zjednocuje prácu s hypervízormi od viacerých výrobcov. Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať ho, reštartovať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
 
 \subsection{Docker}
 Docker predstavuje kontajnerový engine a sadu nástrojov, ktorá umožňuje zabaliť aplikáciu so všetkými jej závislosťami do kompaktnej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru 
@@ -250,6 +252,9 @@ odstávok, servisnej činnosti alebo dočasného rozšírenia zdrojov.
 \item[\emph{Účtovanie vyťaženia zdrojov}]
 Každá poskytovaná služba má svojho spotrebiteľa. Dáta o používaní zdrojov sú jediným možným spôsobom ako rozumne stanoviť cenu za používané zdroje.
 Taktiež na ich základe môžeme sledovať činnosť jednotlivých užívateľov v systémoch a stanoviť im akceptovateľné podmienky na využívanie služieb.
+\\Problematike výpočtu štatistík a účtovaniu vyťaženia zdrojov v prostredí MetaCentra sa venuje diplomová práca Michala Kimleho\cite{uctovanie}.
+Pre výpočet štatistík používa metrické údaje spolu s ďalšími identifikačnými údajmi. Okrem monitorovania infraštruktúry poslúžia
+mnou zberané metriky taktiež na výpočet týchto štatistík.
 \end{description}
 
 \section{Všeobecné problémy monitorovania}
@@ -500,8 +505,7 @@ databázy majú buď vlastné zabudované riešenia, alebo sú poskytované ako 
 OpenTSDB je open-source databáza na uchovávanie a sprístupňovanie veľkých objemov časových dát. Pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
 na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimalizovaná na rýchlu agregáciu podobných časových rád, aby minimalizovala požiadavky na úložný priestor. 
-Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI. Všetka komunikácia
-sa deje na tom istom porte (TSD odhadne protokol klienta pohľadom na prvých niekoľko bajtov, ktoré obdrží).\cite{openTSDB}
+Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI.\cite{openTSDB}
 \\Na obrázku je znázornená architektúra OpenTSDB. Viacero démonov môže zapisovať dáta do jednej databázy, ktorá je potom distribuovaná v rámci Hadoop architektúry.
 \begin{figure}[h]
 \begin{center}
@@ -844,8 +848,8 @@ Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. Na
 \end{center}
 \end{figure}
 \\Samotný proces zberu metrických dát bude zabezpečený aplikáciou \emph{collectd}. Oproti ostatným dostupným aplikáciám disponuje
-veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsob, ako a kam sa budú dáta zapisovať. Ďalej umožňuje rozšíriť funkcionalitu
-aj v systéme upozornení. Collectd bude zabezpečovať prípadné odosielanie notifikácií prostredníctvom emailu. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
+veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsob, ako a kam sa budú dáta zapisovať a tiež spôsoby,
+akými je možné upozorniť na hodnoty mimo definovaných medzí. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
 paralelne bežiacich vlákien, ktoré si medzi sebou rovnomerne delia záťaž. Ich počet je možné definovať pri konfigurácií. 
 \\Jednou z ďalších výhod collectd oproti iným softvérom je spôsob, akým pristupuje k spúšťaniu kontrol. Podľa konfigurácie pri štarte zistí, ktoré moduly sa budú používať. Potom sú nakonfigurovaé 
 jednotlivé moduly a následne inicializované. V tomto kroku sa vytvoria spojenia, ktoré sú udržované počas celého behu aplikácie a zdieľané medzi jednotlivými kontrolami metrík. Nie je efektívne, aby boli 
@@ -1082,7 +1086,7 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
 
 \printbibliography[heading=bibintoc]
 
-\begin{appendices}
+\appendix
 \chapter{Prevodné tabuľky názvov metrík}
 \section{libvirt}
 \subsection{Metriky}
@@ -1264,8 +1268,5 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
 \end{center}
 
 \section{PBS Professional}
-
-
-\end{appendices}
 
 \end{document}
