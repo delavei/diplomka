@@ -5,8 +5,6 @@ python ~/diplomka/kod/tsddrain.py 4242 ~/opentsdb-tsddrain/
 sudo docker run -it debian  /bin/bash
 sudo docker run -it ubuntu  /bin/bash
 
-pre pbspro importovat pbs_ifl.h
-
 kinit delavei
 sudo cp /tmp/krb5cc_1000 /tmp/krb5cc_opentsdb
 sudo chown opentsdb /tmp/krb5cc_opentsdb

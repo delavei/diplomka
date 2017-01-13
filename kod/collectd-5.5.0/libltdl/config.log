@@ -336,7 +336,7 @@ configure:11118: checking how to hardcode library paths into programs
 configure:11143: result: immediate
 configure:11237: checking for shl_load
 configure:11237: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cczHfk5Q.o: In function `main':
+/tmp/cctzySub.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/conftest.c:57: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11237: $? = 1
@@ -448,7 +448,7 @@ configure: failed program was:
 configure:11275: result: no
 configure:11280: checking for dlopen
 configure:11280: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccTFZlW3.o: In function `main':
+/tmp/cctduhdl.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/conftest.c:57: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11280: $? = 1
@@ -524,7 +524,7 @@ configure:11520: $? = 0
 configure:11538: result: yes
 configure:11543: checking whether a statically linked program can dlopen itself
 configure:11623: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c -ldl  >&5
-/tmp/cc5Zrkxe.o: In function `main':
+/tmp/ccCSiz8z.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/configure:11602: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 /usr/bin/ld: dynamic STT_GNU_IFUNC symbol `strcmp' with pointer equality in `/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/libc.a(strcmp.o)' can not be used when making an executable; recompile with -fPIE and relink with -pie
 collect2: error: ld returned 1 exit status
@@ -546,7 +546,7 @@ configure:11839: checking for the default library search path
 configure:11846: result: /lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/lib/i386-linux-gnu/mesa /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa-egl /usr/lib/x86_64-linux-gnu/mesa 
 configure:11876: checking for library containing dlopen
 configure:11907: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccKQzR9n.o: In function `main':
+/tmp/cc4LcyyH.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/conftest.c:37: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11907: $? = 1
@@ -1103,7 +1103,7 @@ configure:12641: $? = 0
 configure:12641: result: yes
 configure:12660: checking for strlcat
 configure:12660: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccdxc7Sq.o: In function `main':
+/tmp/ccNvomMF.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/conftest.c:79: undefined reference to `strlcat'
 collect2: error: ld returned 1 exit status
 configure:12660: $? = 1
@@ -1193,7 +1193,7 @@ configure: failed program was:
 configure:12660: result: no
 configure:12660: checking for strlcpy
 configure:12660: gcc -o conftest -g -O2   conftest.c -ldl  >&5
-/tmp/ccGECQbs.o: In function `main':
+/tmp/ccvTKCjT.o: In function `main':
 /home/juraj/diplomka/kod/collectd-5.5.0/libltdl/conftest.c:79: undefined reference to `strlcpy'
 collect2: error: ld returned 1 exit status
 configure:12660: $? = 1
