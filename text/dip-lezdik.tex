@@ -22,7 +22,7 @@
 title = {Monitorovanie záťaže a využitia výpočetných zdrojov v heterogénnom výpočetnom prostredí},
 author = {Juraj Leždík},
 advisor = {Mgr. Miroslav Ruda},
-keywords = {cloud, monitorovanie, MetaCentrum, heterogénna infraštruktúra, Hadoop, Torque, Docker, libvirt},
+keywords = {cloud, monitorovanie, metriky, MetaCentrum, heterogénna infraštruktúra, Hadoop, PBS Professional, Docker, libvirt},
 gender = {m},
 type = {mgr},
 faculty = {fi},
@@ -30,12 +30,19 @@ date =  \the\year/\the\month/\the\day,
 declaration = {Prehlasujem, že táto diplomová práca je mojím pôvodným autorským dielom, ktoré som vypracoval samostatne. Všetky zdroje a literatúru, ktoré som pri vypracovaní používal alebo z nich čerpal, v práci riadne citujem s uvedením úplného odkazu na príslušný zdroj.},
 }
 \thesislong{abstract}{
-    abstract text}
+    Práca sa zaoberá zberom metrík o vyťažení zdrojov v heterogénnej infraštruktúre MetaCentra. Popisuje koncepty poskytovania
+    výpočetných zdrojov v rámci heterogénnej infraštruktúry. Venuje sa všeobecným problémom monitorovnia, akými sú proces zberu 
+    metrík, ukladanie a správa uložených hodnôt.
+    Identifikuje metriky a popisné dáta relevantné pre vyťaženie zdrojov. 
+	Cieľom práce je návrh monitorovacieho riešenia pre zadanú infraštruktúru a popis jeho implementácie a testovania.}
 \thesislong{thanks}{
-    Dikičko}
+    Touto cestou by som sa rád poďakoval vedúcemu diplomovej práce Mgr. Miroslavovi
+Rudovi za umožnenie vypracovania tohto zadania ako aj za jeho čas
+a odborné vedenie práce. Špeciálna vďaka patrí Mgr. Borisovi Parákovi za
+jeho trpezlivosť, názory a cenné rady pri vypracovávaní. Osobitné poďakovanie
+patrí aj mojej rodine, priateľom a Nicol za podporu.}
 
 \usepackage{csquotes}
-        
 \usepackage{paralist}
 \usepackage{amsthm}
 \usepackage{amsfonts}
@@ -45,30 +52,29 @@ declaration = {Prehlasujem, že táto diplomová práca je mojím pôvodným aut
 \begin{document}
 \chapter{Úvod}
 Heterogénna infraštruktúra MetaCentra poskytuje výpočtové prostriedky pre mnohé vedecké a výskumné organizácie. Ukladajú a spracovávajú sa v nej veľké objemy dát. V súčasnosti infraštruktúru
-tovrí približne 700 uzlov \cite{metacentrum_size}, ktoré sú rozmiestnené naprieč celou
+tvorí približne 700 uzlov \cite{metacentrum_size}, ktoré sú rozmiestnené naprieč celou
 Českou republikou. Podstatou fungovania heterogénnej infraštruktúry je zdieľanie veľkého výpočtového výkonu viacerými subjektami, pre ktoré by zadováženie a prevádzkovanie vlastnej infraštruktúry predstavovalo neúmernú 
 ekonomickú, personálnu a prevádzkovú záťaž. Princípom zdieľania je, že prostriedky by mali byť využívané férovo a miera využívania by
 mala byť kontrolovateľná. Nemalo by dochádzať k tomu, že jeden užívateľ vyťaží zdroje natoľko, že 
-výpočtové úlohy ostatných dostanú nepomerne malý priestor. To je možné docieliť monitorovaním využitia výpočtového výkonu a vstupno-výstupných zariadení. Ak máme informácie o tom, kto koľko využíval zdroje, 
+výpočtové úlohy ostatných dostanú nepomerne malý priestor. Aby sa tomu dalo predísť, je potrebné monitorovať využitie výpočtového výkonu. Ak máme informácie o tom, kto koľko využíval zdroje, 
 je možné toto využitie účtovať a zároveň do budúcnosti primerane regulovať. Monitorovanie má využitie aj pri plánovaní
 odstávok, vylepšovania infraštruktúry, kedy sa na základe historických dát dá odhadnúť miera vyťaženia v budúcnosti.
-\\Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa používajú rôzne technológie a aplikácie. 
-Rôzne aplikácie pristupujú k výpočtovým problémom odlišnými postupmi,
-no zároveň používajú spoločné výpočtové zdroje. Každá z technológií prevádzkovaných MetaCentrom poskytuje všetky alebo aspoň časť údajov 
+\\Prostredie MetaCentra predstavuje heterogénnu infraštruktúru. Na riešenie výpočtových úloh sa používajú rôzne technológie, ktoré inak pristupujú k výpočtovým zdrojom. 
+Uzly, na ktorých sa vykonávajú výpočty, disponujú rôznymi typmi zdrojov. Každá z technológií prevádzkovaných MetaCentrom poskytuje všetky, alebo aspoň časť údajov 
 o vyťažení zdrojov ako sú procesor, pamäť, disk a sieťové zariadenia. Mojou úlohou je identifikácia metrík podstatných pre monitorovanie 
-zdrojov a vybratie takých metrík, ktoré je možné porovnať s metrikami ostatných technológií. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je možné vzájomne tieto technológie 
-porovnávať.
+zdrojov a vybratie takých metrík, ktoré je možné porovnať s metrikami ostatných technológií. Takto môžeme dostať celkový obraz o tom, ako rôzne technológie využívajú jednu skupinu zdrojov a len takto je 
+možné vzájomne tieto technológie porovnávať.
 \\Aby bolo možné správne vyvodzovať závery o zaťažení infraštruktúry, je potrebné o tom zberať údaje v pravidelných intervaloch. Každému intervalu 
 prináleží hodnota, ktorá vypovedá o využití prostriedkov za uplynutý čas. Takéto dáta sa nazývajú časové rady.
 \\Vzhľadom na veľkosť infraštruktúry zber týchto metrík vytvára nezanedbateľné požiadavky na úložný priestor. 
 V súčasnosti existujú špecializované databázy na ukladanie časových rád. Tie sa snažia rôznymi technikami zmenšovať kapacitu
 potrebnú na ukladanie časových dát. Jedným spôsobom je agregácia viacerých historických hodnôt do jednej. Tým dochádza k spomaleniu rastu
-databázy v čase. Zároveň dochádza k zrýchleniu vyhodnocovania požiadaviek, ktoré zahŕňajú staré dáta. Tým že sú hodnoty agregované,
+databázy v čase. Zároveň dochádza k zrýchleniu vyhodnocovania požiadaviek, ktoré zahŕňajú staré dáta. Tým, že sú hodnoty agregované,
 je odpoveď vygenerovaná rýchlejšie.
-\\Cieľom práce je poskytnúť mechanizmus na dlhodobý zber metrík, ktorý je škáľovateľný a predstavuje čo najmenšie dodatočnú záťaž
+\\Cieľom práce je poskytnúť mechanizmus na dlhodobý zber metrík, ktorý je škálovateľný a predstavuje čo najmenšiu dodatočnú záťaž
 pre infraštruktúru. Metrické údaje sú základom pre nasledovné účtovanie využitia zdrojov, ktoré pre potreby MetaCentra spracoval
 Michal Kimle vo svojej diplomovej práci Flexibilné účtovanie výpočtových zdrojov pre heterogénne výpočtové prostredie\cite{uctovanie}.
-Zároveň sa v práci zaoberám problematikou agregácie historických dát v databáze časových rád a jedným z cieľov je navrhnúť a 
+\\Zároveň sa v práci zaoberám problematikou agregácie historických dát v databáze časových rád, a jedným z cieľov je navrhnúť a 
 implementovať nástroj na vykonávanie týchto agregácií. Pri riešení daných problémov zohľadňujem už používané nástroje v MetaCentre,
 kde napr. v prípade agregácie historických dát sa jedná o rozšírenie už nasadenej databázy o túto funkcionalitu.
 \\Práca je rozdelená do deviatich kapitol vrátane úvodu a záveru. V úvode je stručne popísaná problematika monitorovania a ukladania
@@ -80,70 +86,69 @@ V siedmej kapitole popisujem nástroje a knižnice použité pri implementácií
 testovaniu naimplementovaného riešenia z hľadiska zberu metrík a agregácie historických dát. Poslednou kapitolou
 je záver, v ktorom hodnotím dosiahnuté výsledky a načrtávam smer ďalšieho vývoja.
 
-\chapter{Heterogénna infraštruktúra MetaCentra}
-Projekt MetaCentrum vznikol v roku 1996 a od roku 1999 je jeho činnosť zastrešovaná organizáciou CESNET. Zaoberá sa budovaním národnej gridovej infraštruktúry a prepojením s podobnými projektami za hranicami
-Českej republiky. Projekt je oficiálnou súčasťou Európskej gridovej iniciatívy (EGI). Úlohou MetaCentra je predovšetkým koordinácia a rozširovanie infraštruktúry či už o vlastné zdroje alebo prostredníctvom
+\chapter{Heterogénna infraštruktúra}
+Heterogénna infraštruktúra obsahuje rôzne typy uzlov, od jednotlivých pracovných staníc, ktoré poskytujú len časť svojho výkonu, až po dedikované clustre, zložené z viacerých úzko prepojených uzlov.
+Ďalšou črtou je viacero spôsobov, akým sa sprístupňuje výpočtový výkon. Prvým spôsobom sú \textit{cloudové služby}. Jedná sa o virtualizované prostredie, kde na jednom fyzickom stroji môže byť súbežne 
+spustených viacero nezávislých užívateľských strojov.
+\\Druhým spôsobom je \textit{grid}. Grid spája mnoho uzlov aj s rôznym geografickým umiestnením do jedného výpočtového uzla, ktorý rieši náročné výpočtové úlohy. Uzly môžu poskytovať celý svoj výpočtový výkon
+alebo len jeho časť.
+
+\section{MetaCentrum}
+Projekt MetaCentrum je príkladom heterogénnej infraštruktúry. Vznikol v roku 1996 a od roku 1999 je jeho činnosť zastrešovaná organizáciou CESNET. Zaoberá sa budovaním národnej gridovej infraštruktúry a 
+prepojením s podobnými zahraničnými projektami. Projekt je oficiálnou súčasťou Európskej gridovej iniciatívy (EGI). Úlohou MetaCentra je predovšetkým koordinácia a rozširovanie infraštruktúry či už o vlastné zdroje alebo prostredníctvom
 partnerov, ktorý poskytujú výpočtový výkon svojich clusterov. Jedná sa hlavne o akademickú spoluprácu. MetaCentrum spravuje výpočtové prostriedky a dátové úložiská AV, JČU, MU, MZLU, UK, VUT, ZČU.
-V súčasnosti disponuje (stav k 30.7. 2010) 1500 procesorovými jadrami, 100 TB využiteľnej diskovej kapacity v podobe poľa a 400 TB kapacity v podobe pások. Služby využíva 385 registrovaných aktívnych užívateľov, ktorí 
-spolu na 750 tisíc úlohách využili 7 miliónov hodín procesorového času. Nasledujúci obrázok ilustruje infraštruktúru MetaCentra:
+V súčasnosti infraštruktúra disponuje viac než 13400 procesorovými jadrami \cite{metacentrum_size}. Obrázok \ref{fig:metacentrum_cr} ilustruje infraštruktúru MetaCentra:
 \begin{figure}[h]
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/metacentrum.png}
        \caption{Infraštruktúra MetaCentra v ČR}
+       \label{fig:metacentrum_cr}
 \end{center}
 \end{figure}
 MetaCentrum primárne poskytuje svoj výpočtový výkon a úložnú kapacitu. Taktiež sprístupňuje svoje programové vybavenie a vývojové prostredie a hlavne množstvo aplikácií využívaných na výskumné účely, ako napr. 
 Ansys, Gaussian, Matlab, Mathematica. Taktiež sa venuje vývoju v oblasti gridového a cloudového počítania, napr. v oblasti plánovania, gridového middleware, optimalizácie a paralelizácie výpočtov a virtualizácie
 infraštruktúry. Dôležitou funkciou je účasť na medzinárodných projektoch, využívanie medzinárodnej výpočtovej infraštruktúry a využívanie skúseností na rozvoj v domácom prostredí.\cite{metacentrum}
-\\Cieľom MetaCentra je umožňiť využívať veľkú množinu výpočtových zdrojov mnohým subjektom. Infraštruktúra je rôznorodá, obsahuje rôzne typy uzlov, od jednotlivých pracovných staníc, ktoré poskytujú
-časť svojho výkonu až po dedikované clustre, ktoré slúžia na riešenie zložitých výpočtových úloh. V MetaCentre je výpočtový výkon sprístupnený viacerými technológiami.
-\\Prvým typom je \textit{cloud}. Jedná sa o virtualizované prostredie, kde na jednom fyzickom stroji môže byť súbežne spustených viacero nezávislých strojov.
-\\Druhým typom je \textit{grid}. Grid spája mnoho uzlov aj s rôznym geografickým umiestnením do jedného výpočtového uzla, ktorý rieši náročné výpočtové úlohy. Uzly môžu poskytovať celý svoj výpočtový výkon
-alebo len jeho časť.
 
 \section{Kontrola zdrojov infraštruktúry}
 Bez ohľadu na to, aký prístup si užívateľ zvolí k využívaniu zdieľaných výpočtových prostriedkov, jeho výpočty sa v konečnom dôsledku budú musieť realizovať na fyzickom hardvéri poskytovateľa. 
 Aj keď sa daná úloha vypočítava na viacerých uzloch a rozličnými postupmi, vlastník by mal mať možnosť nejakým jednotným spôsobom určiť, ako je reálne celá infraštruktúra vyťažovaná.
 
 \section{Cloud}
-Cloud predstavuje abstraktnú výpočetnú infraštruktúru, ktorej fyzické výpočtové prostriedky sú zdieľané viacerými užívateľmi. 
+Cloud predstavuje virtualizovanú výpočtovú infraštruktúru, ktorej fyzické výpočtové prostriedky sú zdieľané viacerými užívateľmi. 
 Pre cloud sú typické dva koncepty \cite{cloud_bible}:
 \begin{description}
 \item[\emph{Abstrakcia:}] Podrobnosti o implementácií systému sú abstrahované užívateľom a vývojárom. Aplikácie bežia na fyzických systémoch,
 ktoré nie sú špecifikované, dáta sú uložené na neznámych miestach, administrácia systémov je odovzdaná iným a užívatelia majú
 všestranný prístup.
 \item[\emph{Virtualizácia:}] Cloud virtualizuje systémy zdieľaním zdrojov. Systémy a úložný priestor môže byť poskytovaný podľa potrieb z 
-centralizovanej infraštruktúry, ceny sú stanovené na základe meraní, je možný prenájom viacerým subjektom a zdroje sú škáľovateľné podľa aktivity.
+centralizovanej infraštruktúry, ceny sú stanovené na základe meraní, je možný prenájom viacerým subjektom a zdroje sú škálovateľné podľa aktivity.
 \end{description}
-
-Prevádzkovateľ cloudu môže zvoliť rôzne prístupy k tomu, akým spôsobom bude poskytovať svoje zdroje. Tie sa dajú rozdeliť do troch kategórií:
-
+Prevádzkovateľ cloudu môže zvoliť rôzne prístupy k tomu, akým spôsobom bude poskytovať svoje zdroje\cite{cloud_bible}:
 \begin{description}
 \item[\emph{Infrastructure as a Service (IaaS):}] Užívateľ má možnosť využívať zdroje cloudu podľa svojich hardvérových požiadaviek.
 Môže si presne určiť koľko pamäte, procesorov alebo diskovej kapacity požaduje. Poskytovateľ služby spravuje hardvérovú infraštruktúru,
-kým užívateľ je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. \cite{cloud_bible}
+kým užívateľ je zodpovedný za ostatné aspekty nasadenia. To zahŕňa operačný systém, aplikácie a užívateľskú interakciu so systémom. 
 \item[\emph{Platform as a Service (PaaS):}] Prevádzkovateľ služby poskyzuje hardvér, operačný systém, aplikácie, služby, vývojové prostredia
 a kontrolné štruktúry. Užívateľ môže nasadiť vlastné aplikácie na cloudovú infraštruktúru alebo využívať aplikácie, ktoré boli naprogramované
-jazykmi a nástrojmi, podporovanými prevádzkovateľom. %\cite[10]{cloud_bible:1}
+jazykmi a nástrojmi podporovanými prevádzkovateľom.
 \item[\emph{Software as a Service (SaaS):}] Tento model sprístupňuje užívateľovi konkrétnu aplikáciu prostredníctvom tenkého klientskeho 
-rozhrania (zväčša cez webový prehliadač) a zodpovednosť zákazníka spočíva len v spravovaní svojich dát a v interakcií s užívateľským systémom.\cite{cloud_bible}
+rozhrania (zväčša cez webový prehliadač) a zodpovednosť zákazníka spočíva len v spravovaní svojich dát a v interakcií s užívateľským systémom.
 \end{description}
 
-Cloud umožňuje jednoducho spravovať a meniť výpočtový výkon, ktorý má užívateľ k dispozícií. Má to význam, ak sa rozrastú požiadavky užívateľa na výkon, alebo naopak z dôvodu obmedzenej prevádzky či 
-nedostatku výpočtových úloh sa nároky môžu zmenšiť. Užívateľ môže dané prostriedky využívať hneď, bez veľkých počiatočných investicií, ktoré by si buď nemohol dovoliť, alebo ak sú výpočtové úlohy krátkodobejšieho rázu, nákup
-stroja s požadovaným výkonom by bol nevhodnou investíciou. Užívateľ sa nemusí starať o nákup hardvéru, jeho zostavovanie do funkčných serverov a ich následné rozširovanie a správu. Tieto služby zabezpečuje prevádzkovateľ cloudovej infraštruktúry.
-Pre neho je zase dôležité mať prehľad o tom, ako sú jeho inštalované kapacity využívané. Či už z pohľadu skvalitňovania vlastných poskytovaných služieb alebo vo vzťahu k užívateľovi a k tomu, v akej miere spotrebováva poskytovaný výkon.
-Výpočtové prostriedky sú poskytované viacerými spôsobmi:
+Cloud umožňuje jednoducho spravovať a meniť výpočtový výkon, ktorý má užívateľ k dispozícií. Má to význam, ak sa rozrastú požiadavky užívateľa, alebo naopak z dôvodu obmedzenej prevádzky či 
+nedostatku výpočtových úloh sa nároky môžu zmenšiť. Užívateľ môže dané prostriedky využívať hneď, bez veľkých počiatočných investicií, ktoré by si buď nemohol dovoliť, alebo ak sú výpočtové úlohy 
+krátkodobejšieho rázu, nákup stroja s požadovaným výkonom by bol nevhodnou investíciou. Užívateľ sa nemusí starať o nákup hardvéru, jeho zostavovanie do funkčných serverov a ich následné rozširovanie 
+a správu. Tieto služby zabezpečuje prevádzkovateľ cloudovej infraštruktúry. Pre neho je zase dôležité mať prehľad o tom, ako sú jeho inštalované kapacity využívané. Či už z pohľadu skvalitňovania
+vlastných poskytovaných služieb alebo vo vzťahu k užívateľovi a k tomu, v akej miere spotrebováva poskytovaný výkon.
 
 \section{Realizácia konceptov cloudu}
 Prostredie cloudu má za cieľ poskytovať užívateľom prostriedky variabilne vzhľadom na ich aktuálne požiadavky. Druhým dôležitým aspektom je
-izolovanosť jednotlivých užívateľov v rámci celej infraštrukúry, aby prípadné problémy so systémom jedného úžívateľa neohrozili prevádzku
+izolovanosť jednotlivých užívateľov v rámci celej infraštrukúry, aby prípadné problémy so systémom jedného užívateľa neohrozili prevádzku
 systémov ostatných užívateľov.
 
 \subsection{Virtuálne stroje}
-Virtuálne stroje poskytujú úplnú virtualizáciu fyzickej hardvérovej štruktúry. Na jednom hosťujúcom počítači môže byť spustených viacero virtuálnych strojov. Každý má svoj vlastný virtuálny procesor, pamäť, grafický procesor, pevný disk 
-a periférie. Operačný systém spustený vo virtuálnom stroji je izolovaný od hosťovského opračného systému (ak ho hosťovský počítač má). Takéto riešenie má jednu bezpečnostnú výhodu oproti aplikačným 
-kontajnerom. Nežiadúce fungovanie jedného virtuálneho stroja neovplyvňuje beh ostatných.
+Virtuálne stroje poskytujú úplnú virtualizáciu fyzickej hardvérovej štruktúry. Na jednom hosťujúcom počítači môže byť spustených viacero virtuálnych strojov. Každý má svoj vlastný virtuálny procesor, 
+pamäť, grafický procesor, pevný disk a periférie. Operačný systém spustený vo virtuálnom stroji je izolovaný od hosťovského opračného systému (ak ho hosťovský počítač má). 
 
 \subsubsection{Hypervízor}
 Hypervízor je softvér, ktorý poskytuje virtualizačné nástroje potrebné na ich izolovaný beh v rámci jedného fyzického stroja. Rozlišujeme 2 typy \cite{hypervisorTypes}:
@@ -153,11 +158,11 @@ Príkladom je VMware ESX/ESXi\footnotemark\footnotetext{http://www.vmware.com/},
 Citrix XenServer\footnotemark\footnotetext{https://www.citrix.com/products/xenserver/} alebo KVM\footnotemark\footnotetext{Kernel-based Virtual Machine}.
 \item[hosťovaný] - hypervízor je spustený ako program v operačnom systéme hosťujúceho počítača. Príkladom je QEMU, VMware Workstation alebo VirtualBox.
 \end{description}
-V prostredí MetaCentra sa používa na virtualizáciu hypervízor KVM. Bližšie ho popisujem v sekcii ~\ref{sec:kvm}.
+V prostredí MetaCentra sa používa na virtualizáciu hypervízor KVM. Bližšie ho popisujem v sekcii \ref{sec:kvm}.
 
 \subsection{Aplikačné kontajnery}
-Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných virtuálnych strojov 
-nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje obrázok \ref{fig:containers}. 
+Kontajnery predstavujú odlišný prístup k virtualizácií ako virtuálne stroje. Tiež ide o snahu spúšťať softvér v prostredí oddelenom od skutočného hardvéru a operačného systému. Na rozdiel od úplných 
+virtuálnych strojov nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutné na spustenie programu. Rozdiel v architektúre ilustruje obrázok \ref{fig:containers}. 
 \begin{figure}
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/kontajnery-virtualky.png}
@@ -165,46 +170,58 @@ nie je virtualizovaný celý hardvér, ale len softvérové vybavenie nevyhnutn�
        \label{fig:containers}
 \end{center}
 \end{figure}
-Kontajnery zdieľajú jadro operačného systému hosťovského počítača a jeho množinu prostriedkov. Jednotlivé kontajnery dostávajú kontrolovaný prístup k výpočtovému výkonu, pamäti, úložnej kapacite, 
-sieti a prípadne ďalším prostriedkom. Takýto spôsob virtualizácie predstavuje zníženú záťaž na hosťujúci počítač, pretože nie je virtualizovaný celý operačný systém a ani hardvér.
+Kontajnery zdieľajú jadro operačného systému hosťovského počítača a jeho zdroje. Jednotlivé kontajnery dostávajú kontrolovaný prístup k procesoru, pamäti, úložnej kapacite, 
+sieti. Takýto spôsob virtualizácie predstavuje zníženú záťaž na hosťujúci počítač, pretože nie je virtualizovaný celý operačný systém a ani hardvér.
 \\Kontajnery môžu byť spustené aj v rámci virtuálnych strojov. Cieľom tejto práce ale nie je monitorovanie takto vnorených kontajnerov.
-\\V prostredí MetaCentra je ako kontajnerový engine testovaný softvér Docker\footnotemark\footnotetext{https://www.docker.com/}.
+\\V prostredí MetaCentra je ako kontajnerový engine testovaný softvér Docker\cite{Docker}.
  
 \section{MapReduce aplikačné prostredia}
+MapReduce predstavuje prístup k riešeniu problémov, ktoré operujú nad veľkým objemom dát v rádoch stoviek a tisícok gigabajtov\cite{hadoop}. Je to spôsob distribuovaného a paralelizovaného riešenia problémov,
+kedy dáta, nad ktorými sa uskutočňuje výpočet, sú tiež uložené distribuovane. MapReduce rozdeľuje problém na dve fázy: fáza mapovania a fáza redukovania.
+Každá fáza má svoje vstupné a výstupné dáta. Vo fáze mapovania dochádza k príprave dát. Vstup je spracovaný do takej štruktúry, nad ktoroou prebehne výpočet. Vo fáze redukovania
+je spracovaný výstup fázy mapovania a vytvorené čiastkové výsledky. Následne je z vytvorený celkový výsledok. Rozdelenie problémov do týchto dvoch fáz potom umožňuje jednotlivé čiastkové problémy riešiť
+na viacerých uzloch paralelne nad podmnožinou vstupných dát. 
 
 \section{Gridové počítanie}
+Grid je výpočtový model, ktorý sprístupňuje zdroje, kontrolované viacerými nezávislými subjektami. Subjekty sa často nachádzajú v rôznych mestách alebo štátoch. Existujú aj gridy,
+ktorých uzly sú rozložené po celom svete (napr. BOINC\footnotemark\footnotetext{Berkeley Open Infrastructure for Network Computing - https://boinc.berkeley.edu/}). Jednotlivé subjekty na komunikáciu využívajú bežné
+komunikačné protokoly, napr. Ethernet. Uzly jednotlivých subjektov kooperovane poskytujú svoj výpočtový výkon. Grid spája
+svoje zdroje na vyriešenie jedného veľkého výpočetného problému\cite{grid}. Využíva na to vrstvu middleware, ktorá rozdeľuje uzlom vykonávanie jednotlivých častí programu. 
+V MapReduce aplikačnom prostredí sú uzly bližšie prepojené a
+dáta sú distribuovane uložené. V gridových systémoch dochádza k pomerne veľkej výmene dát medzi uzlami, kedy výpočet často čaká, kým obdrží dáta zo siete\cite{hadoop}. 
 
 \section{Technológie využívané v MetaCentre}
-V prostredí MetaCentra sú nasadené do produkčnej prevádzky softvéry, ktoré umožňujú využívať výkon spomínanými technológiami. Jedná sa o heterogénnu infraštruktúru, ktorú tvoria výkonné clustre ale 
-aj jednotlivé uzly rozmiestnené po celej republike. Virtuálne stroje sú poskytované prostredníctvom linuxového modulu jadra \textit{KVM}. Na prácu s nimi je využívaná knižnica \textit{libvirt}. 
-Na virtualizáciu v podobe kontajnerov je nasadený softvér \textit{Docker}. Technológiu distribuovaného počítania v podobe MapReduce aplikácií zabezpečuje \textit{Apache Hadoop}.
-Koordináciu gridových výpočtov zabezpečuje \textit{Torque}. V nasledujúcich sekciách sa podrobnejšie venujem popisu jednotlivých softvérov.
+V prostredí MetaCentra sú nasadené do produkčnej prevádzky softvéry, ktoré umožňujú využívať výpočtový výkon spomínanými technológiami. Jedná sa o heterogénnu infraštruktúru, ktorú tvoria výkonné clustre ale 
+aj jednotlivé uzly rozmiestnené po celej republike. Virtuálne stroje sú poskytované prostredníctvom linuxového modulu jadra \textit{KVM}\footnotemark\footnotetext{Kernel Virtualization Module}\cite{kvm}. 
+Na prácu s nimi je využívaná knižnica \textit{libvirt}\cite{libvirt}. 
+Na virtualizáciu v podobe kontajnerov je nasadený softvér \textit{Docker}\cite{docker}. Technológiu distribuovaného počítania v podobe MapReduce aplikácií zabezpečuje \textit{Apache Hadoop}\cite{hadoop}.
+Koordináciu gridových výpočtov zabezpečuje plánovač \textit{PBS Professional}\footnotemark\footnotetext{http://www.pbsworks.com/}. V nasledujúcich sekciách sa podrobnejšie venujem popisu jednotlivých softvérov.
  
 \subsection{libvirt/KVM}
 \label{sec:kvm}
-KVM je plné virtualizačné riešenie pre Linux na x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT or AMD-V).
-Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry a šepcifický modul, kvm-intel.ko alebo kvm-amd.ko, ktoré zabezpečujú virtuálizáciu procesora od daného výrobcu.
-Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo aj ďalšími. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
-KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
+KVM je plné virtualizačné riešenie pre Linux na x86 hardvér, obsahujúce virtualizačné rozšírenia (Intel VT alebo AMD-V).
+Pozostáva z nahrateľného modulu jadra, kvm.ko, ktorý poskytuje základ virtualizačnej infraštruktúry, a šepcifické moduly, kvm-intel.ko alebo kvm-amd.ko, ktoré zabezpečujú virtuálizáciu procesora od daného 
+výrobcu.
+Je možné virtualizovať obrazy s operačnými systémami Linux, Windows, OS X alebo inými. Každý virtuálny stroj má vlastný virtualizovaný hardvér: procesor, pamäť, sieťovú kartu, disk, grafický adaptér atď. 
+\\KVM je open-source softvér. Virtualizačný modul jadra sa nachádza v Linuxe od verzie 2.6.20.\cite{kvm}
 \\libvirt je sada nástrojov na prácu s virtualizačnými schopnosťami Linuxu (a ostatných OS). Je to voľný softvér dostupný pod licenciou GNU LGPL. 
 Obsahuje API v jazyku C a väzby pre bežné programovacie jazyky, ako napr. Python, C\#, Java, Ruby alebo Go.\cite{libvirt}
-\\Knižnica libvirt predstavuje vrstvu abstrakcie, ktorá zjednocuje prácu s hypervízormi od viacerých výrobcov. Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať ho, reštartovať a vypínať, meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
+\\Knižnica libvirt predstavuje vrstvu abstrakcie, ktorá zjednocuje prácu s hypervízormi od viacerých výrobcov. Umožňuje vytvoriť a zrušiť virtuálny stroj, spúšťať ho, reštartovať a vypínať, 
+meniť jeho konfiguráciu a pridelené zdroje a tiež zisťovať údaje o využití zdrojov.
 
 \subsection{Docker}
-Docker predstavuje kontajnerový engine a sadu nástrojov, ktorá umožňuje zabaliť aplikáciu so všetkými jej závislosťami do kompaktnej jednotky (tzv. kontajnery) určenej na softvérový vývoj. Kontajnery Dockeru 
-obaľujú softvér kompletným súborovým systémom, ktorý zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude pracovať rovnako bez ohľadu na prostredie, v ktorom
-je spustený.\cite{docker} 
-Pri behu jednotlivé kontajnery zdieľajú jadro operačného systému.
-\\Docker rozlišuje kontajnery a obrazy. Obraz predstavuje softvérový balík so všetkými závislosťami, kontajner reprezentuje jeho beh. Preto môže existovať viacero kontajnerov, v ktorých je spustený ten istý
+Docker predstavuje kontajnerový engine a sadu nástrojov, ktorá umožňuje zabaliť aplikáciu so všetkými jej závislosťami do kompaktnej jednotky (tzv. kontajneru) určenej na softvérový vývoj. Kontajnery Dockeru 
+obaľujú softvér kompletným súborovým systémom, ktorý zahŕňa všetko, čo daný softvér potrebuje na spustenie: kód, nástroje potrebné na beh, systémové nástroje a knižnice. Toto zaručuje, že program bude 
+pracovať rovnako bez ohľadu na prostredie, v ktorom je spustený.\cite{docker} Pri behu jednotlivé kontajnery zdieľajú jadro operačného systému.
+\\Docker rozlišuje kontajnery a obrazy. Obraz predstavuje softvérový balík so všetkými závislosťami, kontajner reprezentuje jeho beh. Preto môže naraz existovať viacero kontajnerov, v ktorých je spustený ten istý
 softvér.
 
 \subsection{Hadoop}
-Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Apache Hadoop je prostredie, ktoré umožňuje distribuované spracovávanie veľkých množstiev dát
-naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočtový výkon a úložný priestor.
-Nespolieha sa na vysokú dosupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
+Projekt Apache Hadoop vyvíja open-source softvér na spoľahlivé, škálovateľné, distribuované výpočty. Umožňuje distribuovane spracovávať veľké objemy dát
+naprieč clustermi, používajúcimi jednoduché programovacie modely. Je navrhnutý tak, aby bol škálovateľný od jednotlivých serverov po tisícky strojov, kde každý poskytuje lokálny výpočtový výkon a úložný 
+priestor. Nespolieha sa na vysokú dostupnosť hardvérových prostriedkov, ale je navrhnutý, aby detekoval a zvládal chyby na aplikačnej vrstve, takže poskytuje vysoko dostupnú službu nad clusterom počítačov, 
 z ktorých každý je náchylný na chyby. \cite{hadoop}
-\\Hadoop využíva MapReduce aplikačný model. Vývojárom poskytuje programovacie prostredie, ktoré uľahčuje výmenu dát medzi jednotlivými fragmetnami veľkej výpočtovej úlohy. Toto zjednodušuje
-prácu spojenú s komunikáciou medzi jednotlivými uzlami a umožňuje sa viac zamerať na samotný výpočetný problém.
+\\Hadoop využíva MapReduce aplikačný model. Vývojárom poskytuje programovacie prostredie, ktoré uľahčuje výmenu dát medzi jednotlivými fázami výpočtovej úlohy. 
 \\Projekt pozostáva z týchto modulov:
 \begin{description}
 \item[\emph{Hadoop Common:}] spoločné nástroje, ktoré podporujú ostatné Hadoop moduly
@@ -213,8 +230,8 @@ prácu spojenú s komunikáciou medzi jednotlivými uzlami a umožňuje sa viac 
 \item[\emph{Hadoop MapReduce:}] systém založený na YARN pre paralelné spracovávanie veľkých množstiev dát, prostredie pre plánovanie úloh a správu zdrojov clustera
 \end{description}
 
-Nasledujúci obrázok ukazuje výpočetnú architektúru YARN-u. Komponent ResourceManager má prehľad o všetkých zdrojoch clustera a prideľuje ich. Na jednotlivých uzloch NodeManager alokuje kontajnery, v ktorých sa vykonáva
-aplikácia. Jej beh riadi komponent ApplicationMaster, ktorý tiež vyjednáva o zdrojoch s ResourceManagerom.
+Nasledujúci obrázok ukazuje výpočetnú architektúru YARN-u. Komponent ResourceManager má prehľad o všetkých zdrojoch clustera a prideľuje ich aplikáciám. Na jednotlivých uzloch NodeManager alokuje 
+kontajnery, v ktorých sa vykonáva aplikácia. Jej beh riadi komponent ApplicationMaster, ktorý tiež vyjednáva o zdrojoch s ResourceManagerom.
 \begin{figure}
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/yarn_architecture.png}
@@ -223,6 +240,10 @@ aplikácia. Jej beh riadi komponent ApplicationMaster, ktorý tiež vyjednáva o
 \end{figure}
 
 \subsection{PBS Professional}
+Po konzultácií so školiteľom bola jedna z platforiem v zadaní Torque nahradená platformou PBS Professional\footnotemark\footnotetext{Portable Batch System}\cite{pbs_pro}. PBS Professional je odvodený od 
+systému Torque a takisto sa jedná o gridový plánovací softvér. PBS si udržuje prehľad o podliehajúcej infraštruktúre. Má k dispozícií zoznam dostupného hardvéru, softvérových licencií a informácie o
+čakajúcich a spustených úlohách. Každá úloha má definované požiadavky na zdroje, softvér a dobu, dokedy by mala byť úloha vypočítaná. PBS pridelí úlohu
+na stroj, ktorý vyhovuje týmto požiadavkám. Plánovač čaká, kým je požadovaný stroj dostupný a pri vykonávaní úlohy jej poskytne vstup a uloží výstup na požadovanom mieste.
 \begin{figure}
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/pbspro-arch.jpg}
@@ -235,87 +256,85 @@ Monitorovanie akejkoľvek (nielen počítačovej) prevádzky je dôležitá obla
 spôsobov využitia:
 \begin{description}
 \item[\emph{Prehľad o aktuálnom vyťažení zdrojov}]
-Pri zbere dát toto zodpovedá meraniu konkrétnej hodnoty sledovaného parametru. Kvantifikáciou sledovaného zdroja dostaneme predstavu o tom, ako je používaný "teraz", čiže v prítomnosti. Môžeme tak detegovať prípadné
-preťaženie zdroja, jeho dostupnosť alebo zlyhanie.
+Pri zbere dát toto zodpovedá meraniu konkrétnej hodnoty sledovaného parametru. Kvantifikáciou sledovaného zdroja dostaneme predstavu o tom, ako je používaný "teraz", čiže v prítomnosti. Môžeme tak detegovať 
+prípadné preťaženie zdroja, jeho dostupnosť alebo zlyhanie.
 \item[\emph{Prehľad o vyťažení zdrojov za určitú dobu}]
-Vyťaženie zdrojov sa v priebehu času mení. Nielen z krátkodobého hľadiska, kedy napríklad prebieha výpočet náročných úloh len v určitých hodinách, ale aj zo strednodobého (v období letných prázdnin je infraštruktúra 
-vyťažovaná menej) a dlhodobého hľadiska (požiadavky na výkon sa zväčšujú). Uchovávanie monitorovacích dát predstavuje kľúčovú požiadavku, aby sme mohli sledovať, aké trendy vo využívaní mali jednotlivé sledované zdroje v priebehu nejakej doby.
-Z takto nahromadených dát môžeme vypočítavať rôzne štatistiky a ďalej ich analyzovať.
+Vyťaženie zdrojov sa v priebehu času mení. Nielen z krátkodobého hľadiska, kedy napríklad prebieha výpočet náročných úloh len v určitých hodinách, ale aj zo strednodobého (v období letných prázdnin je 
+infraštruktúra vyťažovaná menej) a dlhodobého hľadiska (požiadavky na výkon sa zväčšujú). Uchovávanie monitorovacích dát predstavuje kľúčovú požiadavku, aby sme mohli sledovať, aké trendy vo využívaní mali 
+jednotlivé sledované zdroje v priebehu nejakej doby. Z takto nahromadených dát môžeme vypočítavať rôzne štatistiky a ďalej ich analyzovať.
 \item[\emph{Prehľad o vyťažení zdrojov podľa parametrov}]
 Vyťaženie zdrojov predstavuje určitú skalárnu hodnotu či už pre jednotlivé uzly alebo naprieč celou infraštruktúrou. Niekedy je však potrebné zistiť, ako boli využívané zdroje len v určitej oblasti cloudu,
-alebo napr. ako boli využívané disky s kapacitou nad 1 TB. Okrem jednoduchého zberu dát o vyťažení nám dobre navhrnuté monitorovanie poskytuje aj komplexnejšie informácie, na základe ktorých je potom možné
+alebo napr. ako boli využívané disky s kapacitou nad 1 TB. Okrem jednoduchého zberu dát o vyťažení by monitorovacie riešenie malo poskytnúť aj ďalšie informácie, na základe ktorých je potom možné
 selektívne určovať vyťaženie zdrojov. To je možné dosiahnuť zberom doplňujúcich dát pripísaných jednotlivým metrikám.
 \item[\emph{Prehľad o stave zdrojov z hľadiska správy a plánovania}]
-Nezanedbateľný význam má monitorovanie z hľadiska údržby a servisu poskytovaných služieb. Z dostupných dát vieme indentifikovať nefunkčný zdroj a nahradiť ho novým. V prípade vysokého vyťaženie zas môžeme vyvodiť záver, že zdroje už nie sú
-dostačujúce a je potrebné ich nejakým spôsobom rozšíriť prípadne zlepšiť efektivitu ich využívania. Takisto vieme do určitej miery predpovedať, ako budú zdroje v budúcnosti využívané, čo je podstatné pri samotnom plánovaní 
-odstávok, servisnej činnosti alebo dočasného rozšírenia zdrojov.
+Z monitorovacích dát vieme indentifikovať nefunkčný zdroj a nahradiť ho novým. V prípade vysokého vyťaženie zas môžeme vyvodiť záver, že zdroje už nie sú
+dostačujúce a je potrebné ich nejakým spôsobom rozšíriť, prípadne zlepšiť efektivitu ich využívania. Takisto vieme do určitej miery predpovedať, ako budú zdroje v budúcnosti využívané, 
+čo je podstatné pri samotnom plánovaní odstávok, servisnej činnosti alebo zväčšovaní infraštruktúry.
+
 \item[\emph{Účtovanie vyťaženia zdrojov}]
-Každá poskytovaná služba má svojho spotrebiteľa. Dáta o používaní zdrojov sú jediným možným spôsobom ako rozumne stanoviť cenu za používané zdroje.
+Dáta o používaní zdrojov sú jediným možným spôsobom ako rozumne stanoviť cenu za používané zdroje.
 Taktiež na ich základe môžeme sledovať činnosť jednotlivých užívateľov v systémoch a stanoviť im akceptovateľné podmienky na využívanie služieb.
 \\Problematike výpočtu štatistík a účtovaniu vyťaženia zdrojov v prostredí MetaCentra sa venuje diplomová práca Michala Kimleho\cite{uctovanie}.
 Pre výpočet štatistík používa metrické údaje spolu s ďalšími identifikačnými údajmi. Okrem monitorovania infraštruktúry poslúžia
-mnou zberané metriky taktiež na výpočet týchto štatistík.
+mnou zberané metriky na výpočet týchto štatistík.
 \end{description}
 
 \section{Všeobecné problémy monitorovania}
-Problematika monitorovania v sebe zahŕňa viacero aspektov, ktoré možno oddeliť, nájsť pre ne vhodné riešenia a spojiť ich tak do funkčného celku. 
+Problematiku monitorovania je možné rozdeliť na viacero podproblémov, nájsť pre ne vhodné riešenia a spojiť ich tak do funkčného celku. 
 
 \subsection{Identifikácia relevantných metrík}
 V prvom rade je potrebné identifikovať, čo vlastne potrebujeme pre konkrétny systém monitorovať. Jedná sa o určenie zdrojov kľúčových pre dané prostredie. V tomto prípade sú to údaje o vyťažení
 procesorov, pamätí, sieťových rozhraní a diskov. Niektoré údaje, ktoré potrebujeme vedieť, je možné odvodiť z iných už nameraných hodnôt, napr. percentuálna miera vyťaženia procesora. 
 
 \subsection{Analýza v reálnom čase a varovania}
-Namerané hodnoty metrík je okrem neskoršej štatistickej analýzy potrebné sledovať a analyzovať v reálnom čase. Metrika môže mať svoje kritické hodnoty. Sú to hodnoty, ktoré naznačujú, že daný zdroj sa vymyká bežným očakávaniam o využití.
-Na toto je vhodné reagovať. Či už sa jedná o zapísanie hlásenia do logu, zobrazenie varovania alebo prípadné zaslanie emailu či SMS správy s popisom udalosti.
+Namerané hodnoty metrík je okrem neskoršej štatistickej analýzy potrebné sledovať a analyzovať v reálnom čase. Metrika môže mať svoje kritické hodnoty. Sú to hodnoty, ktoré naznačujú, že daný zdroj sa 
+vymyká bežným očakávaniam o využití. Na toto je možné reagovať. Či už sa jedná o zapísanie hlásenia do logu, zobrazenie varovania alebo prípadné zaslanie emailu či SMS správy s popisom udalosti.
 
 \subsection{Meracie intervaly}
-Ďalším čiastkovým problémom je granularita metrík. Zdroje sú kontinuálne využívané v čase. Tieto dáta je potrebné nejakým spôsobom digitalizovať. V určitom momente sa pozrieme na zdroj, kvanitifikujeme, do akej miery je využitý a danú
-hodnotu zobrazíme prípadne uložíme. Meranie je po uplynutí určitého intervalu zopakovať, aby sme získali opäť aktuálne údaje. Rôzne zdroje sa menia v čase rôznou intenzitou. Napr. spotrebovaný porcesrový čas
-sa mení prakticky neustále, zatiaľčo počet chýb na sieťovom rozhraní sa mení zriedkavejšie. Je preto dôležité určiť aj periodicitu zberania jednotlivých metrík. Niektoré metriky sa môžu meniť takým spôsobom, ž
-e nie je efektívne sledovať ich zmenu pravidelne v nejakých intervaloch. Namiesto toho je efektívnejšie pri zmene daného parametru túto zmenu ohlásiť spolu s novou hodnotou.
+Ďalším čiastkovým problémom je granularita metrík. Zdroje sú kontinuálne využívané v čase. Tieto dáta je potrebné nejakým spôsobom digitalizovať. V pravidelných intervaloch sa pozeráme na zdroje
+a určujeme ich vyťaženie v priebehu daného intervalu. Rôzne zdroje sa menia v čase rôznou intenzitou, je preto dôležité určiť aj periodicitu zberu jednotlivých metrík.
 
-\subsection{Počet zdrojov a ich identifikácia}
-Množstvo zdrojov predstavuje ďalšiu oblasť, ktorú je potrebné zvážiť. Môžeme disponovať rôznym počtom zdrojov viacerých druhov, rozmiestnenými na viacerých miestach pod správou mnohých ľudí - prípadne oddelení. Metrické dáta vo svojej
+\subsection{Množstvo zdrojov a ich identifikácia}
+Množstvo zdrojov predstavuje ďalšiu oblasť, ktorú je potrebné zvážiť. Môžeme disponovať rôznym počtom zdrojov viacerých druhov, rozmiestneným na viacerých miestach pod správou viacerých organizácií.
+Metrické dáta vo svojej
 podstate len kvantifikujú využitie zdroja vo všeobecnosti. Zaobchádzajú s ním v tom zmysle, ako by bol len jeden. Nehovoria nič bližšie o tom, o aký zdroj sa jedná, kde je ho možné nájsť. V rámci širšieho
-systému je preto dôležitá jednoznačná identifikácia daného zdroja. O danom zdroji preto chceme zistiť napr. názov uzla, kde sa nachádza, prípadne výrobný model. Takéto údaje sa nazývajú metadáta - čiže dáta o (v tomto 
-prípade o metrických) dátach.
+systému je preto dôležitá jednoznačná identifikácia daného zdroja. O danom zdroji preto chceme zistiť napr. názov uzla, kde sa nachádza, prípadne výrobný model. Takéto údaje sa nazývajú metadáta.
 
 \subsection{Ukladanie dát}
-Uchovávanie metrických dát je kľúčovou sučasťou monitorovacieho systému. Doba, po ktorú vlastníci zdrojov uchovávajú metrické dáta, sa líši systém od systému. V niektorých oblastiach to je dokonca upravené zákonmi - napr. telekomunikácie,
-v iných je to na zvážení majiteľa infraštruktúry. Množstvo dát, ktoré je treba uložiť, závisí od viacerých parametrov. Sú nimi počet druhov zdrojov, počet jednotlivých inštancií zdrojov, počet metrík, ktoré sa o zdrojoch
-uchovávajú, periodicita zbieraných metrík a do určitej miery aj spôsob identifikácie daného zdroja. Prikladám tabuľku, ktorá ilustruje ako sa mení počet záznamov v závislosti na uvedených parametroch.
-\\Ukladanie metrických dát predstavuje zároveň úzke hrdlo monitorovacieho riešenia. Zistenie hodnôt metrík pre kontrétny zdroj predstavuje v zásade serializovanú činnosť. V určitom čase sú všetky zdroje opýtané na to, ako sú vyťažené. Po jednom
-zistia svoje hodnoty a odošlú ich na uloženie. Počet metrík pre jeden zdroj je v bežnej praxi len zlomkom počtu zdrojov. Na časť systému, ktorá je zodpovedná za ukladanie metrík, sú preto v pravidelných intervaloch kladené pomerne 
-veľké nároky. Je ich už ale možné spracovávať paralelne. Centralizácia úložiska by znamenala prílišnú záťaž na monitorovacie uzly, preto je vhodné, aby takéto úložisko bolo distribuované a prispôsobené na paralelné spracovávanie veľkých
-objemov dát.
+Uchovávanie metrických dát je kľúčovou sučasťou monitorovacieho systému. Doba, po ktorú vlastníci zdrojov uchovávajú metrické dáta, sa líši systém od systému. 
+Množstvo dát, ktoré je treba uložiť, závisí od viacerých parametrov. Sú nimi počet druhov zdrojov, počet jednotlivých inštancií zdrojov, počet metrík, ktoré sa o zdrojoch
+uchovávajú, periodicita zbieraných metrík a do určitej miery aj spôsob identifikácie daného zdroja.
+\\Ukladanie metrických dát predstavuje zároveň úzke hrdlo monitorovacieho riešenia. Zistenie hodnôt metrík pre vyťaženie zdroja konkrétnou technológiou predstavuje v serializovanú činnosť. V určitom čase je
+zmeraná záťaž danej technolǵie na zdroje a hodnoty sa po jendom ukladajú. Na časť systému, ktorá je zodpovedná za ukladanie metrík, sú preto v pravidelných intervaloch kladené pomerne 
+veľké nároky. Je ich už ale možné spracovávať paralelne. Centralizácia úložiska by znamenala prílišnú záťaž na monitorovacie uzly, preto je vhodné, aby takéto úložisko bolo distribuované a prispôsobené 
+na paralelné spracovávanie veľkých objemov dát.
 
 \subsection{Vizualizácia a analýza dát}
 Zozbierané metrické dáta je ďalej potrebné nejakým spôsobom zobraziť. Na to sú vhodné čiarové grafy s dvoma osami, kde horizontálna os predstavuje čas a vertikálna os predstavuje hodnotu nameranej metriky.
 Analýza zozbieraných dát slúži na odhalenie trendov vo využívaní zdrojov a môže viesť k zdokonaľovaniu systému a k lepšiemu plánovaniu využívania zdrojov.
 
 \subsection{Monitorovanie v heterogénnom výpočtovom prostredí}
-V oblasti cloudového a gridového výpočtového prostredia je pre monitorovanie kľúčové sledovať vyťaženie výpočtových zdrojov. Konkrétne procesor, výpočtová pamäť, trvalý ukladací priestor a sieťová infraštruktúra. Toto je spoločné
+Sledovanými zdrojmi v heterogénnom výpočetnom prostredí je procesor, výpočtová pamäť, trvalý ukladací priestor a sieťová infraštruktúra. Toto je spoločné
 pre všetky technológie a okrem týchto zdrojov je vhodné sledovať aj parametre špecifické pre jednotlivé oblasti. Tým sa budem konkrétne venovať v kapitole Metriky.
-\\Automatizované monitorovanie výpočtového prostredia so sebou prináša aj špecifické problémy. Odvíjajú sa od toho, že monitorovanie je vykonávané strojovo (tj. pomocou počítača) a monitorované zdroje sú takisto stroje, ktorých
-stav z pohľadu využitia sa mení veľmi dynamicky.
 \\Rozdielny je aj prístup jednotlivých technológií v tom, ako poskytujú výpočtové zdroje. Aplikačné kontajnery a virtuálne stroje sa snažia rozdeliť celú infraštruktúru na menšie viac-menej uzavreté celky, 
 ktoré sú potom sprostredkované užívateľom. Každý tento celok má pridelené zdroje, ktoré potom využíva. Množstvo týchto zdrojov je možné meniť, ale súvisí to s reštartovaním virtuálneho stroja alebo kontajnera.
 \\Technológia gridu predstavuje odlišný prístup, kde z menších celkov (uzlov infraštruktúry) sú vytvárané väčšie virtuálne celky, ktoré vykonávajú výpočty.
 
 \subsubsection{Problematika intervalov}
-U vysoko výkonných výpočtových systémov sa jednotlivé operácie vykonávajú vo veľmi krátkych časových intervaloch. Rádovo sú to nanosekundy. Jednotlivé procesy a výpočtové úlohy dostávajú na krátky čas k dispozícií všetky zdroje, čím 
-sa z vyššieho pohľadu zabezpečuje paralelizácia. To spôsobuje vyťaženie množstva inštancií zdrojov mnohými učastníkmi. Celkový stav infraštruktúry z pohľadu vykonaných úloh a prenesených dát sa preto mení veľmi dynamicky a je vhodné
-zbierať dáta o zdrojoch v rozmedzí jednej až troch sekúnd. 
-\\Nezanedbateľnú rolu hrá aj čas potrebný na získanie jedného takéhoto "snímku" využitia zdrojov. Ak zberáme metriky v intervale dvoch sekúnd, očakávame, že odpoveď príde v kratšom intervale. 
+U vysoko výkonných výpočtových systémov sa jednotlivé operácie vykonávajú vo veľmi krátkych časových intervaloch. Rádovo sú to nanosekundy. Jednotlivé procesy a výpočtové úlohy dostávajú na krátky čas k 
+dispozícií všetky zdroje, čím sa z vyššieho pohľadu zabezpečuje paralelizácia. To spôsobuje vyťaženie množstva inštancií zdrojov mnohými učastníkmi. Celkový stav infraštruktúry z pohľadu vykonaných úloh 
+a prenesených dát sa preto mení veľmi dynamicky a je vhodné zbierať dáta o zdrojoch v intervale 5 až 10 sekúnd. 
+\\Nezanedbateľnú rolu hrá aj čas potrebný na získanie jedného takéhoto snímku
+využitia zdrojov. Ak zberáme metriky v intervale 5 sekúnd, očakávame, že odpoveď príde v kratšom intervale. 
 V najlepšom prípade by táto doba odpovede mala byť len malý zlomok periódy danej metriky. Táto doba je v priamej závislosti od toho, koľko subjektov infraštruktúru využíva a koľko úloh spúšťa. 
-Ak je však doba odpovede dlhšia ako samotný interval zberu, je to potrebné nejako riešiť. Nie je vhodné vygenerovať ďalšiu požiadavku na "snímku". Žiaducejším spôsobom riadenia je také, ktoré počká, kým sa daná požiadavka vykoná, a potom v nasledovnom intervale je meranie vykonané znova. Týmto sa predíde nadmernej záťaži
-celého systému.
-\\To, ako sa systém vysporiadava z takýmto neočakávaným správaním, som zohľadňoval pri jednotlivých dostupných softvérových riešeniach.
+Ak je však doba odpovede dlhšia ako samotný interval zberu, je to potrebné nejako riešiť. Nie je vhodné vygenerovať ďalšiu požiadavku na "snímku". Žiaducejším spôsobom riadenia je také, ktoré počká, 
+kým sa daná požiadavka vykoná, a potom v nasledovnom intervale je meranie vykonané znova. Týmto sa predíde nadmernej záťaži celého systému.
+\\Pri jednotlivých dostupných softvérových riešeniach som zohľadňoval, ako sa systém vysporiadava z takýmto neočakávaným správaním.
 
 \subsubsection{Detekcia nových zdrojov a užívateľov}
-Heterogénna štruktúra v čase mení aj množstvo a kapacitu svojich poskytovaných zdrojov. Nie je možné staticky definovať zoznam procesorov, diskov, alebo virtuálnych strojov ktoré treba monitorovať. Podobne je to aj s užívateľmi. Proces
-vytvárania nových užívateľov je zautomatizovaný, takisto užívatelia môžu automatizovať vykonávanie svojich výpočtových úloh. Monitorovacie riešenie sa preto musí vedieť vysporiadať s týmito dynamickými zmenami, musí ich vedieť 
-automaticky detegovať a zberať o nich metrické dáta.
+Heterogénna infraštruktúra v čase mení aj množstvo a kapacitu svojich poskytovaných zdrojov. Nie je možné staticky definovať zoznam procesorov, diskov, alebo virtuálnych strojov ktoré treba monitorovať. 
+Podobne je to aj s užívateľmi. Proces vytvárania nových užívateľov je zautomatizovaný, takisto užívatelia môžu automatizovať vykonávanie svojich výpočtových úloh. Monitorovacie riešenie sa preto musí 
+vedieť vysporiadať s týmito dynamickými zmenami, musí ich vedieť automaticky detegovať a zberať o nich metricky.
 
 \section{Časové rady}
 Monitorovacie dáta vo svojej podstate predstavujú časové rady.
@@ -323,19 +342,27 @@ Monitorovacie dáta vo svojej podstate predstavujú časové rady.
 prejde jedným bodom diaľnice. Efektívnou metódou vizuálizácie dát časových rád sú čiarové grafy. Horizontálna os reprezentuje plynutie času a na vertikálnej osi sú znázornené hodnoty v danom čase.
 
 \subsection{Analýza časových rád}
-Analýza časových rád sa primárne zaoberá získavaniu štatistík o zozbieraných dátach, napr. priemerná teplota počas celého roka. Medzi ďaľšie úlohy patrí:
+Analýza časových rád sa primárne zaoberá získavaním štatistík o zozbieraných dátach, napr. priemerná teplota počas celého roka. Medzi ďaľšie úlohy patrí:
 \begin{description}
 \item[\emph{Exploračná analýza dát}] - cieľom je detekcia vzorov v dátach. Kľúčová je grafická reprezentácia dát, ktorá môže pomôcť odhaliť súvisloti, ktoré by neboli jasné z algebraickej analýzy.\cite{eda}
 \item[\emph{Aproximácia na funkciu}] - cieľom je nájsť krivku alebo matematickú funkciu, ktorá pre daný bod v čase generuje hodnotu rovnakú alebo v určitej rozumnej odchýlke od skutočnej nameranej hodnoty.
-\item[\emph{Predpovedanie}] - v štatistike patrí do oblasti štatistického odvodzovania. Ide o snahu vytvoriť štatistický model, ktorý vie s určitou pravdepodobnosťou predpovedať vývoje metrík v buduúcnosti.
+\item[\emph{Predpovedanie}] - v štatistike patrí do oblasti štatistického odvodzovania. Ide o snahu vytvoriť štatistický model, ktorý vie s určitou pravdepodobnosťou predpovedať vývoj časových rád
+v buduúcnosti.
 \item[\emph{Klasifikácia}] - ide o identifikáciu určitých javov v dátach a ich priradenie k nejakej udalosti - napr. výpadok, spúšťanie virtuálneho stroja atď.                               
 \end{description}
 
 \subsection{Úprava historických dát vzhľadom na kapacitu}
 \label{sec:example}
-Pri zbere časových dát je jedným z dôležitých parametrov kapacita, ktorá je potrebná na ukladanie dát. Uvažujme nasledovný príklad. Infraštruktúra má 5 000 uzlov, o každom zberáme 15 metrík každých 5 sekúnd,
-označených metadátami o dĺžke 100 bajtov. Hodnota časovej zámky je reprezentovaná 4 bajtami a hodnota metriky tiež 4 bajtami. Po roku budú mať zberané dáta v nekomprimovanej podobe približe 51,1 TB. 
-Vzhľadom na MetaCentrum to predstavuje nezanedbateľnú kapacitu.
+Pri zbere časových dát je jedným z dôležitých parametrov kapacita, ktorá je potrebná na ukladanie dát. Uvažujme nasledovný príklad:
+\begin{description}
+\item[- infraštruktúra má 5 000 uzlov]
+\item[- o každom zberáme 15 metrík]
+\item[- metriky zberáme v intervale 5 sekúnd]
+\item[- metriky sú označené metadátami o dĺžke 100 bajtov]
+\item[- časová známka má 4 bajty]
+\item[- hodnota metriky má 4 bajty]
+\end{description} 
+Po roku budú mať zberané dáta v nekomprimovanej podobe približe 51,1 TB. Vzhľadom na MetaCentrum by takýto objem predstavoval nezanedbateľnú kapacitu.
 \\Špecializované databázy na ukladanie časových rád výrazne zmenšujú požiadavky na kapacitu. Ďalej je túto kapacitu možné zmenšiť 
 rôznymi kompresnými metódami a taktiež agregáciou historických dát. Tým sa myslí združovanie nameraných dát do väčších intervalov,
 ukladanie príslušných hodnôt za tieto dlhšie intervaly a mazanie nepotrebných hodnôt. Jedným z cieľom práce je navrhnúť riešenie na znižovanie kapacity, ktorú zaberajú časové rady,
@@ -350,49 +377,49 @@ Monitorovací softvér vo všeobecnosti poskytuje ucelené monitorovacie riešen
 rozšíriť o zber ďalších dát a ako sa správajú v prípade, že metriky nie sú dostupné v požadovaných intervaloch.
 
 \subsection{Nagios}
-Nagios je aplikácia, ktorá poskytuje komplexné riešenie na monitorovanie systémov. Poskytuje informácie o kľúčových komponentoch infraštruktúry vrátane aplikácií, služieb, operačného systému, sieťových protokolov, systémových metrík
-a sieťovej infraštruktúry. \cite{nagios} 
+Nagios je aplikácia, ktorá poskytuje komplexné riešenie na monitorovanie systémov. Poskytuje informácie o kľúčových komponentoch infraštruktúry vrátane aplikácií, služieb, operačného systému, 
+sieťových protokolov, systémových metrík a sieťovej infraštruktúry. \cite{nagios} 
 Aplikácia pozostáva z jadra, ktoré riadi zber údajov, a z množstva pluginov tretích strán. Tie sa zaoberajú monitorovaním jednotlivých oblastí systému. Ďalej aplikácia
-poskytuje grafické užívateľské rozhranie v podobe webového rozhrania. K dispozícií sú rôzne vizualizácie nameraných dát, grafy a histogramy. Nagios disponuje aj systémom užívateľských účtov. Tie sa delia na dva typy: 
-administrátorov a bežných užívatešov. Bežní užívatelia majú prístup k nameraným hodnotám a zobrazovaniu grafov. Administrátori môžu konfigurovať aplikáciu, pridávať služby, ktoré je potrebné monitorovať,
-upravovať parametre monitorovania a spravovať užívateľské účty. K dispozícií je aj uchovávanie konfigurácie aplikácie a spravovanie týchto konfigurácií. Súčasťou je aj systém na upozorňovanie na kritické
+poskytuje grafické užívateľské rozhranie v podobe webového rozhrania. K dispozícií sú rôzne vizualizácie nameraných dát, grafy a histogramy. Nagios disponuje aj systémom užívateľských účtov. Tie sa delia 
+na dva typy: 
+administrátorov a bežných užívateľov. Bežní užívatelia majú prístup k nameraným hodnotám a zobrazovaniu grafov. Administrátori môžu konfigurovať aplikáciu, pridávať služby, ktoré je potrebné monitorovať,
+upravovať parametre monitorovania a spravovať užívateľské účty. K dispozícií je aj uchovávanie konfigurácie aplikácie a spravovanie konfigurácií. Súčasťou je systém na upozorňovanie na kritické
 hodnoty, či už formou emailu alebo SMS správou. Aplikácia je vyvíjaná pre platformu CentOS a Red Hat Enterprise Linux. Namerané metriky sa uchovávajú v logovacích súboroch. 
 Pomocou pluginov je možné ich odosielať do MySQL databázy prípadne PostgreSQL. 
-\\Nagios predstavuje centralizované riešenie pre  monitorovanie, kde výkonné jadro riadi zberanie metrík naprieč celým systémom. 
+\\Nagios predstavuje centralizované riešenie pre  monitorovanie, kde výkonné jadro riadi zber metrík naprieč celým systémom. 
 Jadro a pluginy sú dostupné zdarma, komplexné riešenie je potrebné zakúpiť. Cena sa odvíja od množstva zariadení, ktoré je potrebné monitorovať. Zariadením sa rozumie niečo, čo má IP adresu, 
 prípadne doménové meno - či už sa jedná o firewall, switch, router, pracovnú stanicu alebo server. 
-\\V súčasnosti Nagios disponuje pluginmi Docker, Hadoop aj libvirt/KVM, no ani jeden z pluginov nemonitoruje požadované metriky.
+\\V súčasnosti Nagios disponuje pluginmi pre Docker, Hadoop aj libvirt/KVM, no ani jeden z pluginov nemonitoruje požadované metriky o vyťažení zdrojov.
 
 \subsubsection{Rozšírenia}
 Nagios pluginy existujú vo forme skriptov alebo spustiteľných programov. Aby mohli fungovať ako pluginy ich činnosť musí spĺnať dve kritériá. Prvým je výpis aspoň jedného riadku na štandardný výstup.
 Ten sa týka nameraných metrík. Od verzie 3 je podporovaných aj viacerov riadkov na výstupe. Druhým kritériom je návratová hodnota.
-API rozoznáva štyri návratové hodnoty. Tie zodpovedajú stavom monitorovanej služby - či je služba v poriadku, či vygenerovala nejaké varovanie, či je jej stav kritický, alebo neznámy. Prednastavená maximálna dĺžka 
-výstupu je 4 kB, je ju však možé pomocou konfigurácie zmeniť.
+API rozoznáva štyri návratové hodnoty. Tie zodpovedajú stavom monitorovanej služby - či je služba v poriadku, či vygenerovala nejaké varovanie, či je jej stav kritický alebo neznámy. Prednastavená maximálna 
+dĺžka výstupu je 4 kB, je ju však možé pomocou konfigurácie zmeniť.
 
 \subsubsection{Riadenie intervalov zberu metrík}
 Pre jednotlivé monitorovacie sondy je možné nadefinovať interval v počte sekúnd, v ktorom je potrebné aby sonda ukončila svoju činnosť. Ak sa tak nestane, proces sondy je ukončený a jej návratová hodnota
-zaznamenaná ako kritická. Taktiež je toto zaznamenané do logov Nagiosu. Tento mechanizmus predstavuje akúsi poslednú záchranu pred zahltením systému pluginmi, ktoré sa nesprávajú podľa očakávaní.
+zaznamenaná ako kritická. Taktiež je to zaznamenané do logov Nagiosu. Tento mechanizmus predstavuje akúsi poslednú záchranu pred zahltením systému pluginmi, ktoré sa nesprávajú podľa očakávaní.
 
 \subsection{Icinga}
 Icinga predstavuje open-source monitorovací nástroj, ktorý je nástupcom Nagiosu. Je založená na princípe paralelnej činnosti viacerých vlákien, čo poskytuje možnosť vykonávať množstvo meraní
 za krátky časový interval. Zabezpečuje monitorovanie záťaže zdrojov ako disk, procesor, pamäť a sieť a to v operačných systémoch na základe Linuxu a aj v prostredí Windows. Ďalej podporuje zberanie
-dát o mnohých ďalších službách, ako je monitoring databáz, odozvy serverov, webových služieb, výkonu JVM, sledovanie logov. Podporuje monitorovanie virtualizačnej platformy VMWare. 
+dát o mnohých ďalších službách, ako je monitorovanie databáz, odozvy serverov, webových služieb, výkonu JVM\footnotemark\footnotetext{Java Virtual Machine}, sledovanie logov. Podporuje monitorovanie virtualizačnej platformy VMWare. 
 Poskytuje aj bežné mechanizmy v oblasti monitorovania ako generovanie notifikácií o neštandardnom správaní, na ktoré je možné reagovať spustením nejakého systémové príkazu. Na ukladanie dát 
 používa svoju databázu, no podporuje aj odosielanie dát do databázy časových rád InfluxDB.
-\\V súčasnosti Icniga nie je schopná monitorovať ani jednu z technológií využívaných v prostredí MetaCentra.
+\\V súčasnosti Icinga nie je schopná monitorovať ani jednu z technológií využívaných v prostredí MetaCentra.
 
 \subsubsection{Rozšíriteľnosť aplikácie}
-Icinga poskytuje systém, akým je možné do nej pridať kontroly nových metrík, prostredníctvom tzv. check príkazov. Jedná sa o kofiguračné objekty, kde užívateľ definuje príkaz,
-ktorý sa má spustiť, spolu s hodnotami jeho argumentov. Icinga určí stav tejto kontroly podľa návratovej hodnoty príkazu.\cite{icinga-plugin}
-Hodnoty a názvy metrík sú vracané vo forme textového výstupu.
+Icinga je rozšíriteľná prostredníctvom tzv. check príkazov. Jedná sa o kofiguračné objekty, kde užívateľ definuje príkaz, ktorý sa má spustiť, spolu s hodnotami jeho argumentov. 
+Icinga určí stav tejto kontroly podľa návratovej hodnoty príkazu.\cite{icinga-plugin} Hodnoty a názvy metrík sú vracané vo forme textového výstupu.
 
 \subsection{Zabbix}
-Zabbix je open-source aplikácia na monitorovanie systémov od malých systémov s malým počtom uzlov až po veľké firemné prostredia s tisíckami strojov. Architektúra aplikácie pozostáva zo serveru a agentov.
+Zabbix je open-source aplikácia na monitorovanie systémov od malých systémov s malým počtom uzlov až po veľké firemné prostredia s tisíckami strojov. Architektúra aplikácie pozostáva zo servera a agentov.
 Úlohou agentov je zber monitorovacích dát a ich odosielanie serveru. Komunikácia týchto dvoch častí môže prebiehať dvoma spôsobmi. V prvom prípade si agent vyžiada zoznam metrík, ktoré má sledovať. Následne 
 serveru odosiela všetky tieto metriky po jednom. Druhou alternatívou je postup, kedy sa server agenta pýta na jednotlivé hodnoty metrík a ten mu ich odosiela. Server spravuje konfiguráciu jednotlivých agentov,
 čo uľahčuje ovládanie ich správania naprieč celou infraštruktúrou.
-\\Aplikácia zberá udáje o dostupných zdrojoch uzlov, o počte procesorov, dostupnej pamäti a úložnej kapacite. Taktiež zberá údaje o aktuálnom vyťažení týchto zdrojov. Okrem toho sleduje dostupnosť a parametre
-služieb ako FTP, DNS, HTTP, SMTP, SSH a rôznych ďalších. Taktiež poskytuje údaje o proces bežiacich v systéme a o užívateľoch. Zaujímavým prvkom je monitorovanie logov, ich analýza a vytváranie varovaní 
+\\Aplikácia zberá údaje o dostupných zdrojoch uzlov, o počte procesorov, dostupnej pamäti a úložnej kapacite. Taktiež zberá údaje o aktuálnom vyťažení týchto zdrojov. Okrem toho sleduje dostupnosť a parametre
+služieb ako FTP, DNS, HTTP, SMTP, SSH a rôznych ďalších. Taktiež poskytuje údaje o procesoc bežiacich v systéme a o užívateľoch. Zaujímavým prvkom je monitorovanie logov, ich analýza a vytváranie varovaní 
 v prípade, že je to nutné.
 \\Zabbix vie zberané dáta vizualizovať pomocou grafov. Súčasťou je aj sledovanie zberaných hodnôt, ich kontrola na požadovaný rozsah a generovanie notifikácií. Poskytuje aj manažment užívateľov samotnej 
 aplikácie a ich práv na zaobchádzanie s ňou. Zabbix podporuje autodetekciou nových prvkov v infraštruktúre. Kontroluje zadaný sieťový rozsah na nové uzly, služby na nich bežiace alebo automaticky registruje
@@ -407,7 +434,7 @@ Aplikáciu je možné rozšíriť o vlastné moduly zberajúce dáta tromi spôs
 \begin{description}
 \item[\emph{užívateľské parametre}] - v tomto prípade užívateľ definuje v agentovi názov metriky a príkaz, ktorý sa má vykonať na zber jej hodnoty
 \item[\emph{externé kontroly}] - jedná sa o kontrolu na strane servera, kedy je tiež definovaný skript zberajúci dáta a server ho spúšťa
-\item[\emph{system.run}] - jedná sa o kontrolu na strane agenta, ktorá podporuje väčší výstup spusteného príkazu ako len hodnota metriky
+\item[\emph{system.run}] - jedná sa o kontrolu na strane agenta, ktorá podporuje väčší výstup spusteného príkazu ako len hodnotu metriky
 \end{description}
 \cite{zabbix-modules}
 Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľaných knižníc, ktoré musia implementovať požadované funkcie.
@@ -416,10 +443,10 @@ Okrem toho poskytuje aj programové API a vývoj vlastných modulov ako zdieľan
 Kontrola zberu jednotlivých metrík z hľadiska maximálnej dĺžky trvania zberu sa v Zabbixe odohráva na úrovni agenta a servera. Na úrovni agenta ide o čas, ktorý je možné stráviť spracovávaním a získavaním
 jednotlivých metrík. Pre server je potom definovaná doba, ktorú je ochotný čakať na odpoveď agenta. Tieto doby je možné konfigurovať v rozsahu od 1 do 30 sekúnd.\cite{zabbix-server}
 Zabbix nespracuje jednoduchú kontrolu na hodnotu metriky, ktorá trvá dlhšie ako túto dobu.\cite{zabbix-limit}
-Dokumentácia však neuvádza, ako sa aplikácia riadi beh externých procesov, ktoré zberajú dáta.
+Dokumentácia však neuvádza, ako aplikácia riadi beh externých procesov, ktoré zbierajú dáta.
 
 \subsection{Ganglia} 
-Ganglia je škáľovateľný distribuovaný systém na monitorovanie výkonných systémov ako sú clustre a gridy. Je založená na hierarchickom návrhu 
+Ganglia je škálovateľný distribuovaný systém na monitorovanie výkonných systémov ako sú clustre a gridy. Je založená na hierarchickom návrhu 
 som zameraním na federácie clusterov. Využíva bežné štandardy, ako napr. XML na reprezentáciu dát, XDR na prenos dát a RRDTool na
 ukladanie a vizualizáciu dát.\cite{ganglia} 
 Cieľom aplikácie je zabezpečiť čo najmenšiu nabytočnú záťaž na uzloch a vysokú
@@ -428,12 +455,12 @@ pod licenciou BSD. V súčasnosti je nasadená na mnohých operačných systémo
 \\Ganglia má architektúru monitorovacieho démona, ktorý je spustený na každom monitorovanom uzle, a démona, ktorý uchováva zozbierané údaje do
 round-robin archívu.
 K dispozícií sú aj nástroje na získanie aktuálnych údajov konkrétnej sondy a tiež webové rozhranie na zobrazovanie zaznamenaných údajov.
-\\Hadoop je možné nakonfigurovať tak, aby odosielal metriky zbernému démonovi Ganglie. Ostatné integrácie v súčasnosti neobsahuje.
+\\Hadoop je možné nakonfigurovať tak, aby odosielal metriky zbernému démonovi Ganglie. \cite{ganglia-hadoop} Ostatné integrácie v súčasnosti neobsahuje.
 
 \subsubsection{Rozšíriteľnosť aplikácie}
 K dispozícií je mnoho zásuvných modulov v podobe skriptov operačného systému alebo programov napísaných v skriptovacích jazykoch ako Ruby,
 Perl či Python. Pluginy poskytujú monitorovanie prihlásených užívateľov v systéme, rôznych aplikácií a služieb, ako napr. DNS, HTTP, ďalej
-podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.\cite{ganglia-hadoop}
+podporujú zber senzorických údajov (teplota procesora, otáčky ventilátora), monitorovanie rýchlosti siete či napr. ZFS súborového systému.
 
 \subsection{AppDynamics}
 AppDynamics predstavuje zaujímavé riešnie v oblasti monitorovania. Snaží sa do istej miery zjednotiť a prepojiť monitorovanie aplikácií 
@@ -443,8 +470,7 @@ napr. webový server, databáza a servery aplikačnej logiky. Monitoruje vyťaž
 a sieť u jednotlivých uzlov infraštruktúry a dáva ich do súvisu s tým, aké role tieto uzly vykonávajú v danej business aplikácií.
 \\Okrem toho disponuje aj integráciami s IaaS a PaaS cloudovými službami od Amazonu, RedHatu či Microsoftu a integráciami s mnohými aplikáciami
 vrátane zberu metrík o zdrojoch v Hadoope a Dockeri.\cite{appdyn}
-\\AppDynamics predstavuje komerčné riešenie. Verzia s obmedzeným monitorovacím záberom a s obmedzenou dĺžkou ukladania údajov je k 
-dispozícií aj zdarma, plná verzia je platená.
+\\AppDynamics predstavuje komerčné riešenie. Verzia s obmedzeným monitorovacím záberom a s obmedzenou dĺžkou ukladania údajov je k dispozícií aj zdarma, plná verzia je platená.
 
 \subsubsection{Rozšíriteľnosť aplikácie}
 Nakoľko je AppDynamics komerčný softvér, rozšírenia sú k dispozícií od výrobcu. Neexistuje programové rozhranie ani iný spôsobo, napr. spúšťanie rozšírení ako samostatných programov a analýza 
@@ -472,25 +498,24 @@ Kontrolná skupina obsahuje obmedzenia pre jeden systémový prostriedok, tzv. s
 \cite{cgroups}
 
 Pre každý subsystém existuje jeden strom kontrolných skupín. Ďalej skupina obsahuje zoznam procesov, ktoré podliehajú definovaným obmedzeniam. V strome kontrolných skupín sa proces vyskystuje len raz.
-V cloudovom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov, ktoré by sa obtiažne priraďovali jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
-monitorovania nie je úplne vhodný. Takisto zberané metriky o subsystémoch sú agregované pre kontrolnú skupinu, tj. predstavujú súčet pre skupinu procesov, takže nie je možné jednoznačne určiť koľko zdrojov spotreboval
-ten ktorý proces.
+V heterogénnom prostredí však jednotlivé technológie využívajú a spúšťajú mnoho procesov, ktoré by sa obtiažne priraďovali jednotlivým užívateľom v súvislosti so spustenými aplikáciami, preto tento spôsob
+monitorovania nie je úplne vhodný. Takisto zberané metriky o subsystémoch sú agregované pre kontrolnú skupinu, tj. predstavujú súčet pre skupinu procesov, takže nie je možné jednoznačne určiť koľko zdrojov 
+spotreboval ten ktorý proces.
 
 \subsection{collectd}
 Collectd je open-source monitorovacia aplikácia vyvinutá v jazyku C. Má architektúru jadra a pluginov, ktoré sa starajú o mnoho činností súvisiacich s monitorovaním od zbierania dát, cez
-zapisovanie metrík a sledovanie prahových hodnôt a upozorňovanie. Jadro predovšetkým ovláda a kontroluje vykonávanie týchto aktivít. V pravidelných intervaloch spúšťa kontroly metrík, 
-analyzuje namerané hodnoty, generuje notifikácie v prípade, že hodnoty sú mimo požadovaný rozsah, alebo ak nedorazili 
-v požadovaných intervaloch. V súčasnosti je k dispozícií viac než 90 pluginov. Poskytujú monitorovanie základných výpočtových zdrojov ako sú procesor, pamäť, disky a sieťové rozhrania, ďalej monitorovanie
-mnohých aplikácií (napr. databázy, e-mail, webové servery) a protokolov. Zvolený programovací jazyk dáva dobré predpoklady na výkon a prenositeľnosť, čo umožňuje beh na systémoch bez 
-skriptovacích jazykoc alebo cron démona, ako napríklad zabudované systémy. Zároveň ale disponuje optimalizáciami a prvkami, aby zvládal stovky tisíc metrík.\cite{collectd} 
+zapisovanie metrík a sledovanie prahových hodnôt a upozorňovanie. Jadro predovšetkým ovláda a kontroluje vykonávanie týchto aktivít v požadovaných intervaloch. 
+V súčasnosti je k dispozícií viac než 90 pluginov. Poskytujú monitorovanie základných výpočtových zdrojov ako sú procesor, pamäť, disky a sieťové rozhrania, ďalej monitorovanie
+mnohých aplikácií (napr. databázy, e-mail, webové servery) a protokolov. Zvolený programovací jazyk dáva dobré predpoklady na výkon, čo umožňuje beh na systémoch bez podpory
+skriptovacích jazykov alebo cron démona, ako napríklad zabudované systémy. Zároveň ale disponuje optimalizáciami a prvkami, aby zvládal stovky tisíc metrík.\cite{collectd} 
 \\Collectd nepodporuje vizualizáciu dát ani historickú analýzu. Nepredstavuje preto úplné monitorovacie riešenie. Samotný zápis dát je uskutočňovaný pomocou pluginov a 
 teda je možné zvoliť z viacerých spôsobov uchovávania dát. V súčasnosti podporuje zápis do viacerých databáz, napr. MongoDB, OpenTSDB, alebo metódou HTTP POST či do súborov RRD. 
-\\V súčasnosti obsahuje plugin pre monitorovanie libvirt/KVM.
+\\V súčasnosti obsahuje plugin pre monitorovanie vrituálnych strojov prostredníctvom knižnice libvirt.
 
 \subsubsection{Rozšíriteľnosť aplikácie}
-Collectd poskytuje viacero spôsobov, akým je možné ho rozšíriť. Prvým aspektom je zber metrík. Umožňuje zber dodatočných metrík pomocou
-spúšťania systémových príkazov, pomocou rozšírení v rôznych programovacích jazykoch (Perl, Python, Java). Ďalej je možné využiť natívne
-API v jazyku C. Cez toto API je možné aplikáciu rozšíriť v ohľade notifikácií, zápisu metrických dát a spôsobu logovania udalostí.
+Collectd poskytuje viacero spôsobov, akým je ho možné rozšíriť. Prvým aspektom je zber metrík. Umožňuje zber dodatočných metrík pomocou
+spúšťania systémových príkazov a pomocou rozšírení v rôznych programovacích jazykoch (Perl, Python, Java). Ďalej je možné využiť natívne
+API v jazyku C. Cez toto API je možné aplikáciu rozšíriť aj v ohľade notifikácií, zápisu metrických dát a spôsobu logovania udalostí.
 
 \subsubsection{Riadenie intervalov zberu metrík}
 V prípade, že hodnota metriky nedorazila v požadovanom intervale, je generované hlásenie. Neprichádza k tomu ale hneď po prvej chybe. Collectd zavádza mechanizmus časových limitov.
@@ -502,7 +527,8 @@ Na uchovávanie zozbierných dát sú najvhodnejšie databázy časových rád. 
 databázy majú buď vlastné zabudované riešenia, alebo sú poskytované ako samostatný softvér.
 
 \subsection{OpenTSDB}
-OpenTSDB je open-source databáza na uchovávanie a sprístupňovanie veľkých objemov časových dát. Pozostáva z Time Series Daemon (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
+OpenTSDB je open-source databáza na uchovávanie a sprístupňovanie veľkých objemov časových dát. Pozostáva z Time Series Daemona (TSD) a z utilít pre príkazový riadok. Interakcia s OpenTSDB je primárne 
+realizovaná cez jedného alebo viacerých TSD. Každý TSD je nezávislý.
 Neexistuje žiadny riadiaci proces, žiadny zdieľaný stav, takže je možné spustiť toľko TSD, koľko je potrebné na zvládnutie požadovanej záťaže. Každý TSD používa open-source databázu HBase
 na ukladanie a vyberanie dát časových rád. HBase schéma je vysoko optimalizovaná na rýchlu agregáciu podobných časových rád, aby minimalizovala požiadavky na úložný priestor. 
 Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komunikovať cez jednoduchý protokol podobný Telnetu, cez HTTP API alebo cez jednoduché GUI.\cite{openTSDB}
@@ -514,25 +540,27 @@ Používatelia TSD nemusia pristupovať do HBase priamo. S TSD je možné komuni
 \end{center}
 \end{figure}
 \\OpenTSDB uchováva čas zozbierania metriky, jej hodnotu a súbor popisných dát, ktoré sa nazývajú tagy. Na ich základe je potom možné
-v nameraných dáta vyhľadávať, zhlukovať ich a analyzovať. Jednou z odlišností od iných databáz je, že má schopnosť uchovávať "surové" nezhlukované dáta po veľmi dlhú dobu (čiže od začiatku merania až do prítomnosti).
-\\Na vizualizáciu dát existuje nástroj Grafana. Je to open-source webový engine, ktorý vytvára grafy zo zhromaždených dát. Je možné meniť časové rozpätie, za ktoré sa majú grafy metrík zobraziť.
+v nameraných dáta vyhľadávať, zhlukovať ich a analyzovať. Jednou z odlišností od iných databáz je, že má schopnosť uchovávať "surové" nezhlukované dáta po veľmi dlhú dobu (čiže od začiatku merania až 
+do prítomnosti).
+\\Na vizualizáciu dát existuje nástroj Grafana\cite{grafana}. Je to open-source webový engine, ktorý vytvára grafy zo zhromaždených dát. Je možné meniť časové rozpätie, za ktoré sa majú grafy metrík zobraziť.
 Na obrázku je znázornených viacero metrík, ktorých názov sa nachádza v spodnej časti. Ich hodnoty sa v čase menia, čo je zachytené čiarovým grafom, kde horizontálna os predstavuje čas a vertikálna os hodnotu
 metriky v tom čase.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[width=0.8\textwidth]{images/grafana.png}
-       \caption{Vizualizácia časových rád OpenTSDB nástrojom Grafana}\cite{grafana}
+       \caption{Vizualizácia časových rád OpenTSDB nástrojom Grafana}\cite{grafana_pic}
 \end{center}
 \end{figure}
 
 \subsection{InfluxDB}
 InfluxDB je platforma v jazyku Go na zbieranie, uchovávanie, vizualizáciu a správu časových dát. InfluxDB je určená na použitie ako úložisko dát v takých prípadoch, ktoré zahŕňajú veľké množstvo
-dát označených časovou známkou, vrátane DevOps monitorovania, aplikačných metrík, senzorových dát internetu vecí, a na analýzu dát v reálnom čase.\cite{influxdb}
+dát označených časovou známkou a na analýzu dát v reálnom čase.\cite{influxdb}
  Užívateľ môže vytvoriť viacero nezávislých databáz. 
-Dáta sa zapisujú a čítajú pomocou rozhrania príkazového riadka, rôznych klientskych knižníc, alebo pomocou HTTP API. Na vizualizáciu dát používa modul \emph{chronograf}.
+Dáta sa zapisujú a čítajú pomocou rozhrania príkazového riadka, rôznych klientskych knižníc, alebo pomocou HTTP API. 
+Na vizualizáciu dát používa modul \emph{chronograf}.
 
 \subsubsection{Politiky udržiavania}
-Každá databáza obsahuje pravidlá, ktoré definujú, po akú dobu majú byť ukladané dáta časových rád a koľko kópií dát má byť vytvorených. Jedna databáza môže mať niekoľko takýchto politík. Pri zápise 
+Každá databáza obsahuje pravidlá, ktoré definujú, po akú dobu majú byť ukladané dáta časových rád, a koľko kópií dát má byť vytvorených. Jedna databáza môže mať niekoľko takýchto politík. Pri zápise 
 do nej je môžné špecifikovať, ktorá politika sa má pre zápis použiť. Pri vytvorení databázy je automaticky vytvorená jedna politika.
 
 \subsubsection{Kontinuálne dotazovanie a agregácia}
@@ -540,7 +568,7 @@ Databáza je schopná periodicky vykonávať požiadavky na dáta. Cieľom je zm
 potom zvyčajne uložená do inej databázy.
 
 \subsection{RRDTool}
-RRDTool je nástroj na uchovávanie, spravovanie a vizuálizáciu časových dát. Využíva round-robin databázu. Je to databáza s dopredu daným maximálnou časovým rozpätím, za ktoré uchováva metrické dáta.
+RRDTool je nástroj na uchovávanie, spravovanie a vizualizáciu časových dát. Využíva round-robin databázu. Je to databáza s dopredu daným maximálnou časovým rozpätím, za ktoré uchováva metrické dáta.
 V prípade, že príde požiadavka na zápis hodnoty a databáza je už plná, dôjde k prepisu najstaršej hodnoty. Tento nástroj takisto obsahuje funkcie na konsolidáciu dát. 
 Konsolidovaná hodnota je typicky priemer, minimum alebo maximum z viacerých hodnôt zozbieraných za dlhší časový úsek. Tieto hodnoty sú taktiež ukladané do round-robin archívu.
 
@@ -551,32 +579,27 @@ Medzi jednotlivými kontrolami metrík nie je možné zdieľať prostriedky, ako
 využíva na ukladanie dát len SQL databázu. Icinga podporuje okrem vlastnej databázy aj databázu časových rád InfluxDB, čo je jej výhodou. Nevýhodou Ganglie je ukladanie dát v round-robin archíve. Táto technika
 nie je vhodná pre dlhodobejšie ukladanie dát, čo je jednou z požiadaviek v prostredí MetaCentra.
 \\Využitie nástroja RRDTool nie je takisto vhodné z hľadiska dlhodobého uchovávania dát, pretože hodnoty sú po určitom čase nahradené novými. V prostredí MetaCentra totiž monitorovacie dáta nie sú zberané len 
-pre účely monitorovania, ale aj pre potreby účtovania. Výhodou InfluxDB oproti databáze OpenTSDB je technika agregácie historických dát do väčších celkov. Výhodou OpenTSDB však je využívanie distribuovanej
-databázy HBase, ktorá je momentálne v MetaCentre produkčne využívaná. OpenTSDB je možné rozšíriť o zhlukovanie historických dát, čo je jedným z cieľov tejto práce. Ukladanie d8t do OpenTSDB podporuje len collectd.
+pre účely monitorovania, ale aj pre potreby účtovania, takže je potrebné uchovávať dáta dlhodobo.
+Výhodou InfluxDB oproti databáze OpenTSDB je technika agregácie historických dát do väčších celkov. Výhodou OpenTSDB však je využívanie distribuovanej
+databázy HBase, ktorá je momentálne v MetaCentre produkčne využívaná. OpenTSDB je možné rozšíriť o zhlukovanie historických dát, čo je jedným z cieľov tejto práce. Ukladanie dát do OpenTSDB podporuje len collectd.
 \\Nevýhodou používania komerčného riešenia by bola nedostatočná rozšíriteľnosť a možnosť úpravy. V prostredí MetaCentra sa môžu meniť nasadené technológie a tomu bude potrebné prispôsobiť zber 
 metrických údajov. Komerčné riešenie by mohlo predstavovať problém, pretože rozšírenie pre danú technológiu by mohlo prísť za dlhú dobu, alebo by nemuselo prísť vôbec.
 
 \chapter{Metriky}
-Každá z technológií využívaných MetaCentrom je zdrojom desiatok až stoviek gigabajtov surových dát o vyťažení zdrojov denne. Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky zberať. V prípade MetaCentra podstatné
-zdroje predstavujú \emph{procesor, pamät, pevné disky a sieťové rozhrania}. Je vhodné mať také metriky pre všetky využívané cloudové technológie,
+Je potrebné určiť, ktoré zdroje monitorovať a ktoré metriky o nich zberať, aby mal zber dát potrebnú výpovednú hodnotu. V prípade MetaCentra podstatné
+zdroje predstavujú \emph{procesor, pamät, pevné disky a sieťové rozhrania}. Je vhodné mať také metriky pre využívané technológie,
 ktoré je možné medzi sebou porovnať. V prípade procesora sa jedná o jeho aktuálne vyťaženie, ale zároveň je zaujímavým údajom aj prepočítaný procesorový čas. Táto metrika môže byť efektívnym
-nástrojom pre následné učtovanie jednotlivým užívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné vždy o každom zdroji zberať rovnaké dáta. 
-O distribuovaných výpočtoch napríklad nie je možné efektívne zistiť aktuálne vyťaženie procesora. Takéto úlohy sa počítajú na viacerých uzloch clustera. O poradí a rozmiestnení požiadaviek na zdroje
-rozhodouje riadiaca aplikácia, takže sa nejedná o jeden procesor. Zároveň sa dynamicky môže meniť počet procesorov, na ktorých sa daná úloha počíta.
-\\Podobná situácia nastáva aj u monitorovania sieťových rozhraní. Distribuované výpočty využívajú sieť svojským spôsobom a len na účel vypočítania komplexnejšieho problému. Jedná sa o prepojenie
-uzlov v rámci clustera. Je to jednoúčelová vysokorýchlostná sieť. Z hľadiska poskytovania výpočtových kapacít dáva väčší zmysel orientácia na využívanie konektivity smerom do internetu. 
-\\Názvy metrík uvádzam tak, ako sú pomenované vo výstupoch získavaných od jednotlivých cloudových technológií. Metriky o rovnakých zdrojoch a ich parametroch ukladám pod rovnakými názvami aj pre
-rôzne technológie. V prílohe sa nachádza tabuľka, ktorá popisuje systém týchto názvov.
+nástrojom pre následné učtovanie jednotlivým užívateľom. Keďže majú ale tieto technológie principiálny rozdiel vo svojom určení, nie je možné pre každú z nich zberať rovnaké dáta o každom zdroji. 
+V prípade distribuovaných výpočtov napríklad nie je možné efektívne zistiť aktuálne vyťaženie procesora. Takéto úlohy sa počítajú na viacerých uzloch infraštruktúry. O poradí a rozmiestnení požiadaviek na zdroje
+rozhoduje riadiaca aplikácia, takže sa nejedná o jeden procesor. Zároveň sa dynamicky môže meniť počet procesorov, na ktorých sa daná úloha počíta.
+\\Názvy metrík uvádzam tak, ako sú pomenované vo výstupoch získavaných od jednotlivých technológií. Metriky o rovnakých zdrojoch ukladám pod rovnakými názvami aj pre
+rôzne technológie (líšia sa len ich prefixy). V prílohe \ref{sec:tables} sa nachádzajú tabuľky, ktoré popisujú pod akým názvom sú v databáze uložené metriky, ktoré zmieňujem v texte.
 
 \subsection{Význam popisných údajov metrík}
-Metrické dáta vypovedajú o využití zdrojov. Vieme určiť ako dlhý čas a v akej miere bol využívaný výpočtový výkon. Z nich samotných nevieme presne určiť, kto zdroje využíval. Pre to aby mali tieto dáta zmysel 
-pre neskoršie účtovanie, je potrebné mať možnosť ich priradiť k užívateľom, či už sa jedná o vlastnika virtuálneho stroja alebo uživateľa, ktorý spustil kontrétnu úlohu. Na základe týchto ďalších popisných  údajov je potom 
+Metrické dáta vypovedajú o využití zdrojov. Vieme určiť aký dlhý čas a v akej miere bol využívaný výpočtový výkon. Z týchto údajov ale nevieme presne určiť, kto zdroje využíval. Pre to, aby mali tieto dáta zmysel 
+pre neskoršie účtovanie, je potrebné mať možnosť ich priradiť k užívateľom, či už sa jedná o vlastnika virtuálneho stroja alebo uživateľa, ktorý spustil konkrétnu úlohu. Na základe týchto ďalších popisných údajov je potom 
 možné zisťovať, kto zdroje vyťažoval za časové obdobie najviac a podľa toho stanoviť prípadnú cenu za používanie zdrojov. Okrem identity je vhodné metriky popisovať aj ďalšími údajmi, ako je miesto, kde
 sa zdroj nachádza, názov stroja, ktorý poskytuje svoje kapacity, a ďalšie špecifické údaje, ktoré sa týkajú jednotlivých technológií, ktoré budem popisovať konkrétnejšie v ďalších častiach.
-
-\subsection{Periodicita zberania metrík}
-Zberané metriky sa líšia tým, ako veľmi sa v čase menia. Kým záťaž procesora, vstupno-výstupné operácie alebo množstvo prenesených dát sa mení v čase pomerne rýchlo, veľkosť clustera v počte poskytnutých procesorov 
-alebo virtuálnej pamäte sa nemení tak často. Má preto zmysel uvažovať o kontrole intervalu zbierania jednotlivých metrík. Nie len na úrovni zhluku metrík pre konkrétnu technológiu ale aj pre jednotlivé metriky samostatne.
 
 \subsection{Formát hodnoty metriky}
 Metriky v podobe záznamov obsahujú čas, kedy bola hodnota nameraná, samotnú hodnotu nejakého sledovaného javu a popisné dáta. Na metrické
@@ -585,15 +608,15 @@ a poslednej hodnoty. Absolútne hodnoty predstavujú aktuálnu nameranú hodnotu
 
 \subsection{Výpočet percentuálnej záťaže na procesor}
 Žiadna z monitorovaných technológií neposkytuje údaje o precentuálnej záťaži, ktorú vyvíja na procesor. libvirt a Docker poskytujú len údaje o čase, ktorý kontajner alebo virtuálny stroj strávil
-počítaním na procesre. 
+počítaním na procesore. 
 \\Linuxové jadro cez systém súborov \textit{/proc} sprístupňuje svoje dátové štruktúry. V súbore \textit{/proc/stat} sa nachádzajú rôzne štatistiky o systéme, medzi ktoré patrí aj 
-využitie procesora. Obsahuje viacero čísel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).\cite{proc-stat}
+využitie procesora. Obsahuje viacero čísiel, ktoré identifikujú množstvo času, ktorý procesor strávil vykonávaním rôznych úloh. Jednotky týchto čísel sú v USER\_HZ (typicky stotiny sekundy).\cite{proc-stat}
 Presné množstvo času, ktoré predstavuje táto jednotka, je určené jednou z konštánt jadra.
 \\Metriky sa zberajú v pravidelných intervaloch. V každom intervale zistím čas prepočítaný danou technológiou a celkový prepočítaný čas prostredníctvom súboru \textit{/proc/stat}. Zistím rozdiely oproti posledným nameraným hodnotám a dám ich do pomeru.
 Táto hodnota predstavuje percentuálnu záťaž, ktorú vyvinul kontajner alebo virtuálny stroj na hosťujúci procesor.
 
 \section{libvirt/KVM}
-Knižnica libvirt taktiež poskytuje údaje o všetkých sledovaných zdrojoch.
+Knižnica libvirt poskytuje údaje o všetkých sledovaných zdrojoch.
 
 \subsection{Procesor}
 Libivirt poskytuje údaje o tom, koľko času prepočítal daný virtuálny stroj na svojich virtuálnych procesoroch. Ďalej je možné zistiť, koľko času virtuálny stroj strávil na procesore hosťujúceho počítača. 
@@ -606,7 +629,7 @@ na virtuálnom procesore, ale aj režijné náklady spojené s virtualizáciou.
 \end{description}
 
 \subsection{Pamäť}
-O pamäti zberám \textit{libivrt} nasledovné metriky:
+O pamäti zberám nasledovné metriky:
 \begin{description}
 \item[memory] - množstvo pamäte v kB, ktoré použité virtuálnym strojom (zo štruktúry virDomainInfo \cite{libvirt-domain-info}).
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_SWAP\_IN] - množstvo pamäte v kB, ktoré bolo načítané zo swapovacieho priestoru.
@@ -614,7 +637,7 @@ O pamäti zberám \textit{libivrt} nasledovné metriky:
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_MAJOR\_FAULT] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäte z disku.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_MINOR\_FAULT] - počet prípadov, kedy chýbajúca stránka virtuálnej pamäte je načítaná vo fyzickej pamäti, ale nie je o tom záznam v riadacej jednotke pamäte v procesore.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_UNUSED] - množstvo pamäte v kB, ktoré je úplne nevyužité systémom.
-\item[VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE] - množstvo pamäte v kB, o ktorej virtuálny stroj vie, že ju môže využiť. Títo hodnota môže byť menšia, ako veľkosť pamäte pripísaná virtuálnemu stroju, 
+\item[VIR\_DOMAIN\_MEMORY\_STAT\_AVAILABLE] - množstvo pamäte v kB, o ktorej virtuálny stroj vie, že ju môže využiť. Táto hodnota môže byť menšia, ako veľkosť pamäte pripísaná virtuálnemu stroju, 
 ak sa používa technika pamäťového balónu.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_ACTUAL\_BALLOON] - aktuálna veľkosť pamäťového balónu v kB.
 \item[VIR\_DOMAIN\_MEMORY\_STAT\_RSS] - množstvo pamäte v kB obsadené procesom, v ktorom beží virtuálny stroj.
@@ -623,7 +646,8 @@ ak sa používa technika pamäťového balónu.
 Množstvo poskytovaných štatistík závisí od použitého hypervízora. V prípade MetaCentra sa mi podarilo zberať len niektoré z týchto štatistík. Zároveň ich jednotky neboli kilobajty, ale bajty.
 
 \subsubsection{Pamäťový balón}
-Technika pamäťového balónu umožňuje virtuálnym strojom na jednom hostiteľskom počítači zdieľať pamäť podľa aktuálnych požiadaviek. Ak existujú virtuálne stroje, ktoré pridelenú pamäť využívajú málo,
+Technika pamäťového balónu umožňuje virtuálnym strojom na jednom hostiteľskom počítači zdieľať pamäť podľa aktuálnych požiadaviek. 
+Ak existujú virtuálne stroje, ktoré pridelenú pamäť využívajú málo,
 hosťujúci stroj môže túto pamäť prideliť virtuálnym strojom, ktoré jej požadujú viac.
 
 \subsection{Zápis a čítanie z disku}
@@ -666,14 +690,14 @@ predstavujú výpočtový čas strávený na procesore v jednotkách nanosekúnd
 \end{description}
 
 \subsection{Pamäť}
-Cez API Dockeru je možné získať mnoho podrobných údajov o pamäti. Nie všetky však má význam zberať, preto uvádzam len tie metriky, ktoré zberám. Ich jen
+Cez API Dockeru je možné získať mnoho podrobných údajov o pamäti. Nie všetky však má význam zberať, preto uvádzam len tie metriky, ktoré zberám.
 \begin{description}
 \item[usage] - spotreba pamäte v bajtoch
 \item[failcnt] - počet chýb v pamäti
 \item[rss] - množstvo pamäte v bajtoch, ktoré kontajner využíva priamo v RAM, tj. okrem stránok uložených na disku alebo okrem častí kódu kontajneru, ktorý ani nebol nahratý do pamäte
-\item[pgmajfault] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäte z disku.
-\item[pgfault] - počet prípadov, kedy chýbajúca stránka virtuálnej pamäte je načítaná vo fyzickej pamäti, ale nie je o tom záznam v riadacej jednotke pamäte v procesore.
-\item[limit] - obmedzenie na množstvo použiteľnej pamäte v bajtoch. Buď je táto hodnota nastavená pri spustení kontajnera, alebo predstavuje množstvo pamäte inštalovanej na hosťujúcom počítači.
+\item[pgmajfault] - počet prípadov, kedy bolo potrebné načítať chýbajúcu stránku virtuálnej pamäti z disku.
+\item[pgfault] - počet prípadov, kedy chýbajúca stránka virtuálnej pamäte je načítaná vo fyzickej pamäti, ale nie je o tom záznam v riadiacej jednotke pamäti v procesore.
+\item[limit] - obmedzenie na množstvo použiteľnej pamäti v bajtoch. Buď je táto hodnota nastavená pri spustení kontajnera, alebo predstavuje množstvo pamäte inštalovanej na hosťujúcom počítači.
 \end{description}
 
 \subsection{Sieť}
@@ -737,8 +761,8 @@ informácie poskytnuté týmto API.
 \item[allocatedVirtualCores] - počet alokovaných virtuálnych jadier.
 \item[totalVirtualCores] - celkový počet virtuálnych jadier v clusteri.
 \item[containersAllocated] - poček alokovaných kontajnerov.
-\item[containersReserved] - The number of containers reserved
-\item[containersPending] - The number of containers pending
+\item[containersReserved] - počet rezervovaných kontajnerov.
+\item[containersPending] - počet kontajnerov čakajúcich na umiestnenie.
 \item[totalNodes] - počet fyzických uzlov clustera.
 \item[activeNodes] - počet aktívnych uzlov clustera.
 \item[lostNodes] - počet nedostupných uzlov.
@@ -781,7 +805,7 @@ Zbieram nasledovné metrické dáta o využití zdrojov uzlov:
 \item[usedMemoryMB] - celkové množstvo pamäte v megabajtoch aktuálne využívané uzlom na beh aplikácií.
 \item[availMemoryMB] - celkové množstvo pamäte v megabajtoch aktuálne dostupné uzlu na beh aplikácií.
 \item[usedVirtualCores] - počet virtuálnych jadier, ktoré uzol využíva na beh aplikácií.
-\item[availableVirtualCores] - počet virtuálnych jadier, ktoré uzol využíva na beh aplikácií.The total number of vCores available on the node
+\item[availableVirtualCores] - počet virtuálnych jadier, ktoré uzol využíva na beh aplikácií.
 \item[numContainers] - celkový počet kontajnerov aktuálne spustených na uzle.
 \end{description}
 
@@ -813,19 +837,19 @@ Ako popisné dáta k metrikám pripájam tieto údaje:
 \end{description}
 
 \chapter{Analýza a návrh}
-Prostredia MetaCentra predstavuje heterogénnu infraštruktúru s rôznymi technológiami sprostredkovávajúcimi výpočetný výkon. Hľadal som riešenie s dôrazom na rozšíriteľnosť, 
-nízku nadbytočnú záťaž a škáľovateľnosť vzhľadom na to, že veľkosť infraštruktúry sa v čase mení.
+Prostredie MetaCentra predstavuje heterogénnu infraštruktúru s rôznymi technológiami sprostredkovávajúcimi výpočetný výkon. V nasledujúcich častiach 
+rozoberám požiadavky na monitorovacie riešenie a popisujem jeho návrh.
 
 \section{Požiadavky na aplikáciu}
 \subsection{Vysoký monitorovací výkon}
-Infraštruktúra MetaCentra pozostáva z mnohých výpočtových uzlov. Je potrebné zbierať dáta o využití zapojených
-clusterov, na ktorých sú spustené deiatky až stovky výpočtových úloh, a uzlov s deaitkami virtuálnych strojov ak kontajnerov. Metriky sú zbierané periodicky v určitých intervaloch z jednotlivých uzlov. 
+Infraštruktúra MetaCentra pozostáva z približne 700 výpočtových uzlov. Na nich je spustených viacero výpočetných úloh, virtuálnych strojov alebo kontajnerov. Všetky tieto položky je potrebné 
+monitorovať, čo dáva počet v rádoch tisícok. O každej z týchto položiek je zberaných viacero metrík. 
 Ak vezmeme do úvahy príklad z ~\ref{sec:example}, do databázy bude ukladaných 75 000 zázamov v priebehu 5 sekúnd, čo predstavuje 15 000 záznamov za sekundu. 
 
 \subsection{Nízka nadbytočná záťaž}
-Primárnou úlohou infraštruktúry je poskytovanie svojho výpočtového výkonu a prostriedkov. Je žiadúce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
-samotné spotrebovávalo príliš veľa zdrojov, takto získané metriky by nemali požadovanú presnosť, nakoľko by samotná kapacita infraštruktúry bola obmedzená už len behom
-monitorovacej aplikácie. Je to možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++. V prípadne použitia interpretovaného skriptovacieho jazyka, ako napríklad Python či Ruby, pribúda 
+Primárnou úlohou infraštruktúry je poskytovanie výpočtového výkonu a prostriedkov. Je žiaduce, aby monitorovacia aplikácia predstavovala čo najmenšiu záťaž pre systémy, na ktorých je spustená. Ak by monitorovanie
+samotné spotrebovávalo príliš veľa zdrojov, tak by samotná výpočtová kapacita infraštruktúry bola obmedzená už len behom
+monitorovacej aplikácie. Nízke nároky na výkon je možné docieliť výberom efektívneho programovacieho jazyka, napr. C, C++. V prípadne použitia interpretovaného skriptovacieho jazyka, ako napríklad Python či Ruby, pribúda 
 nadbytočná záťaž. Podobne nie je vhodným rišením používať jazyky, ktoré na svoj beh potrebujú ďalšiu vrstvu v podobe virtuálneho stroja, ako napr. Java.
 
 \subsection{Škálovateľnosť}
@@ -834,9 +858,9 @@ výpočtových uzlov s množstvom spustených inštancií, ktoré treba sledova�
 
 \section{Miesto nasadenia zbernej aplikácie}
 Zber metrík je možné realizovať v prípade virtuálnych strojov alebo aplikačných kontajnerov aj z ich vnútra. Bolo by možné v každej
-takejto virtualizovanej inštancií spustiť jednoduchú monitorovaciu aplikáciu, ktorá by interagovala priamo s operačným systémom hostiteľa a potom by odosielala dáta.
+takejto virtualizovanej inštancií spustiť jednoduchú monitorovaciu aplikáciu, ktorá by interagovala priamo s virtualizovaným operačným systémom a potom by odosielala dáta.
 To ale nie je vhodné riešenie, nakoľko sa nedá predpokladať virtualizovaný operačný systém a zároveň to predstavuje zásah do užívateľského
-priestoru. Je lepšie realizovať zber metrík na základe komunikácie s aplikáciami, kedy je monitorovacia aplikácia nasadená na operačnom systéme hosťujúceho storja a zberá metriky o virtualizačných aplikáciách.
+priestoru. Je lepšie realizovať zber metrík na základe komunikácie s aplikáciami, ktoré zabezpečujú virtualizáciu alebo spúšťajú úlohy.
 
 \section{Návrh monitorovacieho riešenia}
 Monitorovacie riešenie bude využívať viacero súčastí, ktoré zabezpečujú jednotlivé činnosti súvisiace s monitorovaním tak, ako som ich rozoberal v časi 2.1 Všeobecné problémy monitorovania.
@@ -847,7 +871,7 @@ Aplikácia bude zberať metriky, ktoré sú popísané v predošlej kapitole. Na
        \caption{Architektúra monitorovacieho riešenia}
 \end{center}
 \end{figure}
-\\Samotný proces zberu metrických dát bude zabezpečený aplikáciou \emph{collectd}. Oproti ostatným dostupným aplikáciám disponuje
+Samotný proces zberu metrických dát bude zabezpečený aplikáciou \emph{collectd}. Oproti ostatným dostupným aplikáciám disponuje
 veľkou mierou rozšíriteľnosti, kde je možné rozširovať nie len škálu dát, ktoré sa majú zberať, ale aj spôsob, ako a kam sa budú dáta zapisovať a tiež spôsoby,
 akými je možné upozorniť na hodnoty mimo definovaných medzí. Ďalšou z výhod zvolenej aplikácie je, že na uskutočňovanie zberu a zápisu používa viacero
 paralelne bežiacich vlákien, ktoré si medzi sebou rovnomerne delia záťaž. Ich počet je možné definovať pri konfigurácií. 
@@ -858,7 +882,7 @@ každej požiadavke na metriku, pretože by to spomaľovalo proces samotného zb
 \\Potom nasleduje fáza behu. Collectd beží v režime démona na pozadí a periodicky spúšťa jednotlivé moduly, ktoré zisťujú metrické dáta. 
 V rámci modulov sa periodicky zisťuje, ktoré virtuálne stroje alebo kontajnery sú spustené a z ktorých sa tým pádom budú zberať metriky. 
 \\Po nameraní hodnoty collectd inicializuje zápis do databázy časových rád. Modul má optimalizovanú činnosť v podobe cachovania
-hodnôt a metriky sa nedoosielajú po jednom, ale vo väčších dávkach.
+hodnôt a metriky sa neodosielajú po jednom, ale vo väčších dávkach.
 \\Démon takisto riadi ukončovanie činnosti modulov. Až v tejto fáze moduly uvoľnia všetky prostriedky, ktoré mali naalokované.
 \\Samotný collectd bez pluginov predstavuje riadiaciu aplikáciu v podobe démona, ktorá na svoju inštaláciu vyžaduje minimum závislostí. To je ďalšou z výhod, keďže 
 démon na zber metrík bude nainštalovaný na každom monitorovanom uzle.
@@ -882,7 +906,7 @@ Monitorovacie dáta môžu byť uchovávané po dobu rokov až desiatky rokov. S
 umožňovať zmenu granularity už zapísaných metrických dát. Tým je možné prispieť k úspore úložnej kapacity a zároveň kontinuálne reagovať na
 zastarávanie údajov. 
 \\Pre potreby monitorovania záťaže a reakcie na danú hodnotu je vo svojej podstate významná len aktuálna záťaž prostriedkov, prípadne záťaž v okne niekoľkých hodín 
-dozadu. Potreba uchovávania dát je tu z dôvodu účtovania a pre možnosť sledovať vývoj využívania zdrojov za dlhšie obdobie a analyzovať ho.
+dozadu. Potreba uchovávania dát je tu z dôvodu účtovania a pre možnosť sledovať vývoj využívania zdrojov za dlhšie obdobie.
 Podľa toho, ako dlho zberáme metriku, sa mení aj požiadavka na interval, v akom je potrebné hodnoty uchovávať. Čím staršie hodnoty sú, tým menšia granularita nám postačuje.
 \\OpenTSDB podporuje zmenu granularity vrátených metrických dát pri vyhodnocovaní požidaviek. Ak by v odpovedi z datábazy mali byť státisíce dátových bodov, je možné matematickou funkciou upraviť viacero hodnôt
 za určité obdobie  do jednej hodnoty. Táto agregačná funkcia môže predstavovať súčet, priemer alebo inú operáciu. V súčasnosti databáza nepodporuje zmenu na úrovni premazávania záznamov.
@@ -896,17 +920,17 @@ dáta staršie ako mesiac v intervale jednej hodiny. Dvojicu týchto intervalov 
 Jednou súčasťou monitorovacieho riešenia bude nástroj, ktorý zmení granularitu dát v databáze OpenTSDB do požadovanej podoby.
 
 \subsection{Kontinuálne a periodické zmeny granularity}
-Zmena granularity dát môže prebiehať kontinuálne v čase alebo peridicky po uplynutí určitého intervalu. 
+Zmena granularity dát môže prebiehať kontinuálnym dohľadom nad dátami alebo periodicky po uplynutí určitého intervalu. 
 \\Pri kontinuálnej zmene je rozhodujúci najkratší historický interval a k nemu prislúchajúci interval požadovanej granularity. Po uplynutí najkratšieho historického intervalu od začiatku zberu sa pre 
 najstaršie namerané dáta začne uplatňovať príslušné pravidlo uchovávania. Následne po uplynutí príslušného intervalu požadovanej granularity je možné vykonať agregáciu. 
 Ak uvážime politiku uchovávania z ~\ref{sec:policy}, tak dáta namerané po mesiaci od začiatku zberu by mali byť uchované v intervale jednej hodiny. Po uplynutí mesiaca a jednej hodiny od začiatku zberu,
 sa vykoná agregácia dát za prvú hodinu zberu a hodnota sa uloží do databázy.
-\\Po uplynutí druhého najkratšieho historického intervalu a príslušného intervalu požadovanej granularity dôjde zmene dát podobným spôsobom. Čiže v prípade politiky uchovávania z ~\ref{sec:policy} po uplynutí
-roku a jedného dňa budú agregované dáta za prvý deň zberania.
+\\Po uplynutí druhého najkratšieho historického intervalu a príslušného intervalu požadovanej granularity dôjde k zmene dát podobným spôsobom. Čiže v prípade politiky uchovávania z ~\ref{sec:policy} po uplynutí
+roka a jedného dňa budú agregované dáta za prvý deň zberu.
 \\Pri periodickej zmene sa agregácia vykoná raz za určitú dobu, ale nie skôr ako po uplynutí najkratšieho intervalu požadovanej granularity
 (inak by bol vstupný interval kratší ako interval požadovanej granularity). Vstupom sú hodnoty namerané po poslednej úspešnej zmene granularity a výstupom sú agregované hodnoty. Pre účely tejto práce
 uvažujem pod periodickou zmenou takú zmenu, ktorá sa vykonáva v intervale výrazne dlhšom (napr. stonásobok) ako je najkratší interval požadovanej granularity. V prípade uvažovaného príkladu z ~\ref{sec:policy}, kde je 
-tento interval 1 hodina, by sa periodickú zmena bola uskutočňovaná napr. raz za mesiac.
+tento interval 1 hodina, by periodická zmena bola uskutočňovaná napr. raz za mesiac.
 
 \subsection{Zmena granularity a počet databáz}
 Po vykonaní agregácie či už v kontinuálnom alebo periodickom režime je potrebné uložiť získané agregované dáta. Je potrebné vymazať dáta s nadbytočnou hustotou a namiesto nich uložiť nové dáta.
@@ -923,7 +947,7 @@ historického intervalu do druhého. Nevýhodou periodickej zmeny je však vysok
 infraštruktúry uvažovanej v ~\ref{sec:example}, by bolo potrebné spracovať približne 39 miliárd záznamov. OpenTSDB je optimalizovaná pre prácu s veľkým množstvom záznamov, no takáto záťaž by mohla spôsobovať 
 veľké oneskorenia pri výpočte agregovaných metrík a ich prenášaní.
 \\Ako vhodné riešenie sa preto ponúka nástroj, ktorý využije kontinuálnu zmenu metrík a samostatnú databázu pre každé pravidlo z politiky uchovávania. Pri kontinuálnej zmene podľa uvažovaného príkladu 
-infraštruktúry a pravidiel uchovávania, sa každú hodinu vypočítajú agregované metriky z 54 miliónov záznamov v pôvodnej databázy a do databázy pre prvé pravidlo sa uloží 75 000 nových záznamov. 
+infraštruktúry a pravidiel uchovávania, sa každú hodinu vypočítajú agregované metriky z 54 miliónov záznamov z pôvodnej databázy a do databázy pre prvé pravidlo sa uloží 75 000 nových záznamov. 
 Zároveň si nástroj bude pre každé pravidlo pamätať čas poslednej úspešnej zmeny granularity. Táto hodnota bude ukladaná na disk. Ak zlyhá zmena granularity a bude potrebné nástroj reštartovať, 
 tak bude mať informáciu o tom, ktoré dáta treba zahrnúť v ďalšom výpočte agregovaných metrík. Nepriamym dôsledkom takéhoto návrhu je aj to, že nástroj bude tým pádom možné využiť aj pre periodickú
 zmenu granularity.
@@ -931,8 +955,8 @@ zmenu granularity.
 teda jeden rok a jeden deň). Je to z toho dôvodu, aby bola zachovaná čo najväčšia presnosť pri výpočte agregovaných štatistík aj pre najdlhšie historické intervaly. Mazanie z ostatných databáz sa bude 
 uskutočňovať kaskádovito, tj. pre uvažovaný príklad sa z databázy pre mesačný historický interval budú mazať dáta staršie ako rok.
 \\Nástroj bude predstavovať konfigurovateľné rozšírenie databázy OpenTSDB. Ako konfiguračné dáta poslúži politika uchovávania spolu s adresami, na ktorých sú spustené TSD príslušných databáz. Okrem toho je potrebné nástroj konfigurovať
-metrikami, ktoré majú byť prevzorkovávané a spolu s metódou agregácie viacerých hodnôt do jednej. Nástroj bude bežať ako démon na mieste,
-kde je nasadená primárna OpenTSDB, v ktorej sú dáta s najvyššou podrobnosťou. S plynutím času bude uskutočňovať agregáciu a mazanie hodnôt,
+metrikami, ktoré majú byť prevzorkovávané, spolu s metódou agregácie viacerých hodnôt do jednej. Nástroj bude bežať ako démon na mieste,
+kde je nasadená primárna OpenTSDB, v ktorej sú dáta s najvyššou podrobnosťou. S plynutím času bude uskutočňovať agregáciu a mazanie hodnôt
 po uplynutí príslušných intervalov tak, ako som popisoval vyššie.
 
 \chapter{Implementácia}
@@ -941,11 +965,11 @@ Využijem existujúcu aplikáciu na zbieranie metrických dát \emph{collectd}. 
 analýzu zozbieraných hodnôt a generovanie hlásení. Na zbieranie jednotlivých metrík som vytvoril moduly pre tento program. Tieto údaje následne bude odosielať do databázy OpenTSDB
 pomocou modulu WriteTSDB.
 
-\subsection{Zapisovací plugin Write TSDB}
-Plugin pre collectd s názvom Write TSDB zapisuje metriky do OpenTSDB databázy.\cite{writetsdb} 
-Je napísaný v jazyku C. Bolo potrebné ho upraviť, aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy, zberajúce metriky. Plugin využíva mechanizmy
+\subsection{Zapisovací plugin WriteTSDB}
+Plugin pre collectd s názvom WriteTSDB zapisuje metriky do OpenTSDB databázy.\cite{writetsdb} 
+Je napísaný v jazyku C. Bolo potrebné ho upraviť, aby požadovaným spôsobom generoval názvy metrík z údajov, ktoré mu predávajú pluginy zbierajúce metriky. Plugin využíva mechanizmy
 dočasného zhlukovania správ a ich odosielania vo väčších dávkach. Je možné nakonfigurovať adresu a port, na ktorom je spustený
-démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol. Toto vo svojej implementácií nevyužívam, všetky tagy metrík sú generované pluginmi.
+démon OpenTSDB. Taktiež je možné nakonfigurovať tagy špecifické pre uzol.
 
 \section{Techniky zbierania metrík}
 Rôzne technológie MetaCentra poskytujú svoje metrické údaje cez rôzne programové rozhrania alebo prostredníctvom textového výstupu zvyčajne
@@ -954,7 +978,7 @@ dostupného prostredníctvom HTTP servera.
 \subsection{Docker}
 Na komunikáciu s Dockerom je možné využiť \textit{príkazy aplikácie v príkazovom riadku} alebo \textit{Remote API}.
 Používanie príkazov aplikácie môže byť o čosi rýchlejšie, ale následne by bolo potrebné analyzovať textový výstup programu.
-Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST. Zberná aplikácia sa bude pripájať demóna Dockeru, ktorý využíva lokálny Unixový socket, čo minimalizuje časovú odozvu.
+Rozhodol som sa použiť Remote API. Toto API funguje pre účely monitorovania na princípe REST. Zberná aplikácia sa bude pripájať na demóna Dockeru, ktorý využíva lokálny Unixový socket, čo minimalizuje časovú odozvu.
 Odpovede sú generované vo formáte JSON, čo predstavuje zjednodušenie spracovania výstupu. Každému kontajneru zodpovedá URL adresa, ktorá zahŕňa identifikačný reťazec kontajnera.
 
 \subsection{libvirt/KVM}
@@ -973,7 +997,7 @@ procesor hosťujúceho stroja prevádzkou virtuálneho stroja. Poskytujem údaje
 Na monitorovanie Hadoopu som si zvolil REST API YARN-u. YARN zabezpečuje správu zdrojov a plánovanie/monitorovanie vykonávania úloh do dvoch
 oddelených démonov.\cite{hadoop-yarn} 
 ResourceManager je autoritou, ktorá rozhoduje o využívaní zdrojov aplikáciami v celom systéme. NodeManager
-je agent, nainštalovaný na jednotlivých uzloch, ktorý sa stará o beh kontajner a monitorovanie zdrojov, ktoré spotrebovávajú. Toto
+je agent, nainštalovaný na jednotlivých uzloch, ktorý sa stará o beh kontajnerov a monitorovanie zdrojov, ktoré spotrebovávajú. Toto
 nahlasuje ResourceManagerovi. Preto som zvolil toto API.
 \\REST API poskytuje odpovede vo formáte JSON a XML. Vo svojej implementácií využívam odpovede vo formáte JSON.
 
@@ -1001,7 +1025,7 @@ v systéme na vyššej úrovni prináša koncept procesov. Pri
 vytváraní procesu ale dochádza k režijnej záťaži v operačnom systéme. Procesy si v systéme udržujú viacero parametrov, ako identifikačné
 číslo, identifikáciu užívateľa, premenné prostredia, zásobník, haldu, registre, zdieľané knižnice a reagujú na signály. Vlákna využívajú
 tieto atribúty a zavádzajú menšiu množinu parametrov a kontrolných signálov, ktoré umožňujú paralelné vykonávanie aj v rámci jedného procesu.
-\\Túto knižnicu využívam v plugine pre Docker. V pravidelných intervaloch dochádza k zisťovaniu, ktoré kontajnery sú spustené a na REST API
+\\Túto knižnicu využívam v plugine pre Docker. V pravidelných intervaloch dochádza k zisťovaniu, ktoré kontajnery sú spustené, a na REST API
 zodpovedajúcich kontajnerov sú potom paralelne vytvorené a zaslané požiadavky na metrické údaje.
 
 \subsection{cJSON}
@@ -1015,7 +1039,12 @@ generuje odpovede vo formáte JSON, a taktiež
 nástroje príkazového riadka. Na získavanie dát z databázy s najpodrobnejšími záznamami som ale použil
 funkcie samotnej OpenTSDB. To odstraňuje problémy s prácou s veľkými textovými výstupmi, ako napr. uloženie celého výstupu do pamäte,
 jeho spracovanie a vytvorenie hierarchie objektov. Obdržané dáta potom odosielam do príslušných databáz podľa politík udržiavania
-prostredníctvom REST API. 
+prostredníctvom REST API.
+
+\section{Zostavenie a nasadenie riešenia}
+Zdrojové kódy a inštrukcie na zostavenie a nasadenie mnou implementovaného riešenia sa nachádzajú v repozitári na adrese \begin{sloppypar}"https://github.com/delavei/diplomka".\end{sloppypar}
+Na otestovanie funkčnosti je potrebný aspoň jeden uzol, ktorý je zdrojom metrík, a aspoň jedna inštancia OpenTSDB. Počet inštancií OpenTSDB sa líši v závislosti od definovanej politiky 
+udržiavania. Vizualizovať agregované metriky je možné prostredníctvom nástroja Grafana.
 
 \chapter{Testovanie}
 \section{Zber metrík}
@@ -1033,8 +1062,8 @@ V súčasnosti Docker nie je nasadený v produkčnej prevádzke MetaCentra. Zber
 s desiatimi spustenými kontajnermi. Zber a odosielanie metrík bolo úspešne otestované.
 
 \subsection{Hadoop}
-MetaCentrum prevádzkuje dedikovaný Hadoop cluster s 24 uzlami. Prostredníctvom Hadoop YARN REST API som úspešne zberal metriky o
-clusteri a jeho uzloch. Počas testovania neboli spustené žiadne aplikácie, tak som testoval zber metrík pre už ukončené aplikácie.
+MetaCentrum prevádzkuje dedikovaný Hadoop cluster s 24 uzlami na adrese \textit{hador.ics.muni.cz}. Prostredníctvom Hadoop YARN REST API som úspešne zberal metriky o
+tomto clusteri a jeho uzloch. Počas testovania neboli spustené žiadne aplikácie, tak som testoval zber metrík pre už ukončené aplikácie.
 Tých bolo v čase testovania 9427. Zber metrík prebiehal úspešne. Odosielanie metrík a zápis do databázy neprebiehal pri takomto počte aplikácií správne,
 nakoľko limitom bola rýchlosť môjho internetového pripojenia. Pri znížení počtu aplikácií na 1000 prebiehalo odosielanie a zápis
 úspešne. Keďže o každej aplikácií je zberaných 6 metrík, za jeden interval bolo po sieti do databázy odosielaných 6000 metrík.
@@ -1058,7 +1087,7 @@ Graf zobrazuje dáta v rozpätí jedného týždňa.
 \begin{figure}[p]
 \begin{center} 
        \includegraphics[width=1.0\textwidth]{images/downsampled.png}
-       \caption{Pôvodné a downsamplované dáta - vizualizácia pomocou Grafany}
+       \caption{Pôvodné a agregované dáta - vizualizácia pomocou Grafany}
 \end{center}
 \end{figure}
 \\Pri testovaní bolo zistené, že niektoré agregované hodnoty sa líšili od hodnôt, ktoré boli očakávanými výsledkami agregačnej funkcie.
@@ -1067,11 +1096,11 @@ zaokrúhlený na hodiny a pod týmto identifikátorom sú ukladané hodnoty metr
 uplynutí hodiny sa vytvorí ďalší identifikátor a dáta sú ukladané tam. Ak v priebehu tejto hodiny nejaké hodnoty chýbajú,
 agregačný mechanizmus OpenTSDB ich dopočíta metódou interpolácie. Preto napríklad hodnoty maxima nemusia byť vždy reálne.
 To predstavuje skreslenie hodnôt v databázach s agregovanými údajmi. 
-\\Tento problém by bolo možné vyriešiť agregáciou záznamov priamo na úrovni HBase, uložených podľa hodinových známok.
+\\Tento problém by bolo možné vyriešiť agregáciou záznamov priamo na úrovni HBase.
 
 \chapter{Záver}
 Cieľom tejto práce bolo navrhnúť a implementovať monitorovacie riešenie pre zber a uchovávanie metrík v heterogénnej infraštruktúre MetaCentra. 
-Navrhnuté riešenie malo byť rozšíriteľné, škálovateľné  s dôrazom na nízku nadbytočnú záťaž.
+Navrhnuté riešenie malo byť rozšíriteľné, škálovateľné a s dôrazom na nízku nadbytočnú záťaž.
 \\V úvodných častiach je popisovaná infraštruktúra MetaCentra, jednotlivé využívané technológie spolu s výpočtovými modelmi, ktoré
 jednotlivé technológie reprezentujú. Ďalej nasleduje rozbor jednotlivých aspektov zberu metrík a ich ukladania.
 V ďalšej kapitole rozoberám aktuálne monitorovacie riešenia s pohľadom na rozšíritenosť a riadenie zberných intervalov. V piatej kapitole
@@ -1091,6 +1120,7 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
 \section{libvirt}
 \subsection{Metriky}
 \begin{center}
+	\resizebox{\textwidth}{!}{%
     \begin{tabular}{| l | l |}
     \hline
     Názov metriky v texte & Názov metriky v OpenTSDB \\
@@ -1118,6 +1148,7 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
     tx\_packets & virt.if\_packets.tx\\ \hline
     tx\_error & virt.if\_errors.tx\\ \hline
     \end{tabular}
+    }
 \end{center}
 
 \subsection{Popisné údaje}
@@ -1174,8 +1205,10 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
 \section{Hadoop Cluster}
 \subsection{Metriky}
 \begin{center}
+\resizebox{\textwidth}{!}{%
     \begin{tabular}{| l | l |}
     \hline
+    
     Názov metriky v texte & Názov metriky v OpenTSDB \\
 	appsSubmitted & hadoop\_cluster.cluster.apps\_submitted \\ \hline
     appsCompleted & hadoop\_cluster.cluster.apps\_completed \\ \hline
@@ -1201,6 +1234,7 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
     decommissionedNodes & hadoop\_cluster.cluster.decommissioned\_nodes \\ \hline
     rebootedNodes & hadoop\_cluster.cluster.rebooted\_nodes \\ \hline
     \end{tabular}
+    }
 \end{center}
 
 \subsection{Popisné údaje}
@@ -1268,5 +1302,28 @@ do požadovanej podoby podľa politiky udržiavania. Zároveň by to zjednoduši
 \end{center}
 
 \section{PBS Professional}
+\subsection{Metriky}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Názov metriky v texte & Názov metriky v OpenTSDB\\
+	resources\_used.cpupercent & pbs\_pro.cpu\_load\\ \hline
+    resources\_used.cput & pbs\_pro.cpu\_time\\ \hline
+    resources\_used.mem & pbs\_pro.memory.available\\ \hline
+    resources\_used.ncpus & pbs\_pro.cpu\_count\\ \hline 
+    resources\_used.vmem & pbs\_pro.virtual\_memory\\ \hline
+    resources\_used.walltime & pbs\_pro.walltime\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Popisné údaje}
+\begin{center}
+    \begin{tabular}{| l | l |}
+    \hline
+    Popisný údaj v texte & Tagy v OpenTSDB \\ \hline
+    Job Id & job\_id\\ \hline
+    Job\_Owner & job\_owner\\ \hline
+    \end{tabular}
+\end{center}
 
 \end{document}

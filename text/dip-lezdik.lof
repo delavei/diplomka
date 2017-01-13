@@ -6,33 +6,33 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Infra\IeC {\v s}trukt\IeC {\'u}ra MetaCentra v \IeC {\v C}R}}{3}{figure.2.1}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Infra\IeC {\v s}trukt\IeC {\'u}ra MetaCentra v \IeC {\v C}R}}{4}{figure.2.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Porovnanie architekt\IeC {\'u}ry kontajnerov a virtu\IeC {\'a}lnych strojov s nat\IeC {\'\i }vnym hyperv\IeC {\'\i }zorom}}{7}{figure.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Architekt\IeC {\'u}ra Hadoop YARN}}{10}{figure.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Architekt\IeC {\'u}ra PBS Professional}}{10}{figure.2.4}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Architekt\IeC {\'u}ra PBS Professional}}{11}{figure.2.4}
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Architekt\IeC {\'u}ra OpenTSDB}}{25}{figure.4.1}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Architekt\IeC {\'u}ra OpenTSDB}}{27}{figure.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Vizualiz\IeC {\'a}cia \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d OpenTSDB n\IeC {\'a}strojom Grafana}}{26}{figure.4.2}
-\defcounter {refsection}{0}\relax 
-\addvspace {4\p@ }
-\defcounter {refsection}{0}\relax 
-\addvspace {4\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Architekt\IeC {\'u}ra monitorovacieho rie\IeC {\v s}enia}}{41}{figure.6.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Vizualiz\IeC {\'a}cia \IeC {\v c}asov\IeC {\'y}ch r\IeC {\'a}d OpenTSDB n\IeC {\'a}strojom Grafana}}{28}{figure.4.2}
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {8.1}{\ignorespaces P\IeC {\^o}vodn\IeC {\'e} a downsamplovan\IeC {\'e} d\IeC {\'a}ta - vizualiz\IeC {\'a}cia pomocou Grafany}}{53}{figure.8.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Architekt\IeC {\'u}ra monitorovacieho rie\IeC {\v s}enia}}{43}{figure.6.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {4\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {4\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {8.1}{\ignorespaces P\IeC {\^o}vodn\IeC {\'e} a agregovan\IeC {\'e} d\IeC {\'a}ta - vizualiz\IeC {\'a}cia pomocou Grafany}}{55}{figure.8.1}
 \defcounter {refsection}{0}\relax 
 \addvspace {4\p@ }
 \defcounter {refsection}{0}\relax 

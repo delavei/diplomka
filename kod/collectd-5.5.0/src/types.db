@@ -31,6 +31,7 @@ count			value:GAUGE:0:U
 counter			value:COUNTER:U:U
 cpufreq			value:GAUGE:0:U
 cpu			value:DERIVE:0:U
+cpu_count 	value:GAUGE:0:U
 cpu_time	value:GAUGE:0:U
 cpu_load 	value:GAUGE:0:U
 current_connections	value:GAUGE:0:U
@@ -222,6 +223,8 @@ vcl			value:GAUGE:0:65535
 vcpu			value:GAUGE:0:U
 virt_cpu_total		value:DERIVE:0:U
 virt_vcpu		value:DERIVE:0:U
+virtual_memory	value:GAUGE:0:U
+
 vmpage_action		value:DERIVE:0:U
 vmpage_faults		minflt:DERIVE:0:U, majflt:DERIVE:0:U
 vmpage_io		in:DERIVE:0:U, out:DERIVE:0:U
@@ -232,6 +235,7 @@ voltage			value:GAUGE:U:U
 vs_memory		value:GAUGE:0:9223372036854775807
 vs_processes		value:GAUGE:0:65535
 vs_threads		value:GAUGE:0:65535
+walltime 		value:GAUGE:0:U
 
 #
 # Legacy types

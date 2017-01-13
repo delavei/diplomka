@@ -60,7 +60,7 @@ static int docker_config (const char *key, const char *value)
     return -1;
 }
 
-static void cpu_time_submit (unsigned long cpu_time, container_t* container, const char *type)
+static void cpu_time_submit (unsigned long cpu_time, container_t* container)
 {
     value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
@@ -76,12 +76,12 @@ static void cpu_time_submit (unsigned long cpu_time, container_t* container, con
     ssnprintf(tags,1024,"container_id=%s image_name=%s",container->id,container->image_name);
 	meta_data_add_string (vl.meta,"tsdb_tags",tags);
 	
-    sstrncpy (vl.type, type, sizeof (vl.type));
+    sstrncpy (vl.type, "cpu_time", sizeof (vl.type));
 
     plugin_dispatch_values (&vl);
 }
 
-static void cpu_load_submit(double_t cpu_load_percent, container_t* container, const char *type)
+static void cpu_load_submit(double_t cpu_load_percent, container_t* container)
 {
     value_t values[1];
     value_list_t vl = VALUE_LIST_INIT;
@@ -97,7 +97,7 @@ static void cpu_load_submit(double_t cpu_load_percent, container_t* container, c
     ssnprintf(tags,1024,"container_id=%s image_name=%s",container->id,container->image_name);
 	meta_data_add_string (vl.meta,"tsdb_tags",tags);
 	
-    sstrncpy (vl.type, type, sizeof (vl.type));
+    sstrncpy (vl.type, "cpu_load", sizeof (vl.type));
 
     plugin_dispatch_values (&vl);
 }
@@ -168,7 +168,7 @@ void submit_cpu_stats (cJSON* root, container_t* container){
 		
 	unsigned long container_cpu_time = (unsigned long) total_usage->valuedouble;
 
-	cpu_time_submit (container_cpu_time, container, "cpu_time");
+	cpu_time_submit (container_cpu_time, container);
 	double_t container_time_in_secs = (double_t) (container_cpu_time/1000000000);
 
 	double_t container_load = compute_container_load(container_time_in_secs, container);
@@ -177,7 +177,7 @@ void submit_cpu_stats (cJSON* root, container_t* container){
 		return;
 	}
 	
-	cpu_load_submit (container_load, container, "cpu_load");
+	cpu_load_submit (container_load, container);
 }
 
 static void get_disk_stats (cJSON* root, unsigned long* write_val, unsigned long* read_val, enum disk_switch data_type) {

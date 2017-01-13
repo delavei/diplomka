@@ -1,14 +1,18 @@
 [0] Config.pm:354> INFO - This is Biber 2.6
 [0] Config.pm:357> INFO - Logfile is 'dip-lezdik.blg'
-[52] biber:302> INFO - === Ut jan  3, 2017, 14:52:21
-[88] Biber.pm:359> INFO - Reading 'dip-lezdik.bcf'
-[222] Biber.pm:823> INFO - Found 32 citekeys in bib section 0
-[242] Biber.pm:3658> INFO - Processing section 0
-[266] Biber.pm:3828> INFO - Looking for bibtex format file 'dip-lezdik.bib' for section 0
-[268] bibtex.pm:1425> INFO - Decoding LaTeX character macros into UTF-8
-[269] bibtex.pm:1282> INFO - Found BibTeX data source 'dip-lezdik.bib'
-[391] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[391] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'variable = shifted' with 'variable = non-ignorable'
-[391] Biber.pm:3487> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'sk-SK'
-[415] bbl.pm:597> INFO - Writing 'dip-lezdik.bbl' with encoding 'UTF-8'
-[423] bbl.pm:701> INFO - Output to dip-lezdik.bbl
+[53] biber:302> INFO - === St jan  4, 2017, 08:27:17
+[86] Biber.pm:359> INFO - Reading 'dip-lezdik.bcf'
+[216] Biber.pm:823> INFO - Found 36 citekeys in bib section 0
+[236] Biber.pm:3658> INFO - Processing section 0
+[262] Biber.pm:3828> INFO - Looking for bibtex format file 'dip-lezdik.bib' for section 0
+[265] bibtex.pm:1425> INFO - Decoding LaTeX character macros into UTF-8
+[268] bibtex.pm:1282> INFO - Found BibTeX data source 'dip-lezdik.bib'
+[270] Utils.pm:164> WARN - Duplicate entry key: 'docker' in file 'dip-lezdik.bib', skipping ...
+[301] Utils.pm:164> WARN - Possible typo (case mismatch) between citation and datasource keys: 'Docker' and 'docker' in file 'dip-lezdik.bib'
+[371] Utils.pm:164> WARN - I didn't find a database entry for 'Docker' (section 0)
+[411] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[411] UCollate.pm:68> INFO - Overriding locale 'sk-SK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[411] Biber.pm:3487> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'sk-SK'
+[446] bbl.pm:597> INFO - Writing 'dip-lezdik.bbl' with encoding 'UTF-8'
+[455] bbl.pm:701> INFO - Output to dip-lezdik.bbl
+[455] Biber.pm:109> INFO - WARNINGS: 3

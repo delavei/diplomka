@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.29)  3 JAN 2017 14:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.29)  4 JAN 2017 08:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1083,28 +1083,28 @@ Package csquotes Info: Adjusting default style.
 
 
 Package csquotes Warning: No style for language 'slovak'.
-(csquotes)                Using fallback style on input line 45.
+(csquotes)                Using fallback style on input line 52.
 
 Package csquotes Info: Redefining alias 'default' -> 'fallback'.
 (./dip-lezdik.aux)
 \openout1 = `dip-lezdik.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -1112,11 +1112,18 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'dip-lezdik.bbl' found.
- (./dip-lezdik.bbl)
-Package biblatex Info: Reference section=0 on input line 45.
-Package biblatex Info: Reference segment=0 on input line 45.
+ (./dip-lezdik.bbl
 
-(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Docker
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
+Package biblatex Info: Reference section=0 on input line 52.
+Package biblatex Info: Reference segment=0 on input line 52.
+ (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count321
 \scratchdimen=\dimen148
@@ -1156,7 +1163,7 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Info: Redefining \microtypecontext on input line 45.
+LaTeX Info: Redefining \microtypecontext on input line 52.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1172,7 +1179,7 @@ Package microtype Info: Redefining babel's language switching commands.
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 \big@size=\dimen150
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 52.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1182,9 +1189,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count327
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 
 (./dip-lezdik.out) (./dip-lezdik.out)
 \@outlinefile=\write5
@@ -1200,11 +1207,11 @@ Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/qpl/m/sc/17.28'.
 (microtype)             Ignoring protrusion settings for this character.
 
-<fithesis/logo/mu/fithesis-fi.pdf, id=475, 291.0875pt x 292.09125pt>
+<fithesis/logo/mu/fithesis-fi.pdf, id=487, 291.0875pt x 292.09125pt>
 File: fithesis/logo/mu/fithesis-fi.pdf Graphic file (type pdf)
 
 <use fithesis/logo/mu/fithesis-fi.pdf>
-Package pdftex.def Info: fithesis/logo/mu/fithesis-fi.pdf used on input line 45
+Package pdftex.def Info: fithesis/logo/mu/fithesis-fi.pdf used on input line 52
 .
 (pdftex.def)             Requested size: 113.81102pt x 114.20036pt.
 Package microtype Info: Character `029' is missing
@@ -1220,29 +1227,29 @@ warning (ext4): destination with the same identifier (name{page.}) has been alr
 eady used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \begin{document}
+l.52 \begin{document}
                       [2
 
 
 ]
-<fithesis/logo/mu/fithesis-fi-color.pdf, id=489, 291.0875pt x 292.09125pt>
+<fithesis/logo/mu/fithesis-fi-color.pdf, id=501, 291.0875pt x 292.09125pt>
 File: fithesis/logo/mu/fithesis-fi-color.pdf Graphic file (type pdf)
 
 <use fithesis/logo/mu/fithesis-fi-color.pdf>
 Package pdftex.def Info: fithesis/logo/mu/fithesis-fi-color.pdf used on input l
-ine 45.
+ine 52.
 (pdftex.def)             Requested size: 113.81102pt x 114.20036pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \begin{document}
+l.52 \begin{document}
                       [3 </usr/local/texlive/2016/texmf-dist/tex/latex/fithesis
 /logo/mu/fithesis-fi-color.pdf>]pdfTeX warning (ext4): destination with the sam
 e identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \begin{document}
+l.52 \begin{document}
                       [4
 
 
@@ -1250,7 +1257,7 @@ l.45 \begin{document}
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \begin{document}
+l.52 \begin{document}
                       [-1
 
 
@@ -1258,7 +1265,7 @@ l.45 \begin{document}
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \begin{document}
+l.52 \begin{document}
                       [0
 
 
@@ -1361,13 +1368,13 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 ]
 Kapitola 1.
 
-Overfull \hbox (4.32428pt too wide) in paragraph at lines 47--82
+Overfull \hbox (4.32428pt too wide) in paragraph at lines 54--88
 \T1/qpl/m/n/10.95 konu via-ce-rými sub-jek-tami, pre ktoré by za-do-vá-ºe-nie a
  pre-vádz-ko-va-nie vlast-
  []
 
 
-Overfull \hbox (3.12009pt too wide) in paragraph at lines 47--82
+Overfull \hbox (3.12009pt too wide) in paragraph at lines 54--88
 \T1/qpl/m/n/10.95 da-ta-bázy na ukla-da-nie £a-so-vých rád. Tie sa sna-ºia rôz-
 nymi tech-ni-kami zmen-
  []
@@ -1381,335 +1388,361 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 [2]
 Kapitola 2.
-<images/metacentrum.png, id=724, 401.5pt x 256.96pt>
+<images/metacentrum.png, id=741, 401.5pt x 256.96pt>
 File: images/metacentrum.png Graphic file (type png)
 
 <use images/metacentrum.png>
-Package pdftex.def Info: images/metacentrum.png used on input line 91.
+Package pdftex.def Info: images/metacentrum.png used on input line 103.
 (pdftex.def)             Requested size: 289.08109pt x 185.02281pt.
- [3
 
-
- <./images/metacentrum.png>]
-
-LaTeX Font Warning: Font shape `T1/qpl/b/sl' in size <10.95> not available
-(Font)              Font shape `T1/qpl/b/it' tried instead on input line 112.
-
-
-Overfull \hbox (16.72536pt too wide) in paragraph at lines 115--117
-[]\T1/qpl/m/n/10.95 Cloud vir-tu-ali-zuje sys-témy zdie-©a-ním zdro-jov. Sys-té
-my a úloºný
+Overfull \hbox (1.2147pt too wide) in paragraph at lines 97--111
+\T1/qpl/m/n/10.95 sa hlavne o aka-de-mickú spo-lu-prácu. Me-ta-Cen-trum spra-vu
+je vý-po£-tové pros-
  []
 
-[4]
-Overfull \hbox (21.48854pt too wide) in paragraph at lines 122--125
-[]\T1/qpl/m/n/10.95 Uºívate© má moº-nos´ vy-uºí-va´ zdroje cloudu
- []
-
-
-Overfull \hbox (0.7pt too wide) in paragraph at lines 122--125
-\T1/qpl/m/n/10.95 sluºby spra-vuje hard-vé-rovú in-fra-²truk-túru, kým kli-ent 
-je zod-po-vedný
- []
-
-
-Overfull \hbox (9.78284pt too wide) in paragraph at lines 125--128
-[]\T1/qpl/m/n/10.95 Prevádzkovate© sluºby po-sky-zuje hard-vér, ope-
- []
-
-
-Overfull \hbox (16.17775pt too wide) in paragraph at lines 128--130
-[]\T1/qpl/m/n/10.95 Tento mo-del sprí-stup-¬uje uºí-va-te-©ovi kon-krétnu
- []
-
-[5] <images/kontajnery-virtualky.png, id=754, 550.055pt x 371.3875pt>
-File: images/kontajnery-virtualky.png Graphic file (type png)
-
-<use images/kontajnery-virtualky.png>
-Package pdftex.def Info: images/kontajnery-virtualky.png used on input line 163
-.
-(pdftex.def)             Requested size: 289.08109pt x 195.18536pt.
-
-Overfull \hbox (1.98119pt too wide) in paragraph at lines 159--172
-\T1/qpl/m/n/10.95 vý-po£-to-vému vý-konu, pa-mäti, úloº-nej ka-pa-cite, sieti a
- prí-padne ¤al-²ím pros-
- []
-
-
-Overfull \vbox (3.89879pt too high) has occurred while \output is active []
-
-
-[6]
-Overfull \hbox (6.85295pt too wide) in paragraph at lines 178--182
-\T1/qpl/m/n/10.95 V pro-stredí Me-ta-Cen-tra sú na-sa-dené do pro-duk£-nej pre-
-vádzky soft-véry, ktoré
- []
-
-[7 <./images/kontajnery-virtualky.png>]
-Overfull \hbox (9.23007pt too wide) in paragraph at lines 194--200
-\T1/qpl/m/n/10.95 stroje a kniº-nice. Toto za-ru-£uje, ºe prog-ram bude pra-co-
-va´ rov-nako bez oh©adu
- []
-
-[8]
-
-LaTeX Font Warning: Font shape `T1/qpl/b/sl' in size <8> not available
-(Font)              Font shape `T1/qpl/b/it' tried instead on input line 211.
-
-
-Overfull \hbox (8.92604pt too wide) in paragraph at lines 211--212
-[]\T1/qpl/m/n/10.95 distribuovaný sú-bo-rový sys-tém,
- []
-
-<images/yarn_architecture.png, id=783, 624.3325pt x 386.44376pt>
-File: images/yarn_architecture.png Graphic file (type png)
-
-<use images/yarn_architecture.png>
-Package pdftex.def Info: images/yarn_architecture.png used on input line 220.
-(pdftex.def)             Requested size: 289.08109pt x 178.93382pt.
-
-<images/pbspro-arch.jpg, id=785, 605.26125pt x 534.99875pt>
-File: images/pbspro-arch.jpg Graphic file (type jpg)
-
-<use images/pbspro-arch.jpg>
-Package pdftex.def Info: images/pbspro-arch.jpg used on input line 228.
-(pdftex.def)             Requested size: 289.08109pt x 255.52298pt.
- [9] [10 <./images/yarn_architecture.png> <./images/pbspro-arch.jpg>]
-Kapitola 3.
-
-Overfull \hbox (2.76941pt too wide) in paragraph at lines 241--244
-[]\T1/qpl/m/n/10.95 Vy´aºenie zdro-jov sa v prie-behu
- []
-
-
-Overfull \hbox (13.44556pt too wide) in paragraph at lines 249--252
-[]\T1/qpl/m/n/10.95 Nezanedbate©ný vý-
- []
-
-[11
-
-
-]
-Overfull \hbox (1.47205pt too wide) in paragraph at lines 253--258
-\T1/qpl/m/n/10.95 stredí Me-ta-Cen-tra sa ve-nuje dip-lo-mová práca Mi-chala Ki
-m-leho[[]2[]]. Pre
- []
-
-[12]
-Overfull \hbox (4.6202pt too wide) in paragraph at lines 278--282
-\T1/qpl/m/n/10.95 ºeme dis-po-no-va´ rôz-nym po-£tom zdro-jov via-ce-rých dru-h
-ov, roz-miest-ne-nými
- []
-
-
-Overfull \hbox (1.34615pt too wide) in paragraph at lines 284--291
-\T1/qpl/m/n/10.95 Uchovávanie met-ric-kých dát je k©ú-£o-vou su-£as-´ou mo-ni-t
-o-ro-va-cieho sys-tému.
- []
-
-[13]
-Overfull \hbox (55.97551pt too wide) in paragraph at lines 306--314
-\T1/qpl/m/n/10.95 Nezanedbate©nú rolu hrá aj £as po-trebný na zís-ka-nie jed-né
-ho ta-ké-hoto "snímku"vyuºitia
- []
-
-[14]
-Underfull \vbox (badness 2012) has occurred while \output is active []
-
- [15]
-Overfull \hbox (0.95192pt too wide) in paragraph at lines 329--330
-[]\T1/qpl/m/n/10.95 - cie-©om je nájs´ krivku alebo ma-te-ma-tickú fun-kciu,
- []
-
-[16]
-Kapitola 4.
-
-Overfull \hbox (3.05435pt too wide) in paragraph at lines 345--347
-\T1/qpl/m/n/10.95 mer£-ných alebo open-source ap-li-ká-cií, prí-padne ap-li-ká-
-cií za-darmo. Rôz-nymi
- []
-
-[17
-
-
-] [18] [19]
-Overfull \hbox (3.52522pt too wide) in paragraph at lines 416--420
-\T1/qpl/m/n/10.95 kúnd.[[]15[]] Za-bbix ne-spra-cuje jed-no-du-chú kon-trolu na
- hod-notu met-riky, ktorá
- []
-
-[20]
-Underfull \vbox (badness 3148) has occurred while \output is active []
-
- [21]
-[22] [23] <images/opentsdb-arch.jpg, id=887, 538.01pt x 388.45125pt>
-File: images/opentsdb-arch.jpg Graphic file (type jpg)
-
-<use images/opentsdb-arch.jpg>
-Package pdftex.def Info: images/opentsdb-arch.jpg used on input line 513.
-(pdftex.def)             Requested size: 289.08109pt x 208.72327pt.
-
-<images/grafana.png, id=889, 932.48375pt x 631.35875pt>
-File: images/grafana.png Graphic file (type png)
-
-<use images/grafana.png>
-Package pdftex.def Info: images/grafana.png used on input line 524.
-(pdftex.def)             Requested size: 289.08109pt x 195.72882pt.
- [24]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25 <./images/opentsdb-arch.jpg>]
-Overfull \hbox (3.93025pt too wide) in paragraph at lines 540--542
-\T1/qpl/m/n/10.95 zmen-²o-va-nie ob-jemu dát. Ide o zhlu-ko-va-nie dát s vy-so-
-kou frek-ven-ciou zberu,
+ [3
+
+
+]
+
+LaTeX Font Warning: Font shape `T1/qpl/b/sl' in size <10.95> not available
+(Font)              Font shape `T1/qpl/b/it' tried instead on input line 120.
+
+
+Overfull \hbox (16.72536pt too wide) in paragraph at lines 123--125
+[]\T1/qpl/m/n/10.95 Cloud vir-tu-ali-zuje sys-témy zdie-©a-ním zdro-jov. Sys-té
+my a úloºný
+ []
+
+[4 <./images/metacentrum.png>]
+Overfull \hbox (21.48854pt too wide) in paragraph at lines 128--131
+[]\T1/qpl/m/n/10.95 Uºívate© má moº-nos´ vy-uºí-va´ zdroje cloudu
+ []
+
+
+Overfull \hbox (9.78284pt too wide) in paragraph at lines 131--134
+[]\T1/qpl/m/n/10.95 Prevádzkovate© sluºby po-sky-zuje hard-vér, ope-
+ []
+
+
+Overfull \hbox (16.17775pt too wide) in paragraph at lines 134--136
+[]\T1/qpl/m/n/10.95 Tento mo-del sprí-stup-¬uje uºí-va-te-©ovi kon-krétnu
+ []
+
+[5] <images/kontajnery-virtualky.png, id=770, 550.055pt x 371.3875pt>
+File: images/kontajnery-virtualky.png Graphic file (type png)
+
+<use images/kontajnery-virtualky.png>
+Package pdftex.def Info: images/kontajnery-virtualky.png used on input line 168
+.
+(pdftex.def)             Requested size: 289.08109pt x 195.18536pt.
+
+Overfull \hbox (44.19237pt too wide) in paragraph at lines 164--177
+\T1/qpl/m/n/10.95 V pro-stredí Me-ta-Cen-tra je ako kon-taj-ne-rový en-gine tes
+-to-vaný soft-vér Docker[[]]. 
+ []
+
+[6] [7 <./images/kontajnery-virtualky.png>]
+Overfull \hbox (0.1087pt too wide) in paragraph at lines 186--192
+\T1/qpl/m/n/10.95 Grid je vý-po£-tový mo-del, ktorý sprí-stup-¬uje zdroje, kon-
+tro-lo-vané via-ce-rými
+ []
+
+
+Overfull \hbox (6.85295pt too wide) in paragraph at lines 194--199
+\T1/qpl/m/n/10.95 V pro-stredí Me-ta-Cen-tra sú na-sa-dené do pro-duk£-nej pre-
+vádzky soft-véry, ktoré
+ []
+
+
+Overfull \vbox (2.22356pt too high) has occurred while \output is active []
+
+
+[8]
+Overfull \hbox (9.23007pt too wide) in paragraph at lines 213--218
+\T1/qpl/m/n/10.95 stroje a kniº-nice. Toto za-ru-£uje, ºe prog-ram bude pra-co-
+va´ rov-nako bez oh©adu
+ []
+
+[9]
+
+LaTeX Font Warning: Font shape `T1/qpl/b/sl' in size <8> not available
+(Font)              Font shape `T1/qpl/b/it' tried instead on input line 228.
+
+
+Overfull \hbox (8.92604pt too wide) in paragraph at lines 228--229
+[]\T1/qpl/m/n/10.95 distribuovaný sú-bo-rový sys-tém,
+ []
+
+<images/yarn_architecture.png, id=817, 624.3325pt x 386.44376pt>
+File: images/yarn_architecture.png Graphic file (type png)
+
+<use images/yarn_architecture.png>
+Package pdftex.def Info: images/yarn_architecture.png used on input line 237.
+(pdftex.def)             Requested size: 289.08109pt x 178.93382pt.
+
+<images/pbspro-arch.jpg, id=821, 605.26125pt x 534.99875pt>
+File: images/pbspro-arch.jpg Graphic file (type jpg)
+
+<use images/pbspro-arch.jpg>
+Package pdftex.def Info: images/pbspro-arch.jpg used on input line 249.
+(pdftex.def)             Requested size: 289.08109pt x 255.52298pt.
+ [10 <./images/yarn_architecture.png>] [11 <./images/pbspro-arch.jpg>] [12
+
+
+]
+Kapitola 3.
+
+Overfull \hbox (2.76941pt too wide) in paragraph at lines 262--265
+[]\T1/qpl/m/n/10.95 Vy´aºenie zdro-jov sa v prie-behu
+ []
+
+
+Overfull \hbox (2.57141pt too wide) in paragraph at lines 270--273
+[]\T1/qpl/m/n/10.95 Z mo-ni-to-ro-va-cích
+ []
+
+
+Overfull \hbox (1.47205pt too wide) in paragraph at lines 275--280
+\T1/qpl/m/n/10.95 stredí Me-ta-Cen-tra sa ve-nuje dip-lo-mová práca Mi-chala Ki
+m-leho[[]2[]]. Pre
+ []
+
+[13]
+Overfull \hbox (1.43375pt too wide) in paragraph at lines 298--302
+\T1/qpl/m/n/10.95 ºeme dis-po-no-va´ rôz-nym po-£tom zdro-jov via-ce-rých dru-h
+ov, roz-miest-ne-ným
+ []
+
+[14]
+Overfull \hbox (1.34615pt too wide) in paragraph at lines 304--311
+\T1/qpl/m/n/10.95 Uchovávanie met-ric-kých dát je k©ú-£o-vou su-£as-´ou mo-ni-t
+o-ro-va-cieho sys-tému.
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26 <./images/grafana.png>]
-Overfull \hbox (3.83174pt too wide) in paragraph at lines 549--559
+ [15]
+Overfull \hbox (8.0803pt too wide) in paragraph at lines 324--333
+\T1/qpl/m/n/10.95 Nezanedbate©nú rolu hrá aj £as po-trebný na zís-ka-nie jed-né
+ho ta-ké-hoto snímku
+ []
+
+
+Underfull \vbox (badness 4940) has occurred while \output is active []
+
+ [16]
+Overfull \hbox (0.95192pt too wide) in paragraph at lines 348--349
+[]\T1/qpl/m/n/10.95 - cie-©om je nájs´ krivku alebo ma-te-ma-tickú fun-kciu,
+ []
+
+[17] [18]
+Kapitola 4.
+
+Overfull \hbox (3.05435pt too wide) in paragraph at lines 372--374
+\T1/qpl/m/n/10.95 mer£-ných alebo open-source ap-li-ká-cií, prí-padne ap-li-ká-
+cií za-darmo. Rôz-nymi
+ []
+
+
+Overfull \hbox (3.5134pt too wide) in paragraph at lines 380--393
+\T1/qpl/m/n/10.95 V sú-£as-nosti Na-gios dis-po-nuje plu-ginmi pre Doc-ker, Ha-
+doop aj lib-virt/KVM,
+ []
+
+[19
+
+
+] [20] [21]
+Overfull \hbox (3.52522pt too wide) in paragraph at lines 443--447
+\T1/qpl/m/n/10.95 kúnd.[[]17[]] Za-bbix ne-spra-cuje jed-no-du-chú kon-trolu na
+ hod-notu met-riky, ktorá
+ []
+
+[22] [23] [24] [25] <images/opentsdb-arch.jpg, id=930, 538.01pt x 388.45125pt>
+File: images/opentsdb-arch.jpg Graphic file (type jpg)
+
+<use images/opentsdb-arch.jpg>
+Package pdftex.def Info: images/opentsdb-arch.jpg used on input line 538.
+(pdftex.def)             Requested size: 289.08109pt x 208.72327pt.
+
+<images/grafana.png, id=933, 1156.32pt x 425.79076pt>
+File: images/grafana.png Graphic file (type png)
+ <use images/grafana.png>
+Package pdftex.def Info: images/grafana.png used on input line 550.
+(pdftex.def)             Requested size: 289.08109pt x 106.44742pt.
+
+[26]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[27 <./images/opentsdb-arch.jpg>]
+Overfull \hbox (3.93025pt too wide) in paragraph at lines 567--569
+\T1/qpl/m/n/10.95 zmen-²o-va-nie ob-jemu dát. Ide o zhlu-ko-va-nie dát s vy-so-
+kou frek-ven-ciou zberu,
+ []
+
+[28 <./images/grafana.png>]
+Overfull \hbox (3.83174pt too wide) in paragraph at lines 576--587
 \T1/qpl/m/n/10.95 Nevýhodou ¤al-²ích rie-²ení je tech-nika ukla-da-nia dát. Za-
 bbix po-u-ºíva vlastnú
  []
 
 
-Overfull \hbox (1.61996pt too wide) in paragraph at lines 549--559
+Overfull \hbox (1.61996pt too wide) in paragraph at lines 576--587
 \T1/qpl/m/n/10.95 Vyuºitie ná-stroja RRD-Tool nie je ta-kisto vhodné z h©a-disk
 a dl-ho-do-bého ucho-
  []
 
-[27] [28]
-Kapitola 5.
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 572.
-
-[29
+[29] [30
 
 
 ]
-Underfull \vbox (badness 1325) has occurred while \output is active []
+Kapitola 5.
 
- [30]
-Overfull \hbox (0.22926pt too wide) in paragraph at lines 606--607
+LaTeX Warning: Reference `sec:tables' on page 31 undefined on input line 596.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 598.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]
+[32]
+Overfull \hbox (0.22926pt too wide) in paragraph at lines 628--629
 []\T1/qpl/m/n/10.95 - hod-nota v per-cen-tách, ktorá pred-sta-vuje zá-´aº vir-t
 u-ál-neho stroja
  []
 
 
-Overfull \hbox (12.71231pt too wide) in paragraph at lines 613--614
+Overfull \hbox (12.71231pt too wide) in paragraph at lines 635--636
 []\T1/qpl/m/n/10.95 - mnoº-stvo pa-mäte v kB, ktoré
  []
 
 
-Overfull \hbox (5.60576pt too wide) in paragraph at lines 615--616
+Overfull \hbox (5.60576pt too wide) in paragraph at lines 637--638
 []\T1/qpl/m/n/10.95 - po-£et prí-pa-dov, kedy
  []
 
 
-Overfull \hbox (5.989pt too wide) in paragraph at lines 616--617
+Overfull \hbox (5.989pt too wide) in paragraph at lines 638--639
 []\T1/qpl/m/n/10.95 - po-£et prí-pa-dov, kedy
  []
 
 
-Overfull \hbox (10.54422pt too wide) in paragraph at lines 617--618
+Overfull \hbox (10.54422pt too wide) in paragraph at lines 639--640
 []\T1/qpl/m/n/10.95 - mnoº-stvo pa-mäte v kB, ktoré
  []
 
-[31]
-Overfull \hbox (11.03697pt too wide) in paragraph at lines 620--621
+
+Overfull \hbox (11.03697pt too wide) in paragraph at lines 642--643
 []\T1/qpl/m/n/10.95 - ak-tu-álna ve©-kos´
  []
 
 
-Overfull \hbox (1.03876pt too wide) in paragraph at lines 621--623
+Overfull \hbox (1.03876pt too wide) in paragraph at lines 643--645
 []\T1/qpl/m/n/10.95 - mnoº-stvo pa-mäte v kB ob-sa-dené
  []
 
-[32] [33]
-Overfull \hbox (1.95927pt too wide) in paragraph at lines 681--684
+[33] [34]
+Overfull \hbox (1.95927pt too wide) in paragraph at lines 704--707
 \T1/qpl/m/n/10.95 rov-na-kej siete. Ko-mu-ni-ká-cia na-prie£ sie-´ami nie je mo
 ºná. Uºí-va-te-lia si môºu
  []
 
-[34] [35]
-Overfull \hbox (0.50291pt too wide) in paragraph at lines 762--763
+[35] [36] [37]
+Overfull \hbox (0.50291pt too wide) in paragraph at lines 785--786
 []\T1/qpl/m/n/10.95 - sú-£et vir-tu-ál-nych ja-dier, ktoré sú alo-ko-vané kon-t
 aj-mermi,
  []
 
-[36] [37] [38]
+[38] [39] [40]
 Kapitola 6.
-[39
+
+Overfull \hbox (4.30176pt too wide) in paragraph at lines 840--842
+\T1/qpl/m/n/10.95 tech-no-ló-giami spro-stred-ko-vá-va-jú-cimi vý-po-£etný vý-k
+on. V na-sle-du-jú-cich £as-
+ []
+
+[41
 
 
-] <images/architektura.png, id=978, 2369.85374pt x 3151.775pt>
+] <images/architektura.png, id=1025, 2369.85374pt x 3151.775pt>
 File: images/architektura.png Graphic file (type png)
 
 <use images/architektura.png>
-Package pdftex.def Info: images/architektura.png used on input line 847.
+Package pdftex.def Info: images/architektura.png used on input line 870.
 (pdftex.def)             Requested size: 361.34999pt x 480.53679pt.
 
-Overfull \hbox (5.1896pt too wide) in paragraph at lines 843--870
+Overfull \hbox (5.1896pt too wide) in paragraph at lines 866--893
 \T1/qpl/m/n/10.95 Na zá-pis mo-ni-to-ro-va-cích dát bude vy-uºitá da-ta-báza £a
 -so-vých rád OpenTSDB.
  []
 
-[40] [41 <./images/architektura.png>] [42] [43]
-Overfull \hbox (1.07224pt too wide) in paragraph at lines 918--938
+[42] [43 <./images/architektura.png>] [44] [45]
+Overfull \hbox (1.07224pt too wide) in paragraph at lines 941--961
 \T1/qpl/m/n/10.95 Nástroj bude pred-sta-vo-va´ kon-fi-gu-ro-va-te©né roz-²í-re-
 nie da-ta-bázy OpenTSDB.
  []
 
-[44]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [45]
-[46]
-Kapitola 7.
-[47
+[46] [47] [48
 
 
 ]
+Kapitola 7.
+
+Underfull \vbox (badness 1596) has occurred while \output is active []
+
+ [49]
 Underfull \vbox (badness 1281) has occurred while \output is active []
 
- [48]
-[49] [50]
+ [50]
+[51] [52]
 Kapitola 8.
+
+Overfull \hbox (8.9427pt too wide) in paragraph at lines 1065--1070
+\T1/qpl/m/n/10.95 rese \T1/qpl/m/it/10.95 ha-dor.ics.muni.cz\T1/qpl/m/n/10.95 .
+ Pro-stred-níc-tvom Ha-doop YARN REST API som úspe²ne
+ []
+
 
 Underfull \vbox (badness 2229) has occurred while \output is active []
 
- [51
+ [53
 
 
 ]
-<images/downsampled.png, id=1043, 1927.2pt x 627.34375pt>
+<images/downsampled.png, id=1089, 1927.2pt x 627.34375pt>
 File: images/downsampled.png Graphic file (type png)
 
 <use images/downsampled.png>
-Package pdftex.def Info: images/downsampled.png used on input line 1061.
+Package pdftex.def Info: images/downsampled.png used on input line 1089.
 (pdftex.def)             Requested size: 361.34999pt x 117.62666pt.
 
-Overfull \hbox (9.15347pt too wide) in paragraph at lines 1055--1072
+Overfull \hbox (9.15347pt too wide) in paragraph at lines 1083--1100
 \T1/qpl/m/n/10.95 Tento prob-lém by bolo moºné vy-rie-²i´ ag-re-gá-ciou zá-zna-
 mov priamo na úrovni
  []
 
-[52] [53 <./images/downsampled.png>] [54
+[54] [55 <./images/downsampled.png>] [56
 
 
 ]
 Kapitola 9.
-[55] [56
+[57] [58
 
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 1088
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 1116
 .
  (/usr/local/texlive/2016/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1719,109 +1752,86 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (1.06123pt too wide) in paragraph at lines 1088--1088
+Overfull \hbox (1.06123pt too wide) in paragraph at lines 1116--1116
 []\T1/qpl/m/n/10.95 Ritzau Warnke. \T1/qpl/m/it/10.95 qemu-kvm and lib-virt\T1/
 qpl/m/n/10.95 . 4. Bo-oks on De-mand GmbH, 2010.
  []
 
-
-Overfull \hbox (0.7529pt too wide) in paragraph at lines 1088--1088
-[]\T1/qpl/m/n/10.95 The Apa-che Soft-ware Foun-da-tion. \T1/qpl/m/it/10.95 Wel-
-come to Apa-che Ha-doop! \T1/qpl/m/n/10.95 2014. \T1/qpl/m/sc/10.95 url\T1/qpl/
-m/n/10.95 :
- []
-
-
-Overfull \hbox (12.30287pt too wide) in paragraph at lines 1088--1088
-\T1/qpl/m/n/10.95 2014. \T1/qpl/m/sc/10.95 url\T1/qpl/m/n/10.95 : []$\T1/lmtt/m
-/n/10.95 http : / / www . studentcpu . com / 2012 / 09 / pbs -[] job -[] schedu
-ler -[]
- []
-
-
-Overfull \hbox (3.47745pt too wide) in paragraph at lines 1088--1088
+[59]
+Overfull \hbox (3.47745pt too wide) in paragraph at lines 1116--1116
 []\T1/qpl/m/n/10.95 Zabbix SIA. \T1/qpl/m/it/10.95 1 Za-bbix Ser-ver [Za-bbix D
 o-cu-men-ta-tion 1.8]\T1/qpl/m/n/10.95 . 2016. \T1/qpl/m/sc/10.95 url\T1/qpl/m/
 n/10.95 : []$\T1/lmtt/m/n/10.95 https :
  []
 
-[57]
-Overfull \hbox (6.22586pt too wide) in paragraph at lines 1088--1088
+
+Overfull \hbox (6.22586pt too wide) in paragraph at lines 1116--1116
 []\T1/qpl/m/n/10.95 Ganglia. \T1/qpl/m/it/10.95 Gan-glia-Met-rics - Ha-doop Wik
 i\T1/qpl/m/n/10.95 . 2016. \T1/qpl/m/sc/10.95 url\T1/qpl/m/n/10.95 : []$\T1/lmt
 t/m/n/10.95 https : / / wiki . apache .
  []
 
 
-Overfull \hbox (36.31642pt too wide) in paragraph at lines 1088--1088
+Overfull \hbox (36.31642pt too wide) in paragraph at lines 1116--1116
 []\T1/qpl/m/n/10.95 AppDynamics. \T1/qpl/m/it/10.95 App-Dy-na-mics Exchange\T1/
 qpl/m/n/10.95 . 2016. \T1/qpl/m/sc/10.95 url\T1/qpl/m/n/10.95 : []$\T1/lmtt/m/n
 /10.95 https : / / www . appdynamics .
  []
 
 
-Overfull \hbox (25.1354pt too wide) in paragraph at lines 1088--1088
+Overfull \hbox (25.1354pt too wide) in paragraph at lines 1116--1116
 \T1/lmtt/m/n/10.95 org / html / libvirt -[] libvirt -[] domain . html # virDoma
 inMemoryStatStruct$[]\T1/qpl/m/n/10.95 . 
  []
 
 
-Overfull \hbox (11.20934pt too wide) in paragraph at lines 1088--1088
+Overfull \hbox (11.20934pt too wide) in paragraph at lines 1116--1116
 []\T1/qpl/m/n/10.95 Apache Soft-ware Foun-da-tion. \T1/qpl/m/it/10.95 Apa-che H
 a-doop 2.7.2 - Apa-che Ha-doop YARN\T1/qpl/m/n/10.95 .
  []
 
-[58]
-Dodatok A.
-
-Overfull \hbox (72.14192pt too wide) in paragraph at lines 1095--1122
- [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [59
+[60] [61] [62
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Dodatok A.
 
- [60]
-Overfull \hbox (4.95287pt too wide) in paragraph at lines 1178--1205
- [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [61]
-[62]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3128) has occurred while \output is active []
 
  [63]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1273.
+Underfull \vbox (badness 7133) has occurred while \output is active []
 
-[64]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1273.
+ [64]
+[65]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [66]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1329.
+
+[67]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1329.
  (./dip-lezdik.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1273.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1329.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1329.
 
 Package rerunfilecheck Info: File `dip-lezdik.out' has not changed.
-(rerunfilecheck)             Checksum: F0D0A9435268195733B35E902A33F941;11902.
+(rerunfilecheck)             Checksum: 83332931C29BAFFF4513585582A872C1;11948.
+
+
+LaTeX Warning: There were undefined references.
+
 Package logreq Info: Writing requests to 'dip-lezdik.run.xml'.
 \openout1 = `dip-lezdik.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21608 strings out of 494870
- 345047 string characters out of 6178250
- 812669 words of memory out of 5000000
- 24242 multiletter control sequences out of 15000+600000
+ 21635 strings out of 494870
+ 345503 string characters out of 6178250
+ 821762 words of memory out of 5000000
+ 24256 multiletter control sequences out of 15000+600000
  70708 words of font info for 63 fonts, out of 8000000 for 9000
  46 hyphenation exceptions out of 8191
- 50i,7n,47p,1155b,1938s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,8n,47p,1155b,2569s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/local/texlive/2
 016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}</usr/local/texlive/2016/te
@@ -1830,10 +1840,10 @@ onts/type1/public/tex-gyre/qplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
 ype1/public/tex-gyre/qplbi.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
 public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
 /tex-gyre/qplri.pfb>
-Output written on dip-lezdik.pdf (84 pages, 1075802 bytes).
+Output written on dip-lezdik.pdf (87 pages, 1173233 bytes).
 PDF statistics:
- 1239 PDF objects out of 1440 (max. 8388607)
- 1116 compressed objects within 12 object streams
- 266 named destinations out of 1000 (max. 500000)
- 18927 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 1294 PDF objects out of 1440 (max. 8388607)
+ 1167 compressed objects within 12 object streams
+ 279 named destinations out of 1000 (max. 500000)
+ 18951 words of extra memory for PDF output out of 20736 (max. 10000000)
 

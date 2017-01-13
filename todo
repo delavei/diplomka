@@ -22,32 +22,32 @@ ssh root@147.251.255.105
 
 2592000 sekund je jeden mesiac
 
-OTAZKYYYYY
-analyza a navrhy - metriky o konfigurácií zberať menej často - spominam to v kapitole metriky
-jake verzie softov sa používajú? dať to do textu -- libvirt centOS7, debian 7,8
-
-TEEEEEEEEEEEEEEEEEEEXT
-Možný problém - dotazovanie na metriky v rôznych intervaloch, ale využívanie jedného pripojenia  - je to v metriky - periodicita zbierania metrík - riešiť toto?
-
-
-
-pripomienky boris
-o hadoope z knihy
-o dockeri z knihy
-metriky hadoopu - ako ich zberať lepšie.
-preco pouzivam pbs pro a nie torque
+247 uzlov 815 virtualok
 
 Warenof12- heslo k uml stranke (mozno bez minus)
 
 
 
-
-
-
-
-
+TEEEEEEEEEEEEEEEEEEEXT
 
 IMPLEMENTACIA
+
+
+
+
+
+
+
+name 26.cloud255-105.cerit-sc.cz    text (null)
+name resources_used    resource   cpupercent     value 54
+name resources_used    resource   cput     value 00:00:46
+name resources_used    resource   mem     value 85976kb
+name resources_used    resource   ncpus     value 1
+name resources_used    resource   vmem     value 366180kb
+name resources_used    resource   walltime     value 00:12:25
+name Job_Owner    resource   (null)     value pbstest@cloud255-105.cerit-sc.cz
+
+
 
 
 tsd.downsample.server.count = 2

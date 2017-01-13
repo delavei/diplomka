@@ -72,8 +72,8 @@
       \strng{fullhash}{4adead644157d39686125fbb1313e833}
       \strng{authornamehash}{4adead644157d39686125fbb1313e833}
       \strng{authorfullhash}{4adead644157d39686125fbb1313e833}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Informační leták k činnosti MetaCentra}
@@ -97,8 +97,8 @@
       \strng{fullhash}{fc62830f29726a914ea9a75ce44a32f5}
       \strng{authornamehash}{fc62830f29726a914ea9a75ce44a32f5}
       \strng{authorfullhash}{fc62830f29726a914ea9a75ce44a32f5}
-      \field{sortinit}{4}
-      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
+      \field{sortinit}{5}
+      \field{sortinithash}{4110d28fc88fcc726350ba189d38fbca}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{Cloud computing bible}}
@@ -130,6 +130,55 @@
       \verb http://dl.acm.org/citation.cfm?doid=361011.361073
       \endverb
     \endentry
+    \entry{hadoop}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fec0f7585932951edb687003842f3da9}{%
+           family={White},
+           familyi={W\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly}%
+      }
+      \strng{namehash}{fec0f7585932951edb687003842f3da9}
+      \strng{fullhash}{fec0f7585932951edb687003842f3da9}
+      \strng{authornamehash}{fec0f7585932951edb687003842f3da9}
+      \strng{authorfullhash}{fec0f7585932951edb687003842f3da9}
+      \field{sortinit}{9}
+      \field{sortinithash}{5a7694b2c36c7534b22948c31e4b7920}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3.}
+      \field{isbn}{978-1-449-31152-0}
+      \field{title}{{Hadoop The Definitive Guide}}
+      \field{year}{2012}
+    \endentry
+    \entry{grid}{article}{}
+      \name{author}{1}{}{%
+        {{hash=92fab8b1c7330afbccd2edc58bb2de60}{%
+           family={{Ian Foster}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{92fab8b1c7330afbccd2edc58bb2de60}
+      \strng{fullhash}{92fab8b1c7330afbccd2edc58bb2de60}
+      \strng{authornamehash}{92fab8b1c7330afbccd2edc58bb2de60}
+      \strng{authorfullhash}{92fab8b1c7330afbccd2edc58bb2de60}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{Argonne National Laboratory \& University of Chicago}}
+      \field{title}{{What is the Grid? A Three Point Checklist}}
+      \field{urlday}{3}
+      \field{urlmonth}{1}
+      \field{urlyear}{2017}
+      \field{year}{2002}
+      \field{urldateera}{ce}
+      \verb{url}
+      \verb http://dlib.cs.odu.edu/WhatIsTheGrid.pdf
+      \endverb
+    \endentry
     \entry{kvm}{book}{}
       \name{author}{1}{}{%
         {{hash=145c54002d675be26fdaac099d8b02b5}{%
@@ -145,8 +194,8 @@
       \strng{fullhash}{145c54002d675be26fdaac099d8b02b5}
       \strng{authornamehash}{145c54002d675be26fdaac099d8b02b5}
       \strng{authorfullhash}{145c54002d675be26fdaac099d8b02b5}
-      \field{sortinit}{8}
-      \field{sortinithash}{ff392057b609ad7b4de0b8e2cc30b687}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{4.}
@@ -155,8 +204,8 @@
       \field{year}{2010}
     \endentry
     \entry{libvirt}{online}{}
-      \field{sortinit}{9}
-      \field{sortinithash}{5a7694b2c36c7534b22948c31e4b7920}
+      \field{sortinit}{1}
+      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
       \field{labeltitlesource}{title}
       \field{title}{libvirt: The virtualization API}
       \field{year}{2014}
@@ -186,34 +235,34 @@
       \verb http://www.docker.com/what-docker
       \endverb
     \endentry
-    \entry{hadoop}{online}{}
-      \name{author}{1}{}{%
-        {{hash=ffe4cf17ca8c1f982178700c0396c583}{%
-           family={Foundation},
-           familyi={F\bibinitperiod},
-           given={The\bibnamedelimb Apache\bibnamedelima Software},
-           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \strng{namehash}{ffe4cf17ca8c1f982178700c0396c583}
-      \strng{fullhash}{ffe4cf17ca8c1f982178700c0396c583}
-      \strng{authornamehash}{ffe4cf17ca8c1f982178700c0396c583}
-      \strng{authorfullhash}{ffe4cf17ca8c1f982178700c0396c583}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Welcome to Apache Hadoop!}
-      \field{year}{2014}
-      \verb{url}
-      \verb http://hadoop.apache.org/
-      \endverb
-    \endentry
     \entry{pbs_pro_arch}{online}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labeltitlesource}{title}
       \field{title}{PBS Job Scheduler Important Command And Architecture - Student CPU}
       \field{year}{2014}
+      \verb{url}
+      \verb http://www.pbsworks.com/pdfs/PBSProUserGuide13.1.pdf
+      \endverb
+    \endentry
+    \entry{pbs_pro}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=4ce0a2d5d3a15c1e06f3697899d606b3}{%
+           family={Altair\bibnamedelima Engineering},
+           familyi={A\bibinitperiod\bibinitdelim E\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ce0a2d5d3a15c1e06f3697899d606b3}
+      \strng{fullhash}{4ce0a2d5d3a15c1e06f3697899d606b3}
+      \strng{authornamehash}{4ce0a2d5d3a15c1e06f3697899d606b3}
+      \strng{authorfullhash}{4ce0a2d5d3a15c1e06f3697899d606b3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{PBS Professional 13.1 User’s Guide}
+      \field{year}{2016}
       \verb{url}
       \verb http://www.studentcpu.com/2012/09/pbs-job-scheduler-important-command-and.html
       \endverb
@@ -236,8 +285,8 @@
       \strng{fullhash}{92a055373f4aae5433060313b65d4763}
       \strng{authornamehash}{92a055373f4aae5433060313b65d4763}
       \strng{authorfullhash}{92a055373f4aae5433060313b65d4763}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9780201076165}
@@ -256,8 +305,8 @@
       \strng{fullhash}{e7d54d35b48843948cffebab6acafe09}
       \strng{authornamehash}{e7d54d35b48843948cffebab6acafe09}
       \strng{authorfullhash}{e7d54d35b48843948cffebab6acafe09}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Nagios - Network, Server and Log Monitoring Software}
@@ -278,8 +327,8 @@
       \strng{fullhash}{4b2cef5aca57354f82f92261599652c0}
       \strng{authornamehash}{4b2cef5aca57354f82f92261599652c0}
       \strng{authorfullhash}{4b2cef5aca57354f82f92261599652c0}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{11.1. Icinga Plugin API}
@@ -300,8 +349,8 @@
       \strng{fullhash}{6dc494a0ed530c28608cd412b3b07091}
       \strng{authornamehash}{6dc494a0ed530c28608cd412b3b07091}
       \strng{authorfullhash}{6dc494a0ed530c28608cd412b3b07091}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{5 Loadable modules [Zabbix Documentation 2.2]}
@@ -322,8 +371,8 @@
       \strng{fullhash}{6dc494a0ed530c28608cd412b3b07091}
       \strng{authornamehash}{6dc494a0ed530c28608cd412b3b07091}
       \strng{authorfullhash}{6dc494a0ed530c28608cd412b3b07091}
-      \field{sortinit}{1}
-      \field{sortinithash}{53e85f4cf497d2a4e1d51786552bcbf1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{1 Zabbix Server [Zabbix Documentation 1.8]}
@@ -364,8 +413,8 @@
       \strng{fullhash}{45efbf42609b5b76348db44359aa328c}
       \strng{authornamehash}{45efbf42609b5b76348db44359aa328c}
       \strng{authorfullhash}{45efbf42609b5b76348db44359aa328c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Ganglia Monitoring System}
@@ -384,8 +433,8 @@
       \strng{fullhash}{45efbf42609b5b76348db44359aa328c}
       \strng{authornamehash}{45efbf42609b5b76348db44359aa328c}
       \strng{authorfullhash}{45efbf42609b5b76348db44359aa328c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{GangliaMetrics - Hadoop Wiki}
@@ -404,8 +453,8 @@
       \strng{fullhash}{458163abda42eca4f08e366db21a2eb7}
       \strng{authornamehash}{458163abda42eca4f08e366db21a2eb7}
       \strng{authorfullhash}{458163abda42eca4f08e366db21a2eb7}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{AppDynamics Exchange}
@@ -426,8 +475,8 @@
       \strng{fullhash}{18e4d53c2351f8755aaf9582e7861594}
       \strng{authornamehash}{18e4d53c2351f8755aaf9582e7861594}
       \strng{authorfullhash}{18e4d53c2351f8755aaf9582e7861594}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Chapter 1. Introduction to Control Groups (Cgroups)}
@@ -448,8 +497,8 @@
       \strng{fullhash}{cb8e74837114dfc0b226911c4efb6a27}
       \strng{authornamehash}{cb8e74837114dfc0b226911c4efb6a27}
       \strng{authorfullhash}{cb8e74837114dfc0b226911c4efb6a27}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Start page - collectd - The system statistics collection daemon}
@@ -470,8 +519,8 @@
       \strng{fullhash}{6d6263aeb47dcbba1b28de52e5c27c81}
       \strng{authornamehash}{6d6263aeb47dcbba1b28de52e5c27c81}
       \strng{authorfullhash}{6d6263aeb47dcbba1b28de52e5c27c81}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{OpenTSDB - A Distributed, Scalable Monitoring System}
@@ -492,8 +541,8 @@
       \strng{fullhash}{99eaf663d638834b08bbbd005af4a369}
       \strng{authornamehash}{99eaf663d638834b08bbbd005af4a369}
       \strng{authorfullhash}{99eaf663d638834b08bbbd005af4a369}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Opentsdb}
@@ -503,23 +552,33 @@
       \endverb
     \endentry
     \entry{grafana}{online}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{labeltitlesource}{title}
+      \field{title}{Grafana.net}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://grafana.net
+      \endverb
+    \endentry
+    \entry{grafana_pic}{online}{}
       \name{author}{1}{}{%
-        {{hash=2c3b8c7de1bb85e311b11875d7038aa0}{%
-           family={frl1nuX},
-           familyi={f\bibinitperiod}}}%
+        {{hash=0599e4b08c37ecc8d35480752a177ea8}{%
+           family={raintank},
+           familyi={r\bibinitperiod}}}%
       }
-      \strng{namehash}{2c3b8c7de1bb85e311b11875d7038aa0}
-      \strng{fullhash}{2c3b8c7de1bb85e311b11875d7038aa0}
-      \strng{authornamehash}{2c3b8c7de1bb85e311b11875d7038aa0}
-      \strng{authorfullhash}{2c3b8c7de1bb85e311b11875d7038aa0}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \strng{namehash}{0599e4b08c37ecc8d35480752a177ea8}
+      \strng{fullhash}{0599e4b08c37ecc8d35480752a177ea8}
+      \strng{authornamehash}{0599e4b08c37ecc8d35480752a177ea8}
+      \strng{authorfullhash}{0599e4b08c37ecc8d35480752a177ea8}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Grafana 2 and Nginx}
-      \field{year}{2015}
+      \field{title}{Apache Overview dashboard for Grafana - Grafana.net}
+      \field{year}{2016}
       \verb{url}
-      \verb https://www.frlinux.eu/?p=424
+      \verb https://grafana.net/dashboards/331
       \endverb
     \endentry
     \entry{influxdb}{online}{}
@@ -534,8 +593,8 @@
       \strng{fullhash}{1f041b9a5fa76ad1f5a3643d4e349149}
       \strng{authornamehash}{1f041b9a5fa76ad1f5a3643d4e349149}
       \strng{authorfullhash}{1f041b9a5fa76ad1f5a3643d4e349149}
-      \field{sortinit}{2}
-      \field{sortinithash}{8343b463aacf48517c044b4d2c9c45ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{InfluxDB Version 1.0 Documentation}
@@ -556,8 +615,8 @@
       \strng{fullhash}{f463bcc6aba9ce3d4b1dac90899fcc47}
       \strng{authornamehash}{f463bcc6aba9ce3d4b1dac90899fcc47}
       \strng{authorfullhash}{f463bcc6aba9ce3d4b1dac90899fcc47}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{proc(5) - Linux manual page}
@@ -567,8 +626,8 @@
       \endverb
     \endentry
     \entry{libvirt-cpu}{online}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labeltitlesource}{title}
       \field{title}{libvirt: Module libvirt-domain from libvirt}
       \field{year}{2016}
@@ -577,8 +636,8 @@
       \endverb
     \endentry
     \entry{libvirt-domain-info}{online}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labeltitlesource}{title}
       \field{title}{libvirt: Module libvirt-domain from libvirt}
       \field{year}{2014}
@@ -587,8 +646,8 @@
       \endverb
     \endentry
     \entry{libvirt-mem}{online}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labeltitlesource}{title}
       \field{title}{libvirt: Module libvirt-domain from libvirt}
       \field{year}{2016}
@@ -597,8 +656,8 @@
       \endverb
     \endentry
     \entry{writetsdb}{online}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labeltitlesource}{title}
       \field{title}{Plugin:Write TSDB - collectd Wiki}
       \field{year}{2015}
@@ -618,8 +677,8 @@
       \strng{fullhash}{8514f80a2c717fcca8ef0674f335b126}
       \strng{authornamehash}{8514f80a2c717fcca8ef0674f335b126}
       \strng{authorfullhash}{8514f80a2c717fcca8ef0674f335b126}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Apache Hadoop 2.7.2 - Apache Hadoop YARN}
@@ -629,8 +688,8 @@
       \endverb
     \endentry
     \entry{libcurl}{online}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{7e21a31d9ef6ddc352701d4fa590bfbc}
+      \field{sortinit}{4}
+      \field{sortinithash}{40dc985c6c644a6e943d835d2b663799}
       \field{labeltitlesource}{title}
       \field{title}{libcurl - the multiprotocol file transfer library}
       \field{year}{2016}
@@ -639,6 +698,7 @@
       \endverb
     \endentry
   \endsortlist
+  \missing{Docker}
 \endrefsection
 \endinput
 

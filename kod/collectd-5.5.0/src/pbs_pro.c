@@ -23,7 +23,6 @@ int pbs_conn;
 char* host;
 struct attrl* attrs_to_select;
 
-/*
 static void init_value_list (value_list_t *vl)
 {
     sstrncpy (vl->plugin, PLUGIN_NAME, sizeof (vl->plugin));
@@ -31,45 +30,44 @@ static void init_value_list (value_list_t *vl)
     sstrncpy (vl->host, hostname_g, sizeof (vl->host));
 	vl->meta = meta_data_create();
 }
-* */
 
 
-static int pbs_pro_config (const char *key, const char *value)
+
+static void submit_long_val(unsigned long cpu_time, const char* type, const char* tags)
 {
-	host = "localhost";
-    return 0;
+    value_t values[1];
+    value_list_t vl = VALUE_LIST_INIT;
+
+    init_value_list (&vl);
+
+    values[0].gauge = cpu_time;
+
+    vl.values = values;
+    vl.values_len = 1;
+
+	meta_data_add_string (vl.meta,"tsdb_tags",tags);
+    sstrncpy (vl.type, type, sizeof (vl.type));
+
+    plugin_dispatch_values (&vl);
 }
 
+void memory_submit (unsigned long value, const char* tags, const char* type_instance) {
+	value_t values[1];
+    value_list_t vl = VALUE_LIST_INIT;
 
-static int pbs_pro_read (void)
-{	
-	struct batch_status *status = pbs_selstat(pbs_conn, NULL, attrs_to_select, NULL);
-	struct batch_status *iter_status = status;
-	int i =0;
-	
-	printf("iter_status  %p   chyba %s\n",iter_status, pbs_geterrmsg(pbs_conn));
+    init_value_list (&vl);
 
-	while (iter_status != NULL) {
-		printf("%d\n",i++);
-		fflush(stdout);
-				
-		printf("name %s    text %s\n",iter_status->name,iter_status->text); 
-		fflush(stdout);
-		
-		struct attrl * iter_attribs = iter_status->attribs;
-		int j =0;
-		while (iter_attribs != NULL) {
-			printf("name %s    resource   %s     value %s\n",iter_attribs->name,iter_attribs->resource,iter_attribs->value); 			
-			iter_attribs = iter_attribs->next;
-			j++;
-		}
-		printf ("vypisane atributyyyyyyy  %d\n",j);
-		iter_status = iter_status->next;
-	}
+    values[0].gauge = value;
+
+    vl.values = values;
+    vl.values_len = 1;
+
+	meta_data_add_string (vl.meta,"tsdb_tags",tags);
 	
-	pbs_statfree(status);
-	
-	return 0;
+    sstrncpy (vl.type, "memory", sizeof (vl.type));
+    ssnprintf (vl.type_instance, sizeof (vl.type_instance), "%s", type_instance);
+    
+    plugin_dispatch_values (&vl);
 }
 
 static void make_selection_attribs(){
@@ -94,7 +92,6 @@ static void make_selection_attribs(){
 			case 3:
 				rattrib->name = ATTR_owner;
 				break;
-			
 		}
 		
 		if (last_attrib!=NULL) {
@@ -103,7 +100,6 @@ static void make_selection_attribs(){
 			last_attrib = rattrib;
 		}
 	}
-	printf("pocet atributov %d\n",i);
 }
 
 static void free_selection_attribs(struct attrl* attrs_to_select) {
@@ -114,6 +110,69 @@ static void free_selection_attribs(struct attrl* attrs_to_select) {
 		free(attrs_iter);
 		attrs_iter = tmp;
 	}
+}
+static int pbs_pro_read (void)
+{	
+	struct batch_status *status = pbs_selstat(pbs_conn, NULL, attrs_to_select, NULL);
+	struct batch_status *iter_status = status;
+		
+	while (iter_status != NULL) {		
+		struct attrl * iter_attribs = iter_status->attribs;
+		char* job_owner = NULL;
+		char tags[1024];
+		
+		while (iter_attribs != NULL) {
+			if (strcmp(iter_attribs->name,"Job_Owner") == 0){
+				job_owner = iter_attribs->value;
+			}	
+			iter_attribs = iter_attribs->next;
+		}
+		
+		iter_attribs = iter_status->attribs;
+		ssnprintf(tags,1024,"job_id=%s job_owner=%s",iter_status->name,job_owner);
+
+		while (iter_attribs != NULL) {
+			long value = strtol(iter_attribs->value,NULL,10);
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"cput") == 0)
+				submit_long_val(value,"cpu_time",tags);
+				
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"cpupercent") == 0)
+				submit_long_val(value,"cpu_load",tags);
+				
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"mem") == 0)
+				memory_submit(value,tags,"available");
+				
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"vmem") == 0)					
+				submit_long_val(value,"virtual_memory",tags);
+				
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"ncpus") == 0)
+				submit_long_val(value,"cpu_count",tags);
+				
+			if (strcmp(iter_attribs->name,"resources_used") == 0
+				&& strcmp(iter_attribs->resource,"walltime") == 0)
+				submit_long_val(value,"walltime",tags);
+				
+			//printf("name %s    resource   %s     value %s\n",iter_attribs->name); 			
+			iter_attribs = iter_attribs->next;
+		}
+		
+		iter_status = iter_status->next;
+	}
+	
+	pbs_statfree(status);
+	
+	return 0;
+}
+
+static int pbs_pro_config (const char *key, const char *value)
+{
+	host = "localhost";
+    return 0;
 }
 
 static int pbs_pro_shutdown (void)
@@ -127,8 +186,7 @@ static int pbs_pro_init (void)
 {		
 	pbs_conn = pbs_connect(pbs_default());
 	make_selection_attribs();
-	printf("%s    %d\n",pbs_default(),pbs_conn);
-
+	
 	return 0;
 }
 
