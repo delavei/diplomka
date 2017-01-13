@@ -22,7 +22,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=10
+current_page=11
 FILE_NAME_0=4599;Conf;0;EUTF-8;1;1;0;%2Fopt%2Fcollectd%2Fetc%2Fcollectd.conf;0;4
 FILE_NAME_1=0;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb.conf;0;4
 FILE_NAME_2=0;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb1.conf;0;4
@@ -34,6 +34,7 @@ FILE_NAME_7=2408;Sh;0;EUTF-8;1;1;0;%2Fusr%2Fshare%2Fopentsdb%2Fbin%2Ftsdb;0;4
 FILE_NAME_8=0;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb2.conf;0;4
 FILE_NAME_9=2615;Conf;0;EUTF-8;1;1;0;%2Fetc%2Fopentsdb%2Fopentsdb3.conf;0;4
 FILE_NAME_10=3847;C;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2Fkod%2Fcollectd-5.5.0%2Fsrc%2Fpbs_pro.c;0;4
+FILE_NAME_11=90;None;0;EUTF-8;1;1;0;%2Fhome%2Fjuraj%2Fdiplomka%2F.gitignore;0;4
 
 [VTE]
 last_dir=/home/juraj
